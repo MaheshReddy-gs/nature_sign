@@ -5,7 +5,7 @@ const natureSignImage = '/nature-sign_website_03.png';
 
 const OverviewDetailsSection = () => {
     return (
-        <section className="relative overflow-hidden h-screen flex flex-col justify-center bg-[#F7F2EA]">
+        <section className="relative overflow-hidden min-h-screen flex flex-col justify-center bg-[#F7F2EA]">
             {/* Left Animated Wave */}
             <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
                 {/* Left Wave */}
