@@ -11,6 +11,8 @@ import ContactSection from './components/ContactSection'
 import IntroSection from './components/IntroSection'
 import OverViewSection from './components/OverViewSection'
 import UnitDetailsSection from './components/UnitDetailsSection'
+import HighlightsSection from './components/HighlightsSection'
+
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
       <IntroSection />
       <OverViewSection />
       <UnitDetailsSection />
+      <HighlightsSection />
       <SpecificationsSection />
       <ProximitySection />
       <GallerySection />

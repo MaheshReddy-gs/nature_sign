@@ -44,7 +44,7 @@ function TiltCard({ children, className = '' }) {
     return (
         <div
             ref={ref}
-            className={`bg-orange-600 hover:bg-orange-500 transition-colors rounded-lg p-3 text-center h-full flex flex-col items-center justify-center min-h-0 will-change-transform ${className}`}
+            className={`bg-[#f1c071] hover:bg-[#f6e0bb] transition-all  p-3 text-center h-full flex flex-col items-center justify-center min-h-0 duration-500  will-change-transform ${className}`}
             onMouseMove={handleMove}
             onMouseLeave={handleLeave}
             onMouseEnter={handleEnter}
@@ -72,7 +72,7 @@ export default function UnitDetailsSection() {
         >
             {/* Background Image - Sticky/Parallax */}
             <div
-                className="fixed top-0 left-0 w-full h-screen bg-cover bg-center -z-10"
+                className="sticky top-0 left-0 w-full h-screen bg-cover bg-center -z-10"
                 style={{
                     backgroundImage: `url('/herobackgorund.webp')`,
                     backgroundSize: 'cover',
@@ -85,10 +85,10 @@ export default function UnitDetailsSection() {
 
             {/* Content Container - Bottom 60vh constrained to section */}
             <div className="absolute    bottom-0 left-0 w-full lg:h-[60vh]">
-                <div className="w-full h-full py-10  bg-orange-700 px-3 sm:px-6 lg:px-8 flex flex-col">
+                <div className="w-full h-full py-10  bg-[#f8e8d1] px-3 sm:px-6 lg:px-8 flex flex-col">
                     {/* Unit Dimensions Heading */}
                     <FloatUpText>
-                        <h3 className="text-center text-orange-100 text-base font-semibold tracking-widest mb-4  uppercase">
+                        <h3 className="text-center text-orange-900 text-lg font-semibold tracking-widest mb-4  uppercase">
                             Unit Dimensions
                         </h3>
                     </FloatUpText>
@@ -97,27 +97,27 @@ export default function UnitDetailsSection() {
 
 
                     <div className="flex-1   min-h-0 mt-2">
-                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-6 max-w-6xl mx-auto h-full overflow-auto md:overflow-hidden">
+                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-6 max-w-5xl mx-auto h-full overflow-auto md:overflow-hidden">
                             {units.map((unit, idx) => (
                                 <FloatUpText key={unit.id} delay={idx * 0.2} yMultiplier={2}>
                                     <TiltCard>
                                         {/* Unit Number */}
-                                        <div className="text-4xl sm:text-5xl lg:text-6xl font-light text-orange-100 mb-3 opacity-60">
+                                        <div className="text-4xl sm:text-5xl lg:text-7xl  absolute top-3 left-3 text-transparent  font-extrabold  mb-3 opacity-60" style={{ WebkitTextStroke: "2px white" }}>
                                             {unit.id}
                                         </div>
 
                                         {/* Unit Size */}
                                         <div className="mb-2">
-                                            <p className="text-lg sm:text-2xl lg:text-3xl font-bold text-white mb-1">
+                                            <p className="text-lg sm:text-2xl lg:text-3xl font-bold text-black mb-1">
                                                 {unit.size}
                                             </p>
-                                            <p className="text-sm sm:text-lg text-orange-100">
+                                            <p className="text-sm sm:text-lg text-black">
                                                 ({unit.area})
                                             </p>
                                         </div>
 
                                         {/* CTA Button */}
-                                        <button className="mt-2 bg-white text-orange-700 hover:bg-gray-100 font-bold py-2 px-3 rounded transition-colors uppercase text-xs sm:text-sm tracking-widest">
+                                        <button className="mt-2 px-5 py-3  bg-orange-500 text-white hover:bg-orange-400 t font-bold rounded transition-colors uppercase text-xs sm:text-sm tracking-widest">
                                             Ask Price
                                         </button>
                                     </TiltCard>
