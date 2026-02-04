@@ -12,7 +12,7 @@ const ContactSection = () => {
             </div>
 
             {/* 2. Hero Background with Overlay Form */}
-            <div className="relative w-full h-[650px] lg:h-[600px] bg-gray-800">
+            <div className="relative w-full h-[850px] lg:h-[700px] bg-gray-800">
                 {/* Background Image */}
                 <div className="absolute inset-0">
                     <img
@@ -28,46 +28,55 @@ const ContactSection = () => {
                 {/* Form Card */}
                 <div className="absolute inset-0 flex items-center justify-center p-4">
                     <motion.div
-                        className="bg-white rounded-[2rem] shadow-2xl p-6 lg:p-8 w-full max-w-lg mx-auto"
+                        className="bg-white rounded-3xl shadow-2xl p-8 lg:p-12 w-full max-w-4xl mx-auto"
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <h2 className="text-xl lg:text-2xl font-semibold text-[#1A1A1A] text-center mb-6 leading-snug">
-                            Share query by filling out the form, we will assist you at the earliest.
+                        <h2 className="text-2xl lg:text-3xl font-semibold text-[#1A1A1A] text-center mb-8 lg:mb-12 leading-snug">
+                            Share query by filling out the form, we will assist<br className="hidden lg:block" /> you at the earliest.
                         </h2>
 
-                        <form className="space-y-4">
-                            <div className="flex flex-col gap-4">
+                        <form className="space-y-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {/* Name */}
                                 <input
                                     type="text"
                                     placeholder="Your Name*"
-                                    className="w-full bg-[#F3F4F6] text-[#4A5568] px-5 py-3 rounded-full border-none outline-none focus:ring-2 focus:ring-[#FF5A00]/50 placeholder-gray-500 text-sm"
+                                    className="w-full bg-[#F3F4F6] text-[#4A5568] px-6 py-4 rounded-full border-none outline-none focus:ring-2 focus:ring-[#FF5A00]/50 placeholder-gray-500 text-sm"
                                 />
                                 {/* Email */}
                                 <input
                                     type="email"
                                     placeholder="Email*"
-                                    className="w-full bg-[#F3F4F6] text-[#4A5568] px-5 py-3 rounded-full border-none outline-none focus:ring-2 focus:ring-[#FF5A00]/50 placeholder-gray-500 text-sm"
+                                    className="w-full bg-[#F3F4F6] text-[#4A5568] px-6 py-4 rounded-full border-none outline-none focus:ring-2 focus:ring-[#FF5A00]/50 placeholder-gray-500 text-sm"
                                 />
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {/* Phone */}
                                 <input
                                     type="tel"
                                     placeholder="Phone Number *"
-                                    className="w-full bg-[#F3F4F6] text-[#4A5568] px-5 py-3 rounded-full border-none outline-none focus:ring-2 focus:ring-[#FF5A00]/50 placeholder-gray-500 text-sm"
+                                    className="w-full bg-[#F3F4F6] text-[#4A5568] px-6 py-4 rounded-full border-none outline-none focus:ring-2 focus:ring-[#FF5A00]/50 placeholder-gray-500 text-sm"
+                                />
+                                {/* Inquiry */}
+                                <input
+                                    type="text"
+                                    placeholder="Your inquiry about..."
+                                    className="w-full bg-[#F3F4F6] text-[#4A5568] px-6 py-4 rounded-full border-none outline-none focus:ring-2 focus:ring-[#FF5A00]/50 placeholder-gray-500 text-sm"
                                 />
                             </div>
 
-                            <div className="flex flex-col items-center pt-2 gap-3">
-                                <p className="text-[10px] text-center text-gray-500 font-medium w-full text-left ml-2">
+                            <div className="flex flex-col md:flex-row justify-between items-center pt-4 gap-6">
+                                <p className="text-xs text-gray-500 font-medium">
                                     Required fields are marked *
                                 </p>
                                 <motion.button
-                                    className="w-full bg-[#FF5A00] hover:bg-[#E04F00] text-white py-3 px-8 rounded-full shadow-lg uppercase text-[11px] font-bold tracking-[0.1em] flex items-center justify-center gap-2 transition-all duration-300"
-                                    whileHover={{ scale: 1.02 }}
-                                    whileTap={{ scale: 0.98 }}
+                                    className="bg-[#FF5A00] hover:bg-[#E04F00] text-white py-3 px-8 rounded-full shadow-lg uppercase text-[11px] font-bold tracking-[0.1em] flex items-center gap-2 transition-all duration-300"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
                                 >
                                     GET A CALL BACK
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
