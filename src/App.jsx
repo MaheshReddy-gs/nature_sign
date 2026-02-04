@@ -12,6 +12,7 @@ import IntroSection from './components/IntroSection'
 import OverViewSection from './components/OverViewSection'
 import UnitDetailsSection from './components/UnitDetailsSection'
 import HighlightsSection from './components/HighlightsSection'
+import BuilderSection from './components/BuilderSection'
 
 
 function App() {
@@ -22,9 +23,10 @@ function App() {
       <OverViewSection />
       <UnitDetailsSection />
       <HighlightsSection />
+      <BuilderSection />
+      <GallerySection />
       <SpecificationsSection />
       <ProximitySection />
-      <GallerySection />
       <LocationSection />
       <MasterPlanSection />
       <ContactSection />
