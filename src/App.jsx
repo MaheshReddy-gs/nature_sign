@@ -2,8 +2,8 @@
 import './App.css'
 import Layout from './components/Layout'
 import HeroSection from './components/HeroSection'
-import Section2 from './components/Section2'
-import Section3 from './components/Section3'
+import SpecificationsSection from './components/SpecificationsSection'
+import ProximitySection from './components/ProximitySection'
 import Section4 from './components/Section4'
 import IntroSection from './components/IntroSection'
 import OverViewSection from './components/OverViewSection'
@@ -16,8 +16,8 @@ function App() {
       <IntroSection />
       <OverViewSection />
       <UnitDetailsSection />
-      <Section2 />
-      <Section3 />
+      <SpecificationsSection />
+      <ProximitySection />
       <Section4 />
     </Layout>
   )
