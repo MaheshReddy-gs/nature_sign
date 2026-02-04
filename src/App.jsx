@@ -4,7 +4,10 @@ import Layout from './components/Layout'
 import HeroSection from './components/HeroSection'
 import SpecificationsSection from './components/SpecificationsSection'
 import ProximitySection from './components/ProximitySection'
-import Section4 from './components/Section4'
+import GallerySection from './components/GallerySection'
+import LocationSection from './components/LocationSection'
+import MasterPlanSection from './components/MasterPlanSection'
+import ContactSection from './components/ContactSection'
 import IntroSection from './components/IntroSection'
 import OverViewSection from './components/OverViewSection'
 import UnitDetailsSection from './components/UnitDetailsSection'
@@ -18,7 +21,10 @@ function App() {
       <UnitDetailsSection />
       <SpecificationsSection />
       <ProximitySection />
-      <Section4 />
+      <GallerySection />
+      <LocationSection />
+      <MasterPlanSection />
+      <ContactSection />
     </Layout>
   )
 }

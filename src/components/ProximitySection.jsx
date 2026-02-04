@@ -86,7 +86,7 @@ export default function ProximitySection() {
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 p-8 lg:p-10">
             <motion.div className="grid grid-cols-2 gap-3" variants={STAGGER}>
               {PROXIMITY_IMAGES.map((img) => (
-                <motion.div key={img.id} className="aspect-[4/3] overflow-hidden" variants={IMAGE_FADE}>
+                <motion.div key={img.id} className="aspect-[2/3] overflow-hidden" variants={IMAGE_FADE}>
                   <img src={img.src} alt={img.alt} className="w-full h-full object-cover" loading="lazy" />
                 </motion.div>
               ))}
