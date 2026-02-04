@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+.section-heading {
+  @apply md:text-4xl;
+}
+
+/* md and lower */
+@media (max-width: 767px) {
+  .section-heading {
+    font-size: 1.8rem; /* 30px */
+    line-height: 2.2rem;
+  }
+}
+
+.a1{
+  border-width: 4px;
+  border-color: red;
+  border-color: red;
+  background: #fa07070e;
+}
