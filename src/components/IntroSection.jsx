@@ -27,6 +27,7 @@ const IntroSection = () => {
 
     return (
         <section
+            id="intro-section"
             className="relative h-screen w-full overflow-hidden"
             style={{
                 background:

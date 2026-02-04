@@ -5,11 +5,10 @@ export default function Navbar() {
   const [ isMobileMenuOpen, setIsMobileMenuOpen ] = useState(false)
 
   const navItems = [
-    { label: 'Overview', id: 'section1' },
-    { label: 'About', id: 'section2' },
+    { label: 'Overview', id: 'intro-section' },
     { label: 'Highlights', id: 'section3' },
     { label: 'Unit Details', id: 'section4' },
-    { label: 'Builder', id: 'section5' },
+    { label: 'About Builder', id: 'section5' },
     { label: 'Gallery', id: 'section6' },
     { label: 'Proximity', id: 'section7' },
     { label: 'Contact', id: 'section8' },
