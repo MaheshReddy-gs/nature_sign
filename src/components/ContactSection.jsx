@@ -1,9 +1,63 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const ContactSection = () => {
-    return (
-        <section id="contact" className="relative font-['Montserrat']">
+    const [ formData, setFormData ] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        message: ''
+    });
+    const [ errors, setErrors ] = useState({});
 
+    const validateForm = () => {
+        let newErrors = {};
+
+        if (!formData.name.trim()) {
+            newErrors.name = "Name is required";
+        }
+
+        if (!formData.phone) {
+            newErrors.phone = "Phone number is required";
+        } else if (!/^\d{10}$/.test(formData.phone)) {
+            newErrors.phone = "Phone number must be exactly 10 digits";
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (!validateForm()) return; // ❌ stop submit
+
+        console.log("Form submitted:", formData);
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+
+        // Phone: allow ONLY numbers & max 10 digits
+        if (name === "phone") {
+            if (!/^\d*$/.test(value)) return; // block alphabets
+            if (value.length > 10) return;    // max 10 digits
+        }
+
+        setFormData({
+            ...formData,
+            [ name ]: value,
+        });
+
+        // clear error while typing
+        setErrors({
+            ...errors,
+            [ name ]: "",
+        });
+    };
+
+    return (
+        <section id="contact" className="relative font-sans">
             {/* 1. Header Title (Outside Background) */}
             <div className="bg-white pt-16 pb-12 text-center">
                 <p className="text-[#B96A42] font-bold tracking-[0.2em] text-xs uppercase">
@@ -34,55 +88,88 @@ const ContactSection = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <h2 className="text-2xl lg:text-3xl font-semibold text-[#1A1A1A] text-center mb-8 lg:mb-12 leading-snug">
-                            Share query by filling out the form, we will assist<br className="hidden lg:block" /> you at the earliest.
-                        </h2>
+                        <h1 className="md:text-3xl text-xl text-center text-black mb-12 leading-snug">
+                            Share query by filling out the form, we will assist you at the earliest.
+                        </h1>
 
-                        <form className="space-y-6">
+                        <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                {/* Name */}
-                                <input
-                                    type="text"
-                                    placeholder="Your Name*"
-                                    className="w-full bg-[#F3F4F6] text-[#4A5568] px-6 py-4 rounded-full border-none outline-none focus:ring-2 focus:ring-[#FF5A00]/50 placeholder-gray-500 text-sm"
-                                />
-                                {/* Email */}
+                                {/* Name Input */}
+                                <div>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        placeholder="Your Name*"
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        className="w-full px-6 py-4 bg-[#f2f2f2] rounded-full text-black placeholder-black/60 focus:outline-none focus:ring-1 focus:ring-black"
+                                    />
+                                    {errors.name && (
+                                        <p className="text-red-500 text-sm mt-1 ml-2">{errors.name}</p>
+                                    )}
+                                </div>
+
+                                {/* Email Input */}
                                 <input
                                     type="email"
+                                    name="email"
                                     placeholder="Email*"
-                                    className="w-full bg-[#F3F4F6] text-[#4A5568] px-6 py-4 rounded-full border-none outline-none focus:ring-2 focus:ring-[#FF5A00]/50 placeholder-gray-500 text-sm"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full px-6 py-4 bg-[#f2f2f2] rounded-full text-black placeholder-black/60 focus:outline-none focus:ring-1 focus:ring-black"
                                 />
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                {/* Phone */}
-                                <input
-                                    type="tel"
-                                    placeholder="Phone Number *"
-                                    className="w-full bg-[#F3F4F6] text-[#4A5568] px-6 py-4 rounded-full border-none outline-none focus:ring-2 focus:ring-[#FF5A00]/50 placeholder-gray-500 text-sm"
-                                />
-                                {/* Inquiry */}
-                                <input
-                                    type="text"
+                                {/* Phone Input */}
+                                <div>
+                                    <input
+                                        type="tel"
+                                        name="phone"
+                                        placeholder="Phone Number *"
+                                        value={formData.phone}
+                                        onChange={handleChange}
+                                        className="w-full px-6 py-4 bg-[#f2f2f2] rounded-full text-black placeholder-black/60 focus:outline-none focus:ring-1 focus:ring-black"
+                                    />
+                                    {errors.phone && (
+                                        <p className="text-red-500 text-sm mt-1 ml-2">{errors.phone}</p>
+                                    )}
+                                </div>
+
+                                {/* Dropdown/Textarea */}
+                                <textarea
+                                    name="message"
                                     placeholder="Your inquiry about..."
-                                    className="w-full bg-[#F3F4F6] text-[#4A5568] px-6 py-4 rounded-full border-none outline-none focus:ring-2 focus:ring-[#FF5A00]/50 placeholder-gray-500 text-sm"
-                                />
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    rows="1"
+                                    className="w-full px-6 py-4 bg-[#f2f2f2] rounded-3xl text-black placeholder-black/60 focus:outline-none focus:ring-1 focus:ring-black resize-none"
+                                ></textarea>
                             </div>
 
-                            <div className="flex flex-col md:flex-row justify-between items-center pt-4 gap-6">
-                                <p className="text-xs text-gray-500 font-medium">
+                            {/* Footer Text and Button */}
+                            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mt-8">
+                                <p className="text-black text-xs font-medium md:text-sm">
                                     Required fields are marked *
                                 </p>
-                                <motion.button
-                                    className="bg-[#FF5A00] hover:bg-[#E04F00] text-white py-3 px-8 rounded-full shadow-lg uppercase text-[11px] font-bold tracking-[0.1em] flex items-center gap-2 transition-all duration-300"
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
+
+                                {/* Submit Button */}
+                                <button
+                                    type="submit"
+                                    // Using bg-[#FF5A00] to match the theme as btn-orange might not be defined
+                                    className="group relative px-8 py-4 bg-[#FF5A00] hover:bg-[#E04F00] text-white w-fit font-semibold rounded-full transition-all duration-300 flex items-center gap-2"
                                 >
-                                    GET A CALL BACK
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    Get A Call Back
+                                    <svg
+                                        className="w-5 h-5 transition-transform group-hover:translate-x-1"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                     </svg>
-                                </motion.button>
+                                </button>
                             </div>
                         </form>
                     </motion.div>
@@ -109,7 +196,6 @@ const ContactSection = () => {
                             src="/naturesignlogo.svg"
                             alt="Nature's Sign"
                             className="h-8 md:h-10 w-auto opacity-80 invert brightness-0 grayscale"
-                            // Styling logo to look white/grey on dark bg as per ref
                             style={{ filter: "brightness(0) invert(1) opacity(0.6)" }}
                         />
 
