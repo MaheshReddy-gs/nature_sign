@@ -85,7 +85,7 @@ export default function UnitDetailsSection() {
 
             {/* Content Container - Bottom 60vh constrained to section */}
             <div className="absolute    bottom-0 left-0 w-full lg:h-[60vh]">
-                <div className="w-full h-full py-10  bg-[#f8e8d1] px-3 sm:px-6 lg:px-8 flex flex-col">
+                <div className="w-full h-full py-10  bg-[#f8e8d1] px-6 flex flex-col">
                     {/* Unit Dimensions Heading */}
                     <FloatUpText>
                         <h3 className="text-center text-orange-900 text-lg font-semibold tracking-widest mb-4  uppercase">
@@ -96,8 +96,8 @@ export default function UnitDetailsSection() {
 
 
 
-                    <div className="flex-1   min-h-0 mt-2">
-                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-6 max-w-5xl mx-auto h-full overflow-auto md:overflow-hidden">
+                    <div className="flex-1  overflow-hidden   min-h-0 mt-2">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 max-w-5xl mx-auto h-full overflow-auto md:overflow-hidden">
                             {units.map((unit, idx) => (
                                 <FloatUpText key={unit.id} delay={idx * 0.2} yMultiplier={2}>
                                     <TiltCard>
