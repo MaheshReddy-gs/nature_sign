@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 const SPEC_ITEMS = [
   {
     id: 1,
-    image: "/herobackgorund.webp",
+    image: "/spec_roads_pathway.png",
     alt: "Roads and pathways",
     label: "INFRASTRUCTURE:",
     title: "Roads and Pathways",
@@ -17,14 +17,14 @@ const SPEC_ITEMS = [
   },
   {
     id: 2,
-    image: "/nature-sign_website_03.png",
+    image: "/spec_entrance_gate.png",
     alt: "Grand entrance view",
     label: "INFRASTRUCTURE:",
-    title: "Roads and Pathways",
+    title: "Entrance and Security",
     points: [
-      "15 mts and 12 mts wide internal roads as per design",
-      "Pavements on either side of the road with kerbs and pavers as per design",
-      "Plot extent marked with corner stones",
+      "Grand entrance gate with security cabin",
+      "24/7 Security monitoring systems",
+      "Landscaped gardens at the entrance"
     ],
     bg: "bg-[#F6F3EE]",
     reverse: true,
@@ -68,8 +68,8 @@ const TEXT_VARIANTS = {
 
 export default function SpecificationsSection() {
   return (
-    <section id="section2" className="w-full bg-[#F6F3EE] lg:h-screen lg:overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 pt-10 pb-6 lg:pt-8 lg:pb-4">
+    <section id="section2" className="w-full bg-[#F6F3EE]">
+      <div className="max-w-6xl mx-auto px-6 pt-16 pb-8">
         <motion.p
           className="text-center text-[11px] tracking-[0.5em] uppercase font-['Barlow'] font-bold text-[#B56A4E]"
           variants={HEADER_VARIANTS}
@@ -81,23 +81,23 @@ export default function SpecificationsSection() {
         </motion.p>
       </div>
 
-      <div className="lg:grid lg:grid-rows-2 lg:h-[calc(100vh-120px)]">
+      <div className="flex flex-col">
         {SPEC_ITEMS.map((item) => (
-          <div key={item.id} className={`w-full ${item.bg} lg:h-full`}>
+          <div key={item.id} className={`w-full ${item.bg} min-h-[80vh] flex items-center`}>
             <motion.div
-              className={`max-w-6xl mx-auto px-6 py-10 lg:py-6 flex flex-col gap-8 lg:gap-12 items-center lg:h-full ${item.reverse ? "lg:flex-row-reverse" : "lg:flex-row"
+              className={`max-w-6xl mx-auto px-6 py-20 lg:py-24 flex flex-col gap-10 lg:gap-24 items-center w-full ${item.reverse ? "lg:flex-row-reverse" : "lg:flex-row"
                 }`}
               variants={ROW_VARIANTS}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: false, amount: 0.35 }}
+              viewport={{ once: false, amount: 0.3 }}
             >
               <motion.div
                 className={`w-full flex justify-center ${item.reverse ? "lg:justify-end" : "lg:justify-start"
                   }`}
                 variants={MEDIA_VARIANTS}
               >
-                <div className="h-[230px] sm:h-[260px] lg:h-[min(40vh,320px)] aspect-[4/5] overflow-hidden shadow-[0_18px_30px_rgba(0,0,0,0.12)]">
+                <div className="h-[300px] sm:h-[400px] lg:h-[500px] aspect-[4/5] overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.12)]">
                   <img
                     src={item.image}
                     alt={item.alt}
@@ -107,16 +107,18 @@ export default function SpecificationsSection() {
                 </div>
               </motion.div>
 
-              <motion.div className="w-full max-w-[420px] lg:max-w-[440px]" variants={TEXT_VARIANTS}>
-                <p className="text-[12px] tracking-[0.2em] uppercase font-semibold text-[#4C6A5B]">
+              <motion.div className="w-full max-w-[480px]" variants={TEXT_VARIANTS}>
+                <p className="text-[13px] tracking-[0.2em] uppercase font-semibold text-[#4C6A5B]">
                   {item.label}
                 </p>
-                <h3 className="mt-1 text-[16px] font-semibold text-[#3C5247]">
+                <h3 className="mt-2 text-[24px] lg:text-[28px] font-semibold text-[#3C5247]">
                   {item.title}
                 </h3>
-                <div className="mt-4 space-y-3 text-[14px] leading-relaxed text-[#50645B]">
+                <div className="mt-6 space-y-4 text-[16px] leading-relaxed text-[#50645B]">
                   {item.points.map((point, index) => (
-                    <p key={`${item.id}-${index}`}>{point}</p>
+                    <p key={`${item.id}-${index}`} className="pl-4 border-l-2 border-[#B56A4E]/40">
+                      {point}
+                    </p>
                   ))}
                 </div>
               </motion.div>
