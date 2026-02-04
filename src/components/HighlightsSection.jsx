@@ -5,7 +5,7 @@ export default function  HighlightsSection() {
   return (
     <section id="section2" className="w-full h-auto min-h-[40vh] bg-[#a1461a]
      lg:h-screen  flex items-center justify-center pt-20 pb-5 md:pb-0">
-      <div className="max-w-6xl px-6 w-full   flex flex-col items-center justify-between h-full text-center">
+      <div className="max-w-7xl px-6 w-full   flex flex-col items-center justify-between h-full text-center">
         <FloatUpText className="text-orange-200 text-lg tracking-widest ">
           HIGHLIGHTS
         </FloatUpText>

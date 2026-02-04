@@ -28,9 +28,9 @@ function Root() {
 
           {/* Center max-width guide */}
           <div className="absolute h-screen w-screen hidden lg:flex justify-center items-center pointer-events-none z-[9999]">
-            <div className="fixed max-w-6xl px-6 w-screen h-full pointer-events-none z-[9999]">
-              <div className="w-full border-x-2 border-dashed h-full border-sky-500 text-lg">
-                max-w-6xl px-6
+            <div className="fixed max-w-7xl px-6 w-screen h-full pointer-events-none z-[9999]">
+              <div className="w-full border-x-2 border-dashed h-full border-sky-500 text-white text-sm">
+                max-w-7xl px-6
               </div>
             </div>
           </div>
