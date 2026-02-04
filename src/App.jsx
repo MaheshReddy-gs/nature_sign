@@ -2,12 +2,17 @@
 import './App.css'
 import Layout from './components/Layout'
 import HeroSection from './components/HeroSection'
-import Section2 from './components/HighlightsSection'
-import Section3 from './components/Section3'
-import Section4 from './components/Section4'
+import SpecificationsSection from './components/SpecificationsSection'
+import ProximitySection from './components/ProximitySection'
+import GallerySection from './components/GallerySection'
+import LocationSection from './components/LocationSection'
+import MasterPlanSection from './components/MasterPlanSection'
+import ContactSection from './components/ContactSection'
 import IntroSection from './components/IntroSection'
 import OverViewSection from './components/OverViewSection'
 import UnitDetailsSection from './components/UnitDetailsSection'
+import HighlightsSection from './components/HighlightsSection'
+
 
 function App() {
   return (
@@ -16,9 +21,13 @@ function App() {
       <IntroSection />
       <OverViewSection />
       <UnitDetailsSection />
-      <Section2 />
-      <Section3 />
-      <Section4 />
+      <HighlightsSection />
+      <SpecificationsSection />
+      <ProximitySection />
+      <GallerySection />
+      <LocationSection />
+      <MasterPlanSection />
+      <ContactSection />
     </Layout>
   )
 }
