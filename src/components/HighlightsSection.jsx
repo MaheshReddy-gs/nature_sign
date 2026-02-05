@@ -38,10 +38,12 @@ function LazyItem({ children }) {
     )
 }
 
+
 function Glance() {  
   const [modalImage, setModalImage] = useState(null);
   const [isVisible, setIsVisible] = useState(false); 
-  const [mobileExpanded, setMobileExpanded] = useState(false); // new state for mobile
+  const [mobileExpanded, setMobileExpanded] = useState(false);
+  const [animationState, setAnimationState] = useState(null);
 
   const blocks = [
     { img: "/location_map.png", alt: "Location Map", height: "540px" },
@@ -66,19 +68,83 @@ function Glance() {
     { img: "/master_plan_layout.png", alt: "Master Plan", height: "310px" },
   ];
 
-  const openModal = (block) => {
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (modalImage) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [modalImage]);
+
+  const openModal = (block, event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    
+    // Set initial position to match the clicked card
+    setAnimationState({
+      left: rect.left,
+      top: rect.top,
+      width: rect.width,
+      height: rect.height,
+    });
+    
     setModalImage(block);
-    setTimeout(() => setIsVisible(true), 10); 
+    
+    // Trigger animation after a brief delay
+    setTimeout(() => {
+      setIsVisible(true);
+      
+      // Calculate centered position
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      const maxWidth = viewportWidth * 0.9;
+      const maxHeight = viewportHeight * 0.85;
+      
+      // Calculate final size maintaining aspect ratio
+      const img = new Image();
+      img.src = block.img;
+      
+      setAnimationState({
+        left: (viewportWidth - maxWidth) / 2,
+        top: (viewportHeight - maxHeight) / 2,
+        width: maxWidth,
+        height: maxHeight,
+      });
+    }, 10);
   };
 
-  const closeModal = () => {
+  const closeModal = (event) => {
+    if (event) {
+      const clickedElement = event.currentTarget;
+      // Find the original card position
+      const originalCard = document.querySelector(`[data-modal-img="${modalImage?.img}"]`);
+      
+      if (originalCard) {
+        const rect = originalCard.getBoundingClientRect();
+        setAnimationState({
+          left: rect.left,
+          top: rect.top,
+          width: rect.width,
+          height: rect.height,
+        });
+      }
+    }
+    
     setIsVisible(false);
-    setTimeout(() => setModalImage(null), 300); 
+    setTimeout(() => {
+      setModalImage(null);
+      setAnimationState(null);
+    }, 350);
   };
 
   return (
-    <section className="w-full bg-[#fbfaf6]">
-      <div className="mx-auto flex w-full pt-5 md:py-20 items-center flex-col">
+    <section className="w-full bg-[#fbfaf6] py-20">
+      <div className="mx-auto flex w-full items-center flex-col">
         <div
           className={`flex flex-col w-full items-center px-6 overflow-hidden transition-[max-height] duration-700 ${
             mobileExpanded ? "max-h-[2000px]" : "max-h-[60vh] md:max-h-full"
@@ -88,13 +154,14 @@ function Glance() {
             {blocks.map((block, index) => (
               <div key={index} className="md:mb-6 mb-3 break-inside-avoid">
                 <div
-                  className="relative rounded-lg md:rounded-2xl shadow-lg overflow-hidden cursor-pointer"
-                  onClick={() => openModal(block)}
+                  data-modal-img={block.img}
+                  className="relative rounded-lg md:rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+                  onClick={(e) => openModal(block, e)}
                 >
                   <img
                     src={block.img}
                     alt={block.alt}
-                    className="w-full h-auto object-cover transition-transform duration-300 hover:scale-105"
+                    className="w-full h-auto object-cover"
                   />
                   <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-500 text-center p-4 rounded-2xl">
                     <div className="text-white text-lg font-semibold border-2 border-white rounded-md px-3 py-1 h-full w-full flex items-center justify-center border-dashed">
@@ -109,43 +176,58 @@ function Glance() {
 
         {/* See More Button - mobile only */}
         {!mobileExpanded && (
-          <div className=" bg-white/90 -my-10 z-50  mx-6 flex justify-center w-full py-2">
-          <button
-            className=" px-6 py-2 uppercase text-xs tracking-[0.2em] rounded-md md:hidden"
-            onClick={() => setMobileExpanded(true)}
-          >
-            See More
-          </button></div>
+          <div className="bg-white/90 -my-10 z-50 mx-6 flex justify-center w-full py-2">
+            <button
+              className="px-6 py-2 uppercase text-xs tracking-[0.2em] rounded-md md:hidden"
+              onClick={() => setMobileExpanded(true)}
+            >
+              See More
+            </button>
+          </div>
         )}
-        
       </div>
 
-      {/* Modal / Lightbox */}
+      {/* Modal / Lightbox with Google Photos style animation */}
       {modalImage && (
         <div
-          className={`fixed inset-0 bg-black/30 flex pointer items-center justify-center z-50 p-4 transition-opacity duration-300 ${
+          className={`fixed inset-0 bg-white/10   backdrop-blur-sm flex items-center justify-center z-50 transition-opacity duration-300 ${
             isVisible ? "opacity-100" : "opacity-0"
           }`}
+          style={{ touchAction: 'none' }}
           onClick={closeModal}
         >
+          {/* Animated Image Container */}
           <div
-            className={`relative max-w-4xl w-fit transition-transform duration-300 ${
-              isVisible ? "scale-100" : "scale-70"
-            }`}
+            className="fixed overflow-hidden    "
+            style={{
+              left: `${animationState?.left}px`,
+              top: `${animationState?.top}px`,
+              width: `${animationState?.width}px`,
+              height: `${animationState?.height}px`,
+              transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
+              borderRadius: isVisible ? '1.5rem' : '0.5rem',
+              pointerEvents: 'auto',
+            }}
             onClick={(e) => e.stopPropagation()}
+          ><button
+            className={`absolute h-full   -z-10 flex w-full  items-center justify-center   transition-all duration-300 ${
+              isVisible ? 'opacity-100' : 'opacity-0'
+            }`}
+            onClick={closeModal}
           >
+            ×
+          </button>
             <img
               src={modalImage.img}
               alt={modalImage.alt}
-              className="w-auto h-auto max-h-[70vh] rounded-2xl shadow-2xl"
+              
+              className="w-fit h-full rounded-lg   mx-auto object-contain"
+              draggable="false"
             />
-            <button
-              className="absolute top-1 right-1 px-4 py-1 rounded-full bg-white shadow-md text-3xl font-bold"
-              onClick={closeModal}
-            >
-              ×
-            </button>
           </div>
+
+          {/* Close Button */}
+          
         </div>
       )}
     </section>
@@ -154,11 +236,10 @@ function Glance() {
 
 
 
-
 export default function HighlightsSection() {
     return (<>
 
-        <section id="section2" className="w-full h-auto min-h-[40vh] bg-[#a1461a]
+        <section id="section2" className="w-full h-auto min-h-[40vh] bg-[# 461a]
         pt-20 pb-0 md:pb-0 flex flex-col items-center justify-center">
             <div className="max-w-7xl  px-6 w-full   flex flex-col items-center justify-between h-full text-center">
                 <FloatUpText className="text-orange-200 text-xs tracking-[0.2em] mb-5 ">
