@@ -1,5 +1,6 @@
 import FloatUpText from "./Animations/floatUpText";
 import { useEffect, useRef, useState } from "react"
+import RevealImage from "./Animations/TopDownImageReveal";
 
 function LazyItem({ children }) {
     const ref = useRef(null)
@@ -159,7 +160,7 @@ const blocks = Array.from({ length: 20 }, (_, i) => {
             mobileExpanded ? "max-h-[2000px]" : "max-h-[60vh] md:max-h-full"
           }`}
         >
-          <div className="columns-3 max-w-7xl px-6 w-full gap-1.5 lg:gap-3 md:columns-3 lg:columns-4">
+          <div className="columns-3 max-w-5xl px-6 md:px-0  w-full gap-1.5 lg:gap-3 md:columns-3 lg:columns-4">
             {blocks.map((block, index) => (
               <div key={index} className="md:mb-6 mb-3 break-inside-avoid">
                 <div
@@ -250,7 +251,7 @@ export default function HighlightsSection() {
 
       <section id="section2" className="w-full h-auto min-h-[40vh] bg-[#a1461a]
         pt-20 pb-0 md:pb-0 flex flex-col items-center justify-center">
-            <div className="max-w-7xl  px-6 w-full   flex flex-col items-center justify-between h-full text-center">
+            <div className="max-w-5xl  px-6 md:px-0 w-full   flex flex-col items-center justify-between h-full text-center">
                 <FloatUpText className="text-orange-200 text-xs tracking-[0.2em] mb-5 ">
                     HIGHLIGHTS
                 </FloatUpText>
@@ -259,15 +260,15 @@ export default function HighlightsSection() {
                 </FloatUpText>
                 <div className="w-full h-full felx lg:grid my-10 grid-cols-2 grid-rows-2 gap-10">
                     <FloatUpText className="row-span-2 mb-5">
-  <img
+  <RevealImage
     src="/Highlights_image2.webp"
     alt="Highlight 2"
-    className="w-full h-auto rounded-lg md:rounded-none h-max-[70vh] object-cover"
+    className="w-full h-auto  max-h-[70vh] rounded-lg md:rounded-none h-max-[70vh] object-cover"
   />
 </FloatUpText>
 
 <FloatUpText>
-  <img
+  <RevealImage
     src="/Highlights_image1.webp"
     alt="Highlight 1"
     className="w-full hidden md:flex h-auto object-cover  "
