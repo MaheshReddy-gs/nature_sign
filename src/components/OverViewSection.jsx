@@ -93,7 +93,7 @@ const OverviewDetailsSection = () => {
     const yImage = useTransform(scrollYProgress, [ 0, 1 ], [ "0%", "-15%" ]);
 
     return (
-        <section ref={sectionRef} className="relative overflow-hidden min-h-screen flex flex-col justify-center bg-[#F7F2EA]">
+        <section ref={sectionRef} className="relative overflow-hidden  min-h-screen flex flex-col justify-center bg-[#F7F2EA]">
             {/* Left Animated Wave Group (SVG) */}
             <motion.div style={{ y: yBackground }} className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
                 <svg className="absolute top-0 left-0 h-full w-[300px] lg:w-[400px]" preserveAspectRatio="none" viewBox="0 0 100 800">

@@ -97,7 +97,7 @@ export default function UnitDetailsSection() {
 
 
                     <div className="flex-1  overflow-hidden   min-h-0 mt-2">
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 max-w-5xl mx-auto h-full overflow-auto md:overflow-hidden">
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 md:gap-6 max-w-5xl mx-auto h-full overflow-auto md:overflow-hidden">
                             {units.map((unit, idx) => (
                                 <FloatUpText key={unit.id} delay={idx * 0.2} yMultiplier={2}>
                                     <TiltCard>
