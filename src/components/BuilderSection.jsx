@@ -1,19 +1,20 @@
 import { motion } from "framer-motion";
+import AnimatedHeading from "./Animations/animatedHeading";
+import FloatUpText from "./Animations/floatUpText";
 
 export default function BuilderSection() {
     return (
         <section
             id="builder"
-            className="w-full bg-white py-12 md:py-20 px-4 md:px-8 lg:px-12 font-sans" // Enforcing font-sans
+            className="w-full  bg-white  md:py-20  px-4 md:px-8 lg:px-12 " // Enforcing   
         >
             {/* 1. TOP TITLE - Centered */}
-            <div className="text-center mb-16">
-                <p className="text-[12px] tracking-[0.25em] text-[#D06B28] font-bold uppercase font-sans">
-                    About Builder
-                </p>
+            <div className="text-center my-10">
+                 <FloatUpText className="text-[#a1461a] text-xs tracking-[0.2em] mb-5 ">
+                    ABOUT BUILDER
+                </FloatUpText>
             </div>
 
-            {/* 2. HEADER ROW: Logo (Left) - Company Info (Right) */}
             <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -24,7 +25,7 @@ export default function BuilderSection() {
                 {/* LOGO - Left */}
                 <div className="flex items-center gap-3 w-full md:w-auto justify-center md:justify-start">
                     <img
-                        src="/shreyaslogo.png"
+                        src="/shreyasLogo.png"
                         onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/200x60?text=Shreyas+Logo"; }}
                         alt="Shreyas Infra Logo"
                         className="h-16 md:h-20 w-auto object-contain"
@@ -33,10 +34,10 @@ export default function BuilderSection() {
 
                 {/* TEXT INFO - Right */}
                 <div className="text-center md:text-left w-full md:w-auto">
-                    <h3 className="text-[20px] md:text-[24px] font-bold text-[#222] leading-none mb-1 font-sans">
+                    <h3 className="text-[20px] md:text-[24px] font-bold text-[#222] leading-none mb-1   ">
                         Shreyas Infra Projects Pvt.Ltd.
                     </h3>
-                    <p className="text-[14px] font-medium text-[#666] font-sans">
+                    <p className="text-[14px] font-medium text-[#666]   ">
                         Marathahalli, Bengaluru
                     </p>
                 </div>
@@ -62,13 +63,13 @@ export default function BuilderSection() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 }}
-                            className="text-[22px] lg:text-[28px] font-semibold mb-8 leading-[1.3] font-sans tracking-wide"
+                            className="text-[22px] lg:text-[28px] font-semibold mb-8 leading-[1.3]    tracking-wide"
                         >
                             Crafting meaningful experiences where
                             every detail is carefully envisioned.
                         </motion.h3>
 
-                        <div className="space-y-6 text-[14px] lg:text-[15px] leading-[1.7] font-light text-white/90 font-sans">
+                        <div className="space-y-6 text-[14px] lg:text-[15px] leading-[1.7] font-light text-white/90   ">
                             <motion.p
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
@@ -105,7 +106,7 @@ export default function BuilderSection() {
                     {/* IMAGE - Right Side (40%) */}
                     <div className="relative w-full lg:w-[45%] bg-gray-200 order-1 lg:order-2 h-[300px] lg:h-auto">
                         <img
-                            src="/builder.png"
+                            src="/builderIMG.webp"
                             onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/600x800/2D8EA2/FFFFFF?text=Builder+Image"; }}
                             alt="Builder Discussion"
                             className="absolute inset-0 w-full h-full object-cover"

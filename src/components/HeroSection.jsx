@@ -4,7 +4,7 @@ import FloatUpText from './Animations/floatUpText.jsx'
 export default function Section1() {
   return (
     <section
-      id="section1"
+      id="hero"
       className="relative w-full h-[70vh] lg:h-screen flex items-center justify-center overflow-hidden pt-20 pb-5 md:pb-0"
       style={{
         backgroundImage: `url('/hero_background.webp')`,
