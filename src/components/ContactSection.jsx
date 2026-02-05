@@ -9,6 +9,8 @@ const ContactSection = () => {
         message: ''
     });
     const [ errors, setErrors ] = useState({});
+    const [ isSubmitting, setIsSubmitting ] = useState(false);
+    const [ submissionStatus, setSubmissionStatus ] = useState(null); // 'success' | 'error' | null
 
     const validateForm = () => {
         let newErrors = {};
@@ -32,7 +34,40 @@ const ContactSection = () => {
 
         if (!validateForm()) return; // ❌ stop submit
 
-        console.log("Form submitted:", formData);
+        setIsSubmitting(true);
+        setSubmissionStatus(null);
+
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzd2rxWVpxfllnFEwviIkGTZYX5kMg2Z2Var_B5xVySrQF86XIOPuh9L7Cz0bl3R0fClA/exec';
+
+        // Using JSON payload to match the new script's JSON.parse()
+        const payload = {
+            ...formData,
+            website: "Nature's Sign"
+        };
+
+        fetch(scriptURL, {
+            method: 'POST',
+            // Send as plain text to avoid CORS Preflight (Google Scripts quirk)
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(payload)
+        })
+            .then(response => response.json())
+            .then(data => {
+                // Since we can't reliably read response with simple CORS setup sometimes, 
+                // but if we get here with valid JSON, it worked.
+                setSubmissionStatus('success');
+                setFormData({ name: '', email: '', phone: '', message: '' });
+            })
+            .catch(error => {
+                console.error('Error!', error);
+                // Even if it fails CORS, it might have still been sent. 
+                // Better to show success if unsure, or error if network down.
+                // For now, let's assume network error if we get here.
+                setSubmissionStatus('error');
+            })
+            .finally(() => {
+                setIsSubmitting(false);
+            });
     };
 
     const handleChange = (e) => {
@@ -157,19 +192,32 @@ const ContactSection = () => {
                                 {/* Submit Button */}
                                 <button
                                     type="submit"
-                                    // Using bg-[#FF5A00] to match the theme as btn-orange might not be defined
-                                    className="group relative px-8 py-4 bg-[#FF5A00] hover:bg-[#E04F00] text-white w-fit font-semibold rounded-full transition-all duration-300 flex items-center gap-2"
+                                    disabled={isSubmitting}
+                                    className={`group relative px-8 py-4 ${isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#FF5A00] hover:bg-[#E04F00]'} text-white w-fit font-semibold rounded-full transition-all duration-300 flex items-center gap-2`}
                                 >
-                                    Get A Call Back
-                                    <svg
-                                        className="w-5 h-5 transition-transform group-hover:translate-x-1"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                    </svg>
+                                    {isSubmitting ? 'Sending...' : 'Get A Call Back'}
+                                    {!isSubmitting && (
+                                        <svg
+                                            className="w-5 h-5 transition-transform group-hover:translate-x-1"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                        </svg>
+                                    )}
                                 </button>
+
+                                {submissionStatus === 'success' && (
+                                    <p className="text-green-600 font-medium text-sm md:text-base animate-pulse">
+                                        Request sent successfully! We will contact you soon.
+                                    </p>
+                                )}
+                                {submissionStatus === 'error' && (
+                                    <p className="text-red-600 font-medium text-sm md:text-base">
+                                        Something went wrong. Please try again later.
+                                    </p>
+                                )}
                             </div>
                         </form>
                     </motion.div>
