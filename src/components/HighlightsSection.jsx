@@ -44,29 +44,38 @@ function Glance() {
   const [isVisible, setIsVisible] = useState(false); 
   const [mobileExpanded, setMobileExpanded] = useState(false);
   const [animationState, setAnimationState] = useState(null);
+const blocks = Array.from({ length: 20 }, (_, i) => {
+  const width = 400;
+  const height = 200 + Math.floor(Math.random() * 300); // 200–400px
 
-  const blocks = [
-    { img: "/location_map.png", alt: "Location Map", height: "540px" },
-    { img: "/herobackgorund.webp", alt: "Hero Background", height: "280px" },
-    { img: "/contact_bg.png", alt: "Contact Background", height: "260px" },
-    { img: "/master_plan_layout.png", alt: "Master Plan", height: "220px" },
-    { img: "/location_map.png", alt: "Location Map", height: "300px" },
-    { img: "/herobackgorund.webp", alt: "Hero Background", height: "190px" },
-    { img: "/contact_bg.png", alt: "Contact Background", height: "160px" },
-    { img: "/master_plan_layout.png", alt: "Master Plan", height: "280px" },
-    { img: "/location_map.png", alt: "Location Map", height: "240px" },
-    { img: "/herobackgorund.webp", alt: "Hero Background", height: "210px" },
-    { img: "/contact_bg.png", alt: "Contact Background", height: "360px" },
-    { img: "/master_plan_layout.png", alt: "Master Plan", height: "330px" },
-    { img: "/location_map.png", alt: "Location Map", height: "170px" },
-    { img: "/herobackgorund.webp", alt: "Hero Background", height: "290px" },
-    { img: "/contact_bg.png", alt: "Contact Background", height: "200px" },
-    { img: "/master_plan_layout.png", alt: "Master Plan", height: "350px" },
-    { img: "/location_map.png", alt: "Location Map", height: "180px" },
-    { img: "/herobackgorund.webp", alt: "Hero Background", height: "260px" },
-    { img: "/contact_bg.png", alt: "Contact Background", height: "230px" },
-    { img: "/master_plan_layout.png", alt: "Master Plan", height: "310px" },
-  ];
+  return {
+    img: `https://picsum.photos/seed/block-${i}/${width}/${height}`,
+    alt: `Placeholder Image ${i + 1}`,
+  };
+});
+
+  // const blocks = [
+  //   { img: "/location_map.png", alt: "Location Map", height: "540px" },
+  //   { img: "/herobackgorund.webp", alt: "Hero Background", height: "280px" },
+  //   { img: "/contact_bg.png", alt: "Contact Background", height: "260px" },
+  //   { img: "/master_plan_layout.png", alt: "Master Plan", height: "220px" },
+  //   { img: "/location_map.png", alt: "Location Map", height: "300px" },
+  //   { img: "/herobackgorund.webp", alt: "Hero Background", height: "190px" },
+  //   { img: "/contact_bg.png", alt: "Contact Background", height: "160px" },
+  //   { img: "/master_plan_layout.png", alt: "Master Plan", height: "280px" },
+  //   { img: "/location_map.png", alt: "Location Map", height: "240px" },
+  //   { img: "/herobackgorund.webp", alt: "Hero Background", height: "210px" },
+  //   { img: "/contact_bg.png", alt: "Contact Background", height: "360px" },
+  //   { img: "/master_plan_layout.png", alt: "Master Plan", height: "330px" },
+  //   { img: "/location_map.png", alt: "Location Map", height: "170px" },
+  //   { img: "/herobackgorund.webp", alt: "Hero Background", height: "290px" },
+  //   { img: "/contact_bg.png", alt: "Contact Background", height: "200px" },
+  //   { img: "/master_plan_layout.png", alt: "Master Plan", height: "350px" },
+  //   { img: "/location_map.png", alt: "Location Map", height: "180px" },
+  //   { img: "/herobackgorund.webp", alt: "Hero Background", height: "260px" },
+  //   { img: "/contact_bg.png", alt: "Contact Background", height: "230px" },
+  //   { img: "/master_plan_layout.png", alt: "Master Plan", height: "310px" },
+  // ];
 
   // Prevent body scroll when modal is open
   useEffect(() => {
@@ -176,7 +185,7 @@ function Glance() {
 
         {/* See More Button - mobile only */}
         {!mobileExpanded && (
-          <div className="bg-white/90 -my-10 z-50 mx-6 flex justify-center w-full py-2">
+          <div className="bg-white/90 md:hidden -my-10 z-50 mx-6 flex justify-center w-full py-2">
             <button
               className="px-6 py-2 uppercase text-xs tracking-[0.2em] rounded-md md:hidden"
               onClick={() => setMobileExpanded(true)}
