@@ -7,13 +7,13 @@ export default function Navbar() {
   const { openModal } = useModal();
 
   const navItems = [
-    { label: 'Overview', id: 'intro-section' },
+    { label: 'Overview', id: 'overview' },
     { label: 'Highlights', id: 'highlights' },
     { label: 'Unit Details', id: 'unit' },
     { label: 'About Builder', id: 'builder' },
-    { label: 'Gallery', id: 'section6' },
-    { label: 'Proximity', id: 'section7' },
-    { label: 'Contact', id: 'section8' },
+    { label: 'Gallery', id: 'gallery' },
+    { label: 'Proximity', id: 'proximity' },
+    { label: 'Contact', id: 'contact' },
   ]
 
   const handleNavClick = (sectionId) => {
