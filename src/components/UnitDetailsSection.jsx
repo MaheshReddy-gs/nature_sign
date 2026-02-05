@@ -118,7 +118,7 @@ export default function UnitDetailsSection() {
 
                                     {/* CTA Button */}
                                     <button
-                                        onClick={openModal}
+                                        onClick={() => openModal({ initialValues: { message: "Price Inquiry for Unit " + unit.size } })}
                                         className="mt-2 px-5 py-3  bg-orange-500 text-white hover:bg-orange-400 t font-bold rounded transition-colors uppercase text-xs sm:text-sm tracking-widest"
                                     >
                                         Ask Price

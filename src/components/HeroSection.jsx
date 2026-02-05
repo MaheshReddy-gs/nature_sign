@@ -49,7 +49,7 @@ export default function Section1() {
           {/* CTA Button */}
           <div className="flex justify-center lg:justify-start">
             <button
-              onClick={openModal}
+              onClick={() => openModal({ initialValues: { message: "Enquiry" } })}
               className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 px-10 rounded transition-colors uppercase text-sm tracking-widest"
             >
               Enquire Now
