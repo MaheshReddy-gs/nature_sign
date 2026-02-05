@@ -258,12 +258,22 @@ export default function HighlightsSection() {
                     Project highlights at a glance
                 </FloatUpText>
                 <div className="w-full h-full felx lg:grid my-10 grid-cols-2 grid-rows-2 gap-10">
-                    <div className="w-full h-full bg-white row-span-2">
+                    <FloatUpText className="row-span-2 mb-5">
+  <img
+    src="/Highlights_image2.webp"
+    alt="Highlight 2"
+    className="w-full h-auto rounded-lg md:rounded-none h-max-[70vh] object-cover"
+  />
+</FloatUpText>
 
-                    </div>
-                    <div className="w-full h-full bg-white">
+<FloatUpText>
+  <img
+    src="/Highlights_image1.webp"
+    alt="Highlight 1"
+    className="w-full hidden md:flex h-auto object-cover  "
+  />
+</FloatUpText>
 
-                    </div>
 
                     <FloatUpText className="w-full h-full md:text-left text-white">
                         <span className="  section-heading ">
