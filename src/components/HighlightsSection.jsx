@@ -1,5 +1,6 @@
 import FloatUpText from "./Animations/floatUpText";
 import { useEffect, useRef, useState } from "react"
+import RevealImage from "./Animations/TopDownImageReveal";
 
 function LazyItem({ children }) {
     const ref = useRef(null)
@@ -37,6 +38,25 @@ function LazyItem({ children }) {
         </div>
     )
 }
+function SvgIcon({ src, color = "#f87130", className = "" }) {
+  const [svgContent, setSvgContent] = useState("");
+useEffect(() => {
+  fetch(src)
+    .then(res => res.text())
+    .then(text => {
+      const coloredSvg = text.replace(/fill:\s*#[0-9a-fA-F]{3,6}/g, `fill: ${color}`);
+      setSvgContent(coloredSvg);
+    });
+}, [src, color]);
+
+
+  return (
+    <span
+      className={className}
+      dangerouslySetInnerHTML={{ __html: svgContent }}
+    />
+  );
+}
 
 
 function Glance() {  
@@ -44,38 +64,116 @@ function Glance() {
   const [isVisible, setIsVisible] = useState(false); 
   const [mobileExpanded, setMobileExpanded] = useState(false);
   const [animationState, setAnimationState] = useState(null);
-const blocks = Array.from({ length: 20 }, (_, i) => {
-  const width = 400;
-  const height = 200 + Math.floor(Math.random() * 300); // 200–400px
 
-  return {
-    img: `https://picsum.photos/seed/block-${i}/${width}/${height}`,
-    alt: `Placeholder Image ${i + 1}`,
-  };
-});
 
-  // const blocks = [
-  //   { img: "/location_map.png", alt: "Location Map", height: "540px" },
-  //   { img: "/herobackgorund.webp", alt: "Hero Background", height: "280px" },
-  //   { img: "/contact_bg.png", alt: "Contact Background", height: "260px" },
-  //   { img: "/master_plan_layout.png", alt: "Master Plan", height: "220px" },
-  //   { img: "/location_map.png", alt: "Location Map", height: "300px" },
-  //   { img: "/herobackgorund.webp", alt: "Hero Background", height: "190px" },
-  //   { img: "/contact_bg.png", alt: "Contact Background", height: "160px" },
-  //   { img: "/master_plan_layout.png", alt: "Master Plan", height: "280px" },
-  //   { img: "/location_map.png", alt: "Location Map", height: "240px" },
-  //   { img: "/herobackgorund.webp", alt: "Hero Background", height: "210px" },
-  //   { img: "/contact_bg.png", alt: "Contact Background", height: "360px" },
-  //   { img: "/master_plan_layout.png", alt: "Master Plan", height: "330px" },
-  //   { img: "/location_map.png", alt: "Location Map", height: "170px" },
-  //   { img: "/herobackgorund.webp", alt: "Hero Background", height: "290px" },
-  //   { img: "/contact_bg.png", alt: "Contact Background", height: "200px" },
-  //   { img: "/master_plan_layout.png", alt: "Master Plan", height: "350px" },
-  //   { img: "/location_map.png", alt: "Location Map", height: "180px" },
-  //   { img: "/herobackgorund.webp", alt: "Hero Background", height: "260px" },
-  //   { img: "/contact_bg.png", alt: "Contact Background", height: "230px" },
-  //   { img: "/master_plan_layout.png", alt: "Master Plan", height: "310px" },
-  // ];
+const blocks = [
+  {
+    img: "/highlight_gallery/images/30cares layout.webp",
+    alt: "30 Acres Layout",
+    icon: "/highlight_gallery/icons/30acreslayout.svg",
+  },
+  
+  {
+    img: "/highlight_gallery/images/children play area.webp",
+    alt: "Children Play Area",
+    icon: "/highlight_gallery/icons/childrenplay.svg",
+  },
+  {
+    img: "/highlight_gallery/images/clubhouse.webp",
+    alt: "Luxury Clubhouse",
+    icon: "/highlight_gallery/icons/clubhouse.svg",
+  },
+  // {
+  //   img: "/highlight_gallery/images/underground_electricity.webp",
+  //   alt: "Underground Electricity",
+  //   icon: "/highlight_gallery/icons/electricity.svg",
+  // },
+  {
+    img: "/highlight_gallery/images/joggintrack.webp",
+    alt: "Jogging Track",
+    icon: "/highlight_gallery/icons/joggingtrack.svg",
+  },
+  // {
+  //   img: "/highlight_gallery/images/landscsape.webp",
+  //   alt: "Landscape Garden",
+  //   icon: "/highlight_gallery/icons/landscaspegarden.svg",
+  // },
+  // {
+  //   img: "/highlight_gallery/images/primelocation.webp",
+  //   alt: "Prime Location",
+  //   icon: "/highlight_gallery/icons/primelocation.svg",
+  // },
+  // {
+  //   img: "/highlight_gallery/images/rainwater_harvesting.webp",
+  //   alt: "Rain Water Harvesting Pits",
+  //   icon: "/highlight_gallery/icons/rainweaterharvesting.svg",
+  // },
+  {
+    img: "/highlight_gallery/images/secirity.webp",
+    alt: "24/7 Security",
+    icon: "/highlight_gallery/icons/security.svg",
+  },{
+    img: "/highlight_gallery/images/50-40roads.webp",
+    alt: "50, 40 Feet BT Roads",
+    icon: "/highlight_gallery/icons/5-40roads.svg",
+  },
+  {
+    img: "/highlight_gallery/images/amphitheatre.webp",
+    alt: "Amphitheater",
+    icon: "/highlight_gallery/icons/amphitheatre.svg",
+  },
+  {
+    img: "/highlight_gallery/images/opengym.webp",
+    alt: "open gym",
+    icon: "/highlight_gallery/icons/opengym.svg",
+  },
+  // {
+  //   img: "/highlight_gallery/images/avenue plantation.webp",
+  //   alt: "Avenue Plantation",
+  //   icon: "/highlight_gallery/icons/avanueplantation.svg",
+  // },
+  {
+    img: "/highlight_gallery/images/landscape.webp",
+    alt: "Landscape Garden",
+    icon: "/highlight_gallery/icons/landscaspegarden.svg",
+  },
+  // {
+  //   img: "/highlight_gallery/images/spotregistration.webp",
+  //   alt: "Spot Registration",
+  //   icon: "/highlight_gallery/icons/registration.svg",
+  // },
+  // {
+  //   img: "/highlight_gallery/images/streetlight .webp",
+  //   alt: "Modern Street Lights",
+  //   icon: "/highlight_gallery/icons/streetlight.svg",
+  // },
+  {
+    img: "/highlight_gallery/images/swimmingpool.webp",
+    alt: "Swimming Pool",
+    icon: "/highlight_gallery/icons/swimmingpool.svg",
+  },
+  // {
+  //   img: "/highlight_gallery/images/underground_drainage.webp",
+  //   alt: "Underground Drainage",
+  //   icon: "/highlight_gallery/icons/undergrouddrainage.svg",
+  // },
+  // {
+  //   img: "/highlight_gallery/images/underground_electricity.webp",
+  //   alt: "Underground Electricity",
+  //   icon: "/highlight_gallery/icons/electricity.svg",
+  // },
+  // {
+  //   img: "/highlight_gallery/images/vaastu.webp",
+  //   alt: "100% Vaastu",
+  //   icon: "/highlight_gallery/icons/vaastu.svg",
+  // },
+  {
+    img: "/highlight_gallery/images/polutionfree.webp",
+    alt: "Pollution Free Environment",
+    icon: "/highlight_gallery/icons/pullutionfree.svg",
+  },
+];
+
 
   // Prevent body scroll when modal is open
   useEffect(() => {
@@ -159,25 +257,43 @@ const blocks = Array.from({ length: 20 }, (_, i) => {
             mobileExpanded ? "max-h-[2000px]" : "max-h-[60vh] md:max-h-full"
           }`}
         >
-          <div className="columns-3 max-w-7xl px-6 w-full gap-1.5 lg:gap-3 md:columns-3 lg:columns-4">
+          <div className="columns-3 max-w-5xl px-6 md:px-0  w-full gap-1.5 lg:gap-3 md:columns-3 lg:columns-4">
             {blocks.map((block, index) => (
               <div key={index} className="md:mb-6 mb-3 break-inside-avoid">
-                <div
-                  data-modal-img={block.img}
-                  className="relative rounded-lg md:rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
-                  onClick={(e) => openModal(block, e)}
-                >
-                  <img
-                    src={block.img}
-                    alt={block.alt}
-                    className="w-full h-auto object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-500 text-center p-4 rounded-2xl">
-                    <div className="text-white text-lg font-semibold border-2 border-white rounded-md px-3 py-1 h-full w-full flex items-center justify-center border-dashed">
-                      {block.alt}
-                    </div>
-                  </div>
-                </div>
+               <div
+  data-modal-img={block.img}
+  className="group relative rounded-lg md:rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+  onClick={(e) => openModal(block, e)}
+>
+  {/* Main Image */}
+  <img
+    src={block.img}
+    alt={block.alt}
+    className="w-full h-auto object-cover"
+  />
+
+  {/* Hover Overlay */}
+  <div className="absolute inset-0 bg-[#a1461a]/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+    <div className="flex flex-col items-center gap-3 scale-95 group-hover:scale-100 transition-transform duration-300">
+      
+      {/* Icon */}
+     {/* Icon */}
+<SvgIcon
+  src={block.icon}
+  color="#f87130" 
+  className="w-10  a1 h-10 md:w-12 md:h-12 object-contain overflow-hidden"
+/>
+
+
+
+      {/* Label */}
+      <span className="text-white text-sm  w-40 text-center flex justify-center items-center  tracking-wide uppercase">
+        {block.alt}
+      </span>
+    </div>
+  </div>
+</div>
+
               </div>
             ))}
           </div>
@@ -250,7 +366,7 @@ export default function HighlightsSection() {
 
       <section id="section2" className="w-full h-auto min-h-[40vh] bg-[#a1461a]
         pt-20 pb-0 md:pb-0 flex flex-col items-center justify-center">
-            <div className="max-w-7xl  px-6 w-full   flex flex-col items-center justify-between h-full text-center">
+            <div className="max-w-5xl  px-6 md:px-0 w-full   flex flex-col items-center justify-between h-full text-center">
                 <FloatUpText className="text-orange-200 text-xs tracking-[0.2em] mb-5 ">
                     HIGHLIGHTS
                 </FloatUpText>
@@ -258,12 +374,22 @@ export default function HighlightsSection() {
                     Project highlights at a glance
                 </FloatUpText>
                 <div className="w-full h-full felx lg:grid my-10 grid-cols-2 grid-rows-2 gap-10">
-                    <div className="w-full h-full bg-white row-span-2">
+                    <FloatUpText className="row-span-2 mb-5">
+  <RevealImage
+    src="/Highlights_image2.webp"
+    alt="Highlight 2"
+    className="w-full h-auto  max-h-[70vh] rounded-lg md:rounded-none h-max-[70vh] object-cover"
+  />
+</FloatUpText>
 
-                    </div>
-                    <div className="w-full h-full bg-white">
+<FloatUpText>
+  <RevealImage
+    src="/Highlights_image1.webp"
+    alt="Highlight 1"
+    className="w-full hidden md:flex h-auto object-cover  "
+  />
+</FloatUpText>
 
-                    </div>
 
                     <FloatUpText className="w-full h-full md:text-left text-white">
                         <span className="  section-heading ">

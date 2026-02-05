@@ -7,7 +7,7 @@ export default function Section1() {
       id="section1"
       className="relative w-full h-[70vh] lg:h-screen flex items-center justify-center overflow-hidden pt-20 pb-5 md:pb-0"
       style={{
-        backgroundImage: `url('/herobackgorund.webp')`,
+        backgroundImage: `url('/hero_background.webp')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
@@ -18,14 +18,19 @@ export default function Section1() {
       {/* Content Container */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center lg:text-left">
         {/* Badges/Icons */}
-        <div className="flx justify-center hidden lg:justify-start gap-6 mb-12">
+        {/* <div className="flex justify-center  lg:justify-start gap-6 mb-12">
           <div className="w-16 h-16 rounded-full border-2 border-white flex items-center justify-center">
             <span className="text-white text-xs font-bold text-center">RERA<br/>Approved</span>
           </div>
           <div className="w-16 h-16 rounded-full border-2 border-white flex items-center justify-center">
             <span className="text-white text-xs font-bold text-center">ECO<br/>Friendly</span>
           </div>
-        </div>
+        </div> */}
+        <img
+          src="/hero_tags.webp"
+          alt="Badges"
+          className=" -translate-x-5 mb-5 h-20 object-contain"
+        />
 
         {/* Main Heading */}
         <AnimatedHeading className="md:text-4xl  text-3xl lg:text-6xl font-bold text-white mb-8 leading-tight">

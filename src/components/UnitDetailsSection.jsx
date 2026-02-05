@@ -1,5 +1,6 @@
 import FloatUpText from './Animations/floatUpText.jsx';
 import { useRef } from 'react';
+import RevealImage from './Animations/TopDownImageReveal.jsx';
 
 
 function TiltCard({ children, className = '' }) {
@@ -66,38 +67,35 @@ export default function UnitDetailsSection() {
     ];
 
     return (
-        <section
-            id="section4"
-            className="relative w-full min-h-[100vh] h-auto lg:h-screen overflow-hidden"
-        >
-            {/* Background Image - Sticky/Parallax */}
-            <div
-                className="sticky top-0 left-0 w-full h-screen bg-cover bg-center -z-10"
-                style={{
-                    backgroundImage: `url('/herobackgorund.webp')`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    backgroundAttachment: 'fixed',
-                }}
-            >
+    <section
+    id="section4"
+    className="relative w-full "
+>
+    {/* Background Image - Sticky, natural size */}
+    <div
+        className="sticky h-[70vh]  top-0 left-0 w-full bg-[#f8e8d1]   flex items-center justify-center -z-10"
+    >
+         <img
+    src="/unitDetails_background.webp"
+    alt="Unit Details Background"
+    className="w-full h-full object-cover object-bottom"
+  />
+    </div>
 
-            </div>
+    {/* Spacer to allow scrolling past the image */}
+    {/* <div className="h-[40vh]"></div> */}
 
-            {/* Content Container - Bottom 60vh constrained to section */}
-            <div className="absolute    bottom-0 left-0 w-full lg:h-[60vh]">
-                <div className="w-full h-full py-10  bg-[#f8e8d1] px-6 flex flex-col">
-                    {/* Unit Dimensions Heading */}
-                    <FloatUpText>
-                        <h3 className="text-center text-orange-900 text-lg font-semibold tracking-widest mb-4  uppercase">
-                            Unit Dimensions
-                        </h3>
-                    </FloatUpText>
+    {/* Content Container - Slides up over the sticky image */}
+    <div className="relative w-full md:h-[60vh]  bg-[#f8e8d1] px-6 py-10 flex flex-col">
+  {/* Heading */}
+  <FloatUpText>
+    <h3 className="text-center text-orange-900 text-lg font-semibold tracking-widest mb-4 uppercase">
+      Unit Dimensions
+    </h3>
+  </FloatUpText>
 
-
-
-
-                    <div className="flex-1  overflow-hidden   min-h-0 mt-2">
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 md:gap-6 max-w-5xl mx-auto h-full overflow-auto md:overflow-hidden">
+  <div className="flex-1  overflow-hidden   min-h-0 mt-2">
+                        <div className="grid  grid-cols-1  h-full md:grid-cols-4 gap-3 md:gap-6 max-w-5xl mx-auto  overflow-hidden">
                             {units.map((unit, idx) => (
                                 <FloatUpText key={unit.id} delay={idx * 0.2} yMultiplier={2}>
                                     <TiltCard>
@@ -123,10 +121,10 @@ export default function UnitDetailsSection() {
                                     </TiltCard>
                                 </FloatUpText>
                             ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    </div>
+  </div>
+</div>
+
+</section>
     );
 }
