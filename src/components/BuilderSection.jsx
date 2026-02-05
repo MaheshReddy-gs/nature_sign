@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useModal } from "../context/ModalContext";
 import AnimatedHeading from "./Animations/animatedHeading";
 import FloatUpText from "./Animations/floatUpText";
 
