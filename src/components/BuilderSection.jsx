@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
+import { useModal } from "../context/ModalContext";
 
 export default function BuilderSection() {
+    const { openModal } = useModal();
     return (
         <section
             id="builder"
@@ -97,8 +99,9 @@ export default function BuilderSection() {
                             whileInView={{ opacity: 1 }}
                             transition={{ delay: 0.5 }}
                             className="mt-10 px-8 py-3 w-fit border border-white text-[12px] tracking-[0.15em] font-bold uppercase hover:bg-white hover:text-[#2D8EA2] transition-colors duration-300 rounded-[2px]"
+                            onClick={openModal}
                         >
-                            Visit Shreyas Infra
+                            Request Site Visit
                         </motion.button>
                     </div>
 

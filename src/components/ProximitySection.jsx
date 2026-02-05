@@ -57,7 +57,7 @@ const IMAGE_FADE = {
 
 export default function ProximitySection() {
   return (
-    <section id="section3" className="relative w-full bg-[#FBF6EE] overflow-hidden py-16 lg:py-20">
+    <section id="proximity" className="relative w-full bg-[#FBF6EE] overflow-hidden py-16 lg:py-20">
       {/* Soft corner shapes */}
       <div className="pointer-events-none absolute -top-28 -left-24 h-60 w-60 rounded-full bg-gradient-to-br from-[#F6D7A7] to-[#F9E7CC] opacity-80" />
       <div className="pointer-events-none absolute -top-24 -right-20 h-56 w-56 rounded-full bg-gradient-to-br from-[#F7E78C] to-[#CFE8D2] opacity-70" />
@@ -84,19 +84,19 @@ export default function ProximitySection() {
           viewport={{ once: false, amount: 0.3 }}
         >
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 p-8 lg:p-10">
-          <motion.div
-    className="overflow-hidden bg-white"
-  variants={IMAGE_FADE}
->
-  <div className="aspect-[4/3] w-full overflow-hidden bg-white">
-    <img
-      src={PROXIMITY_IMAGES[0].src}
-      alt={PROXIMITY_IMAGES[0].alt}
-      className="w-full h-full object-contain"
-      loading="lazy"
-    />
-  </div>
-</motion.div>
+            <motion.div
+              className="overflow-hidden bg-white"
+              variants={IMAGE_FADE}
+            >
+              <div className="aspect-[4/3] w-full overflow-hidden bg-white">
+                <img
+                  src={PROXIMITY_IMAGES[ 0 ].src}
+                  alt={PROXIMITY_IMAGES[ 0 ].alt}
+                  className="w-full h-full object-contain"
+                  loading="lazy"
+                />
+              </div>
+            </motion.div>
 
 
             <motion.div className="flex flex-col justify-center" variants={FADE_UP}>
@@ -126,7 +126,7 @@ export default function ProximitySection() {
           whileInView="visible"
           viewport={{ once: false, amount: 0.3 }}
         >
-         <div className="bg-[#D28A56] px-8 py-12 lg:px-12 lg:py-14">
+          <div className="bg-[#D28A56] px-8 py-12 lg:px-12 lg:py-14">
             <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 items-center">
               <motion.div className="bg-white p-4 shadow-[0_14px_28px_rgba(78,52,34,0.18)]" variants={IMAGE_FADE}>
                 <div className="aspect-[4/3] overflow-hidden">
@@ -143,23 +143,23 @@ export default function ProximitySection() {
                 <p className="text-white text-2xl leading-snug font-semibold max-w-[420px]">
                   Nature&apos;s Sign - Perfectly Positioned Near Reputed Educational Hubs.
                 </p>
-<div className="mt-6 bg-white p-6 w-full max-w-[560px]">
-  <div className="grid grid-cols-2 gap-x-6 gap-y-5 items-center">
-    {EDUCATION_LOGOS.map((item) => (
-      <div
-        key={item.name}
-        className="flex items-center justify-center"
-      >
-        <img
-          src={item.src}
-          alt={item.name}
-          className="h-20 w-auto object-contain"
-          loading="lazy"
-        />
-      </div>
-    ))}
-  </div>
-</div>
+                <div className="mt-6 bg-white p-6 w-full max-w-[560px]">
+                  <div className="grid grid-cols-2 gap-x-6 gap-y-5 items-center">
+                    {EDUCATION_LOGOS.map((item) => (
+                      <div
+                        key={item.name}
+                        className="flex items-center justify-center"
+                      >
+                        <img
+                          src={item.src}
+                          alt={item.name}
+                          className="h-20 w-auto object-contain"
+                          loading="lazy"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
 
 
 

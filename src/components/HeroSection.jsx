@@ -1,7 +1,9 @@
 import AnimatedHeading from './Animations/animatedHeading.jsx'
 import FloatUpText from './Animations/floatUpText.jsx'
+import { useModal } from '../context/ModalContext'
 
 export default function Section1() {
+  const { openModal } = useModal();
   return (
     <section
       id="section1"
@@ -38,18 +40,21 @@ export default function Section1() {
         </AnimatedHeading>
         {/* Subheading */}
         <FloatUpText>
-            <p className="text-lg text-white mb-10 max-w-2xl mx-auto font-light">
-          Premium Plotted Development in
-          <br />
-          Devanahalli, Bengaluru.
+          <p className="text-lg text-white mb-10 max-w-2xl mx-auto font-light">
+            Premium Plotted Development in
+            <br />
+            Devanahalli, Bengaluru.
 
-</p>
-        {/* CTA Button */}
-        <div className="flex justify-center lg:justify-start">
-          <button className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 px-10 rounded transition-colors uppercase text-sm tracking-widest">
-            Enquire Now
-          </button>
-        </div>
+          </p>
+          {/* CTA Button */}
+          <div className="flex justify-center lg:justify-start">
+            <button
+              onClick={openModal}
+              className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 px-10 rounded transition-colors uppercase text-sm tracking-widest"
+            >
+              Enquire Now
+            </button>
+          </div>
         </FloatUpText>
 
         {/* Scroll Indicator */}

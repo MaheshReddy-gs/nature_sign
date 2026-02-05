@@ -1,26 +1,29 @@
 import { useState } from 'react'
 import { Phone } from 'lucide-react'
+import { useModal } from '../context/ModalContext'
 
 export default function Navbar() {
   const [ isMobileMenuOpen, setIsMobileMenuOpen ] = useState(false)
+  const { openModal } = useModal();
 
   const navItems = [
-    { label: 'Overview', id: 'intro-section' },
-    { label: 'Highlights', id: 'section3' },
-    { label: 'Unit Details', id: 'section4' },
-    { label: 'About Builder', id: 'section5' },
-    { label: 'Gallery', id: 'section6' },
-    { label: 'Proximity', id: 'section7' },
-    { label: 'Contact', id: 'section8' },
+    { label: 'Overview', id: 'overview' },
+    { label: 'Highlights', id: 'highlights' },
+    { label: 'Unit Details', id: 'unit-details' },
+    { label: 'About Builder', id: 'builder' },
+    { label: 'Gallery', id: 'gallery' },
+    { label: 'Proximity', id: 'proximity' },
+    { label: 'Contact', id: 'contact' },
   ]
 
   const handleNavClick = (sectionId) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    } else if (sectionId === 'section1') {
-      // fallback to top
+    if (sectionId === 'top-scroll') {
       window.scrollTo({ top: 0, behavior: 'smooth' })
+    } else {
+      const element = document.getElementById(sectionId)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+      }
     }
     setIsMobileMenuOpen(false)
   }
@@ -30,7 +33,7 @@ export default function Navbar() {
       <div className="max-w-6xl  mx-auto px-6">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <div className="flex-shrink-0 z-[999] brightness-125 cursor-pointer" onClick={() => handleNavClick('section1')}>
+          <div className="flex-shrink-0 z-[999] brightness-125 cursor-pointer" onClick={() => handleNavClick('top-scroll')}>
             <img src="/naturesignLogo1.png" alt="NatureSign" className="h-20 w-auto" />
           </div>
 
@@ -45,7 +48,10 @@ export default function Navbar() {
                 {item.label}
               </button>
             ))}
-            <button className="bg-orange-600 text-white px-6 py-3 rounded hover:bg-orange-700 transition-colors font-bold text-xs uppercase tracking-wide flex items-center gap-2 whitespace-nowrap">
+            <button
+              onClick={openModal}
+              className="bg-orange-600 text-white px-6 py-3 rounded hover:bg-orange-700 transition-colors font-bold text-xs uppercase tracking-wide flex items-center gap-2 whitespace-nowrap"
+            >
               <Phone size={18} strokeWidth={2.5} />
               Request <br /> Callback
             </button>
@@ -74,7 +80,13 @@ export default function Navbar() {
                 {item.label}
               </button>
             ))}
-            <button className="w-full mt-2 bg-orange-600 text-white px-6 py-2 rounded hover:bg-orange-700 transition-colors font-bold flex items-center gap-2 justify-center whitespace-nowrap">
+            <button
+              onClick={() => {
+                openModal();
+                setIsMobileMenuOpen(false);
+              }}
+              className="w-full mt-2 bg-orange-600 text-white px-6 py-2 rounded hover:bg-orange-700 transition-colors font-bold flex items-center gap-2 justify-center whitespace-nowrap"
+            >
               <Phone size={16} strokeWidth={2.5} />
               Request Callback
             </button>
