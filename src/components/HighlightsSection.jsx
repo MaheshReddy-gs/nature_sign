@@ -155,11 +155,11 @@ const blocks = Array.from({ length: 20 }, (_, i) => {
     <section className="w-full bg-[#fbfaf6] py-20">
       <div className="mx-auto flex w-full items-center flex-col">
         <div
-          className={`flex flex-col w-full items-center px-6 overflow-hidden transition-[max-height] duration-700 ${
+          className={`flex flex-col w-full items-center  overflow-hidden transition-[max-height] duration-700 ${
             mobileExpanded ? "max-h-[2000px]" : "max-h-[60vh] md:max-h-full"
           }`}
         >
-          <div className="columns-3 max-w-7xl w-full gap-1.5 lg:gap-3 md:columns-3 lg:columns-4">
+          <div className="columns-3 max-w-7xl px-6 w-full gap-1.5 lg:gap-3 md:columns-3 lg:columns-4">
             {blocks.map((block, index) => (
               <div key={index} className="md:mb-6 mb-3 break-inside-avoid">
                 <div
