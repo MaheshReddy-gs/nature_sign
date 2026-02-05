@@ -69,20 +69,20 @@ export default function UnitDetailsSection() {
     ];
 
     return (
-        <section
-            id="unit-details"
-            className="relative w-full "
-        >
-            {/* Background Image - Sticky, natural size */}
-            <div
-                className="sticky h-[70vh]  top-0 left-0 w-full bg-[#f8e8d1]   flex items-center justify-center -z-10"
-            >
-                <img
-                    src="/unitDetails_background.webp"
-                    alt="Unit Details Background"
-                    className="w-full h-full object-cover object-bottom"
-                />
-            </div>
+    <section
+    id="unit"
+    className="relative w-full "
+>
+    {/* Background Image - Sticky, natural size */}
+    <div
+        className="sticky h-[70vh]  top-0 left-0 w-full bg-[#f8e8d1]   flex items-center justify-center -z-10"
+    >
+         <img
+    src="/unitDetails_background.webp"
+    alt="Unit Details Background"
+    className="w-full h-full object-cover object-bottom"
+  />
+    </div>
 
             {/* Spacer to allow scrolling past the image */}
             {/* <div className="h-[40vh]"></div> */}

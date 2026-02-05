@@ -361,7 +361,7 @@ function Glance() {
 export default function HighlightsSection() {
   return (<>
 
-    <section id="highlights" className="w-full h-auto min-h-[40vh] bg-[#a1461a]
+      <section id="highlights" className="w-full h-auto min-h-[40vh] bg-[#a1461a]
         pt-20 pb-0 md:pb-0 flex flex-col items-center justify-center">
       <div className="max-w-5xl  px-6 md:px-0 w-full   flex flex-col items-center justify-between h-full text-center">
         <FloatUpText className="text-orange-200 text-xs tracking-[0.2em] mb-5 ">

@@ -7,17 +7,21 @@ export default function Navbar() {
   const { openModal } = useModal();
 
   const navItems = [
-    { label: 'Overview', id: 'overview' },
+    { label: 'Overview', id: 'intro-section' },
     { label: 'Highlights', id: 'highlights' },
-    { label: 'Unit Details', id: 'unit-details' },
+    { label: 'Unit Details', id: 'unit' },
     { label: 'About Builder', id: 'builder' },
-    { label: 'Gallery', id: 'gallery' },
-    { label: 'Proximity', id: 'proximity' },
-    { label: 'Contact', id: 'contact' },
+    { label: 'Gallery', id: 'section6' },
+    { label: 'Proximity', id: 'section7' },
+    { label: 'Contact', id: 'section8' },
   ]
 
   const handleNavClick = (sectionId) => {
-    if (sectionId === 'top-scroll') {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    } else if (sectionId === 'hero') {
+      // fallback to top
       window.scrollTo({ top: 0, behavior: 'smooth' })
     } else {
       const element = document.getElementById(sectionId)
@@ -33,9 +37,9 @@ export default function Navbar() {
       <div className="max-w-6xl  mx-auto px-6">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <div className="flex-shrink-0 z-[999] brightness-125 cursor-pointer" onClick={() => handleNavClick('top-scroll')}>
+          <button className="flex-shrink-0 z-[999] brightness-125 cursor-pointer" onClick={() => handleNavClick('hero')}>
             <img src="/naturesignLogo1.png" alt="NatureSign" className="h-20 w-auto" />
-          </div>
+          </button>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
