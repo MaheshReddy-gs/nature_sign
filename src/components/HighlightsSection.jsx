@@ -281,7 +281,7 @@ const blocks = [
 <SvgIcon
   src={block.icon}
   color="#f87130" 
-  className="w-10  a1 h-10 md:w-12 md:h-12 object-contain overflow-hidden"
+  className="w-10  h-10 md:w-12 md:h-12 object-contain overflow-hidden"
 />
 
 
