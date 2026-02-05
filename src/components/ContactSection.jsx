@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-
+import { MessageCircle } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 const ContactSection = () => {
     const [ formData, setFormData ] = useState({
         name: '',
@@ -178,6 +179,17 @@ const ContactSection = () => {
 
             {/* 3. Footer Section */}
             <footer className="bg-[#1C1C1C] text-gray-400 py-12 px-6 relative z-10">
+            {/* ✅ WhatsApp Icon exactly on footer edge */}
+<a
+  href="https://wa.me/919999999999"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="absolute -top-7 right-10 z-[9999] w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-xl"
+>
+  <FaWhatsapp className="text-white text-3xl" />
+</a>
+
+
                 <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end md:items-center gap-8">
 
                     {/* Left Side: Copyright */}
@@ -211,6 +223,7 @@ const ContactSection = () => {
                 </div>
 
             </footer>
+            
         </section>
     );
 };
