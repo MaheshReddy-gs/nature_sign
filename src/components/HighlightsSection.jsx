@@ -3,51 +3,51 @@ import { useEffect, useRef, useState } from "react"
 import RevealImage from "./Animations/TopDownImageReveal";
 
 function LazyItem({ children }) {
-    const ref = useRef(null)
-    const [ visible, setVisible ] = useState(false)
+  const ref = useRef(null)
+  const [ visible, setVisible ] = useState(false)
 
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([ entry ]) => {
-                if (entry.isIntersecting) {
-                    setVisible(true)
-                    observer.disconnect()
-                }
-            },
-            {
-                threshold: 0.2,
-            }
-        )
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([ entry ]) => {
+        if (entry.isIntersecting) {
+          setVisible(true)
+          observer.disconnect()
+        }
+      },
+      {
+        threshold: 0.2,
+      }
+    )
 
-        if (ref.current) observer.observe(ref.current)
+    if (ref.current) observer.observe(ref.current)
 
-        return () => observer.disconnect()
-    }, [])
+    return () => observer.disconnect()
+  }, [])
 
-    return (
-        <div
-            ref={ref}
-            className={`
+  return (
+    <div
+      ref={ref}
+      className={`
         transition-all duration-700 ease-out
         ${visible
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-6"}
+          ? "opacity-100 translate-y-0"
+          : "opacity-0 translate-y-6"}
       `}
-        >
-            {children}
-        </div>
-    )
+    >
+      {children}
+    </div>
+  )
 }
 function SvgIcon({ src, color = "#f87130", className = "" }) {
-  const [svgContent, setSvgContent] = useState("");
-useEffect(() => {
-  fetch(src)
-    .then(res => res.text())
-    .then(text => {
-      const coloredSvg = text.replace(/fill:\s*#[0-9a-fA-F]{3,6}/g, `fill: ${color}`);
-      setSvgContent(coloredSvg);
-    });
-}, [src, color]);
+  const [ svgContent, setSvgContent ] = useState("");
+  useEffect(() => {
+    fetch(src)
+      .then(res => res.text())
+      .then(text => {
+        const coloredSvg = text.replace(/fill:\s*#[0-9a-fA-F]{3,6}/g, `fill: ${color}`);
+        setSvgContent(coloredSvg);
+      });
+  }, [ src, color ]);
 
 
   return (
@@ -59,120 +59,120 @@ useEffect(() => {
 }
 
 
-function Glance() {  
-  const [modalImage, setModalImage] = useState(null);
-  const [isVisible, setIsVisible] = useState(false); 
-  const [mobileExpanded, setMobileExpanded] = useState(false);
-  const [animationState, setAnimationState] = useState(null);
+function Glance() {
+  const [ modalImage, setModalImage ] = useState(null);
+  const [ isVisible, setIsVisible ] = useState(false);
+  const [ mobileExpanded, setMobileExpanded ] = useState(false);
+  const [ animationState, setAnimationState ] = useState(null);
 
 
-const blocks = [
-  {
-    img: "/highlight_gallery/images/30cares layout.webp",
-    alt: "30 Acres Layout",
-    icon: "/highlight_gallery/icons/30acreslayout.svg",
-  },
-  
-  {
-    img: "/highlight_gallery/images/children play area.webp",
-    alt: "Children Play Area",
-    icon: "/highlight_gallery/icons/childrenplay.svg",
-  },
-  {
-    img: "/highlight_gallery/images/clubhouse.webp",
-    alt: "Luxury Clubhouse",
-    icon: "/highlight_gallery/icons/clubhouse.svg",
-  },
-  // {
-  //   img: "/highlight_gallery/images/underground_electricity.webp",
-  //   alt: "Underground Electricity",
-  //   icon: "/highlight_gallery/icons/electricity.svg",
-  // },
-  {
-    img: "/highlight_gallery/images/joggintrack.webp",
-    alt: "Jogging Track",
-    icon: "/highlight_gallery/icons/joggingtrack.svg",
-  },
-  // {
-  //   img: "/highlight_gallery/images/landscsape.webp",
-  //   alt: "Landscape Garden",
-  //   icon: "/highlight_gallery/icons/landscaspegarden.svg",
-  // },
-  // {
-  //   img: "/highlight_gallery/images/primelocation.webp",
-  //   alt: "Prime Location",
-  //   icon: "/highlight_gallery/icons/primelocation.svg",
-  // },
-  // {
-  //   img: "/highlight_gallery/images/rainwater_harvesting.webp",
-  //   alt: "Rain Water Harvesting Pits",
-  //   icon: "/highlight_gallery/icons/rainweaterharvesting.svg",
-  // },
-  {
-    img: "/highlight_gallery/images/secirity.webp",
-    alt: "24/7 Security",
-    icon: "/highlight_gallery/icons/security.svg",
-  },{
-    img: "/highlight_gallery/images/50-40roads.webp",
-    alt: "50, 40 Feet BT Roads",
-    icon: "/highlight_gallery/icons/5-40roads.svg",
-  },
-  {
-    img: "/highlight_gallery/images/amphitheatre.webp",
-    alt: "Amphitheater",
-    icon: "/highlight_gallery/icons/amphitheatre.svg",
-  },
-  {
-    img: "/highlight_gallery/images/opengym.webp",
-    alt: "open gym",
-    icon: "/highlight_gallery/icons/opengym.svg",
-  },
-  // {
-  //   img: "/highlight_gallery/images/avenue plantation.webp",
-  //   alt: "Avenue Plantation",
-  //   icon: "/highlight_gallery/icons/avanueplantation.svg",
-  // },
-  {
-    img: "/highlight_gallery/images/landscape.webp",
-    alt: "Landscape Garden",
-    icon: "/highlight_gallery/icons/landscaspegarden.svg",
-  },
-  // {
-  //   img: "/highlight_gallery/images/spotregistration.webp",
-  //   alt: "Spot Registration",
-  //   icon: "/highlight_gallery/icons/registration.svg",
-  // },
-  // {
-  //   img: "/highlight_gallery/images/streetlight .webp",
-  //   alt: "Modern Street Lights",
-  //   icon: "/highlight_gallery/icons/streetlight.svg",
-  // },
-  {
-    img: "/highlight_gallery/images/swimmingpool.webp",
-    alt: "Swimming Pool",
-    icon: "/highlight_gallery/icons/swimmingpool.svg",
-  },
-  // {
-  //   img: "/highlight_gallery/images/underground_drainage.webp",
-  //   alt: "Underground Drainage",
-  //   icon: "/highlight_gallery/icons/undergrouddrainage.svg",
-  // },
-  // {
-  //   img: "/highlight_gallery/images/underground_electricity.webp",
-  //   alt: "Underground Electricity",
-  //   icon: "/highlight_gallery/icons/electricity.svg",
-  // },
-  // {
-  //   img: "/highlight_gallery/images/vaastu.webp",
-  //   alt: "100% Vaastu",
-  //   icon: "/highlight_gallery/icons/vaastu.svg",
-  // },
-  {
-    img: "/highlight_gallery/images/polutionfree.webp",
-    alt: "Pollution Free Environment",
-    icon: "/highlight_gallery/icons/pullutionfree.svg",
-  },
-];
+  const blocks = [
+    {
+      img: "/highlight_gallery/images/30cares layout.webp",
+      alt: "30 Acres Layout",
+      icon: "/highlight_gallery/icons/30acreslayout.svg",
+    },
+
+    {
+      img: "/highlight_gallery/images/children play area.webp",
+      alt: "Children Play Area",
+      icon: "/highlight_gallery/icons/childrenplay.svg",
+    },
+    {
+      img: "/highlight_gallery/images/clubhouse.webp",
+      alt: "Luxury Clubhouse",
+      icon: "/highlight_gallery/icons/clubhouse.svg",
+    },
+    // {
+    //   img: "/highlight_gallery/images/underground_electricity.webp",
+    //   alt: "Underground Electricity",
+    //   icon: "/highlight_gallery/icons/electricity.svg",
+    // },
+    {
+      img: "/highlight_gallery/images/joggintrack.webp",
+      alt: "Jogging Track",
+      icon: "/highlight_gallery/icons/joggingtrack.svg",
+    },
+    // {
+    //   img: "/highlight_gallery/images/landscsape.webp",
+    //   alt: "Landscape Garden",
+    //   icon: "/highlight_gallery/icons/landscaspegarden.svg",
+    // },
+    // {
+    //   img: "/highlight_gallery/images/primelocation.webp",
+    //   alt: "Prime Location",
+    //   icon: "/highlight_gallery/icons/primelocation.svg",
+    // },
+    // {
+    //   img: "/highlight_gallery/images/rainwater_harvesting.webp",
+    //   alt: "Rain Water Harvesting Pits",
+    //   icon: "/highlight_gallery/icons/rainweaterharvesting.svg",
+    // },
+    {
+      img: "/highlight_gallery/images/secirity.webp",
+      alt: "24/7 Security",
+      icon: "/highlight_gallery/icons/security.svg",
+    }, {
+      img: "/highlight_gallery/images/50-40roads.webp",
+      alt: "50, 40 Feet BT Roads",
+      icon: "/highlight_gallery/icons/5-40roads.svg",
+    },
+    {
+      img: "/highlight_gallery/images/amphitheatre.webp",
+      alt: "Amphitheater",
+      icon: "/highlight_gallery/icons/amphitheatre.svg",
+    },
+    {
+      img: "/highlight_gallery/images/opengym.webp",
+      alt: "open gym",
+      icon: "/highlight_gallery/icons/opengym.svg",
+    },
+    // {
+    //   img: "/highlight_gallery/images/avenue plantation.webp",
+    //   alt: "Avenue Plantation",
+    //   icon: "/highlight_gallery/icons/avanueplantation.svg",
+    // },
+    {
+      img: "/highlight_gallery/images/landscape.webp",
+      alt: "Landscape Garden",
+      icon: "/highlight_gallery/icons/landscaspegarden.svg",
+    },
+    // {
+    //   img: "/highlight_gallery/images/spotregistration.webp",
+    //   alt: "Spot Registration",
+    //   icon: "/highlight_gallery/icons/registration.svg",
+    // },
+    // {
+    //   img: "/highlight_gallery/images/streetlight .webp",
+    //   alt: "Modern Street Lights",
+    //   icon: "/highlight_gallery/icons/streetlight.svg",
+    // },
+    {
+      img: "/highlight_gallery/images/swimmingpool.webp",
+      alt: "Swimming Pool",
+      icon: "/highlight_gallery/icons/swimmingpool.svg",
+    },
+    // {
+    //   img: "/highlight_gallery/images/underground_drainage.webp",
+    //   alt: "Underground Drainage",
+    //   icon: "/highlight_gallery/icons/undergrouddrainage.svg",
+    // },
+    // {
+    //   img: "/highlight_gallery/images/underground_electricity.webp",
+    //   alt: "Underground Electricity",
+    //   icon: "/highlight_gallery/icons/electricity.svg",
+    // },
+    // {
+    //   img: "/highlight_gallery/images/vaastu.webp",
+    //   alt: "100% Vaastu",
+    //   icon: "/highlight_gallery/icons/vaastu.svg",
+    // },
+    {
+      img: "/highlight_gallery/images/polutionfree.webp",
+      alt: "Pollution Free Environment",
+      icon: "/highlight_gallery/icons/pullutionfree.svg",
+    },
+  ];
 
 
   // Prevent body scroll when modal is open
@@ -182,16 +182,16 @@ const blocks = [
     } else {
       document.body.style.overflow = 'unset';
     }
-    
+
     // Cleanup on unmount
     return () => {
       document.body.style.overflow = 'unset';
     };
-  }, [modalImage]);
+  }, [ modalImage ]);
 
   const openModal = (block, event) => {
     const rect = event.currentTarget.getBoundingClientRect();
-    
+
     // Set initial position to match the clicked card
     setAnimationState({
       left: rect.left,
@@ -199,23 +199,23 @@ const blocks = [
       width: rect.width,
       height: rect.height,
     });
-    
+
     setModalImage(block);
-    
+
     // Trigger animation after a brief delay
     setTimeout(() => {
       setIsVisible(true);
-      
+
       // Calculate centered position
       const viewportWidth = window.innerWidth;
       const viewportHeight = window.innerHeight;
       const maxWidth = viewportWidth * 0.9;
       const maxHeight = viewportHeight * 0.85;
-      
+
       // Calculate final size maintaining aspect ratio
       const img = new Image();
       img.src = block.img;
-      
+
       setAnimationState({
         left: (viewportWidth - maxWidth) / 2,
         top: (viewportHeight - maxHeight) / 2,
@@ -230,7 +230,7 @@ const blocks = [
       const clickedElement = event.currentTarget;
       // Find the original card position
       const originalCard = document.querySelector(`[data-modal-img="${modalImage?.img}"]`);
-      
+
       if (originalCard) {
         const rect = originalCard.getBoundingClientRect();
         setAnimationState({
@@ -241,7 +241,7 @@ const blocks = [
         });
       }
     }
-    
+
     setIsVisible(false);
     setTimeout(() => {
       setModalImage(null);
@@ -253,46 +253,45 @@ const blocks = [
     <section className="w-full bg-[#fbfaf6] py-20">
       <div className="mx-auto flex w-full items-center flex-col">
         <div
-          className={`flex flex-col w-full items-center  overflow-hidden transition-[max-height] duration-700 ${
-            mobileExpanded ? "max-h-[2000px]" : "max-h-[60vh] md:max-h-full"
-          }`}
+          className={`flex flex-col w-full items-center  overflow-hidden transition-[max-height] duration-700 ${mobileExpanded ? "max-h-[2000px]" : "max-h-[60vh] md:max-h-full"
+            }`}
         >
           <div className="columns-3 max-w-5xl px-6 md:px-0  w-full gap-1.5 lg:gap-3 md:columns-3 lg:columns-4">
             {blocks.map((block, index) => (
               <div key={index} className="md:mb-6 mb-3 break-inside-avoid">
-               <div
-  data-modal-img={block.img}
-  className="group relative rounded-lg md:rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
-  onClick={(e) => openModal(block, e)}
->
-  {/* Main Image */}
-  <img
-    src={block.img}
-    alt={block.alt}
-    className="w-full h-auto object-cover"
-  />
+                <div
+                  data-modal-img={block.img}
+                  className="group relative rounded-lg md:rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+                  onClick={(e) => openModal(block, e)}
+                >
+                  {/* Main Image */}
+                  <img
+                    src={block.img}
+                    alt={block.alt}
+                    className="w-full h-auto object-cover"
+                  />
 
-  {/* Hover Overlay */}
-  <div className="absolute inset-0 bg-[#a1461a]/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-    <div className="flex flex-col items-center gap-3 scale-95 group-hover:scale-100 transition-transform duration-300">
-      
-      {/* Icon */}
-     {/* Icon */}
-<SvgIcon
-  src={block.icon}
-  color="#f87130" 
-  className="w-10  h-10 md:w-12 md:h-12 object-contain overflow-hidden"
-/>
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-[#a1461a]/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="flex flex-col items-center gap-3 scale-95 group-hover:scale-100 transition-transform duration-300">
+
+                      {/* Icon */}
+                      {/* Icon */}
+                      <SvgIcon
+                        src={block.icon}
+                        color="#f87130"
+                        className="w-10  h-10 md:w-12 md:h-12 object-contain overflow-hidden"
+                      />
 
 
 
-      {/* Label */}
-      <span className="text-white text-sm  w-40 text-center flex justify-center items-center  tracking-wide uppercase">
-        {block.alt}
-      </span>
-    </div>
-  </div>
-</div>
+                      {/* Label */}
+                      <span className="text-white text-sm  w-40 text-center flex justify-center items-center  tracking-wide uppercase">
+                        {block.alt}
+                      </span>
+                    </div>
+                  </div>
+                </div>
 
               </div>
             ))}
@@ -315,9 +314,8 @@ const blocks = [
       {/* Modal / Lightbox with Google Photos style animation */}
       {modalImage && (
         <div
-          className={`fixed inset-0 bg-white/10   backdrop-blur-sm flex items-center justify-center z-50 transition-opacity duration-300 ${
-            isVisible ? "opacity-100" : "opacity-0"
-          }`}
+          className={`fixed inset-0 bg-white/10   backdrop-blur-sm flex items-center justify-center z-50 transition-opacity duration-300 ${isVisible ? "opacity-100" : "opacity-0"
+            }`}
           style={{ touchAction: 'none' }}
           onClick={closeModal}
         >
@@ -335,24 +333,23 @@ const blocks = [
             }}
             onClick={(e) => e.stopPropagation()}
           ><button
-            className={`absolute h-full   -z-10 flex w-full  items-center justify-center   transition-all duration-300 ${
-              isVisible ? 'opacity-100' : 'opacity-0'
-            }`}
+            className={`absolute h-full   -z-10 flex w-full  items-center justify-center   transition-all duration-300 ${isVisible ? 'opacity-100' : 'opacity-0'
+              }`}
             onClick={closeModal}
           >
-            ×
-          </button>
+              ×
+            </button>
             <img
               src={modalImage.img}
               alt={modalImage.alt}
-              
+
               className="w-fit h-full rounded-lg   mx-auto object-contain"
               draggable="false"
             />
           </div>
 
           {/* Close Button */}
-          
+
         </div>
       )}
     </section>
@@ -362,50 +359,50 @@ const blocks = [
 
 
 export default function HighlightsSection() {
-    return (<>
+  return (<>
 
-      <section id="section2" className="w-full h-auto min-h-[40vh] bg-[#a1461a]
+    <section id="highlights" className="w-full h-auto min-h-[40vh] bg-[#a1461a]
         pt-20 pb-0 md:pb-0 flex flex-col items-center justify-center">
-            <div className="max-w-5xl  px-6 md:px-0 w-full   flex flex-col items-center justify-between h-full text-center">
-                <FloatUpText className="text-orange-200 text-xs tracking-[0.2em] mb-5 ">
-                    HIGHLIGHTS
-                </FloatUpText>
-                <FloatUpText className="text-white section-heading   ">
-                    Project highlights at a glance
-                </FloatUpText>
-                <div className="w-full h-full felx lg:grid my-10 grid-cols-2 grid-rows-2 gap-10">
-                    <FloatUpText className="row-span-2 mb-5">
-  <RevealImage
-    src="/Highlights_image2.webp"
-    alt="Highlight 2"
-    className="w-full h-auto  max-h-[70vh] rounded-lg md:rounded-none h-max-[70vh] object-cover"
-  />
-</FloatUpText>
+      <div className="max-w-5xl  px-6 md:px-0 w-full   flex flex-col items-center justify-between h-full text-center">
+        <FloatUpText className="text-orange-200 text-xs tracking-[0.2em] mb-5 ">
+          HIGHLIGHTS
+        </FloatUpText>
+        <FloatUpText className="text-white section-heading   ">
+          Project highlights at a glance
+        </FloatUpText>
+        <div className="w-full h-full felx lg:grid my-10 grid-cols-2 grid-rows-2 gap-10">
+          <FloatUpText className="row-span-2 mb-5">
+            <RevealImage
+              src="/Highlights_image2.webp"
+              alt="Highlight 2"
+              className="w-full h-auto  max-h-[70vh] rounded-lg md:rounded-none h-max-[70vh] object-cover"
+            />
+          </FloatUpText>
 
-<FloatUpText>
-  <RevealImage
-    src="/Highlights_image1.webp"
-    alt="Highlight 1"
-    className="w-full hidden md:flex h-auto object-cover  "
-  />
-</FloatUpText>
-
-
-                    <FloatUpText className="w-full h-full md:text-left text-white">
-                        <span className="  section-heading ">
-                            Immerse yourself in magical club house expernce.
-                        </span>
-                        <p className="text-lg mt-5 text-orange-200">
-                            luxurious amenities await you at our clubhouse, designed to elevate your lifestyle. Enjoy a refreshing dip in the
-                        </p>
-                    </FloatUpText>
-                </div>
+          <FloatUpText>
+            <RevealImage
+              src="/Highlights_image1.webp"
+              alt="Highlight 1"
+              className="w-full hidden md:flex h-auto object-cover  "
+            />
+          </FloatUpText>
 
 
-            </div>
+          <FloatUpText className="w-full h-full md:text-left text-white">
+            <span className="  section-heading ">
+              Immerse yourself in magical club house expernce.
+            </span>
+            <p className="text-lg mt-5 text-orange-200">
+              luxurious amenities await you at our clubhouse, designed to elevate your lifestyle. Enjoy a refreshing dip in the
+            </p>
+          </FloatUpText>
+        </div>
 
-            <Glance />
-        </section>
-    </>
-    )
+
+      </div>
+
+      <Glance />
+    </section>
+  </>
+  )
 }

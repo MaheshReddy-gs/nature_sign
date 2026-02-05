@@ -13,24 +13,29 @@ import OverViewSection from './components/OverViewSection'
 import UnitDetailsSection from './components/UnitDetailsSection'
 import HighlightsSection from './components/HighlightsSection'
 import BuilderSection from './components/BuilderSection'
+import { ModalProvider } from './context/ModalContext'
+import ContactModal from './components/ContactModal'
 
 
 function App() {
   return (
-    <Layout>
-      <HeroSection />
-      <IntroSection />
-      <OverViewSection />
-      <UnitDetailsSection />
-      <HighlightsSection />
-      <BuilderSection />
-      <GallerySection />
-      <SpecificationsSection />
-      <ProximitySection />
-      <LocationSection />
-      <MasterPlanSection />
-      <ContactSection />
-    </Layout>
+    <ModalProvider>
+      <Layout>
+        <HeroSection />
+        <IntroSection />
+        <OverViewSection />
+        <UnitDetailsSection />
+        <HighlightsSection />
+        <BuilderSection />
+        <GallerySection />
+        <SpecificationsSection />
+        <ProximitySection />
+        <LocationSection />
+        <MasterPlanSection />
+        <ContactSection />
+      </Layout>
+      <ContactModal />
+    </ModalProvider>
   )
 }
 

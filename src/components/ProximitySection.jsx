@@ -57,7 +57,7 @@ const IMAGE_FADE = {
 
 export default function ProximitySection() {
   return (
-    <section id="section3" className="relative w-full bg-[#FBF6EE] overflow-hidden py-16 lg:py-20">
+    <section id="proximity" className="relative w-full bg-[#FBF6EE] overflow-hidden py-16 lg:py-20">
       {/* Soft corner shapes */}
       <div className="pointer-events-none absolute -top-28 -left-24 h-60 w-60 rounded-full bg-gradient-to-br from-[#F6D7A7] to-[#F9E7CC] opacity-80" />
       <div className="pointer-events-none absolute -top-24 -right-20 h-56 w-56 rounded-full bg-gradient-to-br from-[#F7E78C] to-[#CFE8D2] opacity-70" />
@@ -84,19 +84,19 @@ export default function ProximitySection() {
           viewport={{ once: false, amount: 0.3 }}
         >
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 p-8 lg:p-10">
-          <motion.div
-    className="overflow-hidden bg-white"
-  variants={IMAGE_FADE}
->
-  <div className="aspect-[4/3] w-full overflow-hidden bg-white">
-    <img
-      src={PROXIMITY_IMAGES[0].src}
-      alt={PROXIMITY_IMAGES[0].alt}
-      className="w-full h-full object-contain"
-      loading="lazy"
-    />
-  </div>
-</motion.div>
+            <motion.div
+              className="overflow-hidden bg-white"
+              variants={IMAGE_FADE}
+            >
+              <div className="aspect-[4/3] w-full overflow-hidden bg-white">
+                <img
+                  src={PROXIMITY_IMAGES[ 0 ].src}
+                  alt={PROXIMITY_IMAGES[ 0 ].alt}
+                  className="w-full h-full object-contain"
+                  loading="lazy"
+                />
+              </div>
+            </motion.div>
 
 
             <motion.div className="flex flex-col justify-center" variants={FADE_UP}>

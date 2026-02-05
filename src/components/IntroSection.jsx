@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion';
+import { useModal } from '../context/ModalContext';
 
 const leaf = "/leaf.webp";
 const naturesignlogo = "/naturesignlogo.svg";
 
 const IntroSection = () => {
+    const { openModal } = useModal();
     // Animation Variants
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -143,6 +145,16 @@ const IntroSection = () => {
                     variants={itemVariants}
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
+                    onClick={() => openModal({
+                        onSuccess: () => {
+                            const link = document.createElement('a');
+                            link.href = '/Naturessign_by_shreyasinfra_brochure.pdf';
+                            link.download = 'NaturesSign_Brochure.pdf';
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                        }
+                    })}
                     className="bg-[#FF5A00] hover:bg-[#E04F00] text-white py-4 px-12 rounded shadow-[0_10px_20px_rgba(255,90,0,0.3)] uppercase text-[11px] font-bold tracking-[0.2em] transition-all duration-300"
                 >
                     DOWNLOAD BROCHURE

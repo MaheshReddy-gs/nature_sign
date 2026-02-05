@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import { useModal } from '../context/ModalContext';
 
 const natureSignImage = '/nature-sign_website_03.png';
 
@@ -82,6 +83,7 @@ const IMAGE_FLOAT_TRANSITION = {
 };
 
 const OverviewDetailsSection = () => {
+    const { openModal } = useModal();
     const sectionRef = useRef(null);
     const { scrollYProgress } = useScroll({
         target: sectionRef,
@@ -93,7 +95,7 @@ const OverviewDetailsSection = () => {
     const yImage = useTransform(scrollYProgress, [ 0, 1 ], [ "0%", "-15%" ]);
 
     return (
-        <section ref={sectionRef} className="relative overflow-hidden  min-h-screen flex flex-col justify-center bg-[#F7F2EA]">
+        <section id="overview" ref={sectionRef} className="relative overflow-hidden  min-h-screen flex flex-col justify-center bg-[#F7F2EA]">
             {/* Left Animated Wave Group (SVG) */}
             <motion.div style={{ y: yBackground }} className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
                 <svg className="absolute top-0 left-0 h-full w-[300px] lg:w-[400px]" preserveAspectRatio="none" viewBox="0 0 100 800">
@@ -287,15 +289,15 @@ const OverviewDetailsSection = () => {
 
                     {/* CTA */}
                     <div className="flex justify-center mt-12">
-                        <motion.a
-                            href="#contact"
+                        <motion.button
+                            onClick={openModal}
                             className="inline-block bg-[#ff5e13] text-white py-3.5 px-8 rounded uppercase text-xs font-['DIN_Alternate'] font-semibold tracking-[0.3em] shadow-[0_4px_18px_rgba(255,94,19,0.28)] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(255,94,19,0.38)] transition-all duration-300"
                             variants={FADE_UP_SMALL_VARIANTS}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >
                             ASK PRICE
-                        </motion.a>
+                        </motion.button>
                     </div>
                 </div>
             </motion.div>
