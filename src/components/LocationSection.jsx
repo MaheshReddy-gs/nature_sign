@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
+import { useModal } from "../context/ModalContext";
 
 const LocationSection = () => {
+  const { openModal } = useModal();
   return (
     <section id="location" className="w-full bg-white font-['Montserrat']">
       {/* TOP LOCATION CONTENT */}
@@ -48,11 +50,11 @@ const LocationSection = () => {
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.8 }}
           >
-           <img
-  src="/locatiomap.webp"
-  alt="Location Map"
-  className="w-full max-w-6xl lg:max-w-5xl h-[420px] md:h-[520px] object-contain"
-/>
+            <img
+              src="/locatiomap.webp"
+              alt="Location Map"
+              className="w-full max-w-6xl lg:max-w-5xl h-[420px] md:h-[520px] object-contain"
+            />
 
           </motion.div>
         </div>
@@ -64,11 +66,11 @@ const LocationSection = () => {
           {/* Left Text */}
           <div className="text-center md:text-left max-w-3xl">
             <h2 className="text-white text-3xl md:text-4xl font-light mb-4">
-              Are you exited about the project?
+              Are you excited about the project?
             </h2>
 
             <p className="text-white/90 text-sm md:text-base leading-relaxed max-w-xl">
-              Dont miss the opportunity to be own the property in fast growing
+              Don't miss the opportunity to own the property in fast growing
               satellite township of Devanahalli.
             </p>
           </div>
@@ -77,6 +79,7 @@ const LocationSection = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => openModal({ initialValues: { message: "Request Site Visit" } })}
             className="bg-[#FF5A00] hover:bg-[#E04F00] text-white px-10 py-4 uppercase text-xs font-bold tracking-[0.2em] shadow-lg whitespace-nowrap"
           >
             REQUEST SITE VISIT
