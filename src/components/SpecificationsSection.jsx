@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
+import RevealImageAnimation from "../components/RevealImageAnimation";
 
 const SPEC_ITEMS = [
   {
     id: 1,
-    image: "/spec_roads_pathway.png",
+    image: "/infrastructure.webp",
     alt: "Roads and pathways",
     label: "INFRASTRUCTURE:",
     title: "Roads and Pathways",
@@ -14,21 +15,96 @@ const SPEC_ITEMS = [
     ],
     bg: "bg-[#E3EFEA]",
     reverse: false,
+    bulletStyle: "line",
   },
+{
+  id: 2,
+  image: "/security.webp",
+  alt: "Security",
+  label: "SECURITY",
+  title: "",
+  points: [
+    "Grand entrance portal with security kiosk as per design",
+    "24/7 security with boom barriers at entry / exit gates",
+    "Compound wall surrounded all around the project",
+    "CCTV surveillance at all major vantage points with individual street monitoring",
+  ],
+  bg: "bg-[#8E9B79]", // same green background like image
+  reverse: true,
+  bulletStyle: "dots",
+  textColor: "text-white",
+},
+
+
+  // ✅ ELECTRICAL (same like screenshot)
   {
-    id: 2,
-    image: "/spec_entrance_gate.png",
-    alt: "Grand entrance view",
-    label: "INFRASTRUCTURE:",
-    title: "Entrance and Security",
+    id: 3,
+    image: "/streetlight.webp",
+    alt: "Electrical",
+    label: "ELECTRICAL",
+    title: "",
     points: [
-      "Grand entrance gate with security cabin",
-      "24/7 Security monitoring systems",
-      "Landscaped gardens at the entrance"
+      "HT works, LT works, Feeder pillars, and RMUs for power supply—capacity & location as per design",
+      "Underground cabling network with power cable terminated at each plot",
+      "Street lighting with LED poles and fixtures on either side/one side, controlled by timers",
     ],
-    bg: "bg-[#F6F3EE]",
-    reverse: true,
+    bg: "bg-[#DEE7F0]",
+    reverse: false,
+    bulletStyle: "dots",
+    textColor: "text-[#44584F]",
   },
+
+  // ✅ LANDSCAPING (exact like your new screenshot)
+ {
+  id: 4,
+  image: "/landscaping.webp",
+  alt: "Landscaping",
+  label: "LANDSCAPING",
+  title: "",
+  points: [
+    "Well-designed landscaped parks and open spaces with lighting fixtures",
+    "Avenue trees along all streets and internal roads",
+    "Specially curated parks for aesthetics and recreation",
+  ],
+  bg: "bg-[#7E8D98]",
+  reverse: true, // ✅ content left, image right
+  bulletStyle: "dots",
+  textColor: "text-white",
+},
+{
+  id: 5,
+  image: "/plumbing.webp", // <-- your image
+  alt: "Plumbing",
+  label: "PLUMBING",
+  title: "",
+  points: [
+    "Irrigation network for landscape areas",
+    "Underground water supply system using UPVC pipes for domestic use",
+    "Water & sewerage plumbing lines are terminated within each plot",
+    "Underground sump of suitable capacity with sufficient head pressure",
+    "Rainwater Harvesting System",
+    "Sewage Treatment Plant (STP) of required capacity, positioned as per the layout",
+  ],
+  bg: "bg-[#DDECE3]", // ✅ same light green background
+  reverse: false, // ✅ image left, text right
+  bulletStyle: "dots",
+  textColor: "text-[#44584F]",
+},
+{
+  id: 6,
+  image: "/clubhouse.webp",
+  alt: "Club House",
+  label: "CLUB HOUSE",
+  title: "",
+  points: [
+    "Luxurious retreat with premium amenities designed to elevate your lifestyle. It provides the perfect blend of comfort and convenience.",
+  ],
+  bg: "bg-[#78A99A]", // ✅ same green background
+  reverse: true, // ✅ image left, text right
+  bulletStyle: "dots",
+  textColor: "text-white", // ✅ white like screenshot
+},
+
 ];
 
 const HEADER_VARIANTS = {
@@ -83,43 +159,83 @@ export default function SpecificationsSection() {
 
       <div className="flex flex-col">
         {SPEC_ITEMS.map((item) => (
-          <div key={item.id} className={`w-full ${item.bg} min-h-[80vh] flex items-center`}>
+          <div
+            key={item.id}
+            className={`w-full ${item.bg} min-h-[80vh] flex items-center`}
+          >
             <motion.div
-              className={`max-w-6xl mx-auto px-6 py-20 lg:py-24 flex flex-col gap-10 lg:gap-24 items-center w-full ${item.reverse ? "lg:flex-row-reverse" : "lg:flex-row"
-                }`}
+              className={`max-w-6xl mx-auto px-6 py-20 lg:py-24 flex flex-col gap-10 lg:gap-24 items-center w-full ${
+                item.reverse ? "lg:flex-row-reverse" : "lg:flex-row"
+              }`}
               variants={ROW_VARIANTS}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: false, amount: 0.3 }}
             >
+              {/* IMAGE */}
               <motion.div
-                className={`w-full flex justify-center ${item.reverse ? "lg:justify-end" : "lg:justify-start"
-                  }`}
+                className={`w-full flex justify-center ${
+                  item.reverse ? "lg:justify-end" : "lg:justify-start"
+                }`}
                 variants={MEDIA_VARIANTS}
               >
-                <div className="h-[300px] sm:h-[400px] lg:h-[500px] aspect-[4/5] overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.12)]">
-                  <img
-                    src={item.image}
-                    alt={item.alt}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
+                {/* ✅ image frame exactly */}
+    <div className="h-[300px] sm:h-[400px] lg:h-[500px] aspect-[4/5] overflow-hidden">
+                <RevealImageAnimation
+  image={item.image}
+  alt={item.alt}
+  className="w-full h-full"
+/>
                 </div>
               </motion.div>
 
-              <motion.div className="w-full max-w-[480px]" variants={TEXT_VARIANTS}>
-                <p className="text-[13px] tracking-[0.2em] uppercase font-semibold text-[#4C6A5B]">
+              {/* TEXT */}
+              <motion.div
+                className="w-full max-w-[520px]"
+                variants={TEXT_VARIANTS}
+              >
+                {/* HEADING */}
+                <p
+                  className={`text-[26px] lg:text-[32px] font-extrabold tracking-wide ${
+                    item.textColor ? item.textColor : "text-[#2F3E35]"
+                  }`}
+                >
                   {item.label}
                 </p>
-                <h3 className="mt-2 text-[24px] lg:text-[28px] font-semibold text-[#3C5247]">
-                  {item.title}
-                </h3>
-                <div className="mt-6 space-y-4 text-[16px] leading-relaxed text-[#50645B]">
-                  {item.points.map((point, index) => (
-                    <p key={`${item.id}-${index}`} className="pl-4 border-l-2 border-[#B56A4E]/40">
-                      {point}
-                    </p>
-                  ))}
+
+                {/* title only for infra sections */}
+                {item.title ? (
+                  <h3 className="mt-1 text-[13px] tracking-[0.2em] uppercase font-semibold text-[#4C6A5B]">
+                    {item.title}
+                  </h3>
+                ) : null}
+
+                {/* CONTENT */}
+                <div className="mt-6">
+                  {/* DOT BULLETS */}
+                  {item.bulletStyle === "dots" ? (
+                    <ul
+                      className={`list-disc pl-6 space-y-6 text-[18px] leading-[1.8] ${
+                        item.textColor ? item.textColor : "text-[#44584F]"
+                      }`}
+                    >
+                      {item.points.map((point, index) => (
+                        <li key={`${item.id}-${index}`}>{point}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    /* LINE STYLE (old infra sections) */
+                    <div className="space-y-4 text-[16px] leading-relaxed text-[#50645B]">
+                      {item.points.map((point, index) => (
+                        <p
+                          key={`${item.id}-${index}`}
+                          className="pl-4 border-l-2 border-[#B56A4E]/40"
+                        >
+                          {point}
+                        </p>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </motion.div>
             </motion.div>

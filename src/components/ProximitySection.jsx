@@ -1,24 +1,24 @@
 import { motion } from "framer-motion";
 
 const PROXIMITY_IMAGES = [
-  { id: 1, src: "/herobackgorund.webp", alt: "City flyover" },
-  { id: 2, src: "/nature-sign_website_03.png", alt: "Ring road" },
+  { id: 1, src: "/strr.webp", alt: "STRR Proximity" },
 ];
 
 const EDUCATION_LOGOS = [
-  "Harrow International Bengaluru",
-  "Amity University",
-  "Gitam University",
-  "Nagarjuna College of Engineering & Technology",
+  { name: "Harrow International Bengaluru", src: "/SCHOOL_01.jpg" },
+  { name: "Amity University", src: "/SCHOOL_02.jpg" },
+  { name: "Gitam University", src: "/SCHOOL_03.jpg" },
+  { name: "Nagarjuna College of Engineering & Technology", src: "/SCHOOL_04.jpg" },
 ];
 
+
 const LANDMARKS = [
-  { id: 1, name: "Nandi Hills", src: "/herobackgorund.webp" },
-  { id: 2, name: "SAB Labs", src: "/nature-sign_website_03.png" },
-  { id: 3, name: "Exide Energy", src: "/herobackgorund.webp" },
-  { id: 4, name: "Isha Foundation", src: "/nature-sign_website_03.png" },
-  { id: 5, name: "Foxconn Manufacturing Plant", src: "/herobackgorund.webp" },
-  { id: 6, name: "Zeiss", src: "/nature-sign_website_03.png" },
+  { id: 1, name: "Nandi Hills", src: "/nandihills.webp" },
+  { id: 2, name: "SAB Labs", src: "/saplabs.webp" },
+  { id: 3, name: "Exide Energy", src: "/exide.webp" },
+  { id: 4, name: "Isha Foundation", src: "/isha.webp" },
+  { id: 5, name: "Foxconn Manufacturing Plant", src: "/foxconn.webp" },
+  { id: 6, name: "Zeiss", src: "/zeiss.webp" },
 ];
 
 const FADE_UP = {
@@ -84,13 +84,20 @@ export default function ProximitySection() {
           viewport={{ once: false, amount: 0.3 }}
         >
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 p-8 lg:p-10">
-            <motion.div className="grid grid-cols-2 gap-3" variants={STAGGER}>
-              {PROXIMITY_IMAGES.map((img) => (
-                <motion.div key={img.id} className="aspect-[2/3] overflow-hidden" variants={IMAGE_FADE}>
-                  <img src={img.src} alt={img.alt} className="w-full h-full object-cover" loading="lazy" />
-                </motion.div>
-              ))}
-            </motion.div>
+          <motion.div
+    className="overflow-hidden bg-white"
+  variants={IMAGE_FADE}
+>
+  <div className="aspect-[4/3] w-full overflow-hidden bg-white">
+    <img
+      src={PROXIMITY_IMAGES[0].src}
+      alt={PROXIMITY_IMAGES[0].alt}
+      className="w-full h-full object-contain"
+      loading="lazy"
+    />
+  </div>
+</motion.div>
+
 
             <motion.div className="flex flex-col justify-center" variants={FADE_UP}>
               <h3 className="text-2xl font-semibold text-[#3B3A38]">
@@ -119,12 +126,12 @@ export default function ProximitySection() {
           whileInView="visible"
           viewport={{ once: false, amount: 0.3 }}
         >
-          <div className="bg-[#D28A56] px-8 py-10 lg:px-12 lg:py-12">
+         <div className="bg-[#D28A56] px-8 py-12 lg:px-12 lg:py-14">
             <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 items-center">
               <motion.div className="bg-white p-4 shadow-[0_14px_28px_rgba(78,52,34,0.18)]" variants={IMAGE_FADE}>
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
-                    src="/herobackgorund.webp"
+                    src="/schoolhubs.webp"
                     alt="Educational hub"
                     className="w-full h-full object-cover"
                     loading="lazy"
@@ -136,16 +143,26 @@ export default function ProximitySection() {
                 <p className="text-white text-2xl leading-snug font-semibold max-w-[420px]">
                   Nature&apos;s Sign - Perfectly Positioned Near Reputed Educational Hubs.
                 </p>
-                <div className="mt-6 bg-white/95 p-5 inline-block">
-                  <motion.div className="grid grid-cols-2 gap-4 text-[12px] text-[#6B5D53] font-semibold" variants={STAGGER}>
-                    {EDUCATION_LOGOS.map((logo) => (
-                      <motion.div key={logo} className="flex items-center gap-2" variants={CARD}>
-                        <span className="h-8 w-8 rounded-full border border-[#E3D8CB] bg-[#F7F3EE]" />
-                        <span>{logo}</span>
-                      </motion.div>
-                    ))}
-                  </motion.div>
-                </div>
+<div className="mt-6 bg-white p-6 w-full max-w-[560px]">
+  <div className="grid grid-cols-2 gap-x-6 gap-y-5 items-center">
+    {EDUCATION_LOGOS.map((item) => (
+      <div
+        key={item.name}
+        className="flex items-center justify-center"
+      >
+        <img
+          src={item.src}
+          alt={item.name}
+          className="h-20 w-auto object-contain"
+          loading="lazy"
+        />
+      </div>
+    ))}
+  </div>
+</div>
+
+
+
               </motion.div>
             </div>
           </div>
