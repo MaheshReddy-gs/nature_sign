@@ -12,7 +12,7 @@ export default function BuilderSection() {
         >
             {/* 1. TOP TITLE - Centered */}
             <div className="text-center my-10">
-                 <FloatUpText className="text-[#a1461a] text-xs tracking-[0.2em] mb-5 ">
+                <FloatUpText className="text-[#a1461a] text-xs tracking-[0.2em] mb-5 ">
                     ABOUT BUILDER
                 </FloatUpText>
             </div>
@@ -22,7 +22,7 @@ export default function BuilderSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="max-w-[1100px] mx-auto flex flex-col md:flex-row items-center justify-between gap-8 mb-12 border-b-0 border-gray-200 pb-0"
+                className="max-w-[1100px] mx-auto flex flex-col md:flex-row items-center justify-center gap-40 mb-12 border-b-0 border-gray-200 pb-0"
             >
                 {/* LOGO - Left */}
                 <div className="flex items-center gap-3 w-full md:w-auto justify-center md:justify-start">
