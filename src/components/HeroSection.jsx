@@ -5,7 +5,7 @@ export default function Section1() {
   return (
     <section
       id="section1"
-      className="relative w-full h-auto lg:h-screen flex items-center justify-center overflow-hidden pt-20 pb-5 md:pb-0"
+      className="relative w-full h-[70vh] lg:h-screen flex items-center justify-center overflow-hidden pt-20 pb-5 md:pb-0"
       style={{
         backgroundImage: `url('/herobackgorund.webp')`,
         backgroundSize: 'cover',
