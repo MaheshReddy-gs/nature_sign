@@ -248,7 +248,7 @@ const blocks = Array.from({ length: 20 }, (_, i) => {
 export default function HighlightsSection() {
     return (<>
 
-        <section id="section2" className="w-full h-auto min-h-[40vh] bg-[# 461a]
+      <section id="section2" className="w-full h-auto min-h-[40vh] bg-[#a1461a]
         pt-20 pb-0 md:pb-0 flex flex-col items-center justify-center">
             <div className="max-w-7xl  px-6 w-full   flex flex-col items-center justify-between h-full text-center">
                 <FloatUpText className="text-orange-200 text-xs tracking-[0.2em] mb-5 ">
