@@ -53,7 +53,7 @@ export default function Navbar() {
               </button>
             ))}
             <button
-              onClick={openModal}
+              onClick={() => openModal({ initialValues: { message: "Request Callback" } })}
               className="bg-orange-600 text-white px-6 py-3 rounded hover:bg-orange-700 transition-colors font-bold text-xs uppercase tracking-wide flex items-center gap-2 whitespace-nowrap"
             >
               <Phone size={18} strokeWidth={2.5} />
@@ -86,7 +86,7 @@ export default function Navbar() {
             ))}
             <button
               onClick={() => {
-                openModal();
+                openModal({ initialValues: { message: "Request Callback" } });
                 setIsMobileMenuOpen(false);
               }}
               className="w-full mt-2 bg-orange-600 text-white px-6 py-2 rounded hover:bg-orange-700 transition-colors font-bold flex items-center gap-2 justify-center whitespace-nowrap"

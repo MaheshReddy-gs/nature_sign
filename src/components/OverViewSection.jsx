@@ -290,7 +290,7 @@ const OverviewDetailsSection = () => {
                     {/* CTA */}
                     <div className="flex justify-center mt-12">
                         <motion.button
-                            onClick={openModal}
+                            onClick={() => openModal({ initialValues: { message: "Ask Price" } })}
                             className="inline-block bg-[#ff5e13] text-white py-3.5 px-8 rounded uppercase text-xs font-['DIN_Alternate'] font-semibold tracking-[0.3em] shadow-[0_4px_18px_rgba(255,94,19,0.28)] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(255,94,19,0.38)] transition-all duration-300"
                             variants={FADE_UP_SMALL_VARIANTS}
                             whileHover={{ scale: 1.05 }}

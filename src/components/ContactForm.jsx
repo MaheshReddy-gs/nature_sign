@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-const ContactForm = ({ compact = false, onSuccess }) => {
+const ContactForm = ({ compact = false, onSuccess, initialValues = {} }) => {
     const [ formData, setFormData ] = useState({
         name: '',
         email: '',
         phone: '',
-        message: ''
+        message: initialValues.message || ''
     });
     const [ errors, setErrors ] = useState({});
     const [ isSubmitting, setIsSubmitting ] = useState(false);
