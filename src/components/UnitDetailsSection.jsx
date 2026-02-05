@@ -86,7 +86,7 @@ export default function UnitDetailsSection() {
     {/* <div className="h-[40vh]"></div> */}
 
     {/* Content Container - Slides up over the sticky image */}
-    <div className="relative w-full md:h-[60vh] o  bg-[#f8e8d1] px-6 py-10 flex flex-col">
+    <div className="relative w-full md:h-[60vh]  bg-[#f8e8d1] px-6 py-10 flex flex-col">
   {/* Heading */}
   <FloatUpText>
     <h3 className="text-center text-orange-900 text-lg font-semibold tracking-widest mb-4 uppercase">
