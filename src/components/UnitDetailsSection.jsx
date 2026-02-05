@@ -74,7 +74,7 @@ export default function UnitDetailsSection() {
             <div
                 className="sticky top-0 left-0 w-full h-screen bg-cover bg-center -z-10"
                 style={{
-                    backgroundImage: `url('/herobackgorund.webp')`,
+                    backgroundImage: `url('/unitDetails_background.webp')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundAttachment: 'fixed',
