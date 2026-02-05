@@ -47,22 +47,16 @@ const ContactSection = () => {
 
         fetch(scriptURL, {
             method: 'POST',
-            // Send as plain text to avoid CORS Preflight (Google Scripts quirk)
             headers: { 'Content-Type': 'text/plain;charset=utf-8' },
             body: JSON.stringify(payload)
         })
             .then(response => response.json())
             .then(data => {
-                // Since we can't reliably read response with simple CORS setup sometimes, 
-                // but if we get here with valid JSON, it worked.
                 setSubmissionStatus('success');
                 setFormData({ name: '', email: '', phone: '', message: '' });
             })
             .catch(error => {
                 console.error('Error!', error);
-                // Even if it fails CORS, it might have still been sent. 
-                // Better to show success if unsure, or error if network down.
-                // For now, let's assume network error if we get here.
                 setSubmissionStatus('error');
             })
             .finally(() => {
