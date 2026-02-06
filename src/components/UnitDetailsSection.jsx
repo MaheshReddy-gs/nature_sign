@@ -45,13 +45,21 @@ function TiltCard({ children, className = '' }) {
     return (
         <div
             ref={ref}
-            className={`bg-[#f1c071] hover:bg-[#f6e0bb] transition-all  p-3 text-center h-full flex flex-col items-center justify-center min-h-0 duration-500  will-change-transform ${className}`}
+            className={`relative bg-[#f1c071] transition-all p-3 text-center h-full flex flex-col items-center justify-center min-h-0 duration-500 will-change-transform overflow-hidden group ${className}`}
             onMouseMove={handleMove}
             onMouseLeave={handleLeave}
             onMouseEnter={handleEnter}
             style={{ transformStyle: 'preserve-3d' }}
         >
-            {children}
+            {/* Radial Reveal Effect - Expands from center */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="w-0 h-0 bg-[#f6e0bb] rounded-full transition-all duration-700 ease-out group-hover:w-[250%] group-hover:h-[250%]"></div>
+            </div>
+
+            {/* Content needs relative z-index to stay on top of background */}
+            <div className="relative z-10 flex flex-col items-center justify-center w-full h-full">
+                {children}
+            </div>
         </div>
     );
 }
@@ -68,20 +76,20 @@ export default function UnitDetailsSection() {
     ];
 
     return (
-    <section
-    id="unit"
-    className="relative w-full "
->
-    {/* Background Image - Sticky, natural size */}
-    <div
-        className="sticky lg:h-[70vh]  top-0 left-0 w-full bg-[#f8e8d1]   flex items-center justify-center -z-10"
-    >
-         <img
-    src="/unitDetails_background.webp"
-    alt="Unit Details Background"
-    className="w-full h-full object-cover object-bottom"
-  />
-    </div>
+        <section
+            id="unit"
+            className="relative w-full "
+        >
+            {/* Background Image - Sticky, natural size */}
+            <div
+                className="sticky lg:h-[70vh]  top-0 left-0 w-full bg-[#f8e8d1]   flex items-center justify-center -z-10"
+            >
+                <img
+                    src="/unitDetails_background.webp"
+                    alt="Unit Details Background"
+                    className="w-full h-full object-cover object-bottom"
+                />
+            </div>
 
 
             {/* Content Container - Slides up over the sticky image */}
