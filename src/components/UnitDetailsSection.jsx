@@ -3,67 +3,84 @@ import { useRef, useState } from 'react';
 import { useModal } from '../context/ModalContext.jsx';
 
 
+
 function TiltCard({ children, className = '' }) {
     const ref = useRef(null);
     let raf = null;
 
+    const isTouch =
+        typeof window !== 'undefined' &&
+        window.matchMedia('(hover: none)').matches;
+
     function handleMove(e) {
+        if (isTouch) return;
+
         const el = ref.current;
         if (!el) return;
+
         const rect = el.getBoundingClientRect();
         const x = (e.clientX - rect.left) / rect.width;
         const y = (e.clientY - rect.top) / rect.height;
 
-        const rotY = (x - 0.5) * 20; // horizontal tilt
-        const rotX = (0.5 - y) * 20; // vertical tilt
-        const scale = 1.03;
+        const rotY = (x - 0.5) * 20;
+        const rotX = (0.5 - y) * 20;
 
         if (raf) cancelAnimationFrame(raf);
         raf = requestAnimationFrame(() => {
-            el.style.transform = `perspective(900px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(${scale})`;
+            el.style.transform = `
+              perspective(900px)
+              rotateX(${rotX}deg)
+              rotateY(${rotY}deg)
+              scale(1.03)
+            `;
         });
     }
 
-    function handleLeave() {
+    function handleEnter() {
+        if (isTouch) return;
         const el = ref.current;
         if (!el) return;
+        el.style.transition = 'transform 160ms ease-out';
+    }
+
+    function handleLeave() {
+        if (isTouch) return;
+        const el = ref.current;
+        if (!el) return;
+
         if (raf) cancelAnimationFrame(raf);
         el.style.transition = 'transform 450ms cubic-bezier(.2,.9,.2,1)';
-        el.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) scale(1)';
+        el.style.transform =
+            'perspective(900px) rotateX(0deg) rotateY(0deg) scale(1)';
 
         setTimeout(() => {
             if (el) el.style.transition = '';
         }, 460);
     }
 
-    function handleEnter() {
-        const el = ref.current;
-        if (!el) return;
-        el.style.transition = 'transform 160ms ease-out';
-    }
-
     return (
         <div
             ref={ref}
-            className={`relative bg-[#f1c071] transition-all p-3 text-center h-full flex flex-col items-center justify-center min-h-0 duration-500 will-change-transform overflow-hidden group ${className}`}
+            className={`relative isolate bg-[#f1c071] p-3 text-center h-full flex flex-col items-center justify-center min-h-0 overflow-hidden group will-change-transform ${className}`}
             onMouseMove={handleMove}
-            onMouseLeave={handleLeave}
             onMouseEnter={handleEnter}
-            style={{ transformStyle: 'preserve-3d' }}
+            onMouseLeave={handleLeave}
+            style={{
+                transformStyle: 'preserve-3d',
+                contain: 'layout paint size'
+            }}
         >
-            {/* Radial Reveal Effect - Expands from center */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="w-0 h-0 bg-[#f6e0bb] rounded-full transition-all duration-700 ease-out group-hover:w-[250%] group-hover:h-[250%]"></div>
+            {/* Radial Reveal */}
+            <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
+                <div className="w-0 h-0 bg-[#f6e0bb] rounded-full transition-all duration-700 ease-out group-hover:w-[250%] group-hover:h-[250%]" />
             </div>
 
-            {/* Content needs relative z-index to stay on top of background */}
             <div className="relative z-10 flex flex-col items-center justify-center w-full h-full">
                 {children}
             </div>
         </div>
     );
 }
-
 
 export default function UnitDetailsSection() {
     const { openModal } = useModal();
@@ -137,8 +154,19 @@ export default function UnitDetailsSection() {
                     <div
                         ref={scrollRef}
                         onScroll={handleScroll}
-                        className="flex flex-row md:grid md:grid-cols-4 gap-4 md:gap-3 lg:gap-6 max-w-5xl mx-auto w-full h-[320px] md:h-full overflow-x-auto md:overflow-hidden snap-x snap-mandatory px-4 md:px-0 scrollbar-hide"
+                        className="
+        flex flex-row md:grid md:grid-cols-4
+        gap-4 md:gap-3 lg:gap-6
+        max-w-5xl mx-auto w-full
+        h-[320px] md:h-full
+        overflow-x-auto overflow-y-hidden
+        touch-pan-x
+        snap-x snap-mandatory
+        px-4 md:px-0
+        scrollbar-hide
+    "
                     >
+
                         {units.map((unit, idx) => (
                             <FloatUpText
                                 key={unit.id}
