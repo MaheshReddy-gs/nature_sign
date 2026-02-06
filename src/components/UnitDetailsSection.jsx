@@ -10,7 +10,7 @@ function TiltCard({ children, className = '' }) {
 
     const isTouch =
         typeof window !== 'undefined' &&
-        window.matchMedia('(hover: none)').matches;
+        (window.matchMedia('(hover: none)').matches || window.innerWidth < 1024);
 
     function handleMove(e) {
         if (isTouch) return;
@@ -72,7 +72,7 @@ function TiltCard({ children, className = '' }) {
         >
             {/* Radial Reveal */}
             <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-                <div className="w-0 h-0 bg-[#f6e0bb] rounded-full transition-all duration-700 ease-out group-hover:w-[250%] group-hover:h-[250%]" />
+                <div className="w-0 h-0 bg-[#f6e0bb] transition-all duration-700 ease-out lg:group-hover:w-[250%] lg:group-hover:h-[250%]" />
             </div>
 
             <div className="relative z-10 flex flex-col items-center justify-center w-full h-full">
@@ -168,10 +168,8 @@ export default function UnitDetailsSection() {
                     >
 
                         {units.map((unit, idx) => (
-                            <FloatUpText
+                            <div
                                 key={unit.id}
-                                delay={idx * 0.2}
-                                yMultiplier={2}
                                 className="min-w-[85vw] md:min-w-0 md:w-auto shrink-0 snap-center h-full"
                             >
                                 <TiltCard>
@@ -198,7 +196,7 @@ export default function UnitDetailsSection() {
                                         Ask Price
                                     </button>
                                 </TiltCard>
-                            </FloatUpText>
+                            </div>
                         ))}
                     </div>
 
