@@ -119,68 +119,67 @@ export default function ProximitySection() {
         </motion.div>
 
         {/* Bottom block */}
-       {/* Bottom block */}
-<motion.div
-  className="mt-14 relative"
-  variants={FADE_UP}
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: false, amount: 0.3 }}
->
-  <div className="relative w-full">
-
-    {/* ✅ BACKGROUND SPLIT (TOP BROWN + BOTTOM WHITE) */}
-    <div className="absolute inset-0">
-      <div className="h-1/2 w-full bg-[#D28A56]" />
-      <div className="h-1/2 w-full bg-white" />
-    </div>
-
-    {/* ✅ CONTENT (IMPORTANT: give padding + min height) */}
-    <div className="relative z-10 px-8 py-12 lg:px-12 lg:py-14">
-      <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 items-center">
-
-        {/* IMAGE */}
         <motion.div
-          className="bg-white p-4 shadow-[0_14px_28px_rgba(78,52,34,0.18)]"
-          variants={IMAGE_FADE}
+          className="mt-14 relative"
+          variants={FADE_UP}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
         >
-          <div className="aspect-[4/3] overflow-hidden">
-            <img
-              src="/schoolhubs.webp"
-              alt="Educational hub"
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-          </div>
-        </motion.div>
+          <div className="relative w-full">
 
-        {/* TEXT + LOGOS */}
-        <motion.div variants={FADE_UP}>
-          <p className="text-white text-2xl leading-snug font-semibold max-w-[420px]">
-            Nature&apos;s Sign - Perfectly Positioned Near Reputed Educational Hubs.
-          </p>
+            {/* ✅ BACKGROUND SPLIT (TOP BROWN + BOTTOM WHITE) */}
+            <div className="absolute inset-0">
+              <div className="h-1/2 w-full bg-[#D28A56]" />
+              <div className="h-1/2 w-full bg-white" />
+            </div>
 
-          {/* LOGO WHITE BOX */}
-          <div className="mt-6 bg-white p-6 w-full max-w-[560px] shadow-md">
-            <div className="grid grid-cols-2 gap-x-6 gap-y-5 items-center">
-              {EDUCATION_LOGOS.map((item) => (
-                <div key={item.name} className="flex items-center justify-center">
-                  <img
-                    src={item.src}
-                    alt={item.name}
-                    className="h-20 w-auto object-contain"
-                    loading="lazy"
-                  />
-                </div>
-              ))}
+            {/* ✅ CONTENT (IMPORTANT: give padding + min height) */}
+            <div className="relative z-10 px-8 py-12 lg:px-12 lg:py-14">
+              <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 items-center">
+
+                {/* IMAGE */}
+                <motion.div
+                  className="bg-white p-4 shadow-[0_14px_28px_rgba(78,52,34,0.18)]"
+                  variants={IMAGE_FADE}
+                >
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <img
+                      src="/schoolhubs.webp"
+                      alt="Educational hub"
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                </motion.div>
+
+                {/* TEXT + LOGOS */}
+                <motion.div variants={FADE_UP}>
+                  <p className="text-white text-2xl leading-snug font-semibold max-w-[420px]">
+                    Nature&apos;s Sign - Perfectly Positioned Near Reputed Educational Hubs.
+                  </p>
+
+                  {/* LOGO WHITE BOX */}
+                  <div className="mt-6 bg-white p-6 w-full max-w-[560px] shadow-md">
+                    <div className="grid grid-cols-2 gap-x-6 gap-y-5 items-center">
+                      {EDUCATION_LOGOS.map((item) => (
+                        <div key={item.name} className="flex items-center justify-center">
+                          <img
+                            src={item.src}
+                            alt={item.name}
+                            className="h-20 w-auto object-contain"
+                            loading="lazy"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+
+              </div>
             </div>
           </div>
         </motion.div>
-
-      </div>
-    </div>
-  </div>
-</motion.div>
 
 
         {/* Landmark grid */}

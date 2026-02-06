@@ -19,19 +19,10 @@ export default function Section1() {
 
       {/* Content Container */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center lg:text-left">
-        {/* Badges/Icons */}
-        {/* <div className="flex justify-center  lg:justify-start gap-6 mb-12">
-          <div className="w-16 h-16 rounded-full border-2 border-white flex items-center justify-center">
-            <span className="text-white text-xs font-bold text-center">RERA<br/>Approved</span>
-          </div>
-          <div className="w-16 h-16 rounded-full border-2 border-white flex items-center justify-center">
-            <span className="text-white text-xs font-bold text-center">ECO<br/>Friendly</span>
-          </div>
-        </div> */}
         <img
           src="/hero_tags.webp"
           alt="Badges"
-          className=" -translate-x-5 mb-5 h-20 object-contain"
+          className="-translate-x-5 mb-5 h-20 object-contain"
         />
 
         {/* Main Heading */}

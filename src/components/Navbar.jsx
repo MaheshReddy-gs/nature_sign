@@ -23,11 +23,6 @@ export default function Navbar() {
     } else if (sectionId === 'hero') {
       // fallback to top
       window.scrollTo({ top: 0, behavior: 'smooth' })
-    } else {
-      const element = document.getElementById(sectionId)
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' })
-      }
     }
     setIsMobileMenuOpen(false)
   }

@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { useModal } from "../context/ModalContext";
-import AnimatedHeading from "./Animations/animatedHeading";
 import FloatUpText from "./Animations/floatUpText";
 import RevealImage from "./Animations/TopDownImageReveal";
 
@@ -9,11 +8,11 @@ export default function BuilderSection() {
     return (
         <section
             id="builder"
-            className="w-full    bg-white  md:py-20  flex justify-center items-center flex-col relative overflow-hidden"   
+            className="w-full    bg-white  md:py-20  flex justify-center items-center flex-col relative overflow-hidden"
         >
             {/* 1. TOP TITLE - Centered */}
             <div className="text-center mb-10">
-                 <FloatUpText className="text-[#a1461a] text-xs tracking-[0.2em] mb-5 ">
+                <FloatUpText className="text-[#a1461a] text-xs tracking-[0.2em] mb-5 ">
                     ABOUT BUILDER
                 </FloatUpText>
             </div>
@@ -44,8 +43,8 @@ export default function BuilderSection() {
             {/* MAIN CONTENT CARD */}
             <div className=" max-w-6xl px-6 mx-auto">
                 <FloatUpText
-                    className="relative w-full overflow-hidden bg-[#2D8EA2] rounded-lg  flex flex-col   md:flex-row" 
-                  
+                    className="relative w-full overflow-hidden bg-[#2D8EA2] rounded-lg  flex flex-col   md:flex-row"
+
                 >
                     {/* Decorative Background Circles (Subtle) */}
                     <div className="absolute top-[-100px] left-[-100px] w-[400px] h-[400px] bg-white/10 rounded-full blur-3xl pointer-events-none" />

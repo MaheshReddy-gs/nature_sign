@@ -1,6 +1,5 @@
 import FloatUpText from './Animations/floatUpText.jsx';
 import { useRef } from 'react';
-import RevealImage from './Animations/TopDownImageReveal.jsx';
 import { useModal } from '../context/ModalContext.jsx';
 
 
@@ -69,23 +68,21 @@ export default function UnitDetailsSection() {
     ];
 
     return (
-    <section
-    id="unit"
-    className="relative w-full "
->
-    {/* Background Image - Sticky, natural size */}
-    <div
-        className="sticky h-[70vh]  top-0 left-0 w-full bg-[#f8e8d1]   flex items-center justify-center -z-10"
-    >
-         <img
-    src="/unitDetails_background.webp"
-    alt="Unit Details Background"
-    className="w-full h-full object-cover object-bottom"
-  />
-    </div>
+        <section
+            id="unit"
+            className="relative w-full "
+        >
+            {/* Background Image - Sticky, natural size */}
+            <div
+                className="sticky h-[70vh]  top-0 left-0 w-full bg-[#f8e8d1]   flex items-center justify-center -z-10"
+            >
+                <img
+                    src="/unitDetails_background.webp"
+                    alt="Unit Details Background"
+                    className="w-full h-full object-cover object-bottom"
+                />
+            </div>
 
-            {/* Spacer to allow scrolling past the image */}
-            {/* <div className="h-[40vh]"></div> */}
 
             {/* Content Container - Slides up over the sticky image */}
             <div className="relative w-full md:h-[60vh]  bg-[#f8e8d1] px-6 py-10 flex flex-col">

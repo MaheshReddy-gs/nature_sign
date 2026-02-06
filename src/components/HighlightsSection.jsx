@@ -1,43 +1,7 @@
 import FloatUpText from "./Animations/floatUpText";
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import RevealImage from "./Animations/TopDownImageReveal";
 
-function LazyItem({ children }) {
-  const ref = useRef(null)
-  const [ visible, setVisible ] = useState(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([ entry ]) => {
-        if (entry.isIntersecting) {
-          setVisible(true)
-          observer.disconnect()
-        }
-      },
-      {
-        threshold: 0.2,
-      }
-    )
-
-    if (ref.current) observer.observe(ref.current)
-
-    return () => observer.disconnect()
-  }, [])
-
-  return (
-    <div
-      ref={ref}
-      className={`
-        transition-all duration-700 ease-out
-        ${visible
-          ? "opacity-100 translate-y-0"
-          : "opacity-0 translate-y-6"}
-      `}
-    >
-      {children}
-    </div>
-  )
-}
 function SvgIcon({ src, color = "#f87130", className = "" }) {
   const [ svgContent, setSvgContent ] = useState("");
   useEffect(() => {
@@ -49,7 +13,6 @@ function SvgIcon({ src, color = "#f87130", className = "" }) {
       });
   }, [ src, color ]);
 
-
   return (
     <span
       className={className}
@@ -58,13 +21,11 @@ function SvgIcon({ src, color = "#f87130", className = "" }) {
   );
 }
 
-
 function Glance() {
   const [ modalImage, setModalImage ] = useState(null);
   const [ isVisible, setIsVisible ] = useState(false);
   const [ mobileExpanded, setMobileExpanded ] = useState(false);
   const [ animationState, setAnimationState ] = useState(null);
-
 
   const blocks = [
     {
@@ -72,7 +33,6 @@ function Glance() {
       alt: "30 Acres Layout",
       icon: "/highlight_gallery/icons/30acreslayout.svg",
     },
-
     {
       img: "/highlight_gallery/images/children play area.webp",
       alt: "Children Play Area",
@@ -83,36 +43,17 @@ function Glance() {
       alt: "Luxury Clubhouse",
       icon: "/highlight_gallery/icons/clubhouse.svg",
     },
-    // {
-    //   img: "/highlight_gallery/images/underground_electricity.webp",
-    //   alt: "Underground Electricity",
-    //   icon: "/highlight_gallery/icons/electricity.svg",
-    // },
     {
       img: "/highlight_gallery/images/joggintrack.webp",
       alt: "Jogging Track",
       icon: "/highlight_gallery/icons/joggingtrack.svg",
     },
-    // {
-    //   img: "/highlight_gallery/images/landscsape.webp",
-    //   alt: "Landscape Garden",
-    //   icon: "/highlight_gallery/icons/landscaspegarden.svg",
-    // },
-    // {
-    //   img: "/highlight_gallery/images/primelocation.webp",
-    //   alt: "Prime Location",
-    //   icon: "/highlight_gallery/icons/primelocation.svg",
-    // },
-    // {
-    //   img: "/highlight_gallery/images/rainwater_harvesting.webp",
-    //   alt: "Rain Water Harvesting Pits",
-    //   icon: "/highlight_gallery/icons/rainweaterharvesting.svg",
-    // },
     {
       img: "/highlight_gallery/images/secirity.webp",
       alt: "24/7 Security",
       icon: "/highlight_gallery/icons/security.svg",
-    }, {
+    },
+    {
       img: "/highlight_gallery/images/50-40roads.webp",
       alt: "50, 40 Feet BT Roads",
       icon: "/highlight_gallery/icons/5-40roads.svg",
@@ -127,46 +68,16 @@ function Glance() {
       alt: "open gym",
       icon: "/highlight_gallery/icons/opengym.svg",
     },
-    // {
-    //   img: "/highlight_gallery/images/avenue plantation.webp",
-    //   alt: "Avenue Plantation",
-    //   icon: "/highlight_gallery/icons/avanueplantation.svg",
-    // },
     {
       img: "/highlight_gallery/images/landscape.webp",
       alt: "Landscape Garden",
       icon: "/highlight_gallery/icons/landscaspegarden.svg",
     },
-    // {
-    //   img: "/highlight_gallery/images/spotregistration.webp",
-    //   alt: "Spot Registration",
-    //   icon: "/highlight_gallery/icons/registration.svg",
-    // },
-    // {
-    //   img: "/highlight_gallery/images/streetlight .webp",
-    //   alt: "Modern Street Lights",
-    //   icon: "/highlight_gallery/icons/streetlight.svg",
-    // },
     {
       img: "/highlight_gallery/images/swimmingpool.webp",
       alt: "Swimming Pool",
       icon: "/highlight_gallery/icons/swimmingpool.svg",
     },
-    // {
-    //   img: "/highlight_gallery/images/underground_drainage.webp",
-    //   alt: "Underground Drainage",
-    //   icon: "/highlight_gallery/icons/undergrouddrainage.svg",
-    // },
-    // {
-    //   img: "/highlight_gallery/images/underground_electricity.webp",
-    //   alt: "Underground Electricity",
-    //   icon: "/highlight_gallery/icons/electricity.svg",
-    // },
-    // {
-    //   img: "/highlight_gallery/images/vaastu.webp",
-    //   alt: "100% Vaastu",
-    //   icon: "/highlight_gallery/icons/vaastu.svg",
-    // },
     {
       img: "/highlight_gallery/images/polutionfree.webp",
       alt: "Pollution Free Environment",
@@ -227,7 +138,6 @@ function Glance() {
 
   const closeModal = (event) => {
     if (event) {
-      const clickedElement = event.currentTarget;
       // Find the original card position
       const originalCard = document.querySelector(`[data-modal-img="${modalImage?.img}"]`);
 
@@ -256,7 +166,7 @@ function Glance() {
           className={`flex flex-col w-full items-center  overflow-hidden transition-[max-height] duration-700 ${mobileExpanded ? "max-h-[2000px]" : "max-h-[60vh] lg:max-h-full"
             }`}
         >
-          <div className="columns-3 max-w-5xl px-6 lg:px-0  w-full gap-1.5 lg:gap-3 lg:columns-3 lg:columns-4">
+          <div className="columns-3 max-w-5xl px-6 lg:px-0 w-full gap-1.5 lg:gap-3 lg:columns-4">
             {blocks.map((block, index) => (
               <div key={index} className="lg:mb-6 mb-3 break-inside-avoid">
                 <div
@@ -275,7 +185,6 @@ function Glance() {
                   <div className="absolute inset-0 bg-[#a1461a]/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="flex flex-col items-center gap-3 scale-95 group-hover:scale-100 transition-transform duration-300">
 
-                      {/* Icon */}
                       {/* Icon */}
                       <SvgIcon
                         src={block.icon}
@@ -361,7 +270,7 @@ function Glance() {
 export default function HighlightsSection() {
   return (<>
 
-      <section id="highlights" className="w-full h-auto min-h-[40vh] bg-[#a1461a]
+    <section id="highlights" className="w-full h-auto min-h-[40vh] bg-[#a1461a]
         pt-20 pb-0 lg:pb-0 flex flex-col items-center justify-center">
       <div className="max-w-5xl  px-6 lg:px-0 w-full   flex flex-col items-center justify-between h-full text-center">
         <FloatUpText className="text-orange-200 text-xs tracking-[0.2em] mb-5 ">
@@ -370,12 +279,12 @@ export default function HighlightsSection() {
         <FloatUpText className="text-white section-heading   ">
           Project highlights at a glance
         </FloatUpText>
-        <div className="w-full h-full felx lg:grid my-10 grid-cols-2 grid-rows-2 gap-10">
+        <div className="w-full h-full flex lg:grid my-10 grid-cols-2 grid-rows-2 gap-10">
           <FloatUpText className="row-span-2 mb-5">
             <RevealImage
               src="/Highlights_image2.webp"
               alt="Highlight 2"
-              className="w-full h-auto  max-h-[70vh] rounded-lg lg:rounded-none h-max-[70vh] object-cover"
+              className="w-full h-auto max-h-[70vh] rounded-lg lg:rounded-none object-cover"
             />
           </FloatUpText>
 
@@ -389,8 +298,8 @@ export default function HighlightsSection() {
 
 
           <FloatUpText className="w-full h-full lg:text-left text-white">
-            <span className="  section-heading ">
-              Immerse yourself in magical club house expernce.
+            <span className="section-heading">
+              Immerse yourself in magical club house experience.
             </span>
             <p className="text-lg mt-5 text-orange-200">
               luxurious amenities await you at our clubhouse, designed to elevate your lifestyle. Enjoy a refreshing dip in the
