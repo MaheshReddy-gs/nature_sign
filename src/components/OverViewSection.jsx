@@ -188,12 +188,7 @@ className="text-[#a1461a] text-xs pt-30 text-center    tracking-[0.2em] mb-5 ">
 
                     <div className="flex-1    px-6 ">
                         {/* Eyebrow */}
-                        <motion.p
-                            className="text-xs tracking-[0.35em] uppercase mb-8 font-['DIN_Alternate'] text-orange-800 font-medium"
-                            variants={FADE_UP_SMALL_VARIANTS}
-                        >
-                            OVERVIEW
-                        </motion.p>
+                        
 
                         {/* Section Heading with Word Reveal */}
                         <div className="mb-10 md:mb-6 ">
