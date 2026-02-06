@@ -19,11 +19,13 @@ export default function Navbar() {
 
   const navItems = [
     { label: 'Overview', id: 'overview' },
+    { label: 'Units', id: 'unit' },
     { label: 'Highlights', id: 'highlights' },
-    { label: 'Unit Details', id: 'unit' },
+    { label: 'Specifications', id: 'specifications' },
     { label: 'About Builder', id: 'builder' },
     { label: 'Gallery', id: 'gallery' },
     { label: 'Proximity', id: 'proximity' },
+    { label: 'Location', id: 'locations' },
     { label: 'Contact', id: 'contact' },
   ]
 
@@ -84,40 +86,31 @@ export default function Navbar() {
       `}</style>
 
       <nav
-        className={`fixed top-0 left-0   right-0 z-50 transition-all duration-300
+        className={`fixed top-0 left-0     right-0 z-50 trans
           ${scrolled || isMobileMenuOpen
-            ? '  bg-white/90 backdrop-blur-sm'
+            ? '  bg-white backdrop-blur-sm'
             : 'bg-gradient-to-b text-white from-black to-transparent'
           }`}
       >
-        <div className="max-w-6xl  mx-auto px-6">
-          <div className="flex justify-between items-center h-20">
+        <div className="max-w-7xl  mx-auto px-6    flex w-full justify-center gap-3">
+          <div className="flex justify-between w-full items-center h-20   ">
             {/* Logo */}
             <button className="flex-shrink-0 z-[999] brightness-125 cursor-pointer" onClick={() => handleNavClick('hero')}>
-              <img src="/naturesignLogo1.png" alt="NatureSign" className="h-20 w-auto" />
+              <img src="/naturesignLogo1.png" alt="NatureSign" className="h-16 w-auto" />
             </button>
 
             {/* Desktop Menu */}
-            <div className="hidden md:flex items-center gap-3 lg:gap-8">
+            <div className="hidden md:flex  items-center gap-3 lg:gap-8">
               {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className=" hover:text-orange-500 transition-colors font-medium text-[10px] lg:text-xs uppercase tracking-wide"
+                  className=" hover:text-orange-500 duration-500 transition-colors font-medium text-[10px] lg:text-xs uppercase tracking-wide"
                 >
                   {item.label}
                 </button>
               ))}
-              <a
-                href="tel:+918151884545"
-                className="bg-[#FF5A00] text-white px-5 py-2 rounded hover:bg-[#E04F00] transition-colors flex items-center gap-2 whitespace-nowrap"
-              >
-                <Phone size={18} strokeWidth={2.5} />
-                <div className="text-left">
-                  <div className="font-bold text-xs uppercase tracking-wide">Call</div>
-                  <div className="text-[13px] font-medium">+91 81518 84545</div>
-                </div>
-              </a>
+              
             </div>
 
             {/* Mobile Menu Button */}
@@ -145,7 +138,18 @@ export default function Navbar() {
               `}
               />
             </button>
-          </div>
+          </div><a
+                href="tel:+918151884545"
+                className="bg-[#97390b] hidden  text-white      py-2  w-42 hover:bg-[#E04F00] transition-colors md:flex items-center gap-2 px-2 duration-500"
+              >
+               <div>
+                </div>
+                 <img src='call.svg' className='h-5 ' />
+                <div className="text-left      ">
+                  <div className=" text-xs uppercase w-full">Call</div>
+                  <div className="text-xs  w-fit">+91 81518 84545</div>
+                </div>
+              </a>
         </div>
       </nav>
       <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
@@ -180,7 +184,7 @@ export default function Navbar() {
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className="w-full text-left text-black hover:text-orange-500 uppercase text-sm font-medium py-3 transition-all duration-500 opacity-0 -translate-y-8 animate-slideDown"
+                  className="w-full text-left text-black  hover:text-orange-500 uppercase text-sm font-medium py-3 transition-all duration-500 opacity-0 -translate-y-8 animate-slideDown"
                   style={{
                     animationDelay: `${index * 80}ms`,
                     animationFillMode: 'forwards'
@@ -196,7 +200,7 @@ export default function Navbar() {
               >
                 <Phone size={18} strokeWidth={2.5} />
                 <div className="text-left">
-                  <div className="font-bold text-xs uppercase tracking-wide">Call</div>
+                  <div className="font-bold text-xs  uppercase tracking-wide">Call</div>
                   <div className="text-[11px] font-medium">+91 81518 84545</div>
                 </div>
               </a>

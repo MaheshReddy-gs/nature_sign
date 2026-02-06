@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useModal } from '../context/ModalContext';
 import { ReraBadge, BiaapaBadge } from './RotatingBadge';
+import AnimatedHeading from './Animations/animatedHeading';
 
 export default function HeroSection() {
   const { openModal } = useModal();
@@ -84,12 +85,12 @@ export default function HeroSection() {
       >
 
         {/* Main Heading - Slide from left */}
-        <motion.h1
+        <AnimatedHeading
           className="md:text-4xl text-3xl lg:text-6xl font-bold text-white mb-8 leading-tight"
           variants={slideFromLeft}
         >
-          Nature's canvas,<br />crafted with finesse.
-        </motion.h1>
+          Nature's canvas,{'\n'} crafted with finesse.
+        </AnimatedHeading>
 
         {/* Subheading - Slide from left */}
         <motion.p
@@ -111,14 +112,13 @@ export default function HeroSection() {
 
         {/* CTA Button - Slide from bottom */}
         <motion.div
-          className="flex justify-center lg:justify-start"
+          className="flex  justify-center lg:justify-start"
           variants={slideFromBottom}
         >
           <motion.button
             onClick={() => openModal({ initialValues: { message: "Enquiry" } })}
-            className="bg-[#FF5A00] hover:bg-[#E04F00] text-white py-4 px-12 rounded shadow-[0_10px_20px_rgba(255,90,0,0.3)] uppercase text-[11px] font-bold tracking-[0.2em] transition-all duration-300"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
+            className="bg-[#FF5A00] hover:bg-[#E04F00] text-white py-4 px-12 rounded shadow-[0_10px_20px_rgba(255,90,0,0.3)] uppercase text-[11px] font-bold tracking-[0.2em] transition-all duration-100"
+            whileTap={{ scale: 1 }}
           >
             Enquire Now
           </motion.button>

@@ -6,7 +6,7 @@ const LocationSection = () => {
   const { openModal } = useModal();
 
   return (
-    <section id="location" className="w-full bg-white font-['Montserrat']">
+    <section id="locations" className="w-full bg-white font-['Montserrat']">
       {/* TOP LOCATION CONTENT */}
       <div className="py-14">
         <div className="max-w-6xl mx-auto px-4">
