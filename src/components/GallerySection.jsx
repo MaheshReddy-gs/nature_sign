@@ -19,12 +19,34 @@ export default function GallerySection() {
     const scrollRef = useRef(null);
     const [ lightboxIndex, setLightboxIndex ] = useState(null);
 
-    // Scroll Handler for Main Slider
-    const scroll = (direction) => {
+    const [ activeIndex, setActiveIndex ] = useState(0);
+
+    // Scroll to specific slide index
+    const scrollToSlide = (index) => {
         if (scrollRef.current) {
-            const { current } = scrollRef.current;
-            const scrollAmount = current.clientWidth;
-            current.scrollBy({ left: direction === "left" ? -scrollAmount : scrollAmount, behavior: "smooth" });
+            const container = scrollRef.current;
+            // Clamp index between 0 and number of slides - 1
+            const maxIndex = container.children.length - 1;
+            const targetIndex = Math.max(0, Math.min(index, maxIndex));
+
+            const slide = container.children[ targetIndex ];
+            if (slide) {
+                container.scrollTo({ left: slide.offsetLeft, behavior: "smooth" });
+            }
+        }
+    };
+
+    // Scroll Handler for Main Slider Arrows
+    const scroll = (direction) => {
+        const newIndex = direction === "left" ? activeIndex - 1 : activeIndex + 1;
+        scrollToSlide(newIndex);
+    };
+
+    const handleScroll = () => {
+        if (scrollRef.current) {
+            const { scrollLeft, clientWidth } = scrollRef.current;
+            const index = Math.round(scrollLeft / clientWidth);
+            setActiveIndex(index);
         }
     };
 
@@ -56,16 +78,22 @@ export default function GallerySection() {
 
                 {/* Left Arrow */}
                 <button
-                    onClick={() => scroll("left")}
-                    className="absolute left-[-15px] top-1/2 -translate-y-1/2 z-10 p-2 bg-white/80 hover:bg-white shadow-md rounded-full text-gray-800 transition-all opacity-0 group-hover:opacity-100 hidden md:flex"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        scroll("left");
+                    }}
+                    className="absolute left-[-15px] top-1/2 -translate-y-1/2 z-30 p-2 bg-white/80 hover:bg-white shadow-md rounded-full text-gray-800 transition-all opacity-0 group-hover:opacity-100 hidden md:flex"
                 >
                     <ChevronLeft size={20} />
                 </button>
 
                 {/* Right Arrow */}
                 <button
-                    onClick={() => scroll("right")}
-                    className="absolute right-[-15px] top-1/2 -translate-y-1/2 z-10 p-2 bg-white/80 hover:bg-white shadow-md rounded-full text-gray-800 transition-all opacity-0 group-hover:opacity-100 hidden md:flex"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        scroll("right");
+                    }}
+                    className="absolute right-[-15px] top-1/2 -translate-y-1/2 z-30 p-2 bg-white/80 hover:bg-white shadow-md rounded-full text-gray-800 transition-all opacity-0 group-hover:opacity-100 hidden md:flex"
                 >
                     <ChevronRight size={20} />
                 </button>
@@ -73,7 +101,8 @@ export default function GallerySection() {
                 {/* HORIZONTAL SCROLL CONTAINER */}
                 <div
                     ref={scrollRef}
-                    className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-8 pb-4"
+                    onScroll={handleScroll}
+                    className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-8 pb-4 relative"
                     style={{ scrollBehavior: 'smooth' }}
                 >
 
@@ -131,10 +160,13 @@ export default function GallerySection() {
 
                 {/* Dots / Hint */}
                 <div className="flex justify-center mt-6 gap-2">
-                    <div className="h-1.5 w-1.5 rounded-full bg-orange-600/80"></div>
-                    <div className="h-1.5 w-1.5 rounded-full bg-gray-300"></div>
-                    <div className="h-1.5 w-1.5 rounded-full bg-gray-300"></div>
-                    <span className="ml-2 text-[10px] text-gray-400 font-medium tracking-wide">CLICK TO EXPAND</span>
+                    {[ 0, 1, 2 ].map((index) => (
+                        <button
+                            key={index}
+                            onClick={() => scrollToSlide(index)}
+                            className={`h-1.5 w-1.5 rounded-full transition-colors ${activeIndex === index ? "bg-orange-600/80" : "bg-gray-300"}`}
+                        />
+                    ))}
                 </div>
             </div>
 
