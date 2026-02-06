@@ -24,7 +24,6 @@ function SvgIcon({ src, color = "#f87130", className = "" }) {
 function Glance() {
   const [ modalImage, setModalImage ] = useState(null);
   const [ isVisible, setIsVisible ] = useState(false);
-  const [ mobileExpanded, setMobileExpanded ] = useState(false);
   const [ animationState, setAnimationState ] = useState(null);
 
   const blocks = [
@@ -163,8 +162,7 @@ function Glance() {
     <section className="w-full bg-[#fbfaf6] py-20">
       <div className="mx-auto flex w-full items-center flex-col">
         <div
-          className={`flex flex-col w-full items-center  overflow-hidden transition-[max-height] duration-700 ${mobileExpanded ? "max-h-[2000px]" : "max-h-[60vh] md:max-h-[40vh] lg:max-h-full"
-            }`}
+          className={`flex flex-col w-full items-center  overflow-hidden transition-[max-height] duration-700 `}
         >
           <div className="columns-3 max-w-5xl px-6 lg:px-0 w-full gap-1.5 lg:gap-3 lg:columns-4">
             {blocks.map((block, index) => (
@@ -207,17 +205,7 @@ function Glance() {
           </div>
         </div>
 
-        {/* See More Button - mobile only */}
-        {!mobileExpanded && (
-          <div className="bg-white/90 lg:hidden -my-10 z-50 mx-6 flex justify-center w-full py-2">
-            <button
-              className="px-6 py-2 uppercase text-xs tracking-[0.2em] rounded-md lg:hidden"
-              onClick={() => setMobileExpanded(true)}
-            >
-              See More
-            </button>
-          </div>
-        )}
+        
       </div>
 
       {/* Modal / Lightbox with Google Photos style animation */}
