@@ -148,25 +148,13 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
-<<<<<<< HEAD
- <div className="fixed bottom-0 left-0  right-0 z-50 md:hidden">
-  
-          <button
-            onClick={() =>
-              openModal({ initialValues: { message: "Request Callback" } })
-            }
-            className="w-full bg-orange-600 text-white px-6 py-4 
-                       hover:bg-orange-700 transition-all duration-300
-=======
       <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
-
         <button
           onClick={() =>
             openModal({ initialValues: { message: "Request Callback" } })
           }
           className="w-full bg-[#FF5A00] text-white px-6 py-4 
                        hover:bg-[#E04F00] transition-all duration-300
->>>>>>> 903981c (style: standardize section headers and buttons, update mobile hero badges)
                         flex items-center gap-2 justify-around"
         >
           <Phone size={16} strokeWidth={2.5} className='flex-1' />
@@ -201,11 +189,6 @@ export default function Navbar() {
                   {item.label}
                 </button>
               ))}
-<<<<<<< HEAD
-             
-              
-             
-=======
               <a
                 href="tel:+918151884545"
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -217,9 +200,6 @@ export default function Navbar() {
                   <div className="text-[11px] font-medium">+91 81518 84545</div>
                 </div>
               </a>
-
-
->>>>>>> 903981c (style: standardize section headers and buttons, update mobile hero badges)
             </div>
           </div>
         </div>

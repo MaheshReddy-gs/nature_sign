@@ -54,15 +54,15 @@ export default function HeroSection() {
       {/* Vignette Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/30"></div>
 
-      {/* Rotating Badges - Top right on mobile, bottom right on desktop */}
-      <div className="absolute top-24 right-2 lg:bottom-20 lg:top-auto lg:right-12 z-20 flex flex-col lg:flex-row items-center gap-2 lg:gap-5">
+      {/* Rotating Badges - Top right on mobile (REMOVED), bottom right on desktop */}
+      <div className="hidden lg:flex absolute lg:bottom-20 lg:top-auto lg:right-12 z-20 lg:flex-row items-center gap-5">
         {/* RERA Badge */}
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.5, duration: 1, ease: "easeOut" }}
         >
-          <ReraBadge size={80} className="lg:w-[140px] lg:h-[140px]" />
+          <ReraBadge size={100} className="lg:w-[140px] lg:h-[140px]" />
         </motion.div>
 
         {/* BIAAPA Badge */}
@@ -71,7 +71,7 @@ export default function HeroSection() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.7, duration: 1, ease: "easeOut" }}
         >
-          <BiaapaBadge size={80} className="lg:w-[140px] lg:h-[140px]" />
+          <BiaapaBadge size={100} className="lg:w-[140px] lg:h-[140px]" />
         </motion.div>
       </div>
 
@@ -100,6 +100,15 @@ export default function HeroSection() {
           Devanahalli, Bengaluru.
         </motion.p>
 
+        {/* Badges - Mobile Layout (Between text and button) */}
+        <motion.div
+          className="flex lg:hidden justify-center items-center gap-4 mb-8"
+          variants={slideFromLeft}
+        >
+          <ReraBadge size={110} className="" />
+          <BiaapaBadge size={110} className="" />
+        </motion.div>
+
         {/* CTA Button - Slide from bottom */}
         <motion.div
           className="flex justify-center lg:justify-start"
@@ -113,28 +122,6 @@ export default function HeroSection() {
           >
             Enquire Now
           </motion.button>
-        </motion.div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 0.5 }}
-        >
-          <svg
-            className="w-6 h-6 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
         </motion.div>
       </motion.div>
     </section>

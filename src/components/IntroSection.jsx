@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { useModal } from '../context/ModalContext';
-import FloatUpText from './Animations/floatUpText';
 
 const leaf = "/leaf.webp";
 const naturesignlogo = "/naturesignlogo.svg";
@@ -30,7 +29,7 @@ const IntroSection = () => {
 
     return (
         <section
-            className="relative h-[60vh] lg:h-screen w-full overflow-hidden"
+            className="relative h-screen w-full overflow-hidden"
             style={{
                 background:
                     "linear-gradient(135deg, #A5B03B 0%, #D4C94A 30%, #E8C55A 50%, #EFB86A 75%, #D8A85F 100%)",
@@ -41,7 +40,7 @@ const IntroSection = () => {
                 initial={{ y: -50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
-                className="absolute top-0 left-1/2 transform -translate-x-1/2 z-20"
+                className="absolute top-0 left-1/2 transform -translate-x-1/2 z-40"
                 style={{
                     backgroundColor: "#8B4513",
                     color: "#FFFFFF",
@@ -105,11 +104,12 @@ const IntroSection = () => {
             >
 
                 {/* INTRODUCING */}
-                
-<FloatUpText className="text-[#3e2214] text-xs tracking-[0.2em] mb-5 ">          INTRODUCING
-        </FloatUpText>
-                    
-                
+                <motion.p
+                    variants={itemVariants}
+                    className="text-[11px] tracking-[0.3em] uppercase mb-4 font-['Montserrat'] text-[#8B4513] font-bold"
+                >
+                    INTRODUCING
+                </motion.p>
 
                 {/* LOGO */}
                 <motion.img
@@ -126,8 +126,14 @@ const IntroSection = () => {
                 {/* DESCRIPTION – MATCHING IMAGE */}
                 <motion.p
                     variants={itemVariants}
-                    className="max-w-[720px] text-base text-center mb-10 px-6"
-                    
+                    className="max-w-[720px] text-center mb-10 px-6"
+                    style={{
+                        fontFamily: "Lato, Open Sans, Poppins, sans-serif",
+                        fontSize: "17px",
+                        lineHeight: "1.8",
+                        color: "#2f2f2f",
+                        fontWeight: 400,
+                    }}
                 >
                     30 acres of premium plotted development in a scenic mango farm with
                     stunning Nandi Hills views, your sign to live closer to nature and
@@ -149,7 +155,7 @@ const IntroSection = () => {
                             document.body.removeChild(link);
                         }
                     })}
-                    className="bg-[#FF5A00] hover:bg-[#E04F00] text-white py-4 px-12 rounded shadow-[0_10px_20px_rgba(255,90,0,0.3)] uppercase  11px] font-bold tracking-[0.2em] transition-all duration-300"
+                    className="bg-[#FF5A00] hover:bg-[#E04F00] text-white py-4 px-12 rounded shadow-[0_10px_20px_rgba(255,90,0,0.3)] uppercase text-[11px] font-bold tracking-[0.2em] transition-all duration-300"
                 >
                     DOWNLOAD BROCHURE
                 </motion.button>
