@@ -72,7 +72,7 @@ function TiltCard({ children, className = '' }) {
         >
             {/* Radial Reveal */}
             <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-                <div className="w-0 h-0 bg-[#f6e0bb] transition-all duration-700 ease-out lg:group-hover:w-[250%] lg:group-hover:h-[250%]" />
+                <div className="w-0 h-0 bg-[#f6e0bb] transition-all duration-[2500ms] ease-out lg:group-hover:w-[250%] lg:group-hover:h-[250%]" />
             </div>
 
             <div className="relative z-10 flex flex-col items-center justify-center w-full h-full">
