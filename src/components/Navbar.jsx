@@ -19,11 +19,13 @@ export default function Navbar() {
 
   const navItems = [
     { label: 'Overview', id: 'overview' },
+    { label: 'Units', id: 'unit' },
     { label: 'Highlights', id: 'highlights' },
-    { label: 'Unit Details', id: 'unit' },
+    { label: 'Specifications', id: 'specifications' },
     { label: 'About Builder', id: 'builder' },
     { label: 'Gallery', id: 'gallery' },
     { label: 'Proximity', id: 'proximity' },
+    { label: 'Location', id: 'locations' },
     { label: 'Contact', id: 'contact' },
   ]
 
