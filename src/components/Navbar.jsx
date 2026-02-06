@@ -149,7 +149,7 @@ useEffect(() => {
           </div>
         </div>
       </nav>
- <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
+ <div className="fixed bottom-0 left-0  right-0 z-50 md:hidden">
   
           <button
             onClick={() =>
@@ -168,12 +168,12 @@ useEffect(() => {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div
-          className="md:hidden  fixed left-0 right-0 bottom-0 top-20 z-40 bg-black/30 animate-fadeIn"
+          className="md:hidden   fixed left-0 right-0 bottom-0 top-20 z-40 bg-black/30 animate-fadeIn"
           onClick={() => setIsMobileMenuOpen(false)}
         >
           {/* Menu Panel - expands as items appear */}
           <div
-            className="fixed left-0 top-0 pt-20 w-full bg-white text-black overflow-hidden animate-expandPanel"
+            className="fixed left-0 top-0 pt-20 w-full h-sc bg-white text-black overflow-hidden animate-expandPanel"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex flex-col px-6 py-10 space-y-4">
@@ -191,17 +191,7 @@ useEffect(() => {
                   {item.label}
                 </button>
               ))}
-              <a
-              href="tel:+918151884545"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="w-full mt-2 bg-orange-600 text-white px-6 py-3 rounded hover:bg-orange-700 transition-colors flex items-center gap-3 justify-center whitespace-nowrap"
-            >
-              <Phone size={18} strokeWidth={2.5} />
-              <div className="text-left">
-                <div className="font-bold text-xs uppercase tracking-wide">Call</div>
-                <div className="text-[11px] font-medium">+91 81518 84545</div>
-              </div>
-            </a>
+             
               
              
             </div>
