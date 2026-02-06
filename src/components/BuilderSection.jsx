@@ -8,10 +8,10 @@ export default function BuilderSection() {
     return (
         <section
             id="builder"
-            className="w-full    bg-white  md:py-20  flex justify-center items-center flex-col relative overflow-hidden"
+            className="w-full  pt-20  bg-white  md:py-20  flex justify-center items-center flex-col relative overflow-hidden"
         >
             {/* 1. TOP TITLE - Centered */}
-            <div className="text-center mb-10">
+            <div className="text-center  mb-10">
                 <FloatUpText className="text-[#a1461a] text-xs tracking-[0.2em] mb-5 ">
                     ABOUT BUILDER
                 </FloatUpText>

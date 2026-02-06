@@ -53,14 +53,14 @@ const ContactModal = () => {
     return (
         <AnimatePresence>
             {isModalOpen && (
-                <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+                <div className="fixed  inset-0 z-[99999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 20 }}
                         transition={{ duration: 0.3 }}
                         ref={modalRef}
-                        className="relative bg-white rounded-3xl w-full max-w-4xl p-8 lg:p-12 shadow-2xl max-h-[90vh] overflow-y-auto"
+                        className="relative  bg-white rounded-3xl w-full max-w-4xl py-14 px-10 lg:p-12 shadow-2xl max-h-[90vh] overflow-y-auto"
                     >
                         {/* Close Button */}
                         <button

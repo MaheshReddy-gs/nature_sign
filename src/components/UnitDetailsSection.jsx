@@ -160,7 +160,7 @@ export default function UnitDetailsSection() {
         max-w-5xl mx-auto w-full
         h-[320px] md:h-full
         overflow-x-auto overflow-y-hidden
-        touch-pan-x
+        
         snap-x snap-mandatory
         px-4 md:px-0
         scrollbar-hide

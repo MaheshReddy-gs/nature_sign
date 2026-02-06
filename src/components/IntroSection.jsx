@@ -36,7 +36,8 @@ const IntroSection = () => {
 >
 
             
-<div className="flex justify-between  items-center  gap-y-4 gap-x-10    max-w-6xl w-full ">
+<div className="grid  p-6 md-p-0 grid-cols-2 gap-y-4 gap-x-10 max-w-6xl w-full items-center
+                md:flex md:justify-between">
                         {/* Item */}
                         <FloatUpText
                             className=" md:border-r md:border-[#E6DDD0] md:pr-6"
@@ -83,7 +84,7 @@ const IntroSection = () => {
                                 250 Units
                             </p>
                         </FloatUpText>
-                        <FloatUpText>
+                        <FloatUpText className="col-span-2 flex justify-center md:col-auto">
                         <motion.button
             onClick={() => openModal({ initialValues: { message: "Enquiry" } })}
             className="bg-[#FF5A00] hover:bg-[#E04F00] text-white py-4 px-12 rounded shadow-[0_10px_20px_rgba(255,90,0,0.3)] uppercase text-[11px] font-bold tracking-[0.2em] transition-all duration-100 "
@@ -116,7 +117,7 @@ const IntroSection = () => {
             </motion.div>
            </section>
         <section
-            className="relative h-screen w-full overflow-hidden"
+            className="relative py-5 md:py-0 md:h-screen w-full overflow-hidden"
             style={{
                 background:
                     "linear-gradient(135deg, #A5B03B 0%, #D4C94A 30%, #E8C55A 50%, #EFB86A 75%, #D8A85F 100%)",

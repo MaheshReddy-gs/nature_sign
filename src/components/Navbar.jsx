@@ -191,17 +191,27 @@ export default function Navbar() {
           </a>
         </div>
       </nav>
-      <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
+      <div className="fixed bottom-0  flex left-0 right-0 z-50 md:hidden">
+        <a
+          
+            href="tel:+918151884545"
+          className="w-full bg-[#d75916] text-white px-6 py-4 
+                       hover:bg-[#E04F00] transition-all duration-300
+                        flex flex-1 items-center gap-2 justify-around"
+        >
+          
+          <Phone size={16} strokeWidth={2.5} className='f' />
+        </a>
         <button
           onClick={() =>
             openModal({ initialValues: { message: "Request Callback" } })
           }
-          className="w-full bg-[#FF5A00] text-white px-6 py-4 
+          className="w-full bg-[#FF5A00] flex-3 text-white px-6 py-4 
                        hover:bg-[#E04F00] transition-all duration-300
                         flex items-center gap-2 justify-around"
         >
-          <Phone size={16} strokeWidth={2.5} className='flex-1' />
-          <span className='flex-3'>Request Callback</span>
+          
+          <span className=''>Request Callback</span>
         </button>
       </div>
 

@@ -164,7 +164,7 @@ function Glance() {
         <div
           className={`flex flex-col w-full items-center  overflow-hidden transition-[max-height] duration-700 `}
         >
-          <div className="columns-3 max-w-5xl px-6 lg:px-0 w-full gap-1.5 lg:gap-3 lg:columns-3">
+          <div className="columns-2 max-w-5xl px-6 lg:px-0 w-full gap-1.5 lg:gap-3 lg:columns-3">
             {blocks.map((block, index) => (
               <div key={index} className="lg:mb-6 mb-3 break-inside-avoid">
                 <div
