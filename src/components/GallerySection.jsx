@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef,useEffect } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import FloatUpText from "./Animations/floatUpText";
 
@@ -16,10 +16,57 @@ const images = [
 ];
 
 export default function GallerySection() {
-    const scrollRef = useRef(null);
+    const scrollRef = useRef(null);const [mobileIndex, setMobileIndex] = useState(0);
+
     const [ lightboxIndex, setLightboxIndex ] = useState(null);
 
     const [ activeIndex, setActiveIndex ] = useState(0);
+const [mobileActive, setMobileActive] = useState(1);
+const [noAnim, setNoAnim] = useState(false);
+const intervalRef = useRef(null);
+const touchRef = useRef(false);
+const startXRef = useRef(0);
+
+const swipeThreshold = 50;
+
+const mobileSlides = [
+  images[images.length - 1], // clone last
+  ...images,                 // real images
+  images[0],                 // clone first
+];
+useEffect(() => {
+  if (window.innerWidth >= 768) return;
+
+  if (mobileActive === mobileSlides.length - 1) {
+    setTimeout(() => {
+      setNoAnim(true);
+      setMobileActive(1);
+    }, 700);
+  }
+
+  if (mobileActive === 0) {
+    setTimeout(() => {
+      setNoAnim(true);
+      setMobileActive(mobileSlides.length - 2);
+    }, 700);
+  }
+
+  if (noAnim) {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => setNoAnim(false));
+    });
+  }
+}, [mobileActive]);
+useEffect(() => {
+  if (window.innerWidth >= 768) return;
+
+  intervalRef.current = setInterval(() => {
+    if (touchRef.current) return;
+    setMobileActive((prev) => prev + 1);
+  }, 2500);
+
+  return () => clearInterval(intervalRef.current);
+}, []);
 
     // Scroll to specific slide index
     const scrollToSlide = (index) => {
@@ -63,14 +110,75 @@ export default function GallerySection() {
     };
 
     return (
-        <section id="gallery" className="w-full min-h-screen bg-white  py-20 relative">
+        <section id="gallery" className="w-full md:min-h-screen bg-white  py-20 relative">
             {/* TITLE */}
             <div className="text-center mb-10">
                 <FloatUpText className="text-[#a1461a] text-xs tracking-[0.2em] mb-5 ">GALLERY</FloatUpText>
             </div>
+{/* ===== MOBILE GALLERY SLIDER ===== */}
+<div className="md:hidden relative w-full px-6">
+  <div
+    className="w-full overflow-hidden rounded-sm"
+    onTouchStart={(e) => {
+      touchRef.current = true;
+      clearInterval(intervalRef.current);
+      startXRef.current = e.touches[0].clientX;
+    }}
+    onTouchEnd={(e) => {
+      const endX = e.changedTouches[0].clientX;
+      const diff = startXRef.current - endX;
+
+      if (Math.abs(diff) > swipeThreshold) {
+        diff > 0
+          ? setMobileActive((prev) => prev + 1)
+          : setMobileActive((prev) => prev - 1);
+      }
+
+      setTimeout(() => {
+        touchRef.current = false;
+      }, 1000);
+    }}
+  >
+    <div
+      className={`flex ${
+        noAnim ? "" : "transition-transform duration-700 ease-in-out"
+      }`}
+      style={{
+        transform: `translateX(-${mobileActive * 100}%)`,
+      }}
+    >
+      {mobileSlides.map((src, index) => (
+        <div
+          key={index}
+          className="w-full shrink-0 h-[55vh]"
+          onClick={() => openLightbox((index - 1 + images.length) % images.length)}
+        >
+          <img
+            src={src}
+            alt="Gallery"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+
+  {/* DOTS */}
+  <div className="flex justify-end pr-4 mt-3 gap-2">
+    {images.map((_, i) => (
+      <button
+        key={i}
+        onClick={() => setMobileActive(i + 1)}
+        className={`w-2 h-2 rounded-full transition ${
+          i + 1 === mobileActive ? "bg-orange-600" : "bg-gray-300"
+        }`}
+      />
+    ))}
+  </div>
+</div>
 
             {/* MAIN CAROUSEL WRAPPER */}
-            <div className=" max-w-6xl px-6 mx-auto relative w-full group">
+            <div className="hidden md:block max-w-6xl px-6 mx-auto relative w-full group">
                 <style>{`
                     .hide-scrollbar::-webkit-scrollbar { display: none; }
                     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
