@@ -144,7 +144,7 @@ const TEXT_VARIANTS = {
 
 export default function SpecificationsSection() {
   return (
-    <section id="section2" className="w-full bg-[#F6F3EE] ">
+    <section id="specifications" className="w-full bg-[#F6F3EE] ">
       <div className="max-w-6xl mx-auto px-6 pt-16 pb-8">
         <FloatUpText className="text-[#a1461a] text-center text-xs font-bold tracking-[0.2em] uppercase mb-5 ">SPECIFICATIONS</FloatUpText>
 

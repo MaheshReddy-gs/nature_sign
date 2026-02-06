@@ -198,7 +198,7 @@ className="text-[#a1461a] text-xs pt-30 text-center    tracking-[0.2em] mb-5 ">
 
 
                         {/* Body */}
-                        <FloatUpText className="space-y-5 max-w-[800px]">
+                        <FloatUpText className="space-y-5  leading-loose max-w-[800px]">
                             <p>
                                 Welcome to Nature's Sign, a thoughtfully planned plotted development in Bengaluru. A feature-rich residential community designed for those who value space, flexibility, and a superior lifestyle. Every plot is seamlessly integrated with modern infrastructure and essential amenities, creating a harmonious and well-balanced living environment.
                             </p>
@@ -215,69 +215,10 @@ className="text-[#a1461a] text-xs pt-30 text-center    tracking-[0.2em] mb-5 ">
 
                 <div className="mt-2 md:mt-10 pt-4 ">
                     {/* Stats grid */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-y-4 gap-x-10 text-center mx-auto max-w-6xl px-6">
-                        {/* Item */}
-                        <motion.div
-                            className=" md:border-r md:border-[#E6DDD0] md:pr-6"
-                            variants={STATS_VARIANTS}
-                        >
-                            <p className="text-[#a1461a] text-xs text-center tracking-[0.2em] ">
-                                LOCATION
-                            </p>
-                            <p className="text-base">
-                                Devanahalli, Bengaluru
-                            </p>
-                        </motion.div>
-
-                        <motion.div
-                            className="md:border-r md:border-[#E6DDD0] md:px-6"
-                            variants={STATS_VARIANTS}
-                        >
-                            <p className="text-[#a1461a] text-xs text-center tracking-[0.2em] ">
-                                BUILDER
-                            </p>
-                            <p className="text-base">
-                                Shreyas Infra
-                            </p>
-                        </motion.div>
-
-                        <motion.div
-                            className="md:border-r md:border-[#E6DDD0] md:px-6"
-                            variants={STATS_VARIANTS}
-                        >
-                            <p className="text-[#a1461a] text-xs text-center tracking-[0.2em] ">
-                                TOTAL LAND AREA
-                            </p>
-                            <p className="text-base">
-                                30 Acres
-                            </p>
-                        </motion.div>
-
-                        <motion.div
-                            className="md:pl-6"
-                            variants={STATS_VARIANTS}
-                        >
-                            <p className="text-[#a1461a] text-xs text-center tracking-[0.2em] ">
-                                TOTAL UNITS
-                            </p>
-                            <p className="text-base">
-                                250 Units
-                            </p>
-                        </motion.div>
-                    </div>
+                    
 
                     {/* CTA */}
-                    <div className="flex justify-center mt-12">
-                        <motion.button
-                            onClick={() => openModal({ initialValues: { message: "Ask Price" } })}
-                            className="bg-[#FF5A00] hover:bg-[#E04F00] text-white py-4 px-12 rounded shadow-[0_10px_20px_rgba(255,90,0,0.3)] uppercase text-[11px] font-bold tracking-[0.2em] transition-all duration-300"
-                            variants={FADE_UP_SMALL_VARIANTS}
-                            whileHover={{ scale: 1.05, y: -2 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            ASK PRICE
-                        </motion.button>
-                    </div>
+                    
                 </div>
             </motion.div>
         </section>

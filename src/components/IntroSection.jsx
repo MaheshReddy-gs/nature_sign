@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
 import { useModal } from '../context/ModalContext';
+import FloatUpText from './Animations/floatUpText';
 
 const leaf = "/leaf.webp";
-const naturesignlogo = "/naturesignlogo.svg";
+const naturesignlogo = "/natureSignWhiteLogo.webp";
 
 const IntroSection = () => {
     const { openModal } = useModal();
@@ -27,14 +28,71 @@ const IntroSection = () => {
         }
     };
 
-    return (
-        <section
-            className="relative h-screen w-full overflow-hidden"
-            style={{
-                background:
-                    "linear-gradient(135deg, #A5B03B 0%, #D4C94A 30%, #E8C55A 50%, #EFB86A 75%, #D8A85F 100%)",
-            }}
-        >
+    return (<>
+    <section className='relative flex '>
+
+       
+        <div                 className=" bg-[#F7F2EA] top-0  left-1/2 transform min-h-[20vh] flex w-screen justify-center items-center  z-40 pt-10"
+>
+
+            
+<div className="flex justify-between  items-center  gap-y-4 gap-x-10    max-w-6xl w-full ">
+                        {/* Item */}
+                        <FloatUpText
+                            className=" md:border-r md:border-[#E6DDD0] md:pr-6"
+                               
+                        >
+                            <p className="text-[#a1461a] text-xs    tracking-[0.2em] ">
+                                LOCATION
+                            </p>
+                            <p className="text-base">
+                                Devanahalli, Bengaluru
+                            </p>
+                        </FloatUpText>
+
+                        <FloatUpText
+                            className="md:border-r md:border-[#E6DDD0] md:px-6"
+                               
+                        >
+                            <p className="text-[#a1461a] text-xs    tracking-[0.2em] ">
+                                BUILDER
+                            </p>
+                            <p className="text-base">
+                                Shreyas Infra
+                            </p>
+                        </FloatUpText>
+
+                        <FloatUpText
+                            className="md:border-r md:border-[#E6DDD0] md:px-6"
+                               
+                        >
+                            <p className="text-[#a1461a] text-xs    tracking-[0.2em] ">
+                                TOTAL LAND AREA
+                            </p>
+                            <p className="text-base">
+                                30 Acres
+                            </p>
+                        </FloatUpText>
+
+                        <FloatUpText
+                        >
+                            <p className="text-[#a1461a] text-xs    tracking-[0.2em] ">
+                                TOTAL UNITS
+                            </p>
+                            <p className="text-base">
+                                250 Units
+                            </p>
+                        </FloatUpText>
+                        <FloatUpText>
+                        <motion.button
+            onClick={() => openModal({ initialValues: { message: "Enquiry" } })}
+            className="bg-[#FF5A00] hover:bg-[#E04F00] text-white py-4 px-12 rounded shadow-[0_10px_20px_rgba(255,90,0,0.3)] uppercase text-[11px] font-bold tracking-[0.2em] transition-all duration-100 "
+            whileTap={{ scale: 1 }}
+          >
+            Ask Price
+          </motion.button></FloatUpText>
+                    </div>
+                    </div>
             {/* 🔶 TOP RERA BAR */}
             <motion.div
                 initial={{ y: -50, opacity: 0 }}
@@ -56,7 +114,15 @@ const IntroSection = () => {
             >
                 RERA Reg. NO. PRM/KA/RERA/1250/303/PR/041125/008220
             </motion.div>
-
+           </section>
+        <section
+            className="relative h-screen w-full overflow-hidden"
+            style={{
+                background:
+                    "linear-gradient(135deg, #A5B03B 0%, #D4C94A 30%, #E8C55A 50%, #EFB86A 75%, #D8A85F 100%)",
+            }}
+        >  
+        
             {/* 🍂 LEAF IMAGE */}
             <motion.img
                 src={leaf}
@@ -126,7 +192,7 @@ const IntroSection = () => {
                 {/* DESCRIPTION – MATCHING IMAGE */}
                 <motion.p
                     variants={itemVariants}
-                    className="max-w-[720px] text-center mb-10 px-6"
+                    className="max-w-3xl text-center mb-10 px-6"
                     style={{
                         fontFamily: "Lato, Open Sans, Poppins, sans-serif",
                         fontSize: "17px",
@@ -142,9 +208,7 @@ const IntroSection = () => {
 
                 {/* BUTTON */}
                 <motion.button
-                    variants={itemVariants}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
+                    
                     onClick={() => openModal({
                         onSuccess: () => {
                             const link = document.createElement('a');
@@ -155,13 +219,16 @@ const IntroSection = () => {
                             document.body.removeChild(link);
                         }
                     })}
-                    className="bg-[#FF5A00] hover:bg-[#E04F00] text-white py-4 px-12 rounded shadow-[0_10px_20px_rgba(255,90,0,0.3)] uppercase text-[11px] font-bold tracking-[0.2em] transition-all duration-300"
+                   
+            className="bg-[#FF5A00] hover:bg-[#E04F00] text-white py-4 px-12 rounded shadow-[0_10px_20px_rgba(255,90,0,0.3)] uppercase text-[11px] font-bold tracking-[0.2em] transition-all duration-100 "
+            whileTap={{ scale: 1 }}
+          
                 >
                     DOWNLOAD BROCHURE
                 </motion.button>
 
             </motion.div>
-        </section>
+        </section></>
     );
 };
 
