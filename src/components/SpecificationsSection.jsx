@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import RevealImageAnimation from "../components/RevealImageAnimation";
-
+import FloatUpText from "./Animations/floatUpText";
 const SPEC_ITEMS = [
   {
     id: 1,
@@ -32,7 +32,7 @@ const SPEC_ITEMS = [
   bg: "bg-[#8E9B79]", // same green background like image
   reverse: true,
   bulletStyle: "dots",
-  textColor: "text-white",
+  //textColor: "text-white",
 },
 
 
@@ -51,7 +51,7 @@ const SPEC_ITEMS = [
     bg: "bg-[#DEE7F0]",
     reverse: false,
     bulletStyle: "dots",
-    textColor: "text-[#44584F]",
+   // textColor: "text-[#44584F]",
   },
 
   // ✅ LANDSCAPING (exact like your new screenshot)
@@ -69,7 +69,7 @@ const SPEC_ITEMS = [
   bg: "bg-[#7E8D98]",
   reverse: true, // ✅ content left, image right
   bulletStyle: "dots",
-  textColor: "text-white",
+ // textColor: "text-white",
 },
 {
   id: 5,
@@ -88,7 +88,7 @@ const SPEC_ITEMS = [
   bg: "bg-[#DDECE3]", // ✅ same light green background
   reverse: false, // ✅ image left, text right
   bulletStyle: "dots",
-  textColor: "text-[#44584F]",
+ // textColor: "text-[#44584F]",
 },
 {
   id: 6,
@@ -102,7 +102,7 @@ const SPEC_ITEMS = [
   bg: "bg-[#78A99A]", // ✅ same green background
   reverse: true, // ✅ image left, text right
   bulletStyle: "dots",
-  textColor: "text-white", // ✅ white like screenshot
+ // textColor: "text-white", // ✅ white like screenshot
 },
 
 ];
@@ -144,29 +144,22 @@ const TEXT_VARIANTS = {
 
 export default function SpecificationsSection() {
   return (
-    <section id="section2" className="w-full bg-[#F6F3EE]">
+    <section id="section2" className="w-full bg-[#F6F3EE] ">
       <div className="max-w-6xl mx-auto px-6 pt-16 pb-8">
-        <motion.p
-          className="text-center text-[11px] tracking-[0.5em] uppercase font-['Barlow'] font-bold text-[#B56A4E]"
-          variants={HEADER_VARIANTS}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.6 }}
-        >
-          Specifications
-        </motion.p>
+       <FloatUpText className="text-[#a1461a] text-center text-xs tracking-[0.2em] uppercase mb-5 ">Specifications</FloatUpText>
+        
       </div>
-
+<FloatUpText className="text-orange-200 text-xs tracking-[0.2em] mb-5 "></FloatUpText>
       <div className="flex flex-col">
         {SPEC_ITEMS.map((item) => (
           <div
             key={item.id}
-            className={`w-full ${item.bg} min-h-[80vh] flex items-center`}
+           className={`w-full ${item.bg} min-h-[auto] lg:min-h-[80vh] flex items-center`}
           >
             <motion.div
-              className={`max-w-6xl mx-auto px-6 py-20 lg:py-24 flex flex-col gap-10 lg:gap-24 items-center w-full ${
-                item.reverse ? "lg:flex-row-reverse" : "lg:flex-row"
-              }`}
+             className={`max-w-6xl mx-auto px-6 py-10 sm:py-12 lg:py-24 flex flex-col gap-6 sm:gap-8 lg:gap-24 items-center w-full ${
+  item.reverse ? "lg:flex-row-reverse" : "lg:flex-row"
+}`}
               variants={ROW_VARIANTS}
               initial="hidden"
               whileInView="visible"
@@ -174,9 +167,9 @@ export default function SpecificationsSection() {
             >
               {/* IMAGE */}
               <motion.div
-                className={`w-full flex justify-center ${
-                  item.reverse ? "lg:justify-end" : "lg:justify-start"
-                }`}
+               className={`w-full flex justify-start ${
+  item.reverse ? "lg:justify-end" : "lg:justify-start"
+}`}
                 variants={MEDIA_VARIANTS}
               >
                 {/* ✅ image frame exactly */}
@@ -190,54 +183,48 @@ export default function SpecificationsSection() {
               </motion.div>
 
               {/* TEXT */}
-              <motion.div
-                className="w-full max-w-[520px]"
-                variants={TEXT_VARIANTS}
-              >
-                {/* HEADING */}
-                <p
-                  className={`text-[26px] lg:text-[32px] font-extrabold tracking-wide ${
-                    item.textColor ? item.textColor : "text-[#2F3E35]"
-                  }`}
-                >
-                  {item.label}
-                </p>
+            {/* TEXT */}
+<motion.div className="w-full max-w-[520px]" variants={TEXT_VARIANTS}>
+  {/* HEADING */}
+  <FloatUpText>
+    <p className="section-heading text-black">{item.label}</p>
+  </FloatUpText>
 
-                {/* title only for infra sections */}
-                {item.title ? (
-                  <h3 className="mt-1 text-[13px] tracking-[0.2em] uppercase font-semibold text-[#4C6A5B]">
-                    {item.title}
-                  </h3>
-                ) : null}
+  {/* title only for infra sections */}
+  {item.title ? (
+    <FloatUpText>
+      <h3 className="mt-1 text-[13px] tracking-[0.2em] uppercase font-semibold text-black">
+        {item.title}
+      </h3>
+    </FloatUpText>
+  ) : null}
 
-                {/* CONTENT */}
-                <div className="mt-6">
-                  {/* DOT BULLETS */}
-                  {item.bulletStyle === "dots" ? (
-                    <ul
-                      className={`list-disc pl-6 space-y-6 text-[18px] leading-[1.8] ${
-                        item.textColor ? item.textColor : "text-[#44584F]"
-                      }`}
-                    >
-                      {item.points.map((point, index) => (
-                        <li key={`${item.id}-${index}`}>{point}</li>
-                      ))}
-                    </ul>
-                  ) : (
-                    /* LINE STYLE (old infra sections) */
-                    <div className="space-y-4 text-[16px] leading-relaxed text-[#50645B]">
-                      {item.points.map((point, index) => (
-                        <p
-                          key={`${item.id}-${index}`}
-                          className="pl-4 border-l-2 border-[#B56A4E]/40"
-                        >
-                          {point}
-                        </p>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </motion.div>
+  {/* CONTENT */}
+  <div className="mt-6">
+    {item.bulletStyle === "dots" ? (
+     <ul className="list-disc pl-6 space-y-6 text-base leading-[1.8] text-black">
+  {item.points.map((point, index) => (
+    <FloatUpText key={`${item.id}-${index}`}>
+      <li>{point}</li>
+    </FloatUpText>
+  ))}
+</ul>
+
+    ) : (
+   <ul className="list-disc pl-6 space-y-6 text-base leading-[1.8] text-black">
+  {item.points.map((point, index) => (
+    <FloatUpText key={`${item.id}-${index}`}>
+      <li>{point}</li>
+    </FloatUpText>
+  ))}
+</ul>
+
+
+    )}
+  </div>
+</motion.div>
+
+
             </motion.div>
           </div>
         ))}

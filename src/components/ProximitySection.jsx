@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import FloatUpText from "./Animations/floatUpText";
 
 const PROXIMITY_IMAGES = [
   { id: 1, src: "/strr.webp", alt: "STRR Proximity" },
@@ -65,15 +66,10 @@ export default function ProximitySection() {
       <div className="pointer-events-none absolute -bottom-28 -right-24 h-64 w-64 rounded-full bg-gradient-to-br from-[#F2E390] to-[#CDE6E0] opacity-70" />
 
       <div className="relative max-w-6xl mx-auto px-6">
-        <motion.p
-          className="text-center text-[11px] tracking-[0.5em] uppercase font-['Barlow'] font-bold text-[#B56A4E]"
-          variants={FADE_UP}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.6 }}
-        >
-          Proximity
-        </motion.p>
+      <FloatUpText>
+  <FloatUpText className="text-[#a1461a] text-center text-xs tracking-[0.2em] uppercase mb-5 ">Proximity</FloatUpText>
+</FloatUpText>
+
 
         {/* Top card */}
         <motion.div
@@ -100,21 +96,33 @@ export default function ProximitySection() {
 
 
             <motion.div className="flex flex-col justify-center" variants={FADE_UP}>
-              <h3 className="text-2xl font-semibold text-[#3B3A38]">
-                Just 5 mins<br />from STRR
-              </h3>
-              <p className="mt-2 text-[14px] text-[#6B5D53]">
-                (Satellite Town Ring Road Planning Authority)
-              </p>
-              <p className="mt-4 text-[14px] leading-relaxed text-[#6B5D53]">
-                With the STRR (Satellite Town Ring Road Planning Authority) just 5 minutes away,
-                enjoy quicker travel times, smoother access to prime hubs, and a well-connected
-                lifestyle.
-              </p>
-              <p className="mt-6 text-[11px] tracking-[0.25em] uppercase text-[#6B5D53] font-semibold">
-                JUST 5 MIN FROM STRR
-              </p>
-            </motion.div>
+  <FloatUpText>
+   <h3 className="text-2xl font-semibold text-[#3B3A38] text-black">
+      Just 5 mins<br />from STRR
+    </h3>
+  </FloatUpText>
+
+  <FloatUpText>
+    <p className="mt-2 text-base text-black">
+      (Satellite Town Ring Road Planning Authority)
+    </p>
+  </FloatUpText>
+
+  <FloatUpText>
+    <p className="mt-4 text-base leading-relaxed text-black">
+      With the STRR (Satellite Town Ring Road Planning Authority) just 5 minutes away,
+      enjoy quicker travel times, smoother access to prime hubs, and a well-connected
+      lifestyle.
+    </p>
+  </FloatUpText>
+
+  <FloatUpText>
+    <p className="mt-6 text-[11px] tracking-[0.25em] uppercase text-black font-semibold">
+      JUST 5 MIN FROM STRR
+    </p>
+  </FloatUpText>
+</motion.div>
+
           </div>
         </motion.div>
 
@@ -137,6 +145,7 @@ export default function ProximitySection() {
 
     {/* ✅ CONTENT (IMPORTANT: give padding + min height) */}
     <div className="relative z-10 px-8 py-12 lg:px-12 lg:py-14">
+      
       <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 items-center">
 
         {/* IMAGE */}
@@ -155,10 +164,12 @@ export default function ProximitySection() {
         </motion.div>
 
         {/* TEXT + LOGOS */}
-        <motion.div variants={FADE_UP}>
-          <p className="text-white text-2xl leading-snug font-semibold max-w-[420px]">
-            Nature&apos;s Sign - Perfectly Positioned Near Reputed Educational Hubs.
-          </p>
+     <motion.div variants={FADE_UP} className="pt-20 lg:pt-0">
+         <FloatUpText>
+  <p className="text-black text-2xl leading-snug font-semibold max-w-[420px]">
+    Nature&apos;s Sign - Perfectly Positioned Near Reputed Educational Hubs.
+  </p>
+</FloatUpText>
 
           {/* LOGO WHITE BOX */}
           <div className="mt-6 bg-white p-6 w-full max-w-[560px] shadow-md">
@@ -191,9 +202,11 @@ export default function ProximitySection() {
           whileInView="visible"
           viewport={{ once: false, amount: 0.25 }}
         >
-          <h3 className="text-center text-xl font-medium text-[#4C3F35]">
-            Live Close to the Landmarks That Matter.
-          </h3>
+       <FloatUpText>
+  <h3 className="section-heading text-black text-center">
+    Live Close to the Landmarks That Matter.
+  </h3>
+</FloatUpText>
           <motion.div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" variants={STAGGER}>
             {LANDMARKS.map((landmark) => (
               <motion.div
@@ -209,11 +222,13 @@ export default function ProximitySection() {
                     loading="lazy"
                   />
                 </div>
-                <div className="px-4 py-3 flex items-center gap-2 text-[12px] text-[#6B5D53]">
+                <div className="px-4 py-3 flex items-center gap-2 text-[12px] text-black">
                   <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
-                    <path d="M8.5 5L2 9V1L8.5 5Z" fill="#8A9A5B" />
+                    <path d="M8.5 5L2 9V1L8.5 5Z" fill="#000000" />
                   </svg>
-                  <span>{landmark.name}</span>
+                  
+  <span>{landmark.name}</span>
+
                 </div>
               </motion.div>
             ))}
