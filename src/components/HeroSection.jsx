@@ -54,15 +54,15 @@ export default function HeroSection() {
       {/* Vignette Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/30"></div>
 
-      {/* Rotating Badges - Positioned at bottom right */}
-      <div className="absolute bottom-20 right-4 lg:right-12 z-20 flex items-center gap-3 lg:gap-5">
+      {/* Rotating Badges - Top right on mobile, bottom right on desktop */}
+      <div className="absolute top-24 right-2 lg:bottom-20 lg:top-auto lg:right-12 z-20 flex flex-col lg:flex-row items-center gap-2 lg:gap-5">
         {/* RERA Badge */}
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.5, duration: 1, ease: "easeOut" }}
         >
-          <ReraBadge size={120} className="lg:w-[140px] lg:h-[140px]" />
+          <ReraBadge size={80} className="lg:w-[140px] lg:h-[140px]" />
         </motion.div>
 
         {/* BIAAPA Badge */}
@@ -71,7 +71,7 @@ export default function HeroSection() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.7, duration: 1, ease: "easeOut" }}
         >
-          <BiaapaBadge size={120} className="lg:w-[140px] lg:h-[140px]" />
+          <BiaapaBadge size={80} className="lg:w-[140px] lg:h-[140px]" />
         </motion.div>
       </div>
 
