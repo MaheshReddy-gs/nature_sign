@@ -323,16 +323,16 @@ useEffect(() => {
 
 function GalleryImage({ src, onClick, height }) {
     return (
-        <div
-            onClick={onClick}
-            className={`w-full ${height} overflow-hidden rounded-sm group cursor-pointer relative`}
-        >
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 z-10" />
-            <img
-                src={src}
-                alt="Gallery"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-        </div>
+   <div
+  onClick={onClick}
+  className={`w-full ${height} overflow-hidden rounded-sm cursor-pointer relative hover:bg-black/10 transition-colors duration-300`}
+>
+  <img
+    src={src}
+    alt="Gallery"
+    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+  />
+</div>
+
     );
 }
