@@ -47,13 +47,16 @@ export default function Navbar() {
                 {item.label}
               </button>
             ))}
-            <button
-              onClick={() => openModal({ initialValues: { message: "Request Callback" } })}
-              className="bg-orange-600 text-white px-6 py-3 rounded hover:bg-orange-700 transition-colors font-bold text-xs uppercase tracking-wide flex items-center gap-2 whitespace-nowrap"
+            <a
+              href="tel:+918151884545"
+              className="bg-orange-600 text-white px-5 py-2 rounded hover:bg-orange-700 transition-colors flex items-center gap-2 whitespace-nowrap"
             >
               <Phone size={18} strokeWidth={2.5} />
-              Request <br /> Callback
-            </button>
+              <div className="text-left">
+                <div className="font-bold text-xs uppercase tracking-wide">Call</div>
+                <div className="text-[10px] font-medium">+91 81518 84545</div>
+              </div>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -79,16 +82,17 @@ export default function Navbar() {
                 {item.label}
               </button>
             ))}
-            <button
-              onClick={() => {
-                openModal({ initialValues: { message: "Request Callback" } });
-                setIsMobileMenuOpen(false);
-              }}
-              className="w-full mt-2 bg-orange-600 text-white px-6 py-2 rounded hover:bg-orange-700 transition-colors font-bold flex items-center gap-2 justify-center whitespace-nowrap"
+            <a
+              href="tel:+918151884545"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="w-full mt-2 bg-orange-600 text-white px-6 py-3 rounded hover:bg-orange-700 transition-colors flex items-center gap-3 justify-center whitespace-nowrap"
             >
-              <Phone size={16} strokeWidth={2.5} />
-              Request Callback
-            </button>
+              <Phone size={18} strokeWidth={2.5} />
+              <div className="text-left">
+                <div className="font-bold text-xs uppercase tracking-wide">Call</div>
+                <div className="text-[11px] font-medium">+91 81518 84545</div>
+              </div>
+            </a>
           </div>
         )}
       </div>
