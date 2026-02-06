@@ -32,7 +32,7 @@ const IntroSection = () => {
     <section className='relative flex '>
 
        
-        <div                 className=" bg-[#F7F2EA] top-0  left-1/2 transform min-h-[20vh] flex w-screen justify-center items-center  z-40 pt-10"
+        <div                 className=" bg-[#F7F2EA] top-0  left-1/2 transform min-h-[20vh] flex w-screen justify-center items-center   z-30 pt-10"
 >
 
             
@@ -99,7 +99,7 @@ const IntroSection = () => {
                 initial={{ y: -50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
-                className="absolute top-0 left-1/2 transform -translate-x-1/2 z-40"
+                className="absolute top-0 left-1/2 transform -translate-x-1/2  z-30"
                 style={{
                     backgroundColor: "#8B4513",
                     color: "#FFFFFF",

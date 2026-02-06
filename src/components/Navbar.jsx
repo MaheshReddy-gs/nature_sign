@@ -242,17 +242,7 @@ export default function Navbar() {
                   {item.label}
                 </button>
               ))}
-              <a
-                href="tel:+918151884545"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full mt-2 bg-[#FF5A00] text-white px-6 py-3 rounded hover:bg-[#E04F00] transition-colors flex items-center gap-3 justify-center whitespace-nowrap"
-              >
-                <Phone size={18} strokeWidth={2.5} />
-                <div className="text-left">
-                  <div className="font-bold text-xs  uppercase tracking-wide">Call</div>
-                  <div className="text-[11px] font-medium">+91 81518 84545</div>
-                </div>
-              </a>
+             
             </div>
           </div>
         </div>
