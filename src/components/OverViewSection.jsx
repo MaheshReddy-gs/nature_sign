@@ -183,7 +183,7 @@ const OverviewDetailsSection = () => {
                     <div className="flex-1 mt-20">
                         {/* Eyebrow */}
                         <motion.p
-                            className="text-xs tracking-[0.35em] uppercase mb-8 font-['DIN_Alternate'] text-orange-800 font-medium"
+                            className="text-[#a1461a] text-xs tracking-[0.2em] uppercase mb-5 font-bold text-center lg:text-left"
                             variants={FADE_UP_SMALL_VARIANTS}
                         >
                             OVERVIEW
@@ -291,9 +291,9 @@ const OverviewDetailsSection = () => {
                     <div className="flex justify-center mt-12">
                         <motion.button
                             onClick={() => openModal({ initialValues: { message: "Ask Price" } })}
-                            className="inline-block bg-[#ff5e13] text-white py-3.5 px-8 rounded uppercase text-xs font-['DIN_Alternate'] font-semibold tracking-[0.3em] shadow-[0_4px_18px_rgba(255,94,19,0.28)] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(255,94,19,0.38)] transition-all duration-300"
+                            className="bg-[#FF5A00] hover:bg-[#E04F00] text-white py-4 px-12 rounded shadow-[0_10px_20px_rgba(255,90,0,0.3)] uppercase text-[11px] font-bold tracking-[0.2em] transition-all duration-300"
                             variants={FADE_UP_SMALL_VARIANTS}
-                            whileHover={{ scale: 1.05 }}
+                            whileHover={{ scale: 1.05, y: -2 }}
                             whileTap={{ scale: 0.95 }}
                         >
                             ASK PRICE

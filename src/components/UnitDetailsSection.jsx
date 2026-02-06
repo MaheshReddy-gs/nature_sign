@@ -165,7 +165,7 @@ export default function UnitDetailsSection() {
                                     {/* CTA Button */}
                                     <button
                                         onClick={() => openModal({ initialValues: { message: "Price Inquiry for Unit " + unit.size } })}
-                                        className="mt-2 px-5 py-3  bg-orange-500 text-white hover:bg-orange-400 t font-bold rounded transition-colors uppercase text-xs sm:text-sm tracking-widest"
+                                        className="mt-2 bg-[#FF5A00] hover:bg-[#E04F00] text-white py-3 px-8 rounded shadow-[0_10px_20px_rgba(255,90,0,0.3)] uppercase text-[10px] font-bold tracking-[0.2em] transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 active:scale-95"
                                     >
                                         Ask Price
                                     </button>

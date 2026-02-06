@@ -152,7 +152,7 @@ const ContactForm = ({ compact = false, onSuccess, initialValues = {} }) => {
                 <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`group relative px-8 py-4 ${isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#FF5A00] hover:bg-[#E04F00]'} text-white w-fit font-semibold rounded-full transition-all duration-300 flex items-center gap-2`}
+                    className={`group relative py-4 px-8 ${isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#FF5A00] hover:bg-[#E04F00] shadow-[0_10px_20px_rgba(255,90,0,0.3)] hover:scale-105 hover:-translate-y-0.5 active:scale-95'} text-white w-fit font-bold uppercase text-[11px] tracking-[0.2em] rounded transition-all duration-300 flex items-center gap-2`}
                 >
                     {isSubmitting ? 'Sending...' : 'Get A Call Back'}
                     {!isSubmitting && (

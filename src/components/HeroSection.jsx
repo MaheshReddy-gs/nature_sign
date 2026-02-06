@@ -107,7 +107,7 @@ export default function HeroSection() {
         >
           <motion.button
             onClick={() => openModal({ initialValues: { message: "Enquiry" } })}
-            className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 px-10 rounded transition-colors uppercase text-sm tracking-widest"
+            className="bg-[#FF5A00] hover:bg-[#E04F00] text-white py-4 px-12 rounded shadow-[0_10px_20px_rgba(255,90,0,0.3)] uppercase text-[11px] font-bold tracking-[0.2em] transition-all duration-300"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
           >

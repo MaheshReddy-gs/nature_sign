@@ -12,12 +12,12 @@ const LocationSection = () => {
         <div className="max-w-6xl mx-auto px-4">
           {/* Heading */}
           <div className="text-center mb-10">
-            <FloatUpText className="text-[#a1461a] text-center text-xs tracking-[0.2em] uppercase mb-5 ">Location</FloatUpText>
+            <FloatUpText className="text-[#a1461a] text-center text-xs font-bold tracking-[0.2em] uppercase mb-5 ">LOCATION</FloatUpText>
           </div>
 
           {/* Logo + Address */}
           <div className="w-full flex justify-center mb-6 md:mb-10">
-          <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 md:gap-20 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 md:gap-20 items-start">
               {/* Logo */}
               <div className="flex justify-center md:justify-end">
                 <FloatUpText>
@@ -49,13 +49,13 @@ const LocationSection = () => {
           </div>
 
           {/* Map */}
-         <motion.div
-  className="w-full flex justify-center overflow-hidden mt-6 md:mt-10"
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: false, amount: 0.3 }}
-  transition={{ duration: 0.8 }}
->
+          <motion.div
+            className="w-full flex justify-center overflow-hidden mt-6 md:mt-10"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.8 }}
+          >
             <img
               src="/locatiomap.webp"
               alt="Location Map"
@@ -93,7 +93,7 @@ const LocationSection = () => {
               onClick={() =>
                 openModal({ initialValues: { message: "Request Site Visit" } })
               }
-              className="bg-[#FF5A00] hover:bg-[#E04F00] text-white px-10 py-4 uppercase text-xs font-bold tracking-[0.2em] shadow-lg whitespace-nowrap"
+              className="bg-[#FF5A00] hover:bg-[#E04F00] text-white px-10 py-4 uppercase text-[11px] font-bold tracking-[0.2em] rounded shadow-[0_10px_20px_rgba(255,90,0,0.3)] hover:scale-105 hover:-translate-y-0.5 active:scale-95 transition-all duration-300"
             >
               REQUEST SITE VISIT
             </motion.button>

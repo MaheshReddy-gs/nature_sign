@@ -90,7 +90,7 @@ export default function BuilderSection() {
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
                             transition={{ delay: 0.5 }}
-                            className="mt-10 px-8 py-3 w-fit border border-white  text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-[#2D8EA2] transition-colors duration-300 rounded-[2px]"
+                            className="mt-10 px-8 py-3 w-fit border border-white text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-[#2D8EA2] transition-colors duration-300 rounded-[2px] font-bold"
                             onClick={() => openModal({ initialValues: { message: "Request Site Visit" } })}
                         >
                             Request Site Visit

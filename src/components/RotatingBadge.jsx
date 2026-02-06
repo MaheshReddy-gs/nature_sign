@@ -44,7 +44,7 @@ export function ReraBadge({ size = 120, className = "" }) {
                 <img
                     src="/biappa1.svg"
                     alt="RERA Certified"
-                    style={{ width: size * 0.55, height: size * 0.55 }}
+                    style={{ width: size * 0.66, height: size * 0.55 }}
                     className="object-contain"
                 />
             </div>
@@ -96,7 +96,7 @@ export function BiaapaBadge({ size = 120, className = "" }) {
                 <img
                     src="/Rera1.svg"
                     alt="BIAAPA Approved"
-                    style={{ width: size * 0.33, height: size * 0.33 }}
+                    style={{ width: size * 0.44, height: size * 0.33 }}
                     className="object-contain"
                 />
             </div>

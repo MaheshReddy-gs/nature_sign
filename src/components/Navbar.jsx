@@ -1,4 +1,4 @@
-import { useState,useEffect ,useRef} from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Phone } from 'lucide-react'
 import { useModal } from '../context/ModalContext'
 
@@ -6,16 +6,16 @@ import { useModal } from '../context/ModalContext'
 export default function Navbar() {
   const [ isMobileMenuOpen, setIsMobileMenuOpen ] = useState(false)
   const { openModal } = useModal();
-const [scrolled, setScrolled] = useState(false)
+  const [ scrolled, setScrolled ] = useState(false)
 
 
-useEffect(() => {
-  const onScroll = () => {
-    setScrolled(window.scrollY > window.innerHeight-20)
-  }
-  window.addEventListener('scroll', onScroll)
-  return () => window.removeEventListener('scroll', onScroll)
-}, [])
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > window.innerHeight - 20)
+    }
+    window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   const navItems = [
     { label: 'Overview', id: 'overview' },
@@ -85,10 +85,9 @@ useEffect(() => {
 
       <nav
         className={`fixed top-0 left-0   right-0 z-50 transition-all duration-300
-          ${
-            scrolled || isMobileMenuOpen
-              ? '  bg-white/90 backdrop-blur-sm'
-              : 'bg-gradient-to-b text-white from-black to-transparent'
+          ${scrolled || isMobileMenuOpen
+            ? '  bg-white/90 backdrop-blur-sm'
+            : 'bg-gradient-to-b text-white from-black to-transparent'
           }`}
       >
         <div className="max-w-6xl  mx-auto px-6">
@@ -110,45 +109,46 @@ useEffect(() => {
                 </button>
               ))}
               <a
-              href="tel:+918151884545"
-              className="bg-orange-600 text-white px-5 py-2 rounded hover:bg-orange-700 transition-colors flex items-center gap-2 whitespace-nowrap"
-            >
-              <Phone size={18} strokeWidth={2.5} />
-              <div className="text-left">
-                <div className="font-bold text-xs uppercase tracking-wide">Call</div>
-                <div className="text-[10px] font-medium">+91 81518 84545</div>
-              </div>
-            </a>
+                href="tel:+918151884545"
+                className="bg-[#FF5A00] text-white px-5 py-2 rounded hover:bg-[#E04F00] transition-colors flex items-center gap-2 whitespace-nowrap"
+              >
+                <Phone size={18} strokeWidth={2.5} />
+                <div className="text-left">
+                  <div className="font-bold text-xs uppercase tracking-wide">Call</div>
+                  <div className="text-[13px] font-medium">+91 81518 84545</div>
+                </div>
+              </a>
             </div>
 
             {/* Mobile Menu Button */}
-           <button
+            <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="md:hidden relative w-8 h-8 z-[999] flex items-center justify-center"
               aria-label="Toggle menu"
             >
-             <span
-              className={`absolute h-0.5 w-6 transition-transform duration-300
+              <span
+                className={`absolute h-0.5 w-6 transition-transform duration-300
                 ${isMobileMenuOpen ? 'rotate-45' : '-translate-y-2'}
                 ${isMobileMenuOpen || scrolled ? 'bg-black' : 'bg-white'}
               `}
-             />
-            <span
-              className={`absolute h-0.5 w-6 transition-opacity duration-300
+              />
+              <span
+                className={`absolute h-0.5 w-6 transition-opacity duration-300
                 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}
                 ${isMobileMenuOpen || scrolled ? 'bg-black' : 'bg-white'}
               `}
-             />
-            <span
-              className={`absolute h-0.5 w-6 transition-transform duration-300
+              />
+              <span
+                className={`absolute h-0.5 w-6 transition-transform duration-300
                 ${isMobileMenuOpen ? '-rotate-45' : 'translate-y-2'}
                 ${isMobileMenuOpen || scrolled ? 'bg-black' : 'bg-white'}
               `}
-             />
+              />
             </button>
           </div>
         </div>
       </nav>
+<<<<<<< HEAD
  <div className="fixed bottom-0 left-0  right-0 z-50 md:hidden">
   
           <button
@@ -157,14 +157,24 @@ useEffect(() => {
             }
             className="w-full bg-orange-600 text-white px-6 py-4 
                        hover:bg-orange-700 transition-all duration-300
+=======
+      <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
+
+        <button
+          onClick={() =>
+            openModal({ initialValues: { message: "Request Callback" } })
+          }
+          className="w-full bg-[#FF5A00] text-white px-6 py-4 
+                       hover:bg-[#E04F00] transition-all duration-300
+>>>>>>> 903981c (style: standardize section headers and buttons, update mobile hero badges)
                         flex items-center gap-2 justify-around"
-          >
-            <Phone size={16} strokeWidth={2.5} className='flex-1'/>
-            <span className='flex-3'>Request Callback</span>
-          </button>
-        </div>
-      
-   
+        >
+          <Phone size={16} strokeWidth={2.5} className='flex-1' />
+          <span className='flex-3'>Request Callback</span>
+        </button>
+      </div>
+
+
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div
@@ -191,9 +201,25 @@ useEffect(() => {
                   {item.label}
                 </button>
               ))}
+<<<<<<< HEAD
              
               
              
+=======
+              <a
+                href="tel:+918151884545"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full mt-2 bg-[#FF5A00] text-white px-6 py-3 rounded hover:bg-[#E04F00] transition-colors flex items-center gap-3 justify-center whitespace-nowrap"
+              >
+                <Phone size={18} strokeWidth={2.5} />
+                <div className="text-left">
+                  <div className="font-bold text-xs uppercase tracking-wide">Call</div>
+                  <div className="text-[11px] font-medium">+91 81518 84545</div>
+                </div>
+              </a>
+
+
+>>>>>>> 903981c (style: standardize section headers and buttons, update mobile hero badges)
             </div>
           </div>
         </div>
