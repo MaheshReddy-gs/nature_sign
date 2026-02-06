@@ -54,12 +54,12 @@ function Glance() {
     },
     {
       img: "/highlight_gallery/images/50-40roads.webp",
-      alt: "50, 40 Feet BT Roads",
+      alt: "50-40 Feet BT Roads",
       icon: "/highlight_gallery/icons/5-40roads.svg",
     },
     {
       img: "/highlight_gallery/images/amphitheatre.webp",
-      alt: "Amphitheater",
+      alt: "Amphitheatre",
       icon: "/highlight_gallery/icons/amphitheatre.svg",
     },
     {
@@ -164,7 +164,7 @@ function Glance() {
         <div
           className={`flex flex-col w-full items-center  overflow-hidden transition-[max-height] duration-700 `}
         >
-          <div className="columns-3 max-w-5xl px-6 lg:px-0 w-full gap-1.5 lg:gap-3 lg:columns-4">
+          <div className="columns-3 max-w-5xl px-6 lg:px-0 w-full gap-1.5 lg:gap-3 lg:columns-3">
             {blocks.map((block, index) => (
               <div key={index} className="lg:mb-6 mb-3 break-inside-avoid">
                 <div
@@ -290,7 +290,7 @@ export default function HighlightsSection() {
               Immerse yourself in magical club house experience.
             </span>
             <p className="text-lg mt-5 text-orange-200">
-              luxurious amenities await you at our clubhouse, designed to elevate your lifestyle. Enjoy a refreshing dip in the
+              Luxurious retreat with premium amenities designed to elevate your lifestyle. It provides the perfect blend of comfort and convenience
             </p>
           </FloatUpText>
         </div>

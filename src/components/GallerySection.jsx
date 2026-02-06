@@ -178,7 +178,7 @@ useEffect(() => {
 </div>
 
             {/* MAIN CAROUSEL WRAPPER */}
-            <div className="hidden md:block max-w-6xl px-6 mx-auto relative w-full group">
+            <FloatUpText className="hidden md:block max-w-6xl px-6 mx-auto relative w-full group">
                 <style>{`
                     .hide-scrollbar::-webkit-scrollbar { display: none; }
                     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -276,7 +276,7 @@ useEffect(() => {
                         />
                     ))}
                 </div>
-            </div>
+            </FloatUpText>
 
             {/* LIGHTBOX OVERLAY */}
             {lightboxIndex !== null && (

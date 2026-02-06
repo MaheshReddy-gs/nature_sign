@@ -6,20 +6,20 @@ const LocationSection = () => {
   const { openModal } = useModal();
 
   return (
-    <section id="locations" className="w-full bg-white font-['Montserrat']">
+    <section id="locations" className="w-full bg-white ">
       {/* TOP LOCATION CONTENT */}
       <div className="py-14">
         <div className="max-w-6xl mx-auto px-4">
           {/* Heading */}
           <div className="text-center mb-10">
-            <FloatUpText className="text-[#a1461a] text-center text-xs font-bold tracking-[0.2em] uppercase mb-5 ">LOCATION</FloatUpText>
+            <FloatUpText className="text-[#a1461a] text-center text-xs  tracking-[0.2em] uppercase mb-5 ">LOCATION</FloatUpText>
           </div>
 
           {/* Logo + Address */}
           <div className="w-full flex justify-center mb-6 md:mb-10">
-            <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 md:gap-20 items-start">
+            <div className="grid grid-cols-1    md:grid-cols-2 gap-6 md:gap-20 items-start">
               {/* Logo */}
-              <div className="flex justify-center md:justify-end">
+              <div className="flex justify-center  md:justify-start">
                 <FloatUpText>
                   <img
                     src="/naturesignLogo1.png"
@@ -57,9 +57,9 @@ const LocationSection = () => {
             transition={{ duration: 0.8 }}
           >
             <img
-              src="/locatiomap.webp"
+              src="/locatiomap.jpg"
               alt="Location Map"
-              className="w-full max-w-6xl lg:max-w-5xl h-[260px] sm:h-[320px] md:h-[520px] object-cover md:object-contain"
+              className="w-full max-w-6xl lg:max-w-5xl h-[260px] sm:h-[320px] md:h-[60vh] object-cover object-bottom md:object-contain"
 
             />
           </motion.div>
@@ -68,9 +68,9 @@ const LocationSection = () => {
 
       {/* ✅ BLUE CTA SECTION */}
       <div className="w-full bg-[#2F7F90] py-14">
-        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center md:items-start justify-between gap-10">
+        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center md:items-center justify-between gap-10">
           {/* Left Text */}
-          <div className="text-center md:text-left max-w-3xl">
+          <div className="text-center  md:text-left max-w-3xl">
             <FloatUpText>
               <h2 className="section-heading text-white mb-4">
                 Are you excited about the project?
@@ -78,7 +78,7 @@ const LocationSection = () => {
             </FloatUpText>
 
             <FloatUpText>
-              <p className="text-white text-base leading-relaxed max-w-xl">
+              <p className="text-white  atext-base leading-relaxed max-w-xl">
                 Don't miss the opportunity to own the property in fast growing
                 satellite township of Devanahalli.
               </p>
@@ -88,12 +88,11 @@ const LocationSection = () => {
           {/* Right Button */}
           <FloatUpText>
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            className="bg-[#FF5A00]  hover:bg-[#E04F00] text-white py-4 px-12 rounded shadow-[0_10px_20px_rgba(255,90,0,0.3)] uppercase text-[11px] font-bold tracking-[0.2em] transition-all duration-100"
+            whileTap={{ scale: 1 }}
               onClick={() =>
                 openModal({ initialValues: { message: "Request Site Visit" } })
               }
-              className="bg-[#FF5A00] hover:bg-[#E04F00] text-white px-10 py-4 uppercase text-[11px] font-bold tracking-[0.2em] rounded shadow-[0_10px_20px_rgba(255,90,0,0.3)] hover:scale-105 hover:-translate-y-0.5 active:scale-95 transition-all duration-300"
             >
               REQUEST SITE VISIT
             </motion.button>

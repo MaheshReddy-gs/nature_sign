@@ -96,7 +96,7 @@ const ContactForm = ({ compact = false, onSuccess, initialValues = {} }) => {
                         placeholder="Your Name*"
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full px-6 py-4 bg-[#f2f2f2] rounded-full text-black placeholder-black/60 focus:outline-none focus:ring-1 focus:ring-black"
+                        className="w-full px-6 py-4 bg-[#f2f2f2]   rounded text-black placeholder-black/60 focus:outline-none focus:ring-1 focus:ring-black"
                     />
                     {errors.name && (
                         <p className="text-red-500 text-sm mt-1 ml-2">{errors.name}</p>
@@ -111,7 +111,7 @@ const ContactForm = ({ compact = false, onSuccess, initialValues = {} }) => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-6 py-4 bg-[#f2f2f2] rounded-full text-black placeholder-black/60 focus:outline-none focus:ring-1 focus:ring-black"
+                    className="w-full px-6 py-4 bg-[#f2f2f2]   rounded text-black placeholder-black/60 focus:outline-none focus:ring-1 focus:ring-black"
                 />
             </div>
 
@@ -124,7 +124,7 @@ const ContactForm = ({ compact = false, onSuccess, initialValues = {} }) => {
                         placeholder="Phone Number *"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-6 py-4 bg-[#f2f2f2] rounded-full text-black placeholder-black/60 focus:outline-none focus:ring-1 focus:ring-black"
+                        className="w-full px-6 py-4 bg-[#f2f2f2]   rounded text-black placeholder-black/60 focus:outline-none focus:ring-1 focus:ring-black"
                     />
                     {errors.phone && (
                         <p className="text-red-500 text-sm mt-1 ml-2">{errors.phone}</p>
@@ -138,7 +138,7 @@ const ContactForm = ({ compact = false, onSuccess, initialValues = {} }) => {
                     value={formData.message}
                     onChange={handleChange}
                     rows="1"
-                    className="w-full px-6 py-4 bg-[#f2f2f2] rounded-3xl text-black placeholder-black/60 focus:outline-none focus:ring-1 focus:ring-black resize-none"
+                    className="w-full px-6 py-4 bg-[#f2f2f2]   rounded text-black placeholder-black/60 focus:outline-none focus:ring-1 focus:ring-black resize-none"
                 ></textarea>
             </div>
 
@@ -149,23 +149,16 @@ const ContactForm = ({ compact = false, onSuccess, initialValues = {} }) => {
                 </p>
 
                 {/* Submit Button */}
-                <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className={`group relative py-4 px-8 ${isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#FF5A00] hover:bg-[#E04F00] shadow-[0_10px_20px_rgba(255,90,0,0.3)] hover:scale-105 hover:-translate-y-0.5 active:scale-95'} text-white w-fit font-bold uppercase text-[11px] tracking-[0.2em] rounded transition-all duration-300 flex items-center gap-2`}
-                >
-                    {isSubmitting ? 'Sending...' : 'Get A Call Back'}
-                    {!isSubmitting && (
-                        <svg
-                            className="w-5 h-5 transition-transform group-hover:translate-x-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                        >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                    )}
-                </button>
+               <button
+  type="submit"
+  disabled={isSubmitting}
+  className={`bg-[#FF5A00] hover:bg-[#E04F00] text-white py-4 px-12 rounded shadow-[0_10px_20px_rgba(255,90,0,0.3)] uppercase text-[11px] font-bold tracking-[0.2em] transition-all duration-100 ${
+    isSubmitting ? "opacity-60 cursor-not-allowed" : ""
+  }`}
+>
+  {isSubmitting ? "Sending..." : "Get A Call Back"}
+</button>
+
 
                 {submissionStatus === 'success' && (
                     <p className="text-green-600 font-medium text-sm md:text-base animate-pulse">

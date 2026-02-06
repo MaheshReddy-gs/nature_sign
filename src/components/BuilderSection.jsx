@@ -31,7 +31,7 @@ export default function BuilderSection() {
 
                 {/* TEXT INFO - Right */}
                 <div className="text-center md:text-left w-full md:w-auto">
-                    <h3 className=" text-lg font-bold  #222] leading-none mb-1   ">
+                    <h3 className=" text-lg font-semibold  #222] leading-none mb-1   ">
                         Shreyas Infra Projects Pvt.Ltd.
                     </h3>
                     <p className=" text-base   ">
@@ -43,7 +43,7 @@ export default function BuilderSection() {
             {/* MAIN CONTENT CARD */}
             <div className=" max-w-6xl px-6 mx-auto">
                 <FloatUpText
-                    className="relative w-full overflow-hidden bg-[#2D8EA2] rounded-lg  flex flex-col   md:flex-row"
+                    className="relative w-full overflow-hidden  bg-[#2D8EA2] rounded-lg  flex flex-col   md:flex-row"
 
                 >
                     {/* Decorative Background Circles (Subtle) */}
@@ -51,12 +51,12 @@ export default function BuilderSection() {
                     <div className="absolute bottom-[-50px] right-[40%] w-[300px] h-[300px] bg-white/5 rounded-full blur-3xl pointer-events-none" />
 
                     {/* TEXT CONTENT - Left Side (60%) */}
-                    <div className="relative z-10 w-full   md:w-[55%]   p-8 md:p-10    flex flex-col justify-center text-white order-2   md:order-1">
+                    <div className="relative z-10 w-full py-20   md:w-[55%]   p-8 md:p-10    flex flex-col justify-center text-white order-2   md:order-1">
                         <motion.h3
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 }}
-                            className=" section-heading mb-8  "
+                            className=" section-heading mb-8  pt-10"
                         >
                             Crafting meaningful experiences where
                             every detail is carefully envisioned.
@@ -90,10 +90,10 @@ export default function BuilderSection() {
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
                             transition={{ delay: 0.5 }}
-                            className="mt-10 px-8 py-3 w-fit border border-white text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-[#2D8EA2] transition-colors duration-300 rounded-[2px] font-bold"
+                            className="mt-10 px-8 py-3 w-fit mb-10 border border-white text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-[#2D8EA2] transition-colors duration-300 rounded-[2px] font-bold"
                             onClick={() => openModal({ initialValues: { message: "Request Site Visit" } })}
                         >
-                            Request Site Visit
+                            Visit Shreyas Infra
                         </motion.button>
                     </div>
 

@@ -60,10 +60,7 @@ export default function ProximitySection() {
   return (
     <section id="proximity" className="relative w-full bg-[#FBF6EE] overflow-hidden py-16 lg:py-20">
       {/* Soft corner shapes */}
-      <div className="pointer-events-none absolute -top-28 -left-24 h-60 w-60 rounded-full bg-gradient-to-br from-[#F6D7A7] to-[#F9E7CC] opacity-80" />
-      <div className="pointer-events-none absolute -top-24 -right-20 h-56 w-56 rounded-full bg-gradient-to-br from-[#F7E78C] to-[#CFE8D2] opacity-70" />
-      <div className="pointer-events-none absolute -bottom-32 -left-28 h-72 w-72 rounded-full bg-gradient-to-br from-[#F3D8B6] to-[#EAD6F1] opacity-60" />
-      <div className="pointer-events-none absolute -bottom-28 -right-24 h-64 w-64 rounded-full bg-gradient-to-br from-[#F2E390] to-[#CDE6E0] opacity-70" />
+  
 
       <div className="relative max-w-6xl mx-auto px-6">
       <FloatUpText>
@@ -97,7 +94,7 @@ export default function ProximitySection() {
 
             <motion.div className="flex flex-col justify-center" variants={FADE_UP}>
   <FloatUpText>
-   <h3 className="text-2xl font-semibold text-[#3B3A38] text-black">
+   <h3 className="text-2xl font-semibold  3B3A38] text-black">
       Just 5 mins<br />from STRR
     </h3>
   </FloatUpText>
@@ -116,11 +113,7 @@ export default function ProximitySection() {
     </p>
   </FloatUpText>
 
-  <FloatUpText>
-    <p className="mt-6 text-[11px] tracking-[0.25em] uppercase text-black font-semibold">
-      JUST 5 MIN FROM STRR
-    </p>
-  </FloatUpText>
+  
 </motion.div>
 
           </div>
@@ -143,13 +136,13 @@ export default function ProximitySection() {
             </div>
 
             {/* ✅ CONTENT (IMPORTANT: give padding + min height) */}
-            <div className="relative z-10 px-8 py-12 lg:px-12 lg:py-14">
+            <div className="relative z-10 px-8  shadow-[0_20px_40px_rgba(74,48,33,0.12)] py-12 lg:px-12 lg:py-14">
       
               <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 items-center">
 
                 {/* IMAGE */}
                 <motion.div
-                  className="bg-white p-4 shadow-[0_14px_28px_rgba(78,52,34,0.18)]"
+                  className="bg-white p-4 "
                   variants={IMAGE_FADE}
                 >
                   <div className="aspect-[4/3] overflow-hidden">
@@ -164,12 +157,12 @@ export default function ProximitySection() {
 
         {/* TEXT + LOGOS */}
        <motion.div variants={FADE_UP} className="pt-8 lg:pt-0">
-  <p className="text-black text-[18px] sm:text-[20px] lg:text-2xl leading-snug font-semibold max-w-[420px] break-words">
+  <p className="text-white text-[18px] sm:text-[20px] lg:text-2xl  font-semibold max-w-[420px] break-words">
     Nature&apos;s Sign - Perfectly Positioned Near Reputed Educational Hubs.
   </p>
 
                   {/* LOGO WHITE BOX */}
-                  <div className="mt-6 bg-white p-6 w-full max-w-[560px] shadow-md">
+                  <div className="mt-6 bg-white p-6 w-full max-w-[560px] ">
                     <div className="grid grid-cols-2 gap-x-6 gap-y-5 items-center">
                       {EDUCATION_LOGOS.map((item) => (
                         <div key={item.name} className="flex items-center justify-center">

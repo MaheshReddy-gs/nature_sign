@@ -6,12 +6,12 @@ const ContactSection = () => {
     return (
         <section id="contact" className="relative font-sans">
             {/* 1. Header Title (Outside Background) */}
-            <div className="bg-white pt-16 pb-12 text-center">
-                 <FloatUpText className="text-[#a1461a] text-center text-xs tracking-[0.2em] uppercase mb-5 ">Contact</FloatUpText>
+            <div className="bg-white pt-32 pb-12 text-center">
+                 <FloatUpText className="text-[#  461a] text-center text-xs tracking-[0.2em] uppercase mb-5 ">Contact</FloatUpText>
             </div>
 
             {/* 2. Hero Background with Overlay Form */}
-            <div className="relative w-full h-[850px] lg:h-[700px] bg-gray-800">
+            <div className="relative w-full h-[850px] lg:h-[650px] bg-gray-800">
                 {/* Background Image */}
                 <div className="absolute inset-0">
                     <img
@@ -22,24 +22,25 @@ const ContactSection = () => {
                     />
                     {/* Overlay Gradient */}
                     <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-black/60 mix-blend-multiply" />
-                </div>
-
-                {/* Form Card */}
-                <div className="absolute inset-0 flex items-center justify-center p-4">
+                     <div className="absolute inset-0 flex items-center justify-center p-4   ">
                     <motion.div
-                        className="bg-white rounded-3xl shadow-2xl p-8 lg:p-12 w-full max-w-4xl mx-auto"
+                        className="bg-white rounded-3xl shadow-2xl p-8 lg:p-18 w-full max-w-4xl mx-auto"
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <h1 className="md:text-3xl text-xl text-center text-black mb-12 leading-snug">
-                            Share query by filling out the form, we will assist you at the earliest.
+                        <h1 className="section-heading text-center text-black mb-12 ">
+                            Share query by filling out the form,<br/> we will assist you at the earliest.
                         </h1>
 
                         <ContactForm />
                     </motion.div>
                 </div>
+                </div>
+
+                {/* Form Card */}
+               
             </div>
 
             {/* 3. Footer Section */}

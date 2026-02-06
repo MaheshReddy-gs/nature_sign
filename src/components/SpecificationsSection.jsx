@@ -29,7 +29,7 @@ const SPEC_ITEMS = [
     "Compound wall surrounded all around the project",
     "CCTV surveillance at all major vantage points with individual street monitoring",
   ],
- bg: "bg-[#B7C2A5]", // same green background like image
+ bg: "bg-[#dbe4ce]", // same green background like image
   reverse: true,
   bulletStyle: "dots",
   //textColor: "text-white",
@@ -66,7 +66,7 @@ const SPEC_ITEMS = [
     "Avenue trees along all streets and internal roads",
     "Specially curated parks for aesthetics and recreation",
   ],
-  bg: "bg-[#AEB8C0]",
+  bg: "bg-[#cad1d7]",
   reverse: true, // ✅ content left, image right
   bulletStyle: "dots",
  // textColor: "text-white",
@@ -99,7 +99,7 @@ const SPEC_ITEMS = [
   points: [
     "Luxurious retreat with premium amenities designed to elevate your lifestyle. It provides the perfect blend of comfort and convenience.",
   ],
-  bg: "bg-[#A9CFC2]", // ✅ same green background
+  bg: "bg-[#c8e4da]", // ✅ same green background
   reverse: true, // ✅ image left, text right
   bulletStyle: "dots",
  // textColor: "text-white", // ✅ white like screenshot
@@ -144,13 +144,12 @@ const TEXT_VARIANTS = {
 
 export default function SpecificationsSection() {
   return (
-    <section id="specifications" className="w-full bg-[#F6F3EE] ">
-      <div className="max-w-6xl mx-auto px-6 pt-16 pb-8">
-        <FloatUpText className="text-[#a1461a] text-center text-xs font-bold tracking-[0.2em] uppercase mb-5 ">SPECIFICATIONS</FloatUpText>
-
-      </div>
+    <section id="specifications" className="w-full  ">
+      
 
       <div className="flex flex-col">
+                <FloatUpText className="text-[#a1461a] pt-20 text-center text-xs tracking-[0.2em] uppercase mb-5 ">SPECIFICATIONS</FloatUpText>
+
         {SPEC_ITEMS.map((item) => (
           <div
             key={item.id}

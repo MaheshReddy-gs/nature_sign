@@ -172,7 +172,7 @@ const IntroSection = () => {
                 {/* INTRODUCING */}
                 <motion.p
                     variants={itemVariants}
-                    className="text-[11px] tracking-[0.3em] uppercase mb-4 font-['Montserrat'] text-[#8B4513] font-bold"
+                    className="text-[11px] tracking-[0.2em] uppercase mb-4  text-[#ffffff] "
                 >
                     INTRODUCING
                 </motion.p>
