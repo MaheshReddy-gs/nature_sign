@@ -1,15 +1,13 @@
 import { motion } from 'framer-motion';
 import { FaWhatsapp } from "react-icons/fa";
 import ContactForm from './ContactForm';
-
+import FloatUpText from "./Animations/floatUpText";
 const ContactSection = () => {
     return (
         <section id="contact" className="relative font-sans">
             {/* 1. Header Title (Outside Background) */}
             <div className="bg-white pt-16 pb-12 text-center">
-                <p className="text-[#a1461a] font-bold tracking-[0.2em] text-xs uppercase">
-                    CONTACT
-                </p>
+                 <FloatUpText className="text-[#a1461a] text-center text-xs tracking-[0.2em] uppercase mb-5 ">Contact</FloatUpText>
             </div>
 
             {/* 2. Hero Background with Overlay Form */}
