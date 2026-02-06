@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import FloatUpText from "./Animations/floatUpText";
 
 const images = [
     // Slide 1 (User Requested Order)
@@ -40,14 +41,14 @@ export default function GallerySection() {
     };
 
     return (
-        <section id="gallery" className="w-full min-h-screen bg-white px-4 md:px-16 py-20 relative">
+        <section id="gallery" className="w-full min-h-screen bg-white  py-20 relative">
             {/* TITLE */}
             <div className="text-center mb-10">
-                <p className="text-[12px] tracking-[0.35em] text-orange-600 font-medium">GALLERY</p>
+                <FloatUpText className="text-[#a1461a] text-xs tracking-[0.2em] mb-5 ">GALLERY</FloatUpText>
             </div>
 
             {/* MAIN CAROUSEL WRAPPER */}
-            <div className="relative w-full group">
+            <div className=" max-w-6xl px-6 mx-auto relative w-full group">
                 <style>{`
                     .hide-scrollbar::-webkit-scrollbar { display: none; }
                     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
