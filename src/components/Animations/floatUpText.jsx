@@ -28,7 +28,7 @@ const FloatUpText = ({ children, delay = 0, duration = 0.8, className = '', styl
         ...style,
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
-        transition: `opacity ${duration}s ease-out md:${delay}s, transform ${duration}s ease-out ${delay}s`,
+        transition: `opacity ${duration}s ease-out ${delay}s, transform ${duration}s ease-out ${delay}s`,
       }}
     >
       {children}
