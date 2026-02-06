@@ -1,5 +1,5 @@
 import FloatUpText from './Animations/floatUpText.jsx';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useModal } from '../context/ModalContext.jsx';
 
 
@@ -67,6 +67,8 @@ function TiltCard({ children, className = '' }) {
 
 export default function UnitDetailsSection() {
     const { openModal } = useModal();
+    const [ activeUnit, setActiveUnit ] = useState(0);
+    const scrollRef = useRef(null);
 
     const units = [
         { id: 1, size: '30 x 50 ft', area: '1500 sqft' },
@@ -74,6 +76,35 @@ export default function UnitDetailsSection() {
         { id: 3, size: '60 x 40 ft', area: '2400 sqft' },
         { id: 4, size: '40 x 50 ft', area: '2000 sqft' },
     ];
+
+    const handleScroll = () => {
+        if (scrollRef.current) {
+            const { scrollLeft, clientWidth } = scrollRef.current;
+            const index = Math.round(scrollLeft / clientWidth);
+            setActiveUnit(index);
+        }
+    };
+
+    const scrollToUnit = (index) => {
+        if (scrollRef.current) {
+            const width = scrollRef.current.clientWidth;
+            // Scroll to the specific slide width * index
+            // Or since we use snap-x, just scrolling close to it works, but let's be precise if possible or just use width * index
+            // But width of item is 85vw. The container has overflow. 
+            // Actually, for snap scrolling, creating a ref to children is better, but width calculation works if consistent.
+            // Since elements are 85vw wide, scrollLeft should be index * width of element? 
+            // It's safer to rely on the container width if items are full width, but here items are 85vw.
+            // Let's assume scrollTo works with simple offset for now or try child offset.
+            const childElement = scrollRef.current.children[ index ];
+            if (childElement) {
+                scrollRef.current.scrollTo({
+                    left: childElement.offsetLeft - (scrollRef.current.clientWidth - childElement.clientWidth) / 2, // Center it
+                    behavior: 'smooth'
+                });
+            }
+            setActiveUnit(index);
+        }
+    };
 
     return (
         <section
@@ -93,18 +124,28 @@ export default function UnitDetailsSection() {
 
 
             {/* Content Container - Slides up over the sticky image */}
-            <div className="relative w-full md:h-[40vh] lg:h-[60vh]  bg-[#f8e8d1] px-6 py-10 flex flex-col">
+            <div className="relative w-full md:h-[40vh] lg:h-[60vh] bg-[#f8e8d1] px-6 py-10 flex flex-col">
                 {/* Heading */}
                 <FloatUpText>
-                    <h3 className="text-center text-orange-900 text-lg font-semibold tracking-widest mb-4 uppercase">
-                        Unit Dimensions
+                    <h3 className="text-center text-[#a1461a] text-xs font-bold tracking-[0.2em] mb-5 uppercase">
+                        UNIT DETAILS
                     </h3>
                 </FloatUpText>
 
-                <div className="flex-1  overflow-hidden   min-h-0 mt-2">
-                    <div className="grid  grid-cols-1  h-full md:grid-cols-4 gap-3 lg:gap-6 max-w-5xl mx-auto  overflow-hidden">
+                <div className="flex-1 w-full min-h-0 mt-2 flex flex-col">
+                    {/* Container: Flex row with horizontal scroll on mobile, Grid on desktop */}
+                    <div
+                        ref={scrollRef}
+                        onScroll={handleScroll}
+                        className="flex flex-row md:grid md:grid-cols-4 gap-4 md:gap-3 lg:gap-6 max-w-5xl mx-auto w-full h-[320px] md:h-full overflow-x-auto md:overflow-hidden snap-x snap-mandatory px-4 md:px-0 scrollbar-hide"
+                    >
                         {units.map((unit, idx) => (
-                            <FloatUpText key={unit.id} delay={idx * 0.2} yMultiplier={2}>
+                            <FloatUpText
+                                key={unit.id}
+                                delay={idx * 0.2}
+                                yMultiplier={2}
+                                className="min-w-[85vw] md:min-w-0 md:w-auto shrink-0 snap-center h-full"
+                            >
                                 <TiltCard>
                                     {/* Unit Number */}
                                     <div className="text-4xl sm:text-5xl lg:text-7xl  absolute top-3 left-3 text-transparent  font-extrabold  mb-3 opacity-60" style={{ WebkitTextStroke: "2px white" }}>
@@ -130,6 +171,19 @@ export default function UnitDetailsSection() {
                                     </button>
                                 </TiltCard>
                             </FloatUpText>
+                        ))}
+                    </div>
+
+                    {/* Mobile Dots Navigation */}
+                    <div className="flex md:hidden justify-center mt-6 gap-2">
+                        {units.map((_, index) => (
+                            <button
+                                key={index}
+                                onClick={() => scrollToUnit(index)}
+                                className={`h-2 w-2 rounded-full transition-all duration-300 ${activeUnit === index ? "bg-[#a1461a] w-4" : "bg-orange-200"
+                                    }`}
+                                aria-label={`Go to unit ${index + 1}`}
+                            />
                         ))}
                     </div>
                 </div>

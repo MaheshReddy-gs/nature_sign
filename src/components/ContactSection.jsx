@@ -7,7 +7,7 @@ const ContactSection = () => {
         <section id="contact" className="relative font-sans">
             {/* 1. Header Title (Outside Background) */}
             <div className="bg-white pt-16 pb-12 text-center">
-                <p className="text-[#B96A42] font-bold tracking-[0.2em] text-xs uppercase">
+                <p className="text-[#a1461a] font-bold tracking-[0.2em] text-xs uppercase">
                     CONTACT
                 </p>
             </div>
@@ -17,7 +17,7 @@ const ContactSection = () => {
                 {/* Background Image */}
                 <div className="absolute inset-0">
                     <img
-                        src="/contact_bg.png"
+                        src="/hero_background.webp"
                         alt="Corporate Building"
                         className="w-full h-full object-cover opacity-60"
                         loading="lazy"
