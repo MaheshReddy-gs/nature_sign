@@ -11,7 +11,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const onScroll = () => {
-      setScrolled(window.scrollY >  20)
+      setScrolled(window.scrollY > 20)
     }
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
@@ -29,16 +29,55 @@ export default function Navbar() {
     { label: 'Contact', id: 'contact' },
   ]
 
+  // Custom smooth scroll function for slower duration
+  const smoothScrollTo = (targetY, duration = 2000) => {
+    const startY = window.scrollY;
+    const distance = targetY - startY;
+    let startTime = null;
+
+    const animation = (currentTime) => {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const progress = Math.min(timeElapsed / duration, 1);
+
+      // Easing function (easeInOutCubic)
+      const ease = progress < 0.5
+        ? 4 * progress * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+      window.scrollTo(0, startY + (distance * ease));
+
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation);
+      }
+    };
+
+    requestAnimationFrame(animation);
+  };
+
   const handleNavClick = (sectionId) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    } else if (sectionId === 'hero') {
-      // fallback to top
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+    setIsMobileMenuOpen(false);
+
+    let targetPosition = 0;
+    const startPosition = window.scrollY;
+
+    if (sectionId !== 'hero') {
+      const element = document.getElementById(sectionId);
+      if (!element) return;
+
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      targetPosition = elementPosition + window.scrollY - headerOffset;
     }
-    setIsMobileMenuOpen(false)
+
+    const distance = Math.abs(targetPosition - startPosition);
+    // Dynamic duration based on distance: Min 1000ms, Max 2500ms
+    // Factor 0.8 means 1000px takes +800ms
+    const calculatedDuration = Math.min(2500, Math.max(1000, distance * 0.8));
+
+    smoothScrollTo(targetPosition, calculatedDuration);
   }
+
 
   return (
     <>
@@ -110,7 +149,7 @@ export default function Navbar() {
                   {item.label}
                 </button>
               ))}
-              
+
             </div>
 
             {/* Mobile Menu Button */}
@@ -139,17 +178,17 @@ export default function Navbar() {
               />
             </button>
           </div><a
-                href="tel:+918151884545"
-                className="bg-[#97390b] hidden  text-white      py-2  w-42 hover:bg-[#E04F00] transition-colors md:flex items-center gap-2 px-2 duration-500"
-              >
-               <div>
-                </div>
-                 <img src='call.svg' className='h-5 ' />
-                <div className="text-left      ">
-                  <div className=" text-xs uppercase w-full">Call</div>
-                  <div className="text-xs  w-fit">+91 81518 84545</div>
-                </div>
-              </a>
+            href="tel:+918151884545"
+            className="bg-[#97390b] hidden  text-white      py-2  w-42 hover:bg-[#E04F00] transition-colors md:flex items-center gap-2 px-2 duration-500"
+          >
+            <div>
+            </div>
+            <img src='call.svg' className='h-5 ' />
+            <div className="text-left      ">
+              <div className=" text-xs uppercase w-full">Call</div>
+              <div className="text-xs  w-fit">+91 81518 84545</div>
+            </div>
+          </a>
         </div>
       </nav>
       <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
