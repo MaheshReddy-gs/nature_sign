@@ -44,7 +44,7 @@ const ContactSection = () => {
             </div>
 
             {/* 3. Footer Section */}
-            <footer className="bg-[#1C1C1C] text-gray-400 py-12 px-6 relative z-10">
+            <footer className="bg-[#1C1C1C] text-gray-400 py-12 pb-20 px-6 relative z-10">
                 {/* ✅ WhatsApp Icon exactly on footer edge */}
                 <a
                     href="https://wa.me/919999999999"
@@ -79,11 +79,43 @@ const ContactSection = () => {
 
                         <div className="flex items-center gap-4 text-xs font-medium text-gray-500">
                             <span>Follow us on</span>
-                            <div className="flex gap-3 text-sm">
-                                <a href="#" className="hover:text-white transition-colors"><i className="fab fa-linkedin-in"></i> in</a>
-                                <a href="#" className="hover:text-white transition-colors"><i className="fab fa-instagram"></i> ig</a>
-                                <a href="#" className="hover:text-white transition-colors"><i className="fab fa-facebook-f"></i> fb</a>
-                            </div>
+                            <div className="flex gap-3">
+  <a
+    href="https://www.linkedin.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="LinkedIn"
+  >
+    <img
+      src="/LinkedIn.svg"
+      className="w-4 h-4 opacity-70 hover:opacity-100 cursor-pointer transition"
+    />
+  </a>
+
+  <a
+    href="https://www.instagram.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Instagram"
+  >
+    <img
+      src="/insta.svg"
+      className="w-4 h-4 opacity-70 hover:opacity-100 cursor-pointer transition"
+    />
+  </a>
+
+  <a
+    href="https://www.facebook.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Facebook"
+  >
+    <img
+      src="/facebook.svg"
+      className="w-4 h-4 opacity-70 hover:opacity-100 cursor-pointer transition"
+    />
+  </a>
+</div>
                         </div>
                     </div>
                 </div>

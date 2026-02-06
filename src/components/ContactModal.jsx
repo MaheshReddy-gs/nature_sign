@@ -70,8 +70,8 @@ const ContactModal = () => {
                             <X size={32} />
                         </button>
 
-                        <h1 className="md:text-3xl text-xl text-center text-black mb-12 leading-snug font-medium">
-                            Share query by filling out the form, we will assist you at the earliest.
+                        <h1 className="section-heading text-center text-black mb-12 ">
+                            Share query by filling out the form,<br/> we will assist you at the earliest.
                         </h1>
 
                         <ContactForm {...modalProps} onSuccess={handleFormSuccess} />

@@ -171,9 +171,9 @@ className="text-[#a1461a] text-xs pt-30 text-center    tracking-[0.2em] mb-5 ">
                         
                             OVERVIEW
                         </FloatUpText>
-                <div className="flex flex-col  lg:flex-row gap-10 lg:gap-14 items-start">
-                    <motion.div
-                        className="lg:w-[240px] flex-shrink-0"
+                <div className="flex flex-col mx-auto max-w-5xl lg:flex-row   gap-10 lg:gap-14 items-start">
+                    {/* <motion.div
+                        className="lg:w-[240px]  flex-shrink-0"
                         style={{ y: yImage }}
                         variants={IMAGE_VARIANTS}
                     >
@@ -182,11 +182,11 @@ className="text-[#a1461a] text-xs pt-30 text-center    tracking-[0.2em] mb-5 ">
                             alt="Decorative leaves"
                             animate={IMAGE_FLOAT_ANIMATION}
                             transition={IMAGE_FLOAT_TRANSITION}
-                            className="w-[175px] lg:w-[220px] h-auto -mt-65"
+                            className="w-[175px] lg:w-[220px]  h-auto   -mt-65"
                         />
-                    </motion.div>
+                    </motion.div> */}
 
-                    <div className="flex-1    px-6 ">
+                    <div className="flex-1     px-6 ">
                         {/* Eyebrow */}
                         
 

@@ -156,16 +156,16 @@ export default function ProximitySection() {
                 </motion.div>
 
         {/* TEXT + LOGOS */}
-       <motion.div variants={FADE_UP} className="pt-8 lg:pt-0">
-  <p className="text-white text-[18px] sm:text-[20px] lg:text-2xl  font-semibold max-w-[420px] break-words">
+       <motion.div className="pt-8 lg:pt-0">
+  <p className="text-white  text-[18px] sm:text-[20px] lg:text-2xl  font-semibold max-w-[420px] break-words">
     Nature&apos;s Sign - Perfectly Positioned Near Reputed Educational Hubs.
   </p>
 
                   {/* LOGO WHITE BOX */}
-                  <div className="mt-6 bg-white p-6 w-full max-w-[560px] ">
+                  <div className="mt-6  bg-white p-6 w-full max-w-[560px] ">
                     <div className="grid grid-cols-2 gap-x-6 gap-y-5 items-center">
                       {EDUCATION_LOGOS.map((item) => (
-                        <div key={item.name} className="flex items-center justify-center">
+                        <div key={item.name} className="flex  items-center justify-center">
                           <img
                             src={item.src}
                             alt={item.name}

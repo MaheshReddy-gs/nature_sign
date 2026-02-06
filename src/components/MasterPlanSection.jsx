@@ -20,7 +20,7 @@ const MasterPlanSection = () => {
       <div className="relative     mx-auto px-6 z-10 w-full h-full flex flex-col justify-center">
 
  <div className="absolute top-0 left-0 w-full bg-white pt-30 pb-10 z-10 flex  items-center justify-center">
-        <FloatUpText className="text-[#  461a]  text-center text-xs font-bold tracking-[0.2em] uppercase mb-5">
+        <FloatUpText className="text-[#a1461a]  text-center text-xs tracking-[0.2em] uppercase mb-5">
           MASTER PLAN
         </FloatUpText>
       </div>
@@ -30,7 +30,7 @@ const MasterPlanSection = () => {
 
           {/* LEFT SIDE: Plot sizes + Logo (ONLY this will move) */}
           <motion.div
-            className="relative z-10 flex flex-col gap-10 lg:gap-14 w-full  lg:w-[260px]
+            className="relative  z-10 flex flex-col gap-10 lg:gap-14 w-full  lg:w-[260px]
            items-center lg:items-start mx-auto lg:mx-0
            lg:absolute lg:left-[260px] lg:top-[180px]"
             initial={{ opacity: 0, x: -30 }}
@@ -40,7 +40,7 @@ const MasterPlanSection = () => {
           >
             {/* Plot Sizes */}
             <div>
-              <h3 className="text-black font-semibold text-base mb-2">
+              <h3 className="text-black font-semibold text-base mt-4 mb-2">
                 Plot Sizes
               </h3>
 
