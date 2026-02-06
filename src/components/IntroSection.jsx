@@ -40,7 +40,7 @@ const IntroSection = () => {
                 md:flex md:justify-between">
                         {/* Item */}
                         <FloatUpText
-                            className=" md:border-r md:border-[#E6DDD0] md:pr-6"
+                            className=" flex flex-col justify-start h-full md:border-r md:border-[#E6DDD0]  md:pr-6"
                                
                         >
                             <p className="text-[#a1461a] text-xs    tracking-[0.2em] ">
@@ -52,7 +52,7 @@ const IntroSection = () => {
                         </FloatUpText>
 
                         <FloatUpText
-                            className="md:border-r md:border-[#E6DDD0] md:px-6"
+                            className=" md:border-r flex flex-col justify-start h-full md:border-[#E6DDD0] md:px-6"
                                
                         >
                             <p className="text-[#a1461a] text-xs    tracking-[0.2em] ">
@@ -64,7 +64,7 @@ const IntroSection = () => {
                         </FloatUpText>
 
                         <FloatUpText
-                            className="md:border-r md:border-[#E6DDD0] md:px-6"
+                            className="flex flex-col justify-start h-full md:border-r md:border-[#E6DDD0] md:px-6"
                                
                         >
                             <p className="text-[#a1461a] text-xs    tracking-[0.2em] ">
@@ -106,11 +106,8 @@ const IntroSection = () => {
                     fontSize: "10px",
                     letterSpacing: "0.1em",
                     padding: "8px 24px",
-                    fontFamily: "Montserrat, sans-serif",
-                    fontWeight: 600,
                     borderBottomLeftRadius: "4px",
                     borderBottomRightRadius: "4px",
-                    whiteSpace: "nowrap"
                 }}
             >
                 RERA Reg. NO. PRM/KA/RERA/1250/303/PR/041125/008220
