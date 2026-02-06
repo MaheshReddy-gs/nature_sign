@@ -163,10 +163,10 @@ export default function ProximitySection() {
                 </motion.div>
 
         {/* TEXT + LOGOS */}
-        <motion.div variants={FADE_UP}>
-          <p className="text-white text-2xl leading-snug font-semibold max-w-[420px]">
-            Nature&apos;s Sign - Perfectly Positioned Near Reputed Educational Hubs.
-          </p>
+       <motion.div variants={FADE_UP} className="pt-8 lg:pt-0">
+  <p className="text-black text-[18px] sm:text-[20px] lg:text-2xl leading-snug font-semibold max-w-[420px] break-words">
+    Nature&apos;s Sign - Perfectly Positioned Near Reputed Educational Hubs.
+  </p>
 
                   {/* LOGO WHITE BOX */}
                   <div className="mt-6 bg-white p-6 w-full max-w-[560px] shadow-md">
