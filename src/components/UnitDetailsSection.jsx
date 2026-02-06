@@ -75,7 +75,7 @@ export default function UnitDetailsSection() {
 >
     {/* Background Image - Sticky, natural size */}
     <div
-        className="sticky h-[70vh]  top-0 left-0 w-full bg-[#f8e8d1]   flex items-center justify-center -z-10"
+        className="sticky lg:h-[70vh]  top-0 left-0 w-full bg-[#f8e8d1]   flex items-center justify-center -z-10"
     >
          <img
     src="/unitDetails_background.webp"
@@ -88,7 +88,7 @@ export default function UnitDetailsSection() {
             {/* <div className="h-[40vh]"></div> */}
 
             {/* Content Container - Slides up over the sticky image */}
-            <div className="relative w-full md:h-[60vh]  bg-[#f8e8d1] px-6 py-10 flex flex-col">
+            <div className="relative w-full md:h-[40vh] lg:h-[60vh]  bg-[#f8e8d1] px-6 py-10 flex flex-col">
                 {/* Heading */}
                 <FloatUpText>
                     <h3 className="text-center text-orange-900 text-lg font-semibold tracking-widest mb-4 uppercase">
@@ -97,7 +97,7 @@ export default function UnitDetailsSection() {
                 </FloatUpText>
 
                 <div className="flex-1  overflow-hidden   min-h-0 mt-2">
-                    <div className="grid  grid-cols-1  h-full md:grid-cols-4 gap-3 md:gap-6 max-w-5xl mx-auto  overflow-hidden">
+                    <div className="grid  grid-cols-1  h-full md:grid-cols-4 gap-3 lg:gap-6 max-w-5xl mx-auto  overflow-hidden">
                         {units.map((unit, idx) => (
                             <FloatUpText key={unit.id} delay={idx * 0.2} yMultiplier={2}>
                                 <TiltCard>
