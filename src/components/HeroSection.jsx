@@ -18,15 +18,16 @@ export default function Section1() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/30"></div>
 
       {/* Content Container */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center lg:text-left">
+      <div className="relative z-10 max-w-5xl  mx-auto px-6 text-center md:text-left">
+      
         <img
           src="/hero_tags.webp"
           alt="Badges"
-          className="-translate-x-5 mb-5 h-20 object-contain"
+          className=" -translate-x-5 mb-5 h-16  md:h-20 object-contain"
         />
 
         {/* Main Heading */}
-        <AnimatedHeading className="md:text-4xl  text-3xl lg:text-6xl font-bold text-white mb-8 leading-tight">
+        <AnimatedHeading className="md:text-4xl  text-3xl md:text-6xl font-bold text-white mb-8 leading-tight">
           Nature's canvas,{'\n'}crafted with finesse.
         </AnimatedHeading>
         {/* Subheading */}
@@ -38,7 +39,7 @@ export default function Section1() {
 
           </p>
           {/* CTA Button */}
-          <div className="flex justify-center lg:justify-start">
+          <div className="flex justify-center md:justify-start">
             <button
               onClick={() => openModal({ initialValues: { message: "Enquiry" } })}
               className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 px-10 rounded transition-colors uppercase text-sm tracking-widest"

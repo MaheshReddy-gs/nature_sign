@@ -163,7 +163,7 @@ function Glance() {
     <section className="w-full bg-[#fbfaf6] py-20">
       <div className="mx-auto flex w-full items-center flex-col">
         <div
-          className={`flex flex-col w-full items-center  overflow-hidden transition-[max-height] duration-700 ${mobileExpanded ? "max-h-[2000px]" : "max-h-[60vh] lg:max-h-full"
+          className={`flex flex-col w-full items-center  overflow-hidden transition-[max-height] duration-700 ${mobileExpanded ? "max-h-[2000px]" : "max-h-[60vh] md:max-h-[40vh] lg:max-h-full"
             }`}
         >
           <div className="columns-3 max-w-5xl px-6 lg:px-0 w-full gap-1.5 lg:gap-3 lg:columns-4">
@@ -279,12 +279,12 @@ export default function HighlightsSection() {
         <FloatUpText className="text-white section-heading   ">
           Project highlights at a glance
         </FloatUpText>
-        <div className="w-full h-full flex lg:grid my-10 grid-cols-2 grid-rows-2 gap-10">
+        <div className="w-full h-full flex flex-col lg:grid my-10 grid-cols-2 grid-rows-2 gap-10">
           <FloatUpText className="row-span-2 mb-5">
             <RevealImage
               src="/Highlights_image2.webp"
               alt="Highlight 2"
-              className="w-full h-auto max-h-[70vh] rounded-lg lg:rounded-none object-cover"
+              className="lg:w-full h-auto md:max-h-[40vh] lg:max-h-[70vh] rounded-lg lg:rounded-none  object-cover"
             />
           </FloatUpText>
 
