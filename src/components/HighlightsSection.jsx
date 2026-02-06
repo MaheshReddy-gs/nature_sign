@@ -253,15 +253,15 @@ function Glance() {
     <section className="w-full bg-[#fbfaf6] py-20">
       <div className="mx-auto flex w-full items-center flex-col">
         <div
-          className={`flex flex-col w-full items-center  overflow-hidden transition-[max-height] duration-700 ${mobileExpanded ? "max-h-[2000px]" : "max-h-[60vh] md:max-h-full"
+          className={`flex flex-col w-full items-center  overflow-hidden transition-[max-height] duration-700 ${mobileExpanded ? "max-h-[2000px]" : "max-h-[60vh] lg:max-h-full"
             }`}
         >
-          <div className="columns-3 max-w-5xl px-6 md:px-0  w-full gap-1.5 lg:gap-3 md:columns-3 lg:columns-4">
+          <div className="columns-3 max-w-5xl px-6 lg:px-0  w-full gap-1.5 lg:gap-3 lg:columns-3 lg:columns-4">
             {blocks.map((block, index) => (
-              <div key={index} className="md:mb-6 mb-3 break-inside-avoid">
+              <div key={index} className="lg:mb-6 mb-3 break-inside-avoid">
                 <div
                   data-modal-img={block.img}
-                  className="group relative rounded-lg md:rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+                  className="group relative rounded-lg lg:rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
                   onClick={(e) => openModal(block, e)}
                 >
                   {/* Main Image */}
@@ -280,7 +280,7 @@ function Glance() {
                       <SvgIcon
                         src={block.icon}
                         color="#f87130"
-                        className="w-10  h-10 md:w-12 md:h-12 object-contain overflow-hidden"
+                        className="w-10  h-10 lg:w-12 lg:h-12 object-contain overflow-hidden"
                       />
 
 
@@ -300,9 +300,9 @@ function Glance() {
 
         {/* See More Button - mobile only */}
         {!mobileExpanded && (
-          <div className="bg-white/90 md:hidden -my-10 z-50 mx-6 flex justify-center w-full py-2">
+          <div className="bg-white/90 lg:hidden -my-10 z-50 mx-6 flex justify-center w-full py-2">
             <button
-              className="px-6 py-2 uppercase text-xs tracking-[0.2em] rounded-md md:hidden"
+              className="px-6 py-2 uppercase text-xs tracking-[0.2em] rounded-md lg:hidden"
               onClick={() => setMobileExpanded(true)}
             >
               See More
@@ -362,8 +362,8 @@ export default function HighlightsSection() {
   return (<>
 
       <section id="highlights" className="w-full h-auto min-h-[40vh] bg-[#a1461a]
-        pt-20 pb-0 md:pb-0 flex flex-col items-center justify-center">
-      <div className="max-w-5xl  px-6 md:px-0 w-full   flex flex-col items-center justify-between h-full text-center">
+        pt-20 pb-0 lg:pb-0 flex flex-col items-center justify-center">
+      <div className="max-w-5xl  px-6 lg:px-0 w-full   flex flex-col items-center justify-between h-full text-center">
         <FloatUpText className="text-orange-200 text-xs tracking-[0.2em] mb-5 ">
           HIGHLIGHTS
         </FloatUpText>
@@ -375,7 +375,7 @@ export default function HighlightsSection() {
             <RevealImage
               src="/Highlights_image2.webp"
               alt="Highlight 2"
-              className="w-full h-auto  max-h-[70vh] rounded-lg md:rounded-none h-max-[70vh] object-cover"
+              className="w-full h-auto  max-h-[70vh] rounded-lg lg:rounded-none h-max-[70vh] object-cover"
             />
           </FloatUpText>
 
@@ -383,12 +383,12 @@ export default function HighlightsSection() {
             <RevealImage
               src="/Highlights_image1.webp"
               alt="Highlight 1"
-              className="w-full hidden md:flex h-auto object-cover  "
+              className="w-full hidden lg:flex h-auto object-cover  "
             />
           </FloatUpText>
 
 
-          <FloatUpText className="w-full h-full md:text-left text-white">
+          <FloatUpText className="w-full h-full lg:text-left text-white">
             <span className="  section-heading ">
               Immerse yourself in magical club house expernce.
             </span>
