@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
-import RevealImageAnimation from "../components/RevealImageAnimation";
+import RevealImage from "./Animations/TopDownImageReveal";
 import FloatUpText from "./Animations/floatUpText";
 const SPEC_ITEMS = [
   {
     id: 1,
     image: "/infrastructure.webp",
     alt: "Roads and pathways",
-    label: "INFRASTRUCTURE:",
+    label: "Infrastructure:",
     title: "Roads and Pathways",
     points: [
       "15 mts and 12 mts wide internal roads as per design",
@@ -17,23 +17,23 @@ const SPEC_ITEMS = [
     reverse: false,
     bulletStyle: "line",
   },
-  {
-    id: 2,
-    image: "/security.webp",
-    alt: "Security",
-    label: "SECURITY",
-    title: "",
-    points: [
-      "Grand entrance portal with security kiosk as per design",
-      "24/7 security with boom barriers at entry / exit gates",
-      "Compound wall surrounded all around the project",
-      "CCTV surveillance at all major vantage points with individual street monitoring",
-    ],
-    bg: "bg-[#8E9B79]", // same green background like image
-    reverse: true,
-    bulletStyle: "dots",
-    //textColor: "text-white",
-  },
+{
+  id: 2,
+  image: "/security.webp",
+  alt: "Security",
+  label: "Security",
+  title: "",
+  points: [
+    "Grand entrance portal with security kiosk as per design",
+    "24/7 security with boom barriers at entry / exit gates",
+    "Compound wall surrounded all around the project",
+    "CCTV surveillance at all major vantage points with individual street monitoring",
+  ],
+ bg: "bg-[#B7C2A5]", // same green background like image
+  reverse: true,
+  bulletStyle: "dots",
+  //textColor: "text-white",
+},
 
 
   // ✅ ELECTRICAL (same like screenshot)
@@ -41,7 +41,7 @@ const SPEC_ITEMS = [
     id: 3,
     image: "/streetlight.webp",
     alt: "Electrical",
-    label: "ELECTRICAL",
+    label: "Electrical",
     title: "",
     points: [
       "HT works, LT works, Feeder pillars, and RMUs for power supply—capacity & location as per design",
@@ -55,55 +55,55 @@ const SPEC_ITEMS = [
   },
 
   // ✅ LANDSCAPING (exact like your new screenshot)
-  {
-    id: 4,
-    image: "/landscaping.webp",
-    alt: "Landscaping",
-    label: "LANDSCAPING",
-    title: "",
-    points: [
-      "Well-designed landscaped parks and open spaces with lighting fixtures",
-      "Avenue trees along all streets and internal roads",
-      "Specially curated parks for aesthetics and recreation",
-    ],
-    bg: "bg-[#7E8D98]",
-    reverse: true, // ✅ content left, image right
-    bulletStyle: "dots",
-    // textColor: "text-white",
-  },
-  {
-    id: 5,
-    image: "/plumbing.webp", // <-- your image
-    alt: "Plumbing",
-    label: "PLUMBING",
-    title: "",
-    points: [
-      "Irrigation network for landscape areas",
-      "Underground water supply system using UPVC pipes for domestic use",
-      "Water & sewerage plumbing lines are terminated within each plot",
-      "Underground sump of suitable capacity with sufficient head pressure",
-      "Rainwater Harvesting System",
-      "Sewage Treatment Plant (STP) of required capacity, positioned as per the layout",
-    ],
-    bg: "bg-[#DDECE3]", // ✅ same light green background
-    reverse: false, // ✅ image left, text right
-    bulletStyle: "dots",
-    // textColor: "text-[#44584F]",
-  },
-  {
-    id: 6,
-    image: "/clubhouse.webp",
-    alt: "Club House",
-    label: "CLUB HOUSE",
-    title: "",
-    points: [
-      "Luxurious retreat with premium amenities designed to elevate your lifestyle. It provides the perfect blend of comfort and convenience.",
-    ],
-    bg: "bg-[#78A99A]", // ✅ same green background
-    reverse: true, // ✅ image left, text right
-    bulletStyle: "dots",
-    // textColor: "text-white", // ✅ white like screenshot
-  },
+ {
+  id: 4,
+  image: "/landscaping.webp",
+  alt: "Landscaping",
+  label: "Landscaping",
+  title: "",
+  points: [
+    "Well-designed landscaped parks and open spaces with lighting fixtures",
+    "Avenue trees along all streets and internal roads",
+    "Specially curated parks for aesthetics and recreation",
+  ],
+  bg: "bg-[#AEB8C0]",
+  reverse: true, // ✅ content left, image right
+  bulletStyle: "dots",
+ // textColor: "text-white",
+},
+{
+  id: 5,
+  image: "/plumbing.webp", // <-- your image
+  alt: "Plumbing",
+  label: "Plumbing",
+  title: "",
+  points: [
+    "Irrigation network for landscape areas",
+    "Underground water supply system using UPVC pipes for domestic use",
+    "Water & sewerage plumbing lines are terminated within each plot",
+    "Underground sump of suitable capacity with sufficient head pressure",
+    "Rainwater Harvesting System",
+    "Sewage Treatment Plant (STP) of required capacity, positioned as per the layout",
+  ],
+  bg: "bg-[#DDECE3]", // ✅ same light green background
+  reverse: false, // ✅ image left, text right
+  bulletStyle: "dots",
+ // textColor: "text-[#44584F]",
+},
+{
+  id: 6,
+  image: "/clubhouse.webp",
+  alt: "Club House",
+  label: "Club House",
+  title: "",
+  points: [
+    "Luxurious retreat with premium amenities designed to elevate your lifestyle. It provides the perfect blend of comfort and convenience.",
+  ],
+  bg: "bg-[#A9CFC2]", // ✅ same green background
+  reverse: true, // ✅ image left, text right
+  bulletStyle: "dots",
+ // textColor: "text-white", // ✅ white like screenshot
+},
 
 ];
 
@@ -171,12 +171,12 @@ export default function SpecificationsSection() {
                 variants={MEDIA_VARIANTS}
               >
                 {/* ✅ image frame exactly */}
-                <div className="h-[300px] sm:h-[400px] lg:h-[500px] aspect-[4/5] overflow-hidden">
-                  <RevealImageAnimation
-                    image={item.image}
-                    alt={item.alt}
-                    className="w-full h-full"
-                  />
+    <div className="h-[300px] sm:h-[400px] lg:h-[500px] aspect-[4/5] overflow-hidden">
+               <RevealImage
+  src={item.image}
+  alt={item.alt}
+  className="w-full h-full"
+/>
                 </div>
               </motion.div>
 
@@ -188,14 +188,15 @@ export default function SpecificationsSection() {
                   <p className="section-heading text-black">{item.label}</p>
                 </FloatUpText>
 
-                {/* title only for infra sections */}
-                {item.title ? (
-                  <FloatUpText>
-                    <h3 className="mt-1 text-[13px] tracking-[0.2em] uppercase font-semibold text-black">
-                      {item.title}
-                    </h3>
-                  </FloatUpText>
-                ) : null}
+  {/* title only for infra sections */}
+  {item.title ? (
+    <FloatUpText>
+ <p className="mt-2 text-black text-left text-xs tracking-[0.2em] uppercase mb-5 ">
+  {item.title}
+</p>
+
+    </FloatUpText>
+  ) : null}
 
                 {/* CONTENT */}
                 <div className="mt-6">
