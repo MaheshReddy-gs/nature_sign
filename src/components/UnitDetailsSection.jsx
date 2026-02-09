@@ -130,7 +130,7 @@ export default function UnitDetailsSection() {
         >
             {/* Background Image - Sticky, natural size */}
             <div
-                className="sticky lg:h-[70vh]  top-0 left-0 w-full bg-[#f8e8d1]   flex items-center justify-center -z-10"
+                className="sticky lg:h-[70vh] top-16 md:top-0 left-0 w-full bg-[#f8e8d1]   flex items-center justify-center -z-10"
             >
                 <img
                     src="/unitDetails_background.webp"
