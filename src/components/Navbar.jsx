@@ -206,7 +206,7 @@ export default function Navbar() {
           onClick={() =>
             openModal({ initialValues: { message: "Request Callback" } })
           }
-          className="w-full bg-[#FF5A00] flex-3 text-white px-6 py-4 
+          className="w-full uppercase text-xs bg-[#FF5A00] flex-3 text-white px-6 py-4 
                        hover:bg-[#E04F00] transition-all duration-300
                         flex items-center gap-2 justify-around"
         >

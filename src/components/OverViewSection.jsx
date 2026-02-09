@@ -97,9 +97,9 @@ const OverviewDetailsSection = () => {
     const yImage = useTransform(scrollYProgress, [ 0, 1 ], [ "0%", "-15%" ]);
 
     return (
-        <section id="overview" ref={sectionRef} className="relative overflow-hidden  md:h-screen flex flex-col justify-center  bg-[#F7F2EA]">
+        <section id="overview" ref={sectionRef} className="relative overflow-hidden   md:h-screen flex flex-col justify-center  bg-[#F7F2EA]">
             {/* Left Animated Wave Group (SVG) */}
-            <motion.div style={{ y: yBackground }} className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+            <motion.div style={{ y: yBackground }} className="  hidden md:block pointer-events-none absolute inset-0 z-0 overflow-hidden">
                 <svg className="absolute top-0 left-0 h-full w-[300px] lg:w-[400px]" preserveAspectRatio="none" viewBox="0 0 100 800">
                     <motion.path
                         initial={{ d: "M0,0 C30,200 80,400 0,800 L-50,800 L-50,0 Z" }}
@@ -161,13 +161,13 @@ const OverviewDetailsSection = () => {
             </motion.div>
 
             <motion.div
-                className="relative w-full max-w-[1400px] mx-auto px-2 lg:px-16 py-10 lg:py-12"
+                className="relative w-full  max-w-[1400px] mx-auto px-2 lg:px-16 py-16 lg:py-12"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.2 }}
                 variants={CONTAINER_VARIANTS}
             > <FloatUpText
-className="text-[#a1461a] text-xs pt-30 text-center    tracking-[0.2em] mb-5 ">                           
+className="text-[#a1461a] text-xs md:pt-30 text-center     tracking-[0.2em] mb-5 ">                           
                         
                             OVERVIEW
                         </FloatUpText>

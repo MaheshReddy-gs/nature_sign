@@ -29,7 +29,7 @@ const IntroSection = () => {
     };
 
     return (<>
-    <section className='relative flex '>
+    <section className='relative flex  '>
 
        
         <div                 className=" bg-[#F7F2EA] top-0  left-1/2 transform min-h-[20vh] flex w-screen justify-center items-center   z-30 pt-10"
@@ -114,7 +114,7 @@ const IntroSection = () => {
             </motion.div>
            </section>
         <section
-            className="relative py-5 md:py-0 md:h-screen w-full overflow-hidden"
+            className="relative py-16 md:py-0 md:h-screen w-full overflow-hidden"
             style={{
                 background:
                     "linear-gradient(135deg, #A5B03B 0%, #D4C94A 30%, #E8C55A 50%, #EFB86A 75%, #D8A85F 100%)",

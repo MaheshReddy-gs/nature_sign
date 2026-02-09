@@ -30,7 +30,7 @@ const ContactSection = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <h1 className="section-heading text-center text-black mb-12 ">
+                        <h1 className="text-2xl md:section-heading text-center text-black mb-12 ">
                             Share query by filling out the form,<br/> we will assist you at the earliest.
                         </h1>
 

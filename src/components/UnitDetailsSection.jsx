@@ -174,7 +174,7 @@ export default function UnitDetailsSection() {
                             >
                                 <TiltCard >
                                     {/* Unit Number */}
-                                    <div className="text-4xl  sm:text-5xl lg:text-7xl  absolute top-3 left-3 text-transparent  font-extrabold  mb-3 opacity-60" style={{ WebkitTextStroke: "2px white" }}>
+                                    <div className="text-6xl   sm:text-5xl lg:text-7xl  absolute top-3 left-3 text-transparent  font-extrabold  mb-3 opacity-60" style={{ WebkitTextStroke: "2px white" }}>
                                         {unit.id}
                                     </div>
 <div className=''>

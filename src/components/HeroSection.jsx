@@ -45,7 +45,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative w-full h-[70vh] lg:h-screen flex items-center justify-center overflow-hidden pt-20 pb-5 md:pb-0"
+      className="relative w-full py-10 md:py-0 h-[80vh] lg:h-screen flex items-center justify-center overflow-hidden pt-20 pb-5 md:pb-0"
       style={{
         backgroundImage: `url('/hero_background.webp')`,
         backgroundSize: 'cover',

@@ -9,9 +9,9 @@ const PLOT_SIZES = [
 
 const MasterPlanSection = () => {
   return (
-    <section id="master-plan" className="relative      h-screen  bg-[#FFFBF5] poverflow-hidden 
+    <section id="master-plan" className="relative      md:h-screen  bg-[#FFFBF5] poverflow-hidden 
            flex items-start lg:items-center justify-center
-           pt-[135px] sm:pt-[145px] lg:pt-0 pb-4 md:pb-0 ">
+           pt-16 lg:pt-0 pb-4 md:pb-0 ">
       {/* 1. Corner Blobs (Background) */}
       {/* Top Left - Greenish/Teal */}
       
@@ -19,19 +19,19 @@ const MasterPlanSection = () => {
 
       <div className="relative     mx-auto px-6 z-10 w-full h-full flex flex-col justify-center">
 
- <div className="absolute top-0 left-0 w-full bg-white pt-30 pb-10 z-10 flex  items-center justify-center">
+ <div className="md:absolute top-0   left-0 w-full md:bg-white md:pt-30 pb-10 z-10 flex  items-center justify-center">
         <FloatUpText className="text-[#a1461a]  text-center text-xs tracking-[0.2em] uppercase mb-5">
           MASTER PLAN
         </FloatUpText>
       </div>
 
-        <div className="flex  max-w-6xl flex-col lg:flex-row gap-8 lg:gap-16 items-start justify-end    h-auto lg:h-[80vh]">
+        <div className="flex   max-w-6xl flex-col lg:flex-row gap-8 lg:gap-16 items-start justify-end    h-auto lg:h-[80vh]">
 
 
           {/* LEFT SIDE: Plot sizes + Logo (ONLY this will move) */}
           <motion.div
-            className="relative  z-10 flex flex-col gap-10 lg:gap-14 w-full  lg:w-[260px]
-           items-center lg:items-start mx-auto lg:mx-0
+            className="relative  z-10   flex flex-col gap-10 lg:gap-14 w-full  lg:w-[260px]
+           items-center lg:items-start mx-auto lg:mx-0 
            lg:absolute lg:left-[260px] lg:top-[180px]"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -40,7 +40,7 @@ const MasterPlanSection = () => {
           >
             {/* Plot Sizes */}
             <div>
-              <h3 className="text-black font-semibold text-base mt-4 mb-2">
+              <h3 className="text-black font-semibold text-base  mt-4 mb-2">
                 Plot Sizes
               </h3>
 

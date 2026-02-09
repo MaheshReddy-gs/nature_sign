@@ -8,7 +8,7 @@ const LocationSection = () => {
   return (
     <section id="locations" className="w-full bg-white ">
       {/* TOP LOCATION CONTENT */}
-      <div className="py-14">
+      <div className="py-16 md:py-14 ">
         <div className="max-w-6xl mx-auto px-4">
           {/* Heading */}
           <div className="text-center mb-10">
@@ -38,10 +38,10 @@ const LocationSection = () => {
                 </FloatUpText>
 
                 <FloatUpText>
-                  <p className="text-black text-base leading-relaxed">
-                    No.51, 3rd Floor, Chourasia Shreyas Arcade, 3rd Cross,
-                    <br />
-                    Aswath Nagar, Marathahalli, Bengaluru 560037, Karnataka
+                  <p className="text-black md:pt-0 pt-5 text-base leading-relaxed">
+                    No.51, 3rd Floor, Chourasia Shreyas Arcade,<br /> 3rd Cross,
+                    
+                    Aswath Nagar, Marathahalli,<br className="md:hidden"/> Bengaluru 560037, Karnataka
                   </p>
                 </FloatUpText>
               </div>
@@ -67,7 +67,7 @@ const LocationSection = () => {
       </div>
 
       {/* ✅ BLUE CTA SECTION */}
-      <div className="w-full bg-[#2F7F90] py-14">
+      <div className="w-full bg-[#2F7F90] py-14 ">
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center md:items-center justify-between gap-10">
           {/* Left Text */}
           <div className="text-center  md:text-left max-w-3xl">

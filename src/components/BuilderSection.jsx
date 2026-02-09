@@ -51,12 +51,12 @@ export default function BuilderSection() {
                     <div className="absolute bottom-[-50px] right-[40%] w-[300px] h-[300px] bg-white/5 rounded-full blur-3xl pointer-events-none" />
 
                     {/* TEXT CONTENT - Left Side (60%) */}
-                    <div className="relative z-10 w-full py-20   md:w-[55%]   p-8 md:p-10    flex flex-col justify-center text-white order-2   md:order-1">
+                    <div className="relative z-10 w-full md:py-20    md:w-[55%]   p-8 md:p-10    flex flex-col justify-center text-white order-2   md:order-1">
                         <motion.h3
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 }}
-                            className=" section-heading mb-8  pt-10"
+                            className=" section-heading mb-8  md:pt-10"
                         >
                             Crafting meaningful experiences where
                             every detail is carefully envisioned.
@@ -90,7 +90,7 @@ export default function BuilderSection() {
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
                             transition={{ delay: 0.5 }}
-                            className="mt-10 px-8 py-3 w-fit mb-10 border border-white text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-[#2D8EA2] transition-colors duration-300 rounded-[2px] font-bold"
+                            className="mt-10 px-8 py-3 w-fit md:mb-10 border border-white text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-[#2D8EA2] transition-colors duration-300 rounded-[2px] font-bold"
                             onClick={() => openModal({ initialValues: { message: "Request Site Visit" } })}
                         >
                             Visit Shreyas Infra

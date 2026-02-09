@@ -131,8 +131,8 @@ export default function ProximitySection() {
 
             {/* ✅ BACKGROUND SPLIT (TOP BROWN + BOTTOM WHITE) */}
             <div className="absolute inset-0">
-              <div className="h-1/2 w-full bg-[#D28A56]" />
-              <div className="h-1/2 w-full bg-white" />
+              <div className="h-2/3 md:h-1/2  w-full  bg-[#D28A56]" />
+              <div className="h-1/3 md:h-1/2 w-full bg-white" />
             </div>
 
             {/* ✅ CONTENT (IMPORTANT: give padding + min height) */}
@@ -156,8 +156,8 @@ export default function ProximitySection() {
                 </motion.div>
 
         {/* TEXT + LOGOS */}
-       <motion.div className="pt-8 lg:pt-0">
-  <p className="text-white  text-[18px] sm:text-[20px] lg:text-2xl  font-semibold max-w-[420px] break-words">
+       <motion.div className="md:pt-8 lg:pt-0">
+  <p className="text-white   text-[18px] sm:text-[20px] lg:text-2xl  font-semibold max-w-[420px] break-words">
     Nature&apos;s Sign - Perfectly Positioned Near Reputed Educational Hubs.
   </p>
 
