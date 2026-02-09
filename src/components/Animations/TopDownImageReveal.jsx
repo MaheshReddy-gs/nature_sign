@@ -20,15 +20,17 @@ const RevealImage = ({
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
-        defaults: { ease: "power2.out" },
-        scrollTrigger: {
-          trigger: wrapperRef.current,
-          start: start,
-          end: end,
-          once: true, // ✅ This ensures it only plays ONCE
-          // markers: true, // uncomment to debug trigger points
-        },
-      });
+  defaults: { ease: "power2.out" },
+  paused: true,
+  scrollTrigger: {
+    trigger: wrapperRef.current,
+    start: start,
+    once: true,
+    onEnter: () => tl.play(),
+    // markers: true,
+  },
+});
+
 
       // Clip path reveal from top to bottom
       tl.fromTo(
