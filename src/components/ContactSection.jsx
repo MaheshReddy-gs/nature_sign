@@ -7,7 +7,7 @@ const ContactSection = () => {
         <section id="contact" className="relative font-sans">
             {/* 1. Header Title (Outside Background) */}
             <div className="bg-white pt-32 pb-12 text-center">
-                 <FloatUpText className="text-[#  461a] text-center text-xs tracking-[0.2em] uppercase mb-5 ">Contact</FloatUpText>
+                 <FloatUpText className="text-[#a1461a] text-center text-xs tracking-[0.2em] uppercase mb-5 ">Contact</FloatUpText>
             </div>
 
             {/* 2. Hero Background with Overlay Form */}
