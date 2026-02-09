@@ -124,15 +124,30 @@ export default function Navbar() {
         }
       `}</style>
 
-      <nav
-        className={`fixed top-0 left-0     right-0 z-50 trans
-          ${scrolled || isMobileMenuOpen
-            ? '  bg-white backdrop-blur-sm'
-            : 'bg-gradient-to-b text-white from-black to-transparent'
-          }`}
-      >
+     <nav className="fixed top-0 left-0 right-0 z-50 overflow-hidden">
+  
+  {/* Gradient background (base layer) */}
+  <div className="absolute inset-0 bg-gradient-to-b from-black to-transparent" />
+
+  {/* White animated overlay */}
+  <div
+    className={`absolute inset-x-0 top-0 bg-white transition-transform duration-500 ease-out origin-top
+      ${scrolled || isMobileMenuOpen ? 'scale-y-100' : 'scale-y-0'}
+    `}
+    style={{ height: '100%' }}
+  />
+
+  {/* Navbar content */}
+  <div
+    className={`relative z-10 transition-colors duration-300
+      ${scrolled || isMobileMenuOpen ? 'text-black' : 'text-white'}
+    `}
+  >
+
+
+
         <div className="max-w-7xl  mx-auto px-6    flex w-full justify-center gap-3">
-          <div className="flex justify-between w-full items-center h-20   ">
+          <div className="flex justify-between w-full items-center h-16 md:h-20   ">
             {/* Logo */}
             <button className="flex-shrink-0 z-[999] brightness-125 cursor-pointer" onClick={() => handleNavClick('hero')}>
               <img src="/naturesignLogo1.png" alt="NatureSign" className="h-16 w-auto" />
@@ -189,6 +204,7 @@ export default function Navbar() {
               <div className="text-xs  w-fit">+91 81518 84545</div>
             </div>
           </a>
+        </div>
         </div>
       </nav>
       <div className="fixed bottom-0  flex left-0 right-0 z-50 md:hidden">
