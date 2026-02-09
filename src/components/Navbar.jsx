@@ -112,7 +112,7 @@ export default function Navbar() {
         }
         
         .animate-slideDown {
-          animation: slideDown 0.5s ease-out forwards;
+          animation: slideDown 0.4s ease-out forwards;
         }
         
         .animate-fadeIn {
@@ -120,7 +120,7 @@ export default function Navbar() {
         }
         
         .animate-expandPanel {
-          animation: expandPanel 0.8s ease-out forwards;
+          animation: expandPanel 0.6s ease-out forwards;
         }
       `}</style>
 
@@ -235,7 +235,7 @@ export default function Navbar() {
                   onClick={() => handleNavClick(item.id)}
                   className="w-full text-left text-black  hover:text-orange-500 uppercase text-sm font-medium py-3 transition-all duration-500 opacity-0 -translate-y-8 animate-slideDown"
                   style={{
-                    animationDelay: `${index * 80}ms`,
+                    animationDelay: `${index * 60}ms`,
                     animationFillMode: 'forwards'
                   }}
                 >
