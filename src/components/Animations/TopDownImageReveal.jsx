@@ -13,6 +13,7 @@ const RevealImage = ({
   start = "top 80%", // when animation triggers
   end = "top 20%", // when scroll trigger ends (optional)
 }) => {
+  start= window.innerWidth < 768 ? "top 95%" : start;
   const wrapperRef = useRef(null);
   const clipRef = useRef(null);
   const imgRef = useRef(null);
