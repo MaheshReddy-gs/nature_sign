@@ -215,8 +215,7 @@ export default function Navbar() {
                        hover:bg-[#E04F00] transition-all duration-300
                         flex flex-1 items-center gap-2 justify-around"
         >
-          
-          <Phone size={16} strokeWidth={2.5} className='f' />
+           <img src='call.svg' className='h-6 ' />
         </a>
         <button
           onClick={() =>
