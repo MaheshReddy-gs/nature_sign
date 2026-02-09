@@ -25,7 +25,7 @@ export default function BuilderSection() {
                     <img
                         src="/shreyasLogo.png"
                         alt="Shreyas Infra Logo"
-                        className="h-14 md:h-16 w-auto object-contain"
+                        className="h-14 md:h-16 md:mb-0 mb-5 w-auto object-contain"
                     />
                 </div>
 
@@ -86,15 +86,18 @@ export default function BuilderSection() {
                             </motion.p>
                         </div>
 
-                        <motion.button
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            transition={{ delay: 0.5 }}
-                            className="mt-10 px-8 py-3 w-fit md:mb-10 border border-white text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-[#2D8EA2] transition-colors duration-300 rounded-[2px] font-bold"
-                            onClick={() => openModal({ initialValues: { message: "Request Site Visit" } })}
-                        >
-                            Visit Shreyas Infra
-                        </motion.button>
+                       <motion.a
+  href="https://shreyasinfra.com/"
+  target="_blank"
+  rel="noopener noreferrer"
+  initial={{ opacity: 0 }}
+  whileInView={{ opacity: 1 }}
+  transition={{ delay: 0.5 }}
+  className="mt-10 px-8 py-3 w-fit md:mb-10 border border-white text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-[#2D8EA2] transition-colors duration-300 rounded-[2px] font-bold inline-block"
+>
+  Visit Shreyas Infra
+</motion.a>
+
                     </div>
 
                     {/* IMAGE - Right Side (40%) */}

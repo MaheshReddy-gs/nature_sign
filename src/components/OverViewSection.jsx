@@ -1,4 +1,5 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+
 import { useRef } from 'react';
 import { useModal } from '../context/ModalContext';
 import FloatUpText from './Animations/floatUpText';
@@ -14,9 +15,9 @@ const BRANCH_CONFIG = {
     // Position (adjust these values easily)
     desktop: {
         left: '5%',        // Distance from left edge (try: '0%', '10%', '15%')
-        top: '0',          // Starting from top
-        width: '300px',    // Branch width (try: '250px', '350px', '400px')
-        height: '500px',   // Branch height (try: '450px', '550px', '600px')
+        top: '-10',          // Starting from top
+        width: '400px',    // Branch width (try: '250px', '350px', '400px')
+        height: '600px',   // Branch height (try: '450px', '550px', '600px')
     },
     // Animation timing (adjust for smoothness)
     scrollTiming: [0, 0.35, 0.65, 1],              // When animation happens during scroll
@@ -77,17 +78,22 @@ const OverviewDetailsSection = () => {
     const yImage = useTransform(scrollYProgress, [ 0, 1 ], [ "0%", "-15%" ]);
 
     // Branch reveal animation - smooth scroll-triggered reveal from top
-    const branchY = useTransform(
-        scrollYProgress,
-        BRANCH_CONFIG.scrollTiming,
-        BRANCH_CONFIG.revealPositions
-    );
+  // Branch reveal animation - anchored at top
+const rawBranchY = useTransform(
+  scrollYProgress,
+  [0.15, 0.55],
+  [-600, 20] // start at 0 (top position), move down by max 100px
+);
 
-    const branchOpacity = useTransform(
-        scrollYProgress,
-        BRANCH_CONFIG.opacityTiming,
-        BRANCH_CONFIG.opacityValues
-    );
+const branchY = useSpring(rawBranchY, {
+  stiffness: 100,
+//   damping: 22,
+  mass: 0.5,
+});
+
+
+const branchOpacity = 1;
+
 
     return (
         <section id="overview" ref={sectionRef} className="relative overflow-hidden   md:h-screen flex flex-col justify-center py-14 md:py-0  bg-[#F7F2EA]">
@@ -157,26 +163,24 @@ const OverviewDetailsSection = () => {
 
             {/* Desktop Branch (Hidden on Mobile) */}
             <motion.div
-                className="hidden md:block absolute pointer-events-none z-10"
-                style={{ 
-                    y: branchY,
-                    opacity: branchOpacity,
-                    left: BRANCH_CONFIG.desktop.left,
-                    top: BRANCH_CONFIG.desktop.top -10,
-                    width: BRANCH_CONFIG.desktop.width,
-                    height: BRANCH_CONFIG.desktop.height,
-                }}
-            >
-                <motion.img
-                    src={mangoBranchImage}
-                    alt="Mango branch decoration"
-                    
-                    className="w-full h-full object-contain"
-                    style={{
-                        filter: 'drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1))',
-                    }}
-                />
-            </motion.div>
+  className="hidden md:block absolute pointer-events-none z-10 will-change-transform"
+  style={{
+    y: branchY,
+    opacity: branchOpacity,  // keep fade-in
+    left: BRANCH_CONFIG.desktop.left,
+    top: '-50px',            // anchor top
+    width: BRANCH_CONFIG.desktop.width,
+    height: BRANCH_CONFIG.desktop.height,
+  }}
+>
+  <img
+    src={mangoBranchImage}
+    alt="Mango branch decoration"
+    className="w-full h-full object-contain"
+  />
+</motion.div>
+
+
 
             <motion.div
                 className="relative w-full  max-w-[1400px] mx-auto px-2 lg:px-16 py-1 lg:py-12"

@@ -24,7 +24,7 @@ const LocationSection = () => {
                   <img
                     src="/naturesignLogo1.png"
                     alt="Nature's Sign"
-                    className="h-16 md:h-20   w-auto object-contain"
+                    className="h-16 md:h-20 mb-5 md:mb-0  w-auto object-contain"
                   />
                 </FloatUpText>
               </div>
@@ -32,7 +32,7 @@ const LocationSection = () => {
               {/* Address */}
               <div className="text-center md:text-left">
                 <FloatUpText>
-                  <h3 className="text-lg font-semibold text-black mb-2">
+                  <h3 className="text-lg font-semibold text-black md:mb-2">
                     Nature&apos;s sign
                   </h3>
                 </FloatUpText>

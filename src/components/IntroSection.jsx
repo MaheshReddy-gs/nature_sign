@@ -95,10 +95,7 @@ const IntroSection = () => {
                     </div>
                     </div>
             {/* 🔶 TOP RERA BAR */}
-            <motion.div
-                initial={{ y: -50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
+            <div
                 className="absolute top-0 left-1/2 md:w-auto w-full transform -translate-x-1/2  z-30"
                 style={{
                     backgroundColor: "#8B4513",
@@ -111,7 +108,7 @@ const IntroSection = () => {
                 }}
             >
                 RERA Reg. NO. PRM/KA/RERA/1250/303/PR/041125/008220
-            </motion.div>
+            </div>
            </section>
         <section
             className="relative  py-16 md:py-0 md:h-screen w-full overflow-hidden"

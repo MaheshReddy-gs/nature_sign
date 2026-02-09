@@ -233,7 +233,7 @@ function Glance() {
 </button>
           {/* Animated Image Container */}
           <div
-  className="fixed  flex justify-center items-center overflow-hidden bg-[#fbfaf6"
+  className="fixed  flex  flex-col justify-center items-center overflow-hidden bg-[#fbfaf6"
   style={{
     left: `${animationState?.left}px`,
     top: `${animationState?.top}px`,
@@ -254,7 +254,7 @@ function Glance() {
   className="w-fit  h-fit rounded-lg  object-contain aspect-auto"
   draggable="false"
   onClick={(e) => e.stopPropagation()}   // 👈 image does NOT close
-/>
+/><div className="flex text-base tracking-wide  justify-center items-center  bg-white  uppercase px-5 py-5 text-center rounded-b-lg w-full ">{modalImage.alt}</div>
 
           </div>
 

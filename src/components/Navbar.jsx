@@ -11,7 +11,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const onScroll = () => {
-      setScrolled(window.scrollY > 20)
+      setScrolled(window.scrollY > window.innerHeight)
     }
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
@@ -222,7 +222,7 @@ export default function Navbar() {
           onClick={() =>
             openModal({ initialValues: { message: "Request Callback" } })
           }
-          className="w-full uppercase text-xs bg-[#FF5A00] flex-3 text-white px-6 py-4 
+          className="w-full uppercase text-xs uppercase text-[11px] font-bold tracking-[0.2em] bg-[#FF5A00] flex-3 text-white px-6 py-4 
                        hover:bg-[#E04F00] transition-all duration-300
                         flex items-center gap-2 justify-around"
         >
