@@ -20,32 +20,30 @@ const RevealImage = ({
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
-  defaults: { ease: "power2.out" },
-  paused: true,
-  scrollTrigger: {
-    trigger: wrapperRef.current,
-    start: start,
-    once: true,
-    onEnter: () => tl.play(),
-    // markers: true,
-  },
-});
-
+        defaults: { ease: "power2.out" },
+        scrollTrigger: {
+          trigger: wrapperRef.current,
+          start: start,
+          end: end,
+          once: true, 
+        },
+      });
 
       // Clip path reveal from top to bottom
       tl.fromTo(
         clipRef.current,
         { clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" },
         {
-          clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-          duration,
-        }
+  clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+  duration: window.innerWidth < 768 ? duration * 2.5 : duration,
+}
+
       )
       // Scale image simultaneously
       .fromTo(
         imgRef.current,
         { scale: scaleFrom },
-        { scale: 1, duration },
+       { scale: 1, duration: window.innerWidth < 768 ? duration * 2.5 : duration },
         0 // starts at the same time as clip animation
       );
     }, wrapperRef);
