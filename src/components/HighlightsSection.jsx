@@ -211,38 +211,51 @@ function Glance() {
       {/* Modal / Lightbox with Google Photos style animation */}
       {modalImage && (
         <div
-          className={`fixed inset-0 bg-white/10   backdrop-blur-sm flex items-center justify-center z-50 transition-opacity duration-300 ${isVisible ? "opacity-100" : "opacity-0"
+          className={`fixed inset-0  bg-white/10   backdrop-blur-sm flex items-center justify-center z-50 transition-opacity duration-300 ${isVisible ? "opacity-100" : "opacity-0"
             }`}
           style={{ touchAction: 'none' }}
           onClick={closeModal}
-        >
+        ><button
+  onClick={closeModal}
+  className={`
+    absolute top-10 right-10 z-30
+    w-9 h-9
+    flex items-center justify-center
+    rounded-full
+    bg-black/60 text-white
+    hover:bg-black/80
+    transition-opacity duration-300
+    ${isVisible ? "opacity-100" : "opacity-0"}
+  `}
+  aria-label="Close"
+>
+  ×
+</button>
           {/* Animated Image Container */}
           <div
-            className="fixed overflow-hidden    "
-            style={{
-              left: `${animationState?.left}px`,
-              top: `${animationState?.top}px`,
-              width: `${animationState?.width}px`,
-              height: `${animationState?.height}px`,
-              transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
-              borderRadius: isVisible ? '1.5rem' : '0.5rem',
-              pointerEvents: 'auto',
-            }}
-            onClick={(e) => e.stopPropagation()}
-          ><button
-            className={`absolute h-full   -z-10 flex w-full  items-center justify-center   transition-all duration-300 ${isVisible ? 'opacity-100' : 'opacity-0'
-              }`}
-            onClick={closeModal}
-          >
-              ×
-            </button>
-            <img
-              src={modalImage.img}
-              alt={modalImage.alt}
+  className="fixed  flex justify-center items-center overflow-hidden bg-[#fbfaf6"
+  style={{
+    left: `${animationState?.left}px`,
+    top: `${animationState?.top}px`,
+    width: `${animationState?.width}px`,
+    height: `${animationState?.height}px`,
+    transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
+    borderRadius: isVisible ? '1.5rem' : '0.5rem',
+    pointerEvents: 'auto',
+  }}
+  onClick={closeModal}
+>
 
-              className="w-fit h-full rounded-lg   mx-auto object-contain"
-              draggable="false"
-            />
+
+
+          <img
+  src={modalImage.img}
+  alt={modalImage.alt}
+  className="w-fit  h-fit rounded-lg  object-contain aspect-auto"
+  draggable="false"
+  onClick={(e) => e.stopPropagation()}   // 👈 image does NOT close
+/>
+
           </div>
 
           {/* Close Button */}
