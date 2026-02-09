@@ -52,61 +52,58 @@ export default function BuilderSection() {
 
                     {/* TEXT CONTENT - Left Side (60%) */}
                     <div className="relative z-10 w-full md:py-20    md:w-[55%]   p-8 md:p-10    flex flex-col justify-center text-white order-2   md:order-1">
-                        <motion.h3
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 }}
+                        <FloatUpText
                             className=" section-heading mb-8  md:pt-10"
                         >
                             Crafting meaningful experiences where
                             every detail is carefully envisioned.
-                        </motion.h3>
+                        </FloatUpText>
 
                         <div className="space-y-6  text-base  text-white/90   ">
-                            <motion.p
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.3 }}
+                            <FloatUpText
                             >
                                 At Shreyas Infra, we know that true quality emerges from attention
                                 to detail and the finesse of skilled craftsmanship. Guided by a
                                 pursuit of perfection, we create more than living spaces, we
                                 curate experiences where every feature holds purpose and intention.
-                            </motion.p>
+                            </FloatUpText>
 
-                            <motion.p
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.4 }}
+                            <FloatUpText
                             >
                                 For us at Shreyas Infra, excellence lives in the subtle details and
                                 the artistry of creating with care. Rooted in our promise of
                                 perfection, we design not just structures but thoughtfully crafted
                                 environments that elevate everyday living.
-                            </motion.p>
+                            </FloatUpText>
                         </div>
-
-                       <motion.a
+<FloatUpText>
+    
+                       <a
   href="https://shreyasinfra.com/"
   target="_blank"
   rel="noopener noreferrer"
-  initial={{ opacity: 0 }}
-  whileInView={{ opacity: 1 }}
-  transition={{ delay: 0.5 }}
   className="mt-10 px-8 py-3 w-fit md:mb-10 border border-white text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-[#2D8EA2] transition-colors duration-300 rounded-[2px] font-bold inline-block"
 >
   Visit Shreyas Infra
-</motion.a>
+</a>
 
+</FloatUpText>
                     </div>
 
                     {/* IMAGE - Right Side (40%) */}
-                    <div className="relative w-full   md:w-[45%] bg-gray-200 order-1   md:order-2 h-[300px]   md:h-auto">
-                        <RevealImage
+                     <div className="relative w-full md:w-[45%] bg-gray-200 order-1 md:order-2 h-[300px] md:h-auto overflow-hidden">
+                        <motion.img
                             src="/builderIMG.webp"
-                            onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/600x800/2D8EA2/FFFFFF?text=Builder+Image"; }}
+                            onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src =
+                                    "https://placehold.co/600x800/2D8EA2/FFFFFF?text=Builder+Image";
+                            }}
                             alt="Builder Discussion"
                             className="absolute inset-0 w-full h-full object-cover"
+                            initial={{ scale: 1.5 }}
+                            whileInView={{ scale: 1 }}
+                            transition={{ duration: 1, ease: "easeOut" }}
                         />
                     </div>
 
