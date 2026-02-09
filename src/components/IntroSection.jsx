@@ -32,11 +32,11 @@ const IntroSection = () => {
     <section className='relative flex  '>
 
        
-        <div                 className=" bg-[#F7F2EA] top-0  left-1/2 transform min-h-[20vh] flex w-screen justify-center items-center   z-30 pt-10"
+        <div                 className=" bg-[#F7F2EA] top-0  py-10 md:py-0 left-1/2 transform min-h-[20vh] flex w-screen justify-center items-center   z-30 pt-10"
 >
 
             
-<div className="grid  p-6 md-p-0 grid-cols-2 gap-y-4 gap-x-10 max-w-6xl w-full items-center
+<div className="grid  p-6 md-p-0 grid-cols-2 gap-y-6 md:gap-y-4 gap-x-10 max-w-6xl w-full items-center
                 md:flex md:justify-between">
                         {/* Item */}
                         <FloatUpText
@@ -99,7 +99,7 @@ const IntroSection = () => {
                 initial={{ y: -50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
-                className="absolute top-0 left-1/2 transform -translate-x-1/2  z-30"
+                className="absolute top-0 left-1/2 w-full transform -translate-x-1/2  z-30"
                 style={{
                     backgroundColor: "#8B4513",
                     color: "#FFFFFF",
@@ -114,7 +114,7 @@ const IntroSection = () => {
             </motion.div>
            </section>
         <section
-            className="relative py-16 md:py-0 md:h-screen w-full overflow-hidden"
+            className="relative  py-16 md:py-0 md:h-screen w-full overflow-hidden"
             style={{
                 background:
                     "linear-gradient(135deg, #A5B03B 0%, #D4C94A 30%, #E8C55A 50%, #EFB86A 75%, #D8A85F 100%)",

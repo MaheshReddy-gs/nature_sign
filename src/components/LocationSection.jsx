@@ -24,7 +24,7 @@ const LocationSection = () => {
                   <img
                     src="/naturesignLogo1.png"
                     alt="Nature's Sign"
-                    className="h-16  w-auto object-contain"
+                    className="h-16 md:h-20   w-auto object-contain"
                   />
                 </FloatUpText>
               </div>
@@ -32,7 +32,7 @@ const LocationSection = () => {
               {/* Address */}
               <div className="text-center md:text-left">
                 <FloatUpText>
-                  <h3 className="section-heading text-black mb-2">
+                  <h3 className="text-lg font-semibold text-black mb-2">
                     Nature&apos;s sign
                   </h3>
                 </FloatUpText>
@@ -49,20 +49,17 @@ const LocationSection = () => {
           </div>
 
           {/* Map */}
-          <motion.div
+          <FloatUpText
             className="w-full flex justify-center overflow-hidden mt-6 md:mt-10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 0.8 }}
+         
           >
             <img
               src="/locatiomap.jpg"
               alt="Location Map"
-              className="w-full max-w-6xl lg:max-w-5xl h-[260px] sm:h-[320px] md:h-[60vh] object-cover object-bottom md:object-contain"
+              className="w-full max-w-6xl    lg:max-w-5xl h-[260px] sm:h-[320px] w-full md:h-auto object-cover object-bottom md:object-contain"
 
             />
-          </motion.div>
+          </FloatUpText>
         </div>
       </div>
 

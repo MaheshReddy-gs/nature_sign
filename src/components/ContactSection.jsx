@@ -4,9 +4,9 @@ import ContactForm from './ContactForm';
 import FloatUpText from "./Animations/floatUpText";
 const ContactSection = () => {
     return (
-        <section id="contact" className="relative font-sans">
+        <section id="contact" className="relative f">
             {/* 1. Header Title (Outside Background) */}
-            <div className="bg-white pt-32 pb-12 text-center">
+            <div className="bg-white py-14 md:py-0 md:pt-32 pb-12 text-center">
                  <FloatUpText className="text-[#a1461a] text-center text-xs tracking-[0.2em] uppercase mb-5 ">Contact</FloatUpText>
             </div>
 
@@ -30,8 +30,8 @@ const ContactSection = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <h1 className="text-2xl md:section-heading text-center text-black mb-12 ">
-                            Share query by filling out the form,<br/> we will assist you at the earliest.
+                        <h1 className="text-base  md:text-3xl  text-center text-black mb-5 ">
+                            Share query by filling out the form,<br className="hidden md:block"/> we will assist you at the earliest.
                         </h1>
 
                         <ContactForm />

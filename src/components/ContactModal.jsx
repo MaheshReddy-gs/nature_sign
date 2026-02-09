@@ -60,18 +60,18 @@ const ContactModal = () => {
                         exit={{ opacity: 0, scale: 0.95, y: 20 }}
                         transition={{ duration: 0.3 }}
                         ref={modalRef}
-                        className="relative  bg-white rounded-3xl w-full max-w-4xl py-14 px-10 lg:p-12 shadow-2xl max-h-[90vh] overflow-y-auto"
+                        className="relative  bg-white rounded-3xl w-full max-w-4xl py-12 px-6 lg:p-12 shadow-2xl max-h-[90vh] overflow-y-auto"
                     >
                         {/* Close Button */}
                         <button
                             onClick={closeModal}
                             className="absolute top-6 right-6 text-gray-500 hover:text-black transition-colors"
                         >
-                            <X size={32} />
+                            <X size={20} />
                         </button>
 
-                        <h1 className="section-heading text-center text-black mb-12 ">
-                            Share query by filling out the form,<br/> we will assist you at the earliest.
+                        <h1 className="text-base  md:text-3xl  text-center text-black mb-5 ">
+                            Share query by filling out the form,<br className="hidden md:block"/> we will assist you at the earliest.
                         </h1>
 
                         <ContactForm {...modalProps} onSuccess={handleFormSuccess} />

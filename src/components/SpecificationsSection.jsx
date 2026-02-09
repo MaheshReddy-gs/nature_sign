@@ -147,8 +147,8 @@ export default function SpecificationsSection() {
     <section id="specifications" className="w-full  ">
       
 
-      <div className="flex flex-col">
-                <FloatUpText className="text-[#a1461a] pt-20 text-center text-xs tracking-[0.2em] uppercase mb-5 ">SPECIFICATIONS</FloatUpText>
+      <div className="flex flex-col ">
+                <FloatUpText className="text-[#a1461a] py-10 md:pt-20 text-center text-xs tracking-[0.2em] uppercase mb-5 ">SPECIFICATIONS</FloatUpText>
 
         {SPEC_ITEMS.map((item) => (
           <div

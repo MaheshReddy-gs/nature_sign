@@ -34,7 +34,7 @@ const FADE_UP = {
 const STAGGER = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.12 },
+    transition: { staggerChildren: 0.05 },
   },
 };
 
@@ -185,11 +185,12 @@ export default function ProximitySection() {
 
 
         {/* Landmark grid */}
-        <motion.div
+        <FloatUpText
           className="mt-16 lg:mt-20"
           variants={FADE_UP}
           initial="hidden"
           whileInView="visible"
+          
           viewport={{ once: false, amount: 0.25 }}
         >
        <FloatUpText>
@@ -223,7 +224,7 @@ export default function ProximitySection() {
               </motion.div>
             ))}
           </motion.div>
-        </motion.div>
+        </FloatUpText>
       </div>
     </section>
   );
