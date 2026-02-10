@@ -30,7 +30,7 @@ export function ReraBadge({ size = 120, className = "" }) {
                         fill="white"
                         fontSize="18"
                         fontWeight="500"
-                        letterSpacing="8"
+                        letterSpacing="7"
                     >
                         <textPath href="#reraCirclePath" startOffset="0%">
                             RERA CERTIFIED • RERA CERTIFIED •
@@ -80,7 +80,7 @@ export function BiaapaBadge({ size = 120, className = "" }) {
                     {/* Rotating circular text */}
                     <text
                         fill="white"
-                        fontSize="16"
+                        fontSize="17"
                         fontWeight="500"
                         letterSpacing="6"
                     >
