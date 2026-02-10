@@ -205,6 +205,7 @@ const IntroSection = () => {
                 <motion.button
 
                     onClick={() => openModal({
+                        submitText: 'Download Brochure',
                         onSuccess: () => {
                             const link = document.createElement('a');
                             link.href = '/Naturessign_by_shreyasinfra_brochure.pdf';

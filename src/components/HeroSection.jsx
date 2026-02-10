@@ -129,7 +129,8 @@ export default function HeroSection() {
             animate="visible"
             transition={{ delay: 1 }}
           >
-            Premium Pre-Launch Plots | Airport–Nandi Hills Corridor |Price starting at ₹5,799/sq.ft
+            Premium Pre-Launch Plots&nbsp;&nbsp;|&nbsp;&nbsp;Airport–Nandi Hills Corridor <br />
+            Price starting at ₹5,799/sq.ft
 
           </motion.p>
         </div>
