@@ -11,25 +11,25 @@ export default function HeroSection() {
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
-    offset: ['start start', 'end start'],
+    offset: [ 'start start', 'end start' ],
   });
 
   // Background moves slower → reveal lower part of image
-  const bgY = useTransform(scrollYProgress, [0, 1], [0, -220]);
+  const bgY = useTransform(scrollYProgress, [ 0, 1 ], [ 0, -220 ]);
   // adjust -220 based on how tall your image is
 
   /* ---------------- TEXT ANIMATIONS ---------------- */
 
   const slideRevealLeft = {
-  hidden: { x: '-100%' },
-  visible: {
-    x: '0%',
-    transition: {
-      duration: 1.1,
-      ease: [0.25, 0.46, 0.45, 0.94],
+    hidden: { x: '-100%' },
+    visible: {
+      x: '0%',
+      transition: {
+        duration: 1.1,
+        ease: [ 0.25, 0.46, 0.45, 0.94 ],
+      },
     },
-  },
-};
+  };
 
 
   const slideFromBottom = {
@@ -39,7 +39,7 @@ export default function HeroSection() {
       y: 0,
       transition: {
         duration: 1.2,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: [ 0.25, 0.46, 0.45, 0.94 ],
       },
     },
   };
@@ -106,47 +106,47 @@ export default function HeroSection() {
         animate="visible"
       >
         <div className="overflow-hidden">
-  <motion.div
-    variants={slideRevealLeft}
-    initial="hidden"
-    animate="visible"
-    transition={{ delay: 0.5 }}
-  >
-    <div
-      className="text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-8 leading-tight"
-    >
-      Nature&apos;s canvas,<br/> crafted with finesse.
-    </div>
-  </motion.div>
-</div>
+          <motion.div
+            variants={slideRevealLeft}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: 0.5 }}
+          >
+            <div
+              className="text-2xl md:text-4xl lg:text-6xl font-bold text-white mb-8 leading-tight"
+            >
+              Smart money is moving to<br className="hidden md:block" /> Airport–Nandi hills belt
+            </div>
+          </motion.div>
+        </div>
 
 
-       <div className="overflow-hidden">
-  <motion.p
-    className="text-lg text-white mb-10 max-w-2xl mx-auto lg:mx-0 font-light"
-    variants={slideRevealLeft}
-    initial="hidden"
-    animate="visible"
-    transition={{ delay: 1 }}
-  >
-    Premium Plotted Development in
-    <br />
-    Devanahalli, Bengaluru.
-  </motion.p>
-</div>
+        <div className="overflow-hidden">
+          <motion.p
+            className="text-lg text-white mb-10 max-w-2xl mx-auto lg:mx-0 font-light"
+            variants={slideRevealLeft}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: 1 }}
+          >
+            Premium Pre-Launch Plots&nbsp;&nbsp;|&nbsp;&nbsp;Airport–Nandi Hills Corridor <br />
+            Price starting at ₹5,799/sq.ft
+
+          </motion.p>
+        </div>
 
 
         {/* MOBILE BADGES */}
         <motion.div
           className="flex lg:hidden justify-center gap-4 mb-8"
-          variants={ slideRevealLeft}
+          variants={slideRevealLeft}
         >
           <ReraBadge size={110} />
           <BiaapaBadge size={110} />
         </motion.div>
 
         {/* CTA */}
-        
+
         <motion.div
           className="flex justify-center lg:justify-start"
           variants={slideFromBottom}

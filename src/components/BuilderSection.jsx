@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useModal } from "../context/ModalContext";
 import FloatUpText from "./Animations/floatUpText";
-import RevealImage from "./Animations/TopDownImageReveal";
 
 export default function BuilderSection() {
     const { openModal } = useModal();
@@ -76,22 +75,22 @@ export default function BuilderSection() {
                                 environments that elevate everyday living.
                             </FloatUpText>
                         </div>
-<FloatUpText>
-    
-                       <a
-  href="https://shreyasinfra.com/"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="mt-10 px-8 py-3 w-fit md:mb-10 border border-white text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-[#2D8EA2] transition-colors duration-300 rounded-[2px] font-bold inline-block"
->
-  Visit Shreyas Infra
-</a>
+                        <FloatUpText>
 
-</FloatUpText>
+                            <a
+                                href="https://shreyasinfra.com/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="mt-10 px-8 py-3 w-fit md:mb-10 border border-white text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-[#2D8EA2] transition-colors duration-300 rounded-[2px] font-bold inline-block"
+                            >
+                                Visit Shreyas Infra
+                            </a>
+
+                        </FloatUpText>
                     </div>
 
                     {/* IMAGE - Right Side (40%) */}
-                     <div className="relative w-full md:w-[45%] bg-gray-200 order-1 md:order-2 h-[300px] md:h-auto overflow-hidden">
+                    <div className="relative w-full md:w-[45%] bg-gray-200 order-1 md:order-2 h-[300px] md:h-auto overflow-hidden">
                         <motion.img
                             src="/builderIMG.webp"
                             onError={(e) => {
