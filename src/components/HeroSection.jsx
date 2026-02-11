@@ -67,10 +67,10 @@ export default function HeroSection() {
   className="absolute top-0 left-0 w-full"
   style={{
     y: bgY,
-    height: '150%', // or exact px matching your image
+    height: '130%', // or exact px matching your image
     backgroundImage: "url('/hero_background123.webp')",
     backgroundSize: 'cover',
-    backgroundPosition: 'center top',
+    backgroundPosition: 'right top',
     willChange: 'transform',
   }}
 />
