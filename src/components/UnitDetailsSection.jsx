@@ -141,7 +141,8 @@ export default function UnitDetailsSection() {
 
 
             {/* Content Container - Slides up over the sticky image */}
-            <div className="relative w-full md:h-[40vh] lg:h-[60vh] bg-[#f8e8d1] px-6 py-10 flex flex-col">
+            <div className="relative w-full md:h-[40vh] bg-[#f0f3f1]  border border-white 
+ lg:h-fit py-10   bg-white/ px-6 py-10 flex flex-col">
                 {/* Heading */}
                 <FloatUpText>
                     <h3 className="text-center text-[#a1461a] text-xs tracking-[0.2em] mb-5 uppercase">
@@ -157,51 +158,79 @@ export default function UnitDetailsSection() {
                         className="
         flex flex-row md:grid md:grid-cols-4
         gap-4 md:gap-3 lg:gap-6
-        max-w-5xl mx-auto w-full
+        max-w-5xl mx-auto w-full 
         h-[320px] md:h-full
         overflow-x-auto overflow-y-hidden
         
         snap-x snap-mandatory
-        px-4 md:px-0
+        px-4 md:px-0 py-5
         scrollbar-hide
     "
                     >
 
                         {units.map((unit, idx) => (
-                            <div
-                                key={unit.id}
-                                className="min-w-[85vw] md:min-w-0 md:w-auto shrink-0  snap-center h-full"
-                            >
-                                <TiltCard >
-                                    {/* Unit Number */}
-                                    <div className="text-6xl   sm:text-5xl lg:text-7xl  absolute top-3 left-3 text-transparent  font-extrabold  mb-3 opacity-60" style={{ WebkitTextStroke: "2px white" }}>
-                                        {unit.id}
-                                    </div>
-<div className=''>
+                            <div className="group relative h-full rounded-2xl 
+    bg-[#ebeeec] backdrop-blur-md 
+    border border-white 
+    overflow-hidden b
+    transition-all duration-500 ease-out
+    hover:bg-white hover:backdrop-blur-xl hover:-translate-y-2
+    p-6 flex flex-col justify-between"
+>
+    {/* Big Background Number */}
+    <div className="absolute top-4 card left-4 text-8xl font-extrabold 
+        text-[#dfe2e0] transition-all duration-500
+        group-hover:text-[#FF5A00]  o"
+    >
+        {unit.id}
+    </div>
 
-                                    {/* Unit Size */}
-                                    <div className="mb-2 mt-20">
-                                        <p className="text-lg sm:text-2xl lg:text-2xl font-semibold text-black mb-1">
-                                            {unit.size}
-                                        </p>
-                                        {unit.area?(<p className="text-sm sm:text-lg text-black">
-                                            ( {unit.area})
-                                        </p>):
-                                        (<p className="text-sm sm:text-lg text-transparent">
-                                            ( {unit.area})
-                                        </p>)}
-                                    </div>
+    <div className="relative z-10 mt-28">
 
-                                    {/* CTA Button */}
-                                    <button
-                                        onClick={() => openModal({ initialValues: { message: "Price Inquiry for Unit " + unit.size } })}
-                                        className="mt-10 bg-[#FF5A00] hover:bg-[#E04F00] text-white  py-3 px-8 rounded shadow-[0_10px_20px_rgba(255,90,0,0.3)] uppercase text-[10px] font-bold tracking-[0.2em] transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 active:scale-95"
-                                        >
-                                        Ask Price
-                                    </button>
-                                        </div>
-                                </TiltCard>
-                            </div>
+        {/* Unit Size */}
+        <div className="mb-6">
+            <p className="text-xl lg:text-2xl font-semibold text-black mb-1">
+                {unit.size}
+            </p>
+
+            {unit.area ? (
+                <p className="text-sm lg:text-lg text-black">
+                    ({unit.area})
+                </p>
+            ) : (
+                <p className="text-sm lg:text-lg text-transparent">
+                    ({unit.area})
+                </p>
+            )}
+        </div>
+
+        {/* CTA */}
+        <button
+            onClick={() =>
+                openModal({
+                    initialValues: {
+                        message: "Price Inquiry for Unit " + unit.size,
+                    },
+                })
+            }
+            className="mt-4 bg-[#FF5A00] hover:bg-[#E04F00] text-white 
+                py-3 px-8 rounded-lg 
+                uppercase text-[10px] font-bold tracking-[0.2em] 
+                transition-all duration-300 hover:scale-105"
+        >
+            Unlock Price
+        </button>
+    </div>
+
+    {/* Subtle Glass Shine Effect */}
+    <div className="absolute inset-0 bg-gradient-to-br 
+        from-white/30 via-transparent to-transparent 
+        opacity-0 group-hover:opacity-100 
+        transition-opacity duration-500 pointer-events-none"
+    />
+
+</div>
+
                         ))}
                     </div>
 

@@ -124,7 +124,15 @@ export default function Navbar() {
         }
       `}</style>
 
-     <nav className="fixed top-0 left-0 right-0 z-50 overflow-hidden">
+<nav
+  className={`fixed top-0 left-0 right-0 z-50 overflow-hidden 
+    transition-shadow duration-500
+    ${scrolled || isMobileMenuOpen 
+      ? 'shadow-lg shadow-black/10' 
+      : 'shadow-none'
+    }
+  `}
+>
   
   {/* Gradient background (base layer) */}
   <div className="absolute inset-0 bg-gradient-to-b from-black to-transparent" />
