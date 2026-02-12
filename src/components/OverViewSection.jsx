@@ -214,7 +214,8 @@ className="text-[#a1461a] text-xs md:pt-30 text-center     tracking-[0.2em] mb-5
 
                         {/* Section Heading with Word Reveal */}
                         <div className="mb-10 md:mb-6 ">
-                            <FloatUpText className="text-xl">{HEADLINE_TEXT}</FloatUpText>
+                            <FloatUpText className=" hidden md:block  section-heading">{HEADLINE_TEXT}</FloatUpText>
+                            <FloatUpText className="md:hidden text-xl  ">{HEADLINE_TEXT}</FloatUpText>
                            
                         </div>
 
