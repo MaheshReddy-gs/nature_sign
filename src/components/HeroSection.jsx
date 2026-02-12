@@ -13,8 +13,14 @@ export default function HeroSection() {
     target: heroRef,
     offset: ['start start', 'end start'],
   });
+const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
-  const bgY = useTransform(scrollYProgress, [0, 1], [0, -220]);
+const bgY = useTransform(
+  scrollYProgress,
+  [0, 1],
+  isMobile ? [0, -120] : [0, -220]
+);
+
 
   /* ---------------- SLIDE STATE (ONLY ADDITION) ---------------- */
 
@@ -103,7 +109,7 @@ useEffect(() => {
     <section
   ref={heroRef}
   id="hero"
-  className="relative w-full h-[85vh] lg:h-screen overflow-hidden flex md:items-center  pt-24 bg-black"
+  className="relative w-full min-h-[85vh] lg:h-screen overflow-hidden flex md:items-center  pt-24 bg-black"
 >
 
       {/* ================= PARALLAX BACKGROUNDS (STACKED) ================= */}
@@ -132,7 +138,7 @@ useEffect(() => {
         {/* Mobile Background */}
         <motion.div
           key={`mobile-${index}`}
-          className="block md:hidden absolute top-0 -mt-5 left-0 w-full h-[130%]"
+className="block md:hidden absolute top-0 left-0 w-full h-[135%]"
           style={{
             y: bgY,
             backgroundImage: `url(${slide.mobileImage})`,
@@ -198,7 +204,8 @@ useEffect(() => {
         {/* SUBTEXT (ENTRY ANIMATION SAME — ONLY CONTENT FADES INSIDE) */}
         <div className="overflow-hidden">
           <motion.p
-            className="relative text-base md:text-lg text-white mb-10 max-w-2xl mx-auto lg:mx-0 font-light"
+            className="relative text-base md:text-lg text-white mb-8 md:mb-10 max-w-2xl mx-auto lg:mx-0 font-light h-[90px] md:h-auto"
+
             variants={slideRevealLeft}
             initial="hidden"
             animate="visible"
