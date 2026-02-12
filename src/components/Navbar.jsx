@@ -194,14 +194,14 @@ export default function Navbar() {
             </button>
           </div><a
             href="tel:+918151884545"
-            className="bg-[#97390b] hidden  text-white      py-2  w-42 hover:bg-[#E04F00] transition-colors md:flex items-center gap-2 px-2 duration-500"
+            className="bg-[#97390b] hidden  text-white      py-2  w-44 hover:bg-[#E04F00] transition-colors md:flex items-center gap-2 px-2 duration-500"
           >
             <div>
             </div>
             <img src='call.svg' className='h-5 ' />
             <div className="text-left      ">
-              <div className=" text-xs uppercase w-full">Call</div>
-              <div className="text-xs  w-fit">+91 81518 84545</div>
+              <div className=" text-[0.6rem] uppercase w-full">Call</div>
+              <div className="text-xs font-semibold tracking-wide w-fit">+91 81518 84545</div>
             </div>
           </a>
         </div>
