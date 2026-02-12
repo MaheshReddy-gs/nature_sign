@@ -1,9 +1,22 @@
 import { motion } from "framer-motion";
 import { useModal } from "../context/ModalContext";
 import FloatUpText from "./Animations/floatUpText";
-
+import { useRef, useState } from "react"; 
 const LocationSection = () => {
-  const { openModal } = useModal();
+   const { openModal } = useModal();
+  const imageRef = useRef(null);
+  const [position, setPosition] = useState({ x: 50, y: 50 });
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseMove = (e) => {
+    const { left, top, width, height } =
+      imageRef.current.getBoundingClientRect();
+
+    const x = ((e.clientX - left) / width) * 100;
+    const y = ((e.clientY - top) / height) * 100;
+
+    setPosition({ x, y });
+  };
 
   return (
     <section id="locations" className="w-full bg-white ">
@@ -49,17 +62,28 @@ const LocationSection = () => {
           </div>
 
           {/* Map */}
-          <FloatUpText
-            className="w-full flex justify-center overflow-hidden mt-6 md:mt-10"
-         
-          >
-            <img
-              src="/locatiomap.jpg"
-              alt="Location Map"
-              className="w-full max-w-6xl    lg:max-w-5xl h-[260px] sm:h-[320px] w-full md:h-auto object-cover object-bottom md:object-contain"
+         <FloatUpText className="w-full flex justify-center overflow-hidden mt-6 md:mt-10">
+  <div
+    ref={imageRef}
+    onMouseMove={handleMouseMove}
+    onMouseEnter={() => setIsHovering(true)}
+    onMouseLeave={() => setIsHovering(false)}
+    className="relative w-full max-w-6xl lg:max-w-5xl 
+               h-[260px] sm:h-[320px] md:h-auto 
+               overflow-hidden rounded-lg cursor-zoom-in"
+  >
+    <img
+      src="/locatiomap.jpg"
+      alt="Location Map"
+      className="w-full h-full object-cover md:object-contain transition-transform duration-300 ease-out"
+      style={{
+        transform: isHovering ? "scale(2)" : "scale(1)",
+        transformOrigin: `${position.x}% ${position.y}%`,
+      }}
+    />
+  </div>
+</FloatUpText>
 
-            />
-          </FloatUpText>
         </div>
       </div>
 
