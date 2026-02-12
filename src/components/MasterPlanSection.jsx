@@ -65,7 +65,7 @@ const MasterPlanSection = () => {
 
           {/* RIGHT SIDE: Masterplan image (STAYS FIXED) */}
           <  FloatUpText
-            className="w-full lg:absolute lg:right-[40px] lg:bottom-0 lg:w-[900px]
+            className="w-full lg:absolute lg:right-[120px] lg:bottom-0 lg:w-[900px]
            mt-8 sm:mt-10 lg:mt-0"
        
           >
