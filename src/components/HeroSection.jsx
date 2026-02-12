@@ -41,7 +41,7 @@ const bgY = useTransform(
     mobileImage: "/hero_mobile_bg2.webp", // mobile
     subtext: (
   <>
-    North Bengaluru is fast becoming the city&apos;s next investment hotspot <br/> with NH-44, Airport & Foxconn driving growth.
+    North Bengaluru is becoming <br/> the city&apos;s next investment hotspot <br/> with NH-44, Airport & Foxconn driving growth.
   </>
 
 
@@ -109,7 +109,7 @@ useEffect(() => {
     <section
   ref={heroRef}
   id="hero"
-  className="relative w-full min-h-[85vh] lg:h-screen overflow-hidden flex md:items-center  pt-24 bg-black"
+  className="relative w-full min-h-[70vh] lg:h-screen overflow-hidden flex md:items-center  pt-24 bg-black"
 >
 
       {/* ================= PARALLAX BACKGROUNDS (STACKED) ================= */}
@@ -138,9 +138,9 @@ useEffect(() => {
         {/* Mobile Background */}
         <motion.div
           key={`mobile-${index}`}
-className="block md:hidden absolute top-0 left-0 w-full h-[135%]"
+className="block md:hidden absolute top-0 left-0 w-full h-[100%]"
           style={{
-            y: bgY,
+            // y: bgY,
             backgroundImage: `url(${slide.mobileImage})`,
             backgroundSize: 'cover',
             backgroundPosition: 'right bottom',
@@ -204,27 +204,18 @@ className="block md:hidden absolute top-0 left-0 w-full h-[135%]"
         {/* SUBTEXT (ENTRY ANIMATION SAME — ONLY CONTENT FADES INSIDE) */}
         <div className="overflow-hidden">
           <motion.p
-            className="relative text-base md:text-lg text-white mb-8 md:mb-10 max-w-2xl mx-auto lg:mx-0 font-light h-[90px] md:h-auto"
+            className="relative text-base md:text-lg text-white mb-8 md:mb-10 max-w-2xl mx-auto lg:mx-0 font-light h-auto md:h-auto"
 
             variants={slideRevealLeft}
             initial="hidden"
             animate="visible"
             transition={{ delay: 1 }}
           >
-            {slides.map((slide, index) => (
-              <span
-                key={index}
-                style={{
-                  position: index === current ? 'relative' : 'absolute',
-                  opacity: current === index ? 1 : 0,
-                  transition: 'opacity 0.9s ease-in-out',
-                  left: 0,
-                  top: 0,
-                }}
-              >
-                {slide.subtext}
-              </span>
-            ))}
+             
+           
+                    North Bengaluru is  becoming <br/>the city&apos;s next investment hotspot  
+
+            
           </motion.p>
         </div>
 
@@ -233,8 +224,8 @@ className="block md:hidden absolute top-0 left-0 w-full h-[135%]"
           className="flex lg:hidden justify-center gap-4 mb-8"
           variants={slideRevealLeft}
         >
-          <ReraBadge size={90} />
-          <BiaapaBadge size={90} />
+          <ReraBadge size={70} />
+          <BiaapaBadge size={70} />
         </motion.div>
 
         {/* CTA (UNCHANGED) */}
@@ -244,7 +235,7 @@ className="block md:hidden absolute top-0 left-0 w-full h-[135%]"
         >
           <motion.button
             onClick={() => openModal({ initialValues: { message: 'Enquiry' } })}
-            className="bg-[#FF5A00] hover:bg-[#E04F00] text-white py-4 px-12 rounded shadow-[0_10px_20px_rgba(255,90,0,0.3)] uppercase text-[11px] font-bold tracking-[0.2em]"
+            className="bg-[#FF5A00] hover:bg-[#E04F00] text-white py-4  px-5 md:px-12 rounded shadow-[0_10px_20px_rgba(255,90,0,0.3)] uppercase text-[11px] font-bold tracking-[0.2em]"
             whileTap={{ scale: 0.96 }}
           >
             Enquire Now
