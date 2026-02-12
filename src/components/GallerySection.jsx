@@ -67,6 +67,49 @@ useEffect(() => {
 
   return () => clearInterval(intervalRef.current);
 }, []);
+useEffect(() => {
+  const handleKeyDown = (e) => {
+    // LIGHTBOX ACTIVE
+    if (lightboxIndex !== null) {
+      if (e.key === "ArrowRight") {
+        setLightboxIndex((prev) => (prev + 1) % images.length);
+      }
+      if (e.key === "ArrowLeft") {
+        setLightboxIndex((prev) => (prev - 1 + images.length) % images.length);
+      }
+      if (e.key === "Escape") {
+        closeLightbox();
+      }
+      return;
+    }
+
+    // NORMAL DESKTOP SLIDER
+    if (window.innerWidth >= 768) {
+      if (e.key === "ArrowRight") {
+        scroll("right");
+      }
+      if (e.key === "ArrowLeft") {
+        scroll("left");
+      }
+    }
+
+    // MOBILE SLIDER
+    if (window.innerWidth < 768) {
+      if (e.key === "ArrowRight") {
+        setMobileActive((prev) => prev + 1);
+      }
+      if (e.key === "ArrowLeft") {
+        setMobileActive((prev) => prev - 1);
+      }
+    }
+  };
+
+  window.addEventListener("keydown", handleKeyDown);
+
+  return () => {
+    window.removeEventListener("keydown", handleKeyDown);
+  };
+}, [lightboxIndex, activeIndex]);
 
     // Scroll to specific slide index
     const scrollToSlide = (index) => {
