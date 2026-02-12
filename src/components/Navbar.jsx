@@ -149,7 +149,7 @@ export default function Navbar() {
         <div className="max-w-7xl  mx-auto px-6    flex w-full justify-center gap-3">
           <div className="flex justify-between w-full items-center h-16 md:h-20   ">
             {/* Logo */}
-            <button className="flex-shrink-0 z-[999] brightness-125 cursor-pointer" onClick={() => handleNavClick('hero')}>
+            <button className={`flex-shrink-0 z-[999] ${scrolled?"":"brightness-125"}cursor-pointer`} onClick={() => handleNavClick('hero')}>
               <img src="/naturesignLogo1.png" alt="NatureSign" className="h-16 w-auto" />
             </button>
 
