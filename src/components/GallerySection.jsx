@@ -212,7 +212,7 @@ useEffect(() => {
       <button
         key={i}
         onClick={() => setMobileActive(i + 1)}
-        className={`w-2 h-2 rounded-full transition ${
+        className={`w-1 h-1 rounded-full transition ${
           i + 1 === mobileActive ? "bg-orange-600" : "bg-gray-300"
         }`}
       />
