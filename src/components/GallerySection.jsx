@@ -184,7 +184,7 @@ useEffect(() => {
   >
     <div
       className={`flex ${
-        noAnim ? "" : "transition-transform duration-700 ease-in-out"
+        noAnim ? "" : "transition-transform duration-100 ease-in-out"
       }`}
       style={{
         transform: `translateX(-${mobileActive * 100}%)`,
