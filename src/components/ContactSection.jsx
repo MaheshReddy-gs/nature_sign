@@ -43,25 +43,28 @@ While enough care is taken by the Company to ensure that information in the webs
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="bg-white rounded-lg pt-14 max-w-6xl  w-full h-[90vh] overflow-y-auto p-6 md:p-12  relative"
+            className="bg-white rounded-lg lg:pt-14 max-w-6xl  w-full h-[90vh] overflow-y-auto px-6 md:px-12  relative"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 50, opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
+            <div className=' sticky top-0 py-5 bg-white'>
+
+           
             {/* Back Button */}
             <button
               onClick={closeModal}
-              className="absolute top-4 left-4 flex items-center gap-2 text-[#a1461a] font-medium hover:text-[#922f0f] transition"
+              className="  flex items-center gap-2 text-[#a1461a] font-medium hover:text-[#922f0f] transition"
             >
               <FaArrowLeft /> Back
             </button>
 
             {/* Heading */}
-            <h2 className="section-heading mb-6 text-center">
+            <h2 className="section-heading  mb-6 text-center">
               {modalContent === 'disclaimer' ? 'Disclaimer' : 'RERA Disclaimer'}
             </h2>
-
+ </div>
             {/* Content */}
             <div className="text-base leading-relaxed whitespace-pre-line">
               {modalContent ? disclaimers[modalContent] : ''}
