@@ -147,7 +147,7 @@ export default function Navbar() {
 
   {/* Navbar content */}
   <div
-    className={`relative z-10 transition-colors duration-300
+    className={`relative z-10 bg-white md:bg-transparent transition-colors duration-300
       ${scrolled || isMobileMenuOpen ? 'text-black' : 'text-white'}
     `}
   >
@@ -184,19 +184,19 @@ export default function Navbar() {
               <span
                 className={`absolute h-0.5 w-6 transition-transform duration-300
                 ${isMobileMenuOpen ? 'rotate-45' : '-translate-y-2'}
-                ${isMobileMenuOpen || scrolled ? 'bg-black' : 'bg-white'}
+                 bg-black
               `}
               />
               <span
                 className={`absolute h-0.5 w-6 transition-opacity duration-300
                 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}
-                ${isMobileMenuOpen || scrolled ? 'bg-black' : 'bg-white'}
+                 bg-black
               `}
               />
               <span
                 className={`absolute h-0.5 w-6 transition-transform duration-300
                 ${isMobileMenuOpen ? '-rotate-45' : 'translate-y-2'}
-                ${isMobileMenuOpen || scrolled ? 'bg-black' : 'bg-white'}
+                 bg-black
               `}
               />
             </button>
@@ -227,14 +227,14 @@ export default function Navbar() {
         </a>
         <button
           onClick={() =>
-            openModal({ initialValues: { message: "Request Callback" } })
+            openModal({ initialValues: { message: "ENQUIRE NOW" } })
           }
           className="w-full uppercase text-xs uppercase text-[11px] font-bold tracking-[0.2em] bg-[#FF5A00] flex-3 text-white px-6 py-4 
                        hover:bg-[#E04F00] transition-all duration-300
                         flex items-center gap-2 justify-around"
         >
           
-          <span className=''>Request Callback</span>
+          <span className=''>ENQUIRE NOW</span>
         </button>
       </div>
 

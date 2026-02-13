@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useModal } from "../context/ModalContext";
 import FloatUpText from "./Animations/floatUpText";
+import CustomButton from "./CustomButton";
 
 export default function BuilderSection() {
     const { openModal } = useModal();
@@ -77,14 +78,22 @@ export default function BuilderSection() {
                         </div>
                         <FloatUpText>
 
-                            <a
-                                href="https://shreyasinfra.com/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="mt-10 px-8 py-3 w-fit md:mb-10 border border-white text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-[#2D8EA2] transition-colors duration-300 rounded-[2px] font-bold inline-block"
-                            >
-                                Visit Shreyas Infra
-                            </a>
+                           <CustomButton
+  bgColor="#3492A5"
+  sweepColor="#308191"
+  borderColor="white"
+  className="mt-10"
+  onClick={() => {
+    window.open(
+      "https://shreyasinfra.com/",
+      "_blank",
+      "noopener,noreferrer"
+    );
+  }}
+>
+  Visit Shreyas Infra
+</CustomButton>
+
 
                         </FloatUpText>
                     </div>

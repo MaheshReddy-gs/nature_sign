@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useModal } from '../context/ModalContext';
 import FloatUpText from './Animations/floatUpText';
+import CustomButton from './CustomButton';
 
 const leaf = "/leaf.webp";
 const naturesignlogo = "/natureSignWhiteLogo.webp";
@@ -32,11 +33,11 @@ const IntroSection = () => {
         <section className='relative flex  '>
 
 
-            <div className=" bg-[#F7F2EA] top-0  py-10 md:py-0 left-1/2 transform min-h-[20vh] flex w-screen justify-center items-center   z-30 pt-10"
+            <div className=" bg-[#F7F2EA] top-0   py-10 md:py-0 left-1/2 transform min-h-[20vh] flex w-screen justify-center items-center   z-30 pt-10"
             >
 
 
-                <div className="grid  p-6 md-p-0 grid-cols-2 gap-y-6 md:gap-y-4 gap-x-10 max-w-6xl w-full items-center
+                <div className="grid  p-6 md-p-0 grid-cols-2 gap-y-6 md:gap-y-4 gap-x-10 max-w-7xl w-full items-center
                 md:flex md:justify-between">
                     {/* Item */}
                     <FloatUpText
@@ -85,18 +86,18 @@ const IntroSection = () => {
                         </p>
                     </FloatUpText>
                     <FloatUpText className="col-span-2 flex justify-center md:col-auto">
-                        <motion.button
+                        <CustomButton hoverBorderColor='#e4daca'
                             onClick={() => openModal({ initialValues: { message: "Enquiry" } })}
-                            className="bg-[#FF5A00] hover:bg-[#E04F00] text-white py-4 px-12 rounded shadow-[0_10px_20px_rgba(255,90,0,0.3)] uppercase text-[11px] font-bold tracking-[0.2em] transition-all duration-100 "
-                            whileTap={{ scale: 1 }}
+                            // className="bg-[#FF5A00] hover:bg-[#E04F00] text-white py-4 px-12 rounded shadow-[0_10px_20px_rgba(255,90,0,0.3)] uppercase text-[11px] font-bold tracking-[0.2em] transition-all duration-100 "
+                            // whileTap={{ scale: 1 }}
                         >
-                            Ask Price
-                        </motion.button></FloatUpText>
+                            unlock Price
+                        </CustomButton></FloatUpText>
                 </div>
             </div>
             {/* 🔶 TOP RERA BAR */}
             <div
-                className="absolute top-0 left-1/2 md:w-auto w-full transform -translate-x-1/2  z-30"
+                className="absolute top-0 text-center left-1/2 md:w-auto w-full transform -translate-x-1/2  z-30"
                 style={{
                     backgroundColor: "#8B4513",
                     color: "#FFFFFF",
@@ -202,7 +203,7 @@ const IntroSection = () => {
                 </motion.p>
 
                 {/* BUTTON */}
-                <motion.button
+                <CustomButton
 
                     onClick={() => openModal({
                         submitText: 'Download Brochure',
@@ -216,12 +217,11 @@ const IntroSection = () => {
                         }
                     })}
 
-                    className="bg-[#FF5A00] hover:bg-[#E04F00] text-white py-4 px-12 rounded shadow-[0_10px_20px_rgba(255,90,0,0.3)] uppercase text-[11px] font-bold tracking-[0.2em] transition-all duration-100 "
-                    whileTap={{ scale: 1 }}
+            
 
                 >
                     DOWNLOAD BROCHURE
-                </motion.button>
+                </CustomButton>
 
             </motion.div>
         </section></>

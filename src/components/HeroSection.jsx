@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useModal } from '../context/ModalContext';
 import { ReraBadge, BiaapaBadge } from './RotatingBadge';
 import { useRef, useState, useEffect } from 'react';
+import CustomButton from './CustomButton';
 
 export default function HeroSection() {
   const { openModal } = useModal();
@@ -13,13 +14,9 @@ export default function HeroSection() {
     target: heroRef,
     offset: ['start start', 'end start'],
   });
-const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
-const bgY = useTransform(
-  scrollYProgress,
-  [0, 1],
-  isMobile ? [0, -120] : [0, -220]
-);
+const bgY = useTransform(scrollYProgress, [0, 1], [0, -220]);
+
 
 
   /* ---------------- SLIDE STATE (ONLY ADDITION) ---------------- */
@@ -109,11 +106,28 @@ useEffect(() => {
     <section
   ref={heroRef}
   id="hero"
-  className="relative w-full min-h-[70vh] lg:h-screen overflow-hidden flex md:items-center  pt-24 bg-black"
->
+  className="relative  w-full  lg:h-screen overflow-hidden flex flex-col md:flex-row md:items-center pt-16 md:pt-24 bg-black"
+>{/* ================= MOBILE IMAGE SLIDER ================= */}
+<div className="block md:hidden relative w-screen overflow-hidden aspect-[16/9]">
+  {slides.map((slide, index) => {
+    const isActive = index === current;
+
+    return (
+      <motion.img
+        key={`mobile-img-${index}`}
+        src={slide.image}
+        alt=""
+        className="absolute inset-0  w-screen h-auto"
+        animate={{ opacity: isActive ? 1 : 0 }}
+        transition={{ duration: 1.2, ease: 'easeInOut' }}
+      />
+    );
+  })}
+</div>
+
 
       {/* ================= PARALLAX BACKGROUNDS (STACKED) ================= */}
-      <div className="absolute inset-0">
+<div className="absolute inset-0 hidden md:block">
   {slides.map((slide, index) => {
     const isActive = index === current;
 
@@ -134,22 +148,9 @@ useEffect(() => {
           animate={{ opacity: isActive ? 1 : 0 }}
           transition={{ duration: 1.2, ease: 'easeInOut' }}
         />
+        
 
-        {/* Mobile Background */}
-        <motion.div
-          key={`mobile-${index}`}
-className="block md:hidden absolute top-0 left-0 w-full h-[100%]"
-          style={{
-            // y: bgY,
-            backgroundImage: `url(${slide.mobileImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'right bottom',
-            willChange: 'transform',
-            zIndex: slides.length - index,
-          }}
-          animate={{ opacity: isActive ? 1 : 0 }}
-          transition={{ duration: 1.2, ease: 'easeInOut' }}
-        />
+       
       </>
     );
   })}
@@ -161,7 +162,7 @@ className="block md:hidden absolute top-0 left-0 w-full h-[100%]"
       <div className="absolute  hidden md:block inset-0 z-10 bg-gradient-to-b from-black/10 via-black/25 to-black/40" />
 
       {/* ================= DESKTOP BADGES (UNCHANGED) ================= */}
-      <div className="hidden lg:flex  absolute bottom-20 right-12 z-30 items-center gap-5">
+      <div className="hidden  lg:flex  absolute bottom-20 right-12 z-30 items-center gap-5">
         <motion.div
           initial={{ opacity: 0, scale: 0.6 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -181,20 +182,20 @@ className="block md:hidden absolute top-0 left-0 w-full h-[100%]"
 
       {/* ================= CONTENT (100% SAME STRUCTURE) ================= */}
       <motion.div
-        className="relative  z-30 max-w-5xl mx-auto px-6 text-center lg:text-left"
+        className="relative h-fit bg-[#8B4513] pt-10 pb-6 md:py-0 md:bg-transparent  z-30 max-w-5xl mx-auto px-6 text-center lg:text-left"
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
       >
         {/* HEADING (UNCHANGED) */}
-        <div className="overflow-hidden">
+        <div className=" overflow-hidden">
           <motion.div
             variants={slideRevealLeft}
             initial="hidden"
             animate="visible"
             transition={{ delay: 0.5 }}
           >
-            <div className="text-[1.7rem] md:text-4xl lg:text-6xl font-bold text-white mb-8 leading-tight">
+            <div className="text-[1.7rem] md:text-4xl lg:text-6xl font-bold text-white mb-2 md:mb-8 leading-tight">
               Smart money is moving to
               <br className="hidden md:block" /> Airport–Nandi hills belt
             </div>
@@ -204,7 +205,7 @@ className="block md:hidden absolute top-0 left-0 w-full h-[100%]"
         {/* SUBTEXT (ENTRY ANIMATION SAME — ONLY CONTENT FADES INSIDE) */}
         <div className="overflow-hidden">
           <motion.p
-            className="relative text-base md:text-lg text-white mb-8 md:mb-10 max-w-2xl mx-auto lg:mx-0 font-light h-auto md:h-auto"
+            className="relative text-base md:text-lg text-white mb-6 md:mb-10 max-w-2xl mx-auto lg:mx-0 font-light h-auto md:h-auto"
 
             variants={slideRevealLeft}
             initial="hidden"
@@ -221,7 +222,7 @@ className="block md:hidden absolute top-0 left-0 w-full h-[100%]"
 
         {/* MOBILE BADGES (UNCHANGED) */}
         <motion.div
-          className="flex lg:hidden justify-center gap-4 mb-8"
+          className="flex lg:hidden justify-center gap-4 mb-2 md:mb-8"
           variants={slideRevealLeft}
         >
           <ReraBadge size={70} />
@@ -233,13 +234,14 @@ className="block md:hidden absolute top-0 left-0 w-full h-[100%]"
           className="flex justify-center lg:justify-start"
           variants={slideFromBottom}
         >
-          <motion.button
+          {/* <motion.button
             onClick={() => openModal({ initialValues: { message: 'Enquiry' } })}
             className="bg-[#FF5A00] hover:bg-[#E04F00] text-white py-4  px-5 md:px-12 rounded shadow-[0_10px_20px_rgba(255,90,0,0.3)] uppercase text-[11px] font-bold tracking-[0.2em]"
             whileTap={{ scale: 0.96 }}
           >
             Enquire Now
-          </motion.button>
+          </motion.button> */}
+          <CustomButton className='hidden md:block' onClick={() => openModal({ initialValues: { message: 'Enquiry' } })}> Enquire Now</CustomButton>
         </motion.div>
       </motion.div>
     </section>

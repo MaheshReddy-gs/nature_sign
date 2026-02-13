@@ -15,6 +15,8 @@ import HighlightsSection from './components/HighlightsSection'
 import BuilderSection from './components/BuilderSection'
 import { ModalProvider } from './context/ModalContext'
 import ContactModal from './components/ContactModal'
+import DigitalDesignCarousel from './components/cardsection'
+import DigitalDesignSection from './components/cardsection'
 
 
 function App() {
@@ -26,6 +28,7 @@ function App() {
         <OverViewSection />
         <UnitDetailsSection />
         <HighlightsSection />
+        <DigitalDesignCarousel/>
         <BuilderSection />
         <GallerySection />
         <SpecificationsSection />

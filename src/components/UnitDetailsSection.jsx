@@ -1,6 +1,7 @@
 import FloatUpText from './Animations/floatUpText.jsx';
 import { useRef, useState } from 'react';
 import { useModal } from '../context/ModalContext.jsx';
+import CustomButton from './CustomButton.jsx';
 
 
 
@@ -168,70 +169,83 @@ export default function UnitDetailsSection() {
     "
                     >
 
-                        {units.map((unit, idx) => (
-                            <div className="group relative h-full rounded-2xl 
-    bg-[#ebeeec] backdrop-blur-md 
-    border border-white 
-    overflow-hidden b
-    transition-all duration-500 ease-out
-    hover:bg-white hover:backdrop-blur-xl hover:-translate-y-2
-    p-6 flex flex-col justify-between"
->
-    {/* Big Background Number */}
-    <div className="absolute top-4 card left-4 text-8xl font-extrabold 
-        text-[#dfe2e0] transition-all duration-500
-        group-hover:text-[#FF5A00]  o"
+                      {units.map((unit, idx) => (
+  <div
+    key={unit.id}
+    className="
+      min-w-[85vw] md:min-w-0 md:w-auto 
+      shrink-0 snap-center 
+      h-full
+    "
+  >
+    <div
+      className="
+        group relative h-full rounded-2xl 
+        bg-[#ebeeec] backdrop-blur-md 
+        border border-white 
+        overflow-hidden
+        transition-all duration-500 ease-out
+        hover:bg-white hover:backdrop-blur-xl hover:-translate-y-2
+        p-6 flex flex-col justify-between
+      "
     >
+      {/* Big Background Number */}
+      <div
+        className="
+          absolute top-4 left-4 text-8xl font-extrabold 
+          text-[#dfe2e0] transition-all duration-500
+          group-hover:text-[#FF5A00]
+        "
+      >
         {unit.id}
-    </div>
+      </div>
 
-    <div className="relative z-10 mt-28">
-
+      <div className="relative z-10 mt-28">
         {/* Unit Size */}
         <div className="mb-6">
-            <p className="text-xl lg:text-2xl font-semibold text-black mb-1">
-                {unit.size}
-            </p>
+          <p className="text-xl lg:text-2xl font-semibold text-black mb-1">
+            {unit.size}
+          </p>
 
-            {unit.area ? (
-                <p className="text-sm lg:text-lg text-black">
-                    ({unit.area})
-                </p>
-            ) : (
-                <p className="text-sm lg:text-lg text-transparent">
-                    ({unit.area})
-                </p>
-            )}
+          {unit.area ? (
+            <p className="text-sm lg:text-lg text-black">
+              ({unit.area})
+            </p>
+          ) : (
+            <p className="text-sm lg:text-lg text-transparent">
+              ({unit.area})
+            </p>
+          )}
         </div>
 
         {/* CTA */}
-        <button
-            onClick={() =>
-                openModal({
-                    initialValues: {
-                        message: "Price Inquiry for Unit " + unit.size,
-                    },
-                })
-            }
-            className="mt-4 bg-[#FF5A00] hover:bg-[#E04F00] text-white 
-                py-3 px-8 rounded-lg 
-                uppercase text-[10px] font-bold tracking-[0.2em] 
-                transition-all duration-300 hover:scale-105"
+        <CustomButton hoverBorderColor="#ebeeec" className=''
+          onClick={() =>
+            openModal({
+              initialValues: {
+                message: "Price Inquiry for Unit " + unit.size,
+              },
+            })
+          }
+          
         >
-            Unlock Price
-        </button>
+          Unlock Price
+        </CustomButton>
+      </div>
+
+      {/* Glass Shine */}
+      <div
+        className="
+          absolute inset-0 bg-gradient-to-br 
+          from-white/30 via-transparent to-transparent 
+          opacity-0 group-hover:opacity-100 
+          transition-opacity duration-500 pointer-events-none
+        "
+      />
     </div>
+  </div>
+))}
 
-    {/* Subtle Glass Shine Effect */}
-    <div className="absolute inset-0 bg-gradient-to-br 
-        from-white/30 via-transparent to-transparent 
-        opacity-0 group-hover:opacity-100 
-        transition-opacity duration-500 pointer-events-none"
-    />
-
-</div>
-
-                        ))}
                     </div>
 
                     {/* Mobile Dots Navigation */}

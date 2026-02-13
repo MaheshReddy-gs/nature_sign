@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useModal } from "../context/ModalContext";
 import FloatUpText from "./Animations/floatUpText";
 import { useRef, useState } from "react"; 
+import CustomButton from "./CustomButton";
 const LocationSection = () => {
    const { openModal } = useModal();
   const imageRef = useRef(null);
@@ -108,15 +109,13 @@ const LocationSection = () => {
 
           {/* Right Button */}
           <FloatUpText>
-            <motion.button
-            className="bg-[#FF5A00]  hover:bg-[#E04F00] text-white py-4 px-12 rounded shadow-[0_10px_20px_rgba(255,90,0,0.3)] uppercase text-[11px] font-bold tracking-[0.2em] transition-all duration-100"
-            whileTap={{ scale: 1 }}
+            <CustomButton
               onClick={() =>
                 openModal({ initialValues: { message: "Request Site Visit" } })
               }
             >
               REQUEST SITE VISIT
-            </motion.button>
+            </CustomButton>
           </FloatUpText>
         </div>
       </div>

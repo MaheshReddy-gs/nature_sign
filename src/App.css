@@ -12,4 +12,22 @@
   border-color: red;
   border-color: red;
   background: #fa07070e;
+}.luxury-btn {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.luxury-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #FF5A00;
+  width: 0%;
+  transition: width 0.4s ease-in-out;
+  z-index: -1;
+}
+
+.luxury-btn:hover::before {
+  width: 100%;
 }
