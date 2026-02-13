@@ -171,10 +171,10 @@ const DigitalDesignSection = () => {
         {/* Header */}
         <div className="mb-12 max-w-7xl px-6 w-full">
           <FloatUpText className="text-orange-200 uppercase text-xs tracking-[0.2em] mb-5">
-            ✱ Services to grow your business
+            ✱ devleopment is going on here
           </FloatUpText>
           <FloatUpText className="section-heading text-white leading-tight">
-            Digital design solutions
+            Section under Construction
           </FloatUpText>
         </div>
 
