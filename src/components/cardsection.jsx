@@ -13,51 +13,66 @@ const DigitalDesignSection = () => {
   const services = [
     {
       id: 1,
-      title: "24/7 Security & Surveillance",
+      title: "A Serene development nestled in a Mango Orchard",
       description:
-        "Gated entry with CCTV monitoring and trained security staff for complete peace of mind.",
+        " Set amidst the timeless charm of flourishing mango trees, this thoughtfully planned development offers a rare blend of natural beauty and modern comfort.",
       gradient: "from-[#a0b8d8] to-[#7a9bc4]",
-      image: "/shreyasLogo.png",
+      image: "/cards/mango.svg",
+      imageClass:"h-44 translate-y-1 md:-translate-y-1  translate-x-3/5"
     },
     {
       id: 2,
-      title: "Luxury Clubhouse",
+      title: "Live Just Moments from Nandi Hills",
       description:
-        "Modern clubhouse with lounge spaces, indoor games, and community event areas.",
+        " Wake up to the promise of misty mornings and panoramic hill views, just a short drive from one of Karnataka’s most cherished natural escapes.",
       gradient: "from-[#8b6fb8] to-[#c74ba0]",
-      image: "/shreyasLogo.png",
+      image: "/cards/mountain.svg",      imageClass:"h-44 translate-y-3  translate-x-2/5"
+
     },
     {
       id: 3,
-      title: "Landscaped Gardens",
+      title: "Strategically Located 5 Minutes from STRR",
       description:
-        "Beautiful green spaces with walking trails and serene relaxation zones.",
+        " Positioned just five minutes from the Satellite Town Ring Road (STRR), this development offers exceptional connectivity and future-ready infrastructure advantage",
       gradient: "from-[#5a7c4d] to-[#7d9b6f]",
-      image: "/shreyasLogo.png",
+      image: "/cards/strr.svg",      imageClass:"h-44 translate-y-1 md:-translate-y-1  translate-x-3/5"
+
     },
     {
       id: 4,
-      title: "Swimming Pool & Gym",
+      title: "Perfectly Positioned Near Reputed Educational & IT Hubs",
       description:
-        "Fully equipped fitness center and refreshing swimming pool for active living.",
+        "Located in close proximity to well-established educational institutions, IT Hubs, this development ensures that quality learning is always within easy reach.",
       gradient: "from-[#4a5d7c] to-[#5a7ba0]",
-      image: "/shreyasLogo.png",
+      image: "/cards/school.svg",      imageClass:"h-44 translate-y-1 md:-translate-y-1  translate-x-3/5"
+
     },
     {
       id: 5,
-      title: "Children’s Play Area",
+      title: "Strong capital growth potential",
       description:
-        "Safe and vibrant play zones designed for joyful childhood moments.",
+        "Experience significant value appreciation as the project progresses and surrounding infrastructure evolves.",
       gradient: "from-[#a0b8d8] to-[#7a9bc4]",
-      image: "/shreyasLogo.png",
+      image: "/cards/building.svg",      imageClass:"h-44 translate-y-1  translate-x-1/3"
+
     },
     {
       id: 6,
-      title: "Ample Parking",
+      title: "Frontage on NH-44 for Seamless Connectivity",
       description:
-        "Spacious covered parking with convenient access for residents and guests.",
+        "Enjoy the advantage of direct frontage on NH-44, one of India’s most prominent national highways, ensuring unmatched accessibility and visibility.",
       gradient: "from-[#8b6fb8] to-[#c74ba0]",
-      image: "/shreyasLogo.png",
+      image: "/cards/road.svg",      imageClass:"h-36 translate-y-1  translate-x-2/5"
+
+    },
+    {
+      id: 7,
+      title: "Just 20 Minutes from Kempegowda International Airport",
+      description:
+        " This prime location ensures smooth and stress-free access to domestic and international destinations",
+      gradient: "from-[#5a7c4d] to-[#7d9b6f]",
+      image: "/cards/plane.svg",      imageClass:"h-42 -translate-y-1  translate-x-2/5"
+
     },
   ];
 
@@ -171,10 +186,10 @@ const DigitalDesignSection = () => {
         {/* Header */}
         <div className="mb-12 max-w-7xl px-6 w-full">
           <FloatUpText className="text-orange-200 uppercase text-xs tracking-[0.2em] mb-5">
-            ✱ devleopment is going on here
+            ✱ Ongoing Project
           </FloatUpText>
           <FloatUpText className="section-heading text-white leading-tight">
-            Section under Construction
+            Intoducting Nature`s Sign
           </FloatUpText>
         </div>
 
@@ -184,14 +199,14 @@ const DigitalDesignSection = () => {
           className="w-screen overflow-hidden hidden lg:block"
         >
           <FloatUpText className="max-w-7xl py-6 mx-auto">
-            <div className="flex gap-6 w-max pl-6 pr-14">
+            <div className="flex gap-6  w-max pl-6 pr-14">
               {services.map((service) => (
                 <motion.div
                   key={service.id}
                   whileHover={{ y: -8 }}
-                  className={`w-[20vw] h-[420px] bg-gradient-to-br ${service.gradient} rounded-3xl p-8 flex flex-col justify-between`}
+                  className={`w-[20vw]  h-[420px] bg-gradient-to-br ${service.gradient} rounded-3xl  flex flex-col justify-between`}
                 >
-                  <div>
+                  <div className="px-8 pt-8">
                     <h3 className="text-2xl font-semibold text-white mb-3">
                       {service.title}
                     </h3>
@@ -199,11 +214,11 @@ const DigitalDesignSection = () => {
                       {service.description}
                     </p>
                   </div>
-                  <div className="flex justify-center mt-6">
+                  <div className="flex justify-center mt-6 overflow-hidden">
                     <img
                       src={service.image}
                       alt={service.title}
-                      className="h-36 object-contain"
+                      className={`object-contain ${service.imageClass}`}
                     />
                   </div>
                 </motion.div>
@@ -223,9 +238,9 @@ const DigitalDesignSection = () => {
             {services.map((service) => (
               <div key={service.id} className="min-w-[85vw] snap-center">
                 <motion.div
-                  className={`h-[420px] bg-gradient-to-br ${service.gradient} rounded-3xl p-8 flex flex-col justify-between`}
+                  className={`h-[420px] bg-gradient-to-br ${service.gradient} rounded-lg  overflow-hidden flex flex-col justify-between`}
                 >
-                  <div>
+                  <div className="px-8 pt-8">
                     <h3 className="text-xl font-semibold text-white mb-3">
                       {service.title}
                     </h3>
@@ -233,11 +248,11 @@ const DigitalDesignSection = () => {
                       {service.description}
                     </p>
                   </div>
-                  <div className="flex justify-center mt-6">
+                  <div className="flex  justify-center mt-6 overflow-hidden">
                     <img
                       src={service.image}
                       alt={service.title}
-                      className="h-32 object-contain"
+                      className={` object-contain ${service.imageClass}`}
                     />
                   </div>
                 </motion.div>
