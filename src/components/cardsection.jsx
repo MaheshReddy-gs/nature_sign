@@ -185,11 +185,11 @@ const DigitalDesignSection = () => {
 
         {/* Header */}
         <div className="mb-12 max-w-7xl px-6 w-full">
-          <FloatUpText className="text-orange-200 uppercase text-xs tracking-[0.2em] mb-5">
+          <FloatUpText className="text-[#04c2ae] uppercase text-xs tracking-[0.2em] mb-5">
             ✱ Ongoing Project
           </FloatUpText>
-          <FloatUpText className="section-heading text-white leading-tight">
-            Intoducting Nature`s Sign
+          <FloatUpText className="text-4xl text-white leading-tight">
+            Introducing <br className="md:hidden"/> Nature`s Sign
           </FloatUpText>
         </div>
 
