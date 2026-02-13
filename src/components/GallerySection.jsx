@@ -26,6 +26,15 @@ const [noAnim, setNoAnim] = useState(false);
 const intervalRef = useRef(null);
 const touchRef = useRef(false);
 const startXRef = useRef(0);
+const mobileScrollRef = useRef(null);
+
+const handleMobileScroll = () => {
+  const el = mobileScrollRef.current;
+  if (!el) return;
+
+  const index = Math.round(el.scrollLeft / el.clientWidth);
+  setMobileIndex(index);
+};
 
 const swipeThreshold = 50;
 
@@ -35,28 +44,23 @@ const mobileSlides = [
   images[0],                 // clone first
 ];
 useEffect(() => {
-  if (window.innerWidth >= 768) return;
+  const el = mobileScrollRef.current;
+  if (!el) return;
 
-  if (mobileActive === mobileSlides.length - 1) {
-    setTimeout(() => {
-      setNoAnim(true);
-      setMobileActive(1);
-    }, 700);
-  }
+  const interval = setInterval(() => {
+    const next = (mobileIndex + 1) % images.length;
 
-  if (mobileActive === 0) {
-    setTimeout(() => {
-      setNoAnim(true);
-      setMobileActive(mobileSlides.length - 2);
-    }, 700);
-  }
-
-  if (noAnim) {
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => setNoAnim(false));
+    el.scrollTo({
+      left: next * el.clientWidth,
+      behavior: "smooth",
     });
-  }
-}, [mobileActive]);
+
+    setMobileIndex(next);
+  }, 3000);
+
+  return () => clearInterval(interval);
+}, [mobileIndex]);
+
 useEffect(() => {
   if (window.innerWidth >= 768) return;
 
@@ -182,28 +186,26 @@ useEffect(() => {
       }, 1000);
     }}
   >
+   <div
+  ref={mobileScrollRef}
+  onScroll={handleMobileScroll}
+  className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide"
+>
+  {images.map((src, index) => (
     <div
-      className={`flex ${
-        noAnim ? "" : "transition-transform duration-100 ease-in-out"
-      }`}
-      style={{
-        transform: `translateX(-${mobileActive * 100}%)`,
-      }}
+      key={index}
+      className="min-w-full h-[55vh] snap-center"
+      onClick={() => openLightbox(index)}
     >
-      {mobileSlides.map((src, index) => (
-        <div
-          key={index}
-          className="w-full shrink-0 h-[55vh]"
-          onClick={() => openLightbox((index - 1 + images.length) % images.length)}
-        >
-          <img
-            src={src}
-            alt="Gallery"
-            className="w-full h-full object-cover"
-          />
-        </div>
-      ))}
+      <img
+        src={src}
+        className="w-full h-full object-cover"
+        draggable={false}
+      />
     </div>
+  ))}
+</div>
+
   </div>
 
   {/* DOTS */}
