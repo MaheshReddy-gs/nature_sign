@@ -180,22 +180,14 @@ const services = [
   <div className="w-full h-full       flex flex-col items-center">
 
     {/* Header */}
-    {/* <div className="pb-5 flex    flex-col md:flex-row justify-between max-w-6xl px-6 w-full shrink-0">
+    <div className="pb-5 flex    flex-col md:flex-row justify-between max-w-6xl px-6 w-full shrink-0">
       <div>
-        <FloatUpText className="text-[#05c2ae] uppercase text-xs tracking-[0.25em] mb-5">
-        ✱ Ongoing Project
-      </FloatUpText>
+       
       <FloatUpText className="text-4xl text-text font-semibold leading-tight">
-        Introducing <br className="md:hidden" /> Nature’s Sign
+        Key features
       </FloatUpText>
-        </div><button
-            onClick={() => window.open("https://nature-sign.netlify.app/", "_blank")}
-            className="btn btn-orange w-fit  mt-2 md:mt-4"
-          >
-            <span>view project</span>
-            <ArrowRight className="w-4 h-4" />
-          </button> 
-    </div> */}
+        </div>
+    </div>
 
     {/* DESKTOP */}
     <div
@@ -227,10 +219,10 @@ const services = [
               <div className="relative flex  flex-col h-full  pt-8 ">
                 {/* Text */}
                 <div className="shrink-0 px-8">
-                  <h3 className="text-xl font-semibold text-text mb-3">
+                  <h3 className="text-xl font-semibold text-white mb-3">
                     {service.title}
                   </h3>
-                  <p className="text-text text-sm leading-relaxed">
+                  <p className="text-white text-sm leading-relaxed">
                     {service.description}
                   </p>
                 </div>
@@ -276,10 +268,10 @@ const services = [
               />
 
               <div className="relative px-8 pt-8">
-                <h3 className="text-xl font-semibold text-text mb-3">
+                <h3 className="text-xl font-semibold text-white mb-3">
                   {service.title}
                 </h3>
-                <p className="text-text text-sm leading-relaxed">
+                <p className="text-white text-sm leading-relaxed">
                   {service.description}
                 </p>
               </div>
