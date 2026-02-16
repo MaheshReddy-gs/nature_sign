@@ -160,7 +160,7 @@ export default function UnitDetailsSection() {
         flex flex-row md:grid md:grid-cols-4
         gap-4 md:gap-3 lg:gap-6  text-center md:text-left
         max-w-6xl mx-auto w-full 
-        h-[320px] md:h-full 
+        h-full 
         overflow-x-auto overflow-y-hidden
         
         snap-x snap-mandatory

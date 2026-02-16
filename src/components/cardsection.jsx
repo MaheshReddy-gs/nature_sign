@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import FloatUpText from "./Animations/floatUpText";
+import { ArrowRight } from "lucide-react";
 
 const Ongoing = () => {
   const desktopRef = useRef(null);
@@ -175,130 +176,145 @@ const services = [
   };
 
   return (
-<section className=" py-20 bg-gradient-to-br from-[#F8CC8B] to-[#e2db62]">
-      <div className="w-full flex flex-col items-center  ">
+<section className="   lg:h-[calc(100vh-5rem)] pt-10 bg-gradient-to-br from-[#F8CC8B] to-[#e2db62]">
+  <div className="w-full h-full       flex flex-col items-center">
 
-        {/* Header */}
-        {/* <div className="mb-12 max-w-7xl px-6 w-full">
-          <FloatUpText className="text-[#05c2ae] uppercase text-xs tracking-[0.25em] mb-5">
-            ✱ Ongoing Project
-          </FloatUpText>
-          <FloatUpText className="text-4xl   text-white  font-semibold leading-tight">
-            Introducing <br className="md:hidden" /> Nature’s Sign
-          </FloatUpText>
-        </div> */}
-
-        {/* DESKTOP */}
-        <div ref={desktopRef} className="w-screen overflow-hidden hidden lg:block">
-          <FloatUpText className="max-w-7xl py-6 mx-auto">
-            <div className="flex gap-6 w-max pl-6 pr-14">
-              {services.map((service) => (
-                <motion.div
-                  key={service.id}
-                  whileHover={{ y: -8 }}
-                  className="
-                    relative
-                    w-[20vw]
-                    h-[420px]
-                    bg-white
-                    rounded-lg
-                    
-                    shadow-[0_12px_30px_rgba(0,0,0,0.06)]
-                    overflow-hidden
-                    flex flex-col justify-between
-                  "
-                >
-                  {/* soft gradient layer */}
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${service.gradient}`}
-                  />
-
-                  <div className="relative px-8 pt-8">
-                    <h3 className="text-2xl font-semibold   text-white mb-3">
-                      {service.title}
-                    </h3>
-                    <p className="text-white text-sm leading-relaxed">
-                      {service.description}
-                    </p>
-                  </div>
-
-                  <div className="relative flex justify-center mt-6 overflow-hidden">
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      className={`object-contain opacity0 ${service.imageClass}`}
-                    />
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </FloatUpText>
-        </div>
-
-        {/* MOBILE */}
-        <div className="w-full lg:hidden">
-          <div
-            ref={mobileRef}
-            onScroll={handleScroll}
-            onTouchStart={pauseAutoScroll}
-            className="flex gap-4 px-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide"
+    {/* Header */}
+    {/* <div className="pb-5 flex    flex-col md:flex-row justify-between max-w-6xl px-6 w-full shrink-0">
+      <div>
+        <FloatUpText className="text-[#05c2ae] uppercase text-xs tracking-[0.25em] mb-5">
+        ✱ Ongoing Project
+      </FloatUpText>
+      <FloatUpText className="text-4xl text-text font-semibold leading-tight">
+        Introducing <br className="md:hidden" /> Nature’s Sign
+      </FloatUpText>
+        </div><button
+            onClick={() => window.open("https://nature-sign.netlify.app/", "_blank")}
+            className="btn btn-orange w-fit  mt-2 md:mt-4"
           >
-            {services.map((service) => (
-              <div key={service.id} className="min-w-[85vw] snap-center">
-                <motion.div
-                  className="
-                    relative
-                    h-[420px]
-                    bg-white
-                    rounded-lg
-                    border border-black/5
-                    shadow-lg
-                    overflow-hidden
-                    flex flex-col justify-between
-                  "
-                >
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${service.gradient} `}
-                  />
+            <span>view project</span>
+            <ArrowRight className="w-4 h-4" />
+          </button> 
+    </div> */}
 
-                  <div className="relative px-8 pt-8">
-                    <h3 className="text-xl font-semibold   text-white mb-3">
-                      {service.title}
-                    </h3>
-                    <p className="text-white text-sm leading-relaxed">
-                      {service.description}
-                    </p>
-                  </div>
-
-                  <div className="relative flex justify-center mt-6 overflow-hidden">
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      className={`object-contain ${service.imageClass}`}
-                    />
-                  </div>
-                </motion.div>
-              </div>
-            ))}
-          </div>
-
-          {/* Dots */}
-          <div className="flex justify-center mt-6 gap-2">
-            {services.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => scrollToIndex(index)}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  activeIndex === index
-                    ? "bg-[#1A1A1A] w-4"
-                    : "bg-[#1A1A1A]/30 w-2"
-                }`}
+    {/* DESKTOP */}
+    <div
+      ref={desktopRef}
+      className="w-screen     flex-col lg:my-auto    justify-center  overflow-hidden py-5 hidden lg:flex items-center"
+    >
+      <FloatUpText className="max-w-6xl mx-auto h-full    ">
+        <div className="flex gap-6 w-max h-full pl-6 pr-14 overflow-y-visible   ">
+          {services.map((service) => (
+            <motion.div
+              key={service.id}
+              whileHover={{ y: -8 }}
+              className="
+                relative 
+                w-[20vw]
+                h-full max-h-[60vh]
+                rounded-lg
+                shadow-[0_12px_30px_rgba(0,0,0,0.06)]
+                overflow-hidden
+                flex flex-col
+              "
+            >
+              {/* Gradient */}
+              <div
+                className={`absolute inset-0 bg-gradient-to-br ${service.gradient}`}
               />
-            ))}
-          </div>
+
+              {/* Content */}
+              <div className="relative flex  flex-col h-full  pt-8 ">
+                {/* Text */}
+                <div className="shrink-0 px-8">
+                  <h3 className="text-xl font-semibold text-text mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-text text-sm leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
+
+                {/* Image */}
+                <div className="flex-1 flex items-end justify-center mt-6 overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className={`object-contain max-h-full  opacity-60 ${service.imageClass}`}
+                  />
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
+      </FloatUpText>
+    </div>
+
+    {/* MOBILE (UNCHANGED) */}
+    <div className="w-full pb-5 lg:hidden">
+      <div
+        ref={mobileRef}
+        onScroll={handleScroll}
+        onTouchStart={pauseAutoScroll}
+        className="flex gap-4 px-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide"
+      >
+        {services.map((service) => (
+          <div key={service.id} className="min-w-[85vw] snap-center">
+            <motion.div
+              className="
+                relative
+                h-[420px]
+                
+                rounded-lg
+                shadow-lg
+                overflow-hidden
+                flex flex-col justify-between
+              "
+            >
+              <div
+                className={`absolute inset-0 bg-gradient-to-br ${service.gradient}`}
+              />
+
+              <div className="relative px-8 pt-8">
+                <h3 className="text-xl font-semibold text-text mb-3">
+                  {service.title}
+                </h3>
+                <p className="text-text text-sm leading-relaxed">
+                  {service.description}
+                </p>
+              </div>
+
+              <div className="relative flex justify-center mt-6 overflow-hidden">
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className={`object-contain opacity-50 ${service.imageClass}`}
+                />
+              </div>
+            </motion.div>
+          </div>
+        ))}
       </div>
-    </section>
+
+      {/* Dots */}
+      <div className="flex justify-center mt-6 gap-2">
+        {services.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => scrollToIndex(index)}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              activeIndex === index
+                ? "bg-[#1A1A1A] w-4"
+                : "bg-[#1A1A1A]/30 w-2"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>
+
   );
 };
 
