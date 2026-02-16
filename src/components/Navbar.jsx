@@ -251,6 +251,15 @@ export default function Navbar() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex flex-col px-6 py-10 space-y-4">
+               <button
+onClick={() => handleNavClick('hero')}                  className="w-full text-left text-black  hover:text-orange-500 uppercase text-sm font-medium py-3 transition-all duration-500 opacity-0 -translate-y-8 animate-slideDown"
+                  style={{
+                    animationDelay: `${1 * 60}ms`,
+                    animationFillMode: 'forwards'
+                  }}
+                >
+                  Home
+                </button>
               {/* Menu Items with Staggered Top-Down Animation */}
               {navItems.map((item, index) => (
                 <button

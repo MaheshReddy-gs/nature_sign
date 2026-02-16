@@ -183,7 +183,7 @@ const services = [
     <div className="pb-5 flex    flex-col md:flex-row justify-between max-w-6xl px-6 w-full shrink-0">
       <div>
        
-      <FloatUpText className="text-4xl text-text font-semibold leading-tight">
+      <FloatUpText className="text-3xl md:text-4xl text-text font-medium leading-tight">
         Key features
       </FloatUpText>
         </div>
