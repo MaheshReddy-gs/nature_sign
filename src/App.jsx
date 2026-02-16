@@ -16,7 +16,7 @@ import BuilderSection from './components/BuilderSection'
 import { ModalProvider } from './context/ModalContext'
 import ContactModal from './components/ContactModal'
 import DigitalDesignCarousel from './components/cardsection'
-import DigitalDesignSection from './components/cardsection'
+import Ongoing from './components/cardsection'
 
 
 function App() {

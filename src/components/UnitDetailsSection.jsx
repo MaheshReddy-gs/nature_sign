@@ -151,16 +151,16 @@ export default function UnitDetailsSection() {
                     </h3>
                 </FloatUpText>
 
-                <div className="flex-1 w-full min-h-0 mt-2 flex flex-col">
+                <div className="flex-1   w-full min-h-0 mt-2 flex flex-col">
                     {/* Container: Flex row with horizontal scroll on mobile, Grid on desktop */}
                     <div
                         ref={scrollRef}
                         onScroll={handleScroll}
                         className="
         flex flex-row md:grid md:grid-cols-4
-        gap-4 md:gap-3 lg:gap-6
-        max-w-5xl mx-auto w-full 
-        h-[320px] md:h-full
+        gap-4 md:gap-3 lg:gap-6  text-center md:text-left
+        max-w-6xl mx-auto w-full 
+        h-[320px] md:h-full 
         overflow-x-auto overflow-y-hidden
         
         snap-x snap-mandatory
