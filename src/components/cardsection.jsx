@@ -201,7 +201,7 @@ const services = [
                     w-[20vw]
                     h-[420px]
                     bg-white
-                    rounded-3xl
+                    rounded-lg
                     
                     shadow-[0_12px_30px_rgba(0,0,0,0.06)]
                     overflow-hidden
@@ -250,7 +250,7 @@ const services = [
                     relative
                     h-[420px]
                     bg-white
-                    rounded-2xl
+                    rounded-lg
                     border border-black/5
                     shadow-lg
                     overflow-hidden
