@@ -14,7 +14,7 @@ export default function HeroSection() {
     offset: ['start start', 'end start'],
   });
 
-  const bgY = useTransform(scrollYProgress, [0, 1], [0, -220]);
+  const bgY = useTransform(scrollYProgress, [0, 1], [0, -80]);
 
   /* ---------------- SLIDE STATE (ONLY ADDITION) ---------------- */
 
