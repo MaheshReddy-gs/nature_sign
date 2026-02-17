@@ -2,7 +2,6 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useModal } from '../context/ModalContext';
 import { ReraBadge, BiaapaBadge } from './RotatingBadge';
 import { useRef, useState, useEffect } from 'react';
-import CustomButton from './CustomButton';
 
 export default function HeroSection() {
   const { openModal } = useModal();
@@ -15,16 +14,14 @@ export default function HeroSection() {
     offset: ['start start', 'end start'],
   });
 
-const bgY = useTransform(scrollYProgress, [0, 1], [0, -220]);
-
-
+  const bgY = useTransform(scrollYProgress, [0, 1], [0, -220]);
 
   /* ---------------- SLIDE STATE (ONLY ADDITION) ---------------- */
 
  const slides = [
   {
     image: "/hero_background123.webp", // desktop
-    mobileImage: "/hero_mobile_bg1.webp", // mobile
+    mobileImage: "/hero_background123.webp", // mobile
     subtext: (
       <>
         Premium Pre-Launch Plots&nbsp;&nbsp; |&nbsp;&nbsp;Airport–Nandi Hills Corridor <br />
@@ -35,10 +32,10 @@ const bgY = useTransform(scrollYProgress, [0, 1], [0, -220]);
   },
   {
     image: "/hero_image_2.webp", // desktop
-    mobileImage: "/hero_mobile_bg2.webp", // mobile
+    mobileImage: "/hero_image_2.webp", // mobile
     subtext: (
   <>
-    North Bengaluru is becoming <br/> the city&apos;s next investment hotspot <br/> with NH-44, Airport & Foxconn driving growth.
+    North Bengaluru is fast becoming the city&apos;s next investment hotspot <br/> with NH-44, Airport & Foxconn driving growth.
   </>
 
 
@@ -106,28 +103,11 @@ useEffect(() => {
     <section
   ref={heroRef}
   id="hero"
-  className="relative  w-full  lg:h-screen overflow-hidden flex flex-col md:flex-row md:items-center pt-16 md:pt-24 bg-black"
->{/* ================= MOBILE IMAGE SLIDER ================= */}
-<div className="block md:hidden relative w-screen overflow-hidden aspect-[16/9]">
-  {slides.map((slide, index) => {
-    const isActive = index === current;
-
-    return (
-      <motion.img
-        key={`mobile-img-${index}`}
-        src={slide.image}
-        alt=""
-        className="absolute inset-0  w-screen h-auto"
-        animate={{ opacity: isActive ? 1 : 0 }}
-        transition={{ duration: 1.2, ease: 'easeInOut' }}
-      />
-    );
-  })}
-</div>
-
+  className="relative w-full h-[70vh] lg:h-screen overflow-hidden flex md:items-center  pt-24 bg-black"
+>
 
       {/* ================= PARALLAX BACKGROUNDS (STACKED) ================= */}
-<div className="absolute inset-0 hidden md:block">
+      <div className="absolute inset-0">
   {slides.map((slide, index) => {
     const isActive = index === current;
 
@@ -136,7 +116,7 @@ useEffect(() => {
         {/* Desktop Background */}
         <motion.div
           key={`desktop-${index}`}
-          className="hidden md:block absolute top-0 left-0 w-full h-[135%]"
+          className="hidden md:block absolute  top-0 left-0 w-full h-[135%]"
           style={{
             y: bgY,
             backgroundImage: `url(${slide.image})`,
@@ -148,8 +128,22 @@ useEffect(() => {
           animate={{ opacity: isActive ? 1 : 0 }}
           transition={{ duration: 1.2, ease: 'easeInOut' }}
         />
-        
+        <motion.div
+          key={`desktop-${index}`}
+          className="absolute md:hidden top-0 left-0 w-full h-[135%]"
+          style={{
+            y: bgY,
+            backgroundImage: `url(${slide.image})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'right -80px',
+            willChange: 'transform',
+            zIndex: slides.length - index,
+          }}
+          animate={{ opacity: isActive ? 1 : 0 }}
+          transition={{ duration: 1.2, ease: 'easeInOut' }}
+        />
 
+        {/* Mobile Background */}
        
       </>
     );
@@ -159,16 +153,16 @@ useEffect(() => {
 
 
       {/* ================= OVERLAY (UNCHANGED) ================= */}
-      <div className="absolute  hidden md:block inset-0 z-10 bg-gradient-to-b from-black/10 via-black/25 to-black/40" />
+      <div className="absolute  inset-0 z-10 bg-gradient-to-b from-black/10 via-black/25 to-black/40" />
 
       {/* ================= DESKTOP BADGES (UNCHANGED) ================= */}
-      <div className="hidden  lg:flex  absolute bottom-20 right-12 z-30 items-center gap-5">
+      <div className="hidden lg:flex  absolute bottom-20 right-12 z-30 items-center gap-5">
         <motion.div
           initial={{ opacity: 0, scale: 0.6 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.5, duration: 0.9 }}
         >
-          <ReraBadge size={140} />
+          <ReraBadge size={130} />
         </motion.div>
 
         <motion.div
@@ -176,28 +170,28 @@ useEffect(() => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.7, duration: 0.9 }}
         >
-          <BiaapaBadge size={140} />
+          <BiaapaBadge size={130} />
         </motion.div>
       </div>
 
       {/* ================= CONTENT (100% SAME STRUCTURE) ================= */}
       <motion.div
-        className="relative h-fit bg-[#8B4513] pt-10 pb-6 md:py-0 md:bg-transparent  z-30 max-w-5xl mx-auto px-6 text-center lg:text-left"
+        className="relative flex flex-col justify-center  z-30 max-w-5xl mx-auto px-6 text-center lg:text-left"
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
       >
         {/* HEADING (UNCHANGED) */}
-        <div className=" overflow-hidden">
+        <div className="overflow-hidden">
           <motion.div
             variants={slideRevealLeft}
             initial="hidden"
             animate="visible"
             transition={{ delay: 0.5 }}
           >
-            <div className="text-[1.7rem] md:text-4xl lg:text-6xl font-bold text-white mb-2 md:mb-8 leading-tight">
-              Smart money is moving to
-              <br className="hidden md:block" /> Airport–Nandi hills belt
+            <div className="text-[1.7rem] md:text-4xl lg:text-6xl font-bold text-white mb-8 leading-tight">
+            
+               Nature&apos;s canvas,<br className="hi" /> crafted with finesse.
             </div>
           </motion.div>
         </div>
@@ -205,28 +199,32 @@ useEffect(() => {
         {/* SUBTEXT (ENTRY ANIMATION SAME — ONLY CONTENT FADES INSIDE) */}
         <div className="overflow-hidden">
           <motion.p
-            className="relative text-base md:text-lg text-white mb-6 md:mb-10 max-w-2xl mx-auto lg:mx-0 font-light h-auto md:h-auto"
-
+            className="relative text-base md:text-xl text-white mb-10 max-w-2xl mx-auto lg:mx-0 font-light"
             variants={slideRevealLeft}
             initial="hidden"
             animate="visible"
             transition={{ delay: 1 }}
           >
-             
            
-                    North Bengaluru is  becoming <br/>the city&apos;s next investment hotspot  
-
-            
+              <span
+                style={{
+                  transition: 'opacity 0.9s ease-in-out',
+                  left: 0,
+                  top: 0,
+                }}
+              >
+Premium plotted development in <br/>Devanahalli, Bengaluru              </span>
+        
           </motion.p>
         </div>
 
         {/* MOBILE BADGES (UNCHANGED) */}
         <motion.div
-          className="flex lg:hidden justify-center gap-4 mb-2 md:mb-8"
+          className="flex lg:hidden justify-center gap-4 mb-8"
           variants={slideRevealLeft}
         >
-          <ReraBadge size={70} />
-          <BiaapaBadge size={70} />
+          <ReraBadge size={90} />
+          <BiaapaBadge size={90} />
         </motion.div>
 
         {/* CTA (UNCHANGED) */}
@@ -234,14 +232,13 @@ useEffect(() => {
           className="flex justify-center lg:justify-start"
           variants={slideFromBottom}
         >
-          {/* <motion.button
+          <motion.button
             onClick={() => openModal({ initialValues: { message: 'Enquiry' } })}
-            className="bg-[#FF5A00] hover:bg-[#E04F00] text-white py-4  px-5 md:px-12 rounded shadow-[0_10px_20px_rgba(255,90,0,0.3)] uppercase text-[11px] font-bold tracking-[0.2em]"
+            className="bg-[#FF5A00] hidden md:flex hover:bg-[#E04F00] text-white py-4 px-12 rounded shadow-[0_10px_20px_rgba(255,90,0,0.3)] uppercase text-[11px] font-bold tracking-[0.2em]"
             whileTap={{ scale: 0.96 }}
           >
             Enquire Now
-          </motion.button> */}
-          <CustomButton className='hidden md:block' onClick={() => openModal({ initialValues: { message: 'Enquiry' } })}> Enquire Now</CustomButton>
+          </motion.button>
         </motion.div>
       </motion.div>
     </section>
