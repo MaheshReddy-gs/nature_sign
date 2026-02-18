@@ -69,7 +69,12 @@ const MasterPlanSection = () => {
            mt-8 sm:mt-10 lg:mt-0"
        
           >
-            <div className="w-full flex flex-col items-center">
+            <div className="w-full flex flex-col  items-center">
+              <div
+                    className=" text-black font-semibold text-sm  translate-y-18 text-center leading-tight bg-transparent"
+                  >
+                Phase 1   
+                  </div>
               <img
                 src="/masterplan.webp"
                 alt="Master Plan Map"
@@ -109,7 +114,11 @@ const MasterPlanSection = () => {
             mt-8 sm:mt-10 lg:mt-0"
        
           >
-            <div className="w-full flex flex-col items-center">
+            <div className="w-full flex flex-col items-center text-left"> <div
+                    className=" text-black font-semibold text-sm   text-center leading-tight bg-transparent"
+                  >
+                Phase 1   
+                  </div>
               <img
                 src="/masterplan.webp"
                 alt="Master Plan Map"

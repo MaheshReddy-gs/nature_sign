@@ -176,7 +176,7 @@ const services = [
   };
 
   return (
-<section className="   lg:h-[calc(100vh-5rem)] pt-10 bg-gradient-to-br from-[#F8CC8B] to-[#e2db62]">
+<section className="   lg:h-[calc(100vh-5rem)] pt-10 bg-gradient-to-br from-[#f5dbb4] to-[#fffcbb]">
   <div className="w-full h-full       flex flex-col items-center">
 
     {/* Header */}

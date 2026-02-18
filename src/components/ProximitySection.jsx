@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import FloatUpText from "./Animations/floatUpText";
 
 const PROXIMITY_IMAGES = [
-  { id: 1, src: "/strr.webp", alt: "STRR Proximity" },
+  { id: 1, src: "/STRR.webp", alt: "STRR Proximity" },
 ];
 
 const EDUCATION_LOGOS = [
@@ -58,13 +58,13 @@ const IMAGE_FADE = {
 
 export default function ProximitySection() {
   return (
-    <section id="proximity" className="relative w-full bg-[#FBF6EE] overflow-hidden py-16 lg:py-20">
+    <section id="proximity" className="relative w-full bg-[#FBF6EE]  overflow-hidden py-16 lg:py-20">
       {/* Soft corner shapes */}
   
 
       <div className="relative max-w-6xl mx-auto px-6">
       <FloatUpText>
-  <FloatUpText className="text-[#a1461a] text-center text-xs tracking-[0.2em] uppercase mb-5 ">Proximity</FloatUpText>
+  <FloatUpText className="text-[#a1461a]  text-center text-xs tracking-[0.2em] uppercase mb-5 ">Proximity</FloatUpText>
 </FloatUpText>
 
 
@@ -78,10 +78,10 @@ export default function ProximitySection() {
         >
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 p-8 lg:p-10">
             <motion.div
-              className="overflow-hidden bg-white"
+              className="overflow-hidden  bg-white"
               variants={IMAGE_FADE}
             >
-              <div className="aspect-[4/3] w-full overflow-hidden bg-white">
+              <div className="aspe] w-full overflow-hidden bg-white">
                 <img
                   src={PROXIMITY_IMAGES[ 0 ].src}
                   alt={PROXIMITY_IMAGES[ 0 ].alt}
