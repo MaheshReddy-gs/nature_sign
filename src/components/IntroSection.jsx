@@ -79,10 +79,10 @@ const IntroSection = () => {
                     <FloatUpText
                     >
                         <p className="text-[#a1461a] text-xs    tracking-[0.2em] ">
-                            TOTAL UNITS
+                            TOTAL UNITS (PHASE 1)
                         </p>
                         <p className="text-base">
-                            250 Units
+                            124 Units
                         </p>
                     </FloatUpText>
                     <FloatUpText className="col-span-2 flex justify-center md:col-auto">
