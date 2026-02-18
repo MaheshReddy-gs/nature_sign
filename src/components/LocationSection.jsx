@@ -53,9 +53,8 @@ const LocationSection = () => {
 
                 <FloatUpText>
                   <p className="text-black md:pt-0 pt-5 text-base leading-relaxed">
-                    No.51, 3rd Floor, Chourasia Shreyas Arcade,<br /> 3rd Cross,
-                    
-                    Aswath Nagar, Marathahalli,<br className="md:hidden"/> Bengaluru 560037, Karnataka
+                    41/5,Mudugurki Village, Vijayapura Hobli, Devanahalli Taluk,<br className="hidden md:block"/> Bengaluru Rural District,  <br className="md:hidden"/>   
+Karnataka,India - 562135
                   </p>
                 </FloatUpText>
               </div>

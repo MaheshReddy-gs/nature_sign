@@ -70,7 +70,7 @@ const ContactModal = () => {
                             <X size={20} />
                         </button>
 
-                        <h1 className="text-base  md:text-3xl  text-center text-black mb-5 ">
+                        <h1 className="text-base  md:text-3xl   text-center text-black mb-5 ">
                             Share query by filling out the form,<br className="hidden md:block"/> we will assist you at the earliest.
                         </h1>
 

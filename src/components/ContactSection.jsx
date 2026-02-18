@@ -43,7 +43,7 @@ While enough care is taken by the Company to ensure that information in the webs
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="bg-white rounded-lg lg:pt-14 max-w-6xl  w-full h-[90vh] overflow-y-auto px-6 md:px-12  relative"
+            className="bg-white rounded-lg lg: max-w-6xl  w-full h-[90vh] overflow-y-auto px-6 md:px-12  relative"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 50, opacity: 0 }}
@@ -66,7 +66,7 @@ While enough care is taken by the Company to ensure that information in the webs
             </h2>
  </div>
             {/* Content */}
-            <div className="text-base leading-relaxed whitespace-pre-line">
+            <div className="text-base pb-10 leading-relaxed whitespace-pre-line">
               {modalContent ? disclaimers[modalContent] : ''}
             </div>
           </motion.div>

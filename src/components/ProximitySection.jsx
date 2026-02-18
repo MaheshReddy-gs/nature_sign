@@ -15,7 +15,7 @@ const EDUCATION_LOGOS = [
 
 const LANDMARKS = [
   { id: 1, name: "Nandi Hills", src: "/nandihills.webp" },
-  { id: 2, name: "SAB Labs", src: "/saplabs.webp" },
+  { id: 2, name: "SAP Labs", src: "/saplabs.webp" },
   { id: 3, name: "Exide Energy", src: "/exide.webp" },
   { id: 4, name: "Isha Foundation", src: "/isha.webp" },
   { id: 5, name: "Foxconn Manufacturing Plant", src: "/foxconn.webp" },
