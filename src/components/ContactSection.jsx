@@ -120,7 +120,7 @@ const ContactSection = () => {
       {/* 3. Footer Section */}
       <footer className="bg-[#1C1C1C] text-gray-400 py-12 pb-20 px-6 relative z-10">
         <a
-          href="https://wa.me/919999999999"
+          href="https://wa.me/+918151884545"
           target="_blank"
           rel="noopener noreferrer"
           className="absolute -top-7 right-10 z-[9999] w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-xl"
