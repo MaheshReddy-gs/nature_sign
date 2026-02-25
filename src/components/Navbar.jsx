@@ -206,7 +206,7 @@ export default function Navbar() {
           >
             <div>
             </div>
-            <img src='call.svg' className='h-5 ' />
+            <img src='call.svg' alt="Phone call icon" className='h-5 ' />
             <div className="text-left      ">
               <div className=" text-[0.6rem] uppercase w-full">Call</div>
               <div className="text-xs font-semibold tracking-wide w-fit">+91 81518 84545</div>
@@ -223,7 +223,7 @@ export default function Navbar() {
                        hover:bg-[#E04F00] transition-all duration-300
                         flex flex-1 items-center gap-2 justify-around"
         >
-           <img src='call.svg' className='h-6 ' />
+           <img src='call.svg' alt="Call Nature Sign now" className='h-6 ' />
         </a>
         <button
           onClick={() =>

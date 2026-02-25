@@ -199,8 +199,10 @@ useEffect(() => {
     >
       <img
         src={src}
+        alt={`Nature Sign property gallery image ${index + 1}`}
         className="w-full h-full object-cover"
         draggable={false}
+        loading="lazy"
       />
     </div>
   ))}

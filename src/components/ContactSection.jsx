@@ -169,6 +169,7 @@ const ContactSection = () => {
                 >
                   <img
                     src="/LinkedIn.svg"
+                    alt="LinkedIn - Connect with us on LinkedIn"
                     className="w-3 h-3 opacity-70 hover:opacity-100 cursor-pointer transition"
                   />
                 </a>
@@ -181,6 +182,7 @@ const ContactSection = () => {
                 >
                   <img
                     src="/insta.svg"
+                    alt="Instagram - Follow Nature Sign on Instagram"
                     className="w-3 h-3 opacity-70 hover:opacity-100 cursor-pointer transition"
                   />
                 </a>
@@ -192,6 +194,7 @@ const ContactSection = () => {
                   aria-label="Facebook"
                 >
                   <img
+                    alt="Facebook - Follow Nature Sign on Facebook"
                     src="/facebook.svg"
                     className="w-3 h-3 opacity-70 hover:opacity-100 cursor-pointer transition"
                   />

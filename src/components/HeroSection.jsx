@@ -181,7 +181,7 @@ useEffect(() => {
         initial="hidden"
         animate="visible"
       >
-        {/* HEADING (UNCHANGED) */}
+        {/* HEADING (CHANGED TO H1 FOR SEO) */}
         <div className="overflow-hidden">
           <motion.div
             variants={slideRevealLeft}
@@ -189,10 +189,10 @@ useEffect(() => {
             animate="visible"
             transition={{ delay: 0.5 }}
           >
-            <div className="text-[1.7rem] md:text-4xl lg:text-5xl font-bold text-white mb-8 leading-tight">
+            <h1 className="text-[1.7rem] md:text-4xl lg:text-5xl font-bold text-white mb-8 leading-tight">
               Build Your Legacy in North Bengaluru&apos;s <br className="hi" />  Fastest Growing Corridor
                {/* Nature&apos;s canvas,<br className="hi" /> crafted with finesse. */}
-            </div>
+            </h1>
           </motion.div>
         </div>
 
