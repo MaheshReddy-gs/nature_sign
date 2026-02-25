@@ -176,7 +176,7 @@ useEffect(() => {
 
       {/* ================= CONTENT (100% SAME STRUCTURE) ================= */}
       <motion.div
-        className="relative flex flex-col justify-center  z-30 max-w-5xl mx-auto px-6 text-center lg:text-left"
+        className="relative flex flex-col justify-center  z-30 max-w-6xl mx-auto px-6 text-center lg:text-left"
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
@@ -189,9 +189,9 @@ useEffect(() => {
             animate="visible"
             transition={{ delay: 0.5 }}
           >
-            <div className="text-[1.7rem] md:text-4xl lg:text-6xl font-bold text-white mb-8 leading-tight">
-            
-               Nature&apos;s canvas,<br className="hi" /> crafted with finesse.
+            <div className="text-[1.7rem] md:text-4xl lg:text-5xl font-bold text-white mb-8 leading-tight">
+              Build Your Legacy in North Bengaluru&apos;s <br className="hi" />  Fastest Growing Corridor
+               {/* Nature&apos;s canvas,<br className="hi" /> crafted with finesse. */}
             </div>
           </motion.div>
         </div>
@@ -213,8 +213,11 @@ useEffect(() => {
                   top: 0,
                 }}
               >
-Premium plotted development in <br/>Devanahalli, Bengaluru              </span>
-        
+{/* Premium RERA Approved Villa Plots in Devanahalli – Just 20 Minutes from Airport & Foxconn, 5 Minutes from STRR. */}
+Own the land, design your villa, and secure your family&apos;s future in a <br/>
+high-growth corridor with strong appreciation potential.
+{/* Premium plotted development in <br/>Devanahalli, Bengaluru               */}
+        </span>
           </motion.p>
         </div>
 

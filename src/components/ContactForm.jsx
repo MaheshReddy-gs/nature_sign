@@ -37,7 +37,7 @@ const ContactForm = ({ compact = false, onSuccess, initialValues = {}, submitTex
         setIsSubmitting(true);
         setSubmissionStatus(null);
 
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzd2rxWVpxfllnFEwviIkGTZYX5kMg2Z2Var_B5xVySrQF86XIOPuh9L7Cz0bl3R0fClA/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyyT_ERLeYkpKWioNzNZS2AmuGLs4lfSBAvaP2kmFN3ZAT4g1XGi6roc5oGGFyhewepKQ/exec';
 
         // Using JSON payload to match the new script's JSON.parse()
         const payload = {
