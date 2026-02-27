@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CustomButton from './CustomButton';
 
 const ContactForm = ({ compact = false, onSuccess, initialValues = {}, submitText = "Get A Call Back" }) => {
@@ -11,6 +11,12 @@ const ContactForm = ({ compact = false, onSuccess, initialValues = {}, submitTex
     const [ errors, setErrors ] = useState({});
     const [ isSubmitting, setIsSubmitting ] = useState(false);
     const [ submissionStatus, setSubmissionStatus ] = useState(null); // 'success' | 'error' | null
+
+    useEffect(() => {
+        if (initialValues.message) {
+            setFormData(prev => ({ ...prev, message: initialValues.message }));
+        }
+    }, [ initialValues.message ]);
 
     const validateForm = () => {
         let newErrors = {};
@@ -29,49 +35,76 @@ const ContactForm = ({ compact = false, onSuccess, initialValues = {}, submitTex
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!validateForm()) return; // ❌ stop submit
+        if (!validateForm()) return;
 
         setIsSubmitting(true);
         setSubmissionStatus(null);
 
         const scriptURL = 'https://script.google.com/macros/s/AKfycbyyT_ERLeYkpKWioNzNZS2AmuGLs4lfSBAvaP2kmFN3ZAT4g1XGi6roc5oGGFyhewepKQ/exec';
+        const crmHost = 'https://devcrm.makonissoft.com/';
+        // const crmHost = 'http://143.110.251.119:9100/';
+        const crmURL = `${crmHost}webhooks/website/leads/`;
 
-        // Using JSON payload to match the new script's JSON.parse()
         const payload = {
             ...formData,
             website: "Nature's Sign"
         };
 
-        fetch(scriptURL, {
+        const crmPayload = {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            message: formData.message,
+            website_url: "https://www.naturessignbyshreyas.com/"
+        };
+
+        const emailRequest = fetch(scriptURL, {
             method: 'POST',
             headers: { 'Content-Type': 'text/plain;charset=utf-8' },
             body: JSON.stringify(payload)
-        })
-            .then(response => response.json())
-            .then(data => {
-                setSubmissionStatus('success');
-                setFormData({ name: '', email: '', phone: '', message: '' });
-                if (onSuccess) onSuccess();
-            })
-            .catch(error => {
-                console.error('Error!', error);
-                setSubmissionStatus('error');
-            })
-            .finally(() => {
-                setIsSubmitting(false);
-            });
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error(`Email API failed with status ${response.status}`);
+            }
+            return response.json();
+        });
+
+        const crmRequest = fetch(crmURL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-WEBSITE-TOKEN': 'JGBYtyfvht675GVYFYTFV565fvyfuytHGUjhgbuyg67vtvTftffTF7jyb35BGUJGUHGBtb6oxdioseodxwLOEO9w'
+            },
+            body: JSON.stringify(crmPayload)
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error(`CRM API failed with status ${response.status}`);
+            }
+            return response;
+        });
+
+        try {
+            await Promise.all([ emailRequest, crmRequest ]);
+            setSubmissionStatus('success');
+            setFormData({ name: '', email: '', phone: '', message: '' });
+            if (onSuccess) onSuccess();
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            setSubmissionStatus('error');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
 
-        // Phone: allow ONLY numbers & max 10 digits
         if (name === "phone") {
-            if (!/^\d*$/.test(value)) return; // block alphabets
-            if (value.length > 10) return;    // max 10 digits
+            if (!/^\d*$/.test(value)) return;
+            if (value.length > 10) return;
         }
 
         setFormData({
@@ -79,7 +112,6 @@ const ContactForm = ({ compact = false, onSuccess, initialValues = {}, submitTex
             [ name ]: value,
         });
 
-        // clear error while typing
         setErrors({
             ...errors,
             [ name ]: "",
@@ -89,7 +121,6 @@ const ContactForm = ({ compact = false, onSuccess, initialValues = {}, submitTex
     return (
         <form onSubmit={handleSubmit} className="space-y-6">
             <div className={`grid grid-cols-1 ${compact ? '' : 'md:grid-cols-2'} gap-6`}>
-                {/* Name Input */}
                 <div>
                     <input
                         type="text"
@@ -104,7 +135,6 @@ const ContactForm = ({ compact = false, onSuccess, initialValues = {}, submitTex
                     )}
                 </div>
 
-                {/* Email Input */}
                 <input
                     type="email"
                     name="email"
@@ -117,7 +147,6 @@ const ContactForm = ({ compact = false, onSuccess, initialValues = {}, submitTex
             </div>
 
             <div className={`grid grid-cols-1 ${compact ? '' : 'md:grid-cols-2'} gap-6`}>
-                {/* Phone Input */}
                 <div>
                     <input
                         type="tel"
@@ -132,7 +161,6 @@ const ContactForm = ({ compact = false, onSuccess, initialValues = {}, submitTex
                     )}
                 </div>
 
-                {/* Dropdown/Textarea */}
                 <textarea
                     name="message"
                     placeholder="Your inquiry about..."
@@ -143,13 +171,11 @@ const ContactForm = ({ compact = false, onSuccess, initialValues = {}, submitTex
                 ></textarea>
             </div>
 
-            {/* Footer Text and Button */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mt-8">
                 <p className="text-black text-xs font-medium md:text-sm">
                     Required fields are marked *
                 </p>
 
-                {/* Submit Button */}
                 <CustomButton hoverBorderColor='#e4daca'
                     type="submit"
                     disabled={isSubmitting}
@@ -158,8 +184,9 @@ const ContactForm = ({ compact = false, onSuccess, initialValues = {}, submitTex
                 >
                     {isSubmitting ? "Sending..." : submitText}
                 </CustomButton>
+            </div>
 
-
+            <div>
                 {submissionStatus === 'success' && (
                     <p className="text-green-600 font-medium text-sm md:text-base animate-pulse">
                         Request sent successfully! We will contact you soon.

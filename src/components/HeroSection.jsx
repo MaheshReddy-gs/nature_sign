@@ -236,7 +236,7 @@ high-growth corridor with strong appreciation potential.
           variants={slideFromBottom}
         >
           <motion.button
-            onClick={() => openModal({ initialValues: { message: 'Enquiry' } })}
+            onClick={() => openModal({ initialValues: { message: '' } })}
             className="bg-[#FF5A00] hidden md:flex hover:bg-[#E04F00] text-white py-4 px-12 rounded shadow-[0_10px_20px_rgba(255,90,0,0.3)] uppercase text-[11px] font-bold tracking-[0.2em]"
             whileTap={{ scale: 0.96 }}
           >
