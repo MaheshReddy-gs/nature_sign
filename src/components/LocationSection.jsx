@@ -127,12 +127,78 @@ const LocationSection = () => {
     panStart.current = null;
   }, []);
 
+  // ── Touch support ──
+  const lastTouchDist = useRef(null);
+
+  const getTouchDist = (touches) => {
+    const dx = touches[0].clientX - touches[1].clientX;
+    const dy = touches[0].clientY - touches[1].clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+  };
+
+  const handleTouchStart = useCallback((e) => {
+    e.preventDefault();
+    if (e.touches.length === 1) {
+      const t = e.touches[0];
+      setIsPanning(true);
+      panStart.current = { x: t.clientX - pan.x, y: t.clientY - pan.y };
+      lastTouchDist.current = null;
+    } else if (e.touches.length === 2) {
+      lastTouchDist.current = getTouchDist(e.touches);
+    }
+  }, [pan]);
+
+  const handleTouchMove = useCallback((e) => {
+    e.preventDefault();
+    const container = mapRef.current;
+    if (!container) return;
+    const { width, height } = container.getBoundingClientRect();
+
+    if (e.touches.length === 2) {
+      const dist = getTouchDist(e.touches);
+      if (lastTouchDist.current !== null) {
+        const ratio = dist / lastTouchDist.current;
+        setZoom((prev) => {
+          const next = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, prev * ratio));
+          if (next <= MIN_ZOOM) setPan({ x: 0, y: 0 });
+          return next;
+        });
+      }
+      lastTouchDist.current = dist;
+    } else if (e.touches.length === 1 && isPanning && panStart.current) {
+      const t = e.touches[0];
+      setZoom((currentZoom) => {
+        const maxPanX = (width * (currentZoom - 1)) / 2;
+        const maxPanY = (height * (currentZoom - 1)) / 2;
+        const nx = Math.min(maxPanX, Math.max(-maxPanX, t.clientX - panStart.current.x));
+        const ny = Math.min(maxPanY, Math.max(-maxPanY, t.clientY - panStart.current.y));
+        setPan({ x: nx, y: ny });
+        return currentZoom;
+      });
+    }
+  }, [isPanning, MIN_ZOOM, MAX_ZOOM]);
+
+  const handleTouchEnd = useCallback((e) => {
+    if (e.touches.length === 0) {
+      setIsPanning(false);
+      panStart.current = null;
+      lastTouchDist.current = null;
+    } else if (e.touches.length === 1) {
+      lastTouchDist.current = null;
+      const t = e.touches[0];
+      panStart.current = { x: t.clientX - pan.x, y: t.clientY - pan.y };
+    }
+  }, [pan]);
+
   const attachWheel = useCallback((node) => {
     if (node) {
       node.addEventListener("wheel", handleWheel, { passive: false });
+      node.addEventListener("touchstart", handleTouchStart, { passive: false });
+      node.addEventListener("touchmove", handleTouchMove, { passive: false });
+      node.addEventListener("touchend", handleTouchEnd, { passive: false });
       mapRef.current = node;
     }
-  }, [handleWheel]);
+  }, [handleWheel, handleTouchStart, handleTouchMove, handleTouchEnd]);
 
   // Shared map pins renderer
   const renderPins = () =>
@@ -417,6 +483,7 @@ const LocationSection = () => {
                 style={{
                   cursor: zoom > 1 ? (isPanning ? "grabbing" : "grab") : "default",
                   userSelect: "none",
+                  touchAction: "none",
                 }}
               >
                 <div
