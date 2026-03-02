@@ -28,8 +28,8 @@ const LocationSection = () => {
   // Animation configuration
   const PIN_ANIMATIONS = {
     site: { scale: [1, 1.13, 1], duration: 2.5 },
-    major: { scale: [1.3, 1.4, 1.3], duration: 1.8 },
-    minor: { scale: [1, 1.16, 1], duration: 2.2 },
+    major: { scale: [1.3, 1.3, 1.3], duration: 1.8 },
+    minor: { scale: [1, 1, 1], duration: 2.2 },
   };
 
   // Dialog box configuration (for site pin)
@@ -80,7 +80,8 @@ const LocationSection = () => {
   const desktopMapRef = useRef(null); // desktop map container
   const mapRef = useRef(null);        // mobile map container
   const mapImgRef = useRef(null);
-
+const sectionRef = useRef(null);
+const prevRatioRef = useRef(0); // tracks last intersection ratio
   const INITIAL_ZOOM = 1.1;
   const MIN_ZOOM = INITIAL_ZOOM;
   const MAX_ZOOM = 3;
@@ -122,10 +123,10 @@ const LocationSection = () => {
   },
   {
     id: "airport", x: 70, y: 42, type: "major",
-    title: "International Airport", label: "International Airport",
-    description: "Major international airport serving Bengaluru.",
-    eta: "15-20 min from site",
-    image: "/map/nandhiHills.jpg",
+    title: "Kempegowda International Airport", label: "International Airport",
+    description: "Kempegowda International Airport is an International airport serving Bengaluru, the capital of the Indian state of Karnataka.",
+    eta: "~24km from site",
+    image: "/map/airport.webp",
   },
   {
     id: "nature", x: 26, y: 52, type: "major",
@@ -585,10 +586,10 @@ const LocationSection = () => {
     const { width, height } = container.getBoundingClientRect();
     const basePan = getBasePan(width, height);
     basePanRef.current = basePan;
-    if (zoom <= MIN_ZOOM) {
-      setPan(basePan);
-      panRef.current = basePan;
-    }
+    // if (zoom <= MIN_ZOOM) {
+    //   setPan(basePan);
+    //   panRef.current = basePan;
+    // }
   }, [zoom, MIN_ZOOM, getBasePan]);
 
   useEffect(() => {
@@ -615,7 +616,38 @@ const LocationSection = () => {
       window.removeEventListener("resize", applyBasePan);
     };
   }, [MIN_ZOOM, getBasePan]);
+useEffect(() => {
+  const section = sectionRef.current;
+  if (!section) return;
 
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      const currentRatio = entry.intersectionRatio;
+      const isEntering = currentRatio > prevRatioRef.current;
+      const enteredFromTop = isEntering && entry.boundingClientRect.top > 0;
+
+      if (enteredFromTop && currentRatio > 0) {
+        // User scrolled down into this section — reset pan
+        const container = mapRef.current;
+        if (container) {
+          const { width, height } = container.getBoundingClientRect();
+          const basePan = getBasePan(width, height);
+          basePanRef.current = basePan;
+          panRef.current = basePan;
+          setPan(basePan);
+          setZoom(INITIAL_ZOOM);
+          zoomRef.current = INITIAL_ZOOM;setActivePin(resolvedPins[0]) ;setIsStripMinimised(false);
+        }
+      }
+
+      prevRatioRef.current = currentRatio;
+    },
+    { threshold: [0, 0.05] } // fires as soon as section peeks in
+  );
+
+  observer.observe(section);
+  return () => observer.disconnect();
+}, [getBasePan, INITIAL_ZOOM, MIN_ZOOM]);
   // ── Clamp helpers ──
   const getMapCanvasWidth = () => {
     const img = mapImgRef.current;
@@ -645,7 +677,6 @@ const LocationSection = () => {
   };
 
   const clampPanMobile = (px, py, z, frameW, frameH) => {
-    if (z <= MIN_ZOOM) return basePanRef.current;
     const img = mapImgRef.current;
     const hasNaturalSize = !!(img && img.naturalWidth && img.naturalHeight);
     const baseContentH = frameH * MOBILE_IMAGE_HEIGHT_MULTIPLIER;
@@ -657,6 +688,17 @@ const LocationSection = () => {
     } else {
       baseContentW = frameW;
     }
+    
+    // ── Allow horizontal drag at MIN_ZOOM ──
+    if (z <= MIN_ZOOM) {
+      const scaledW = baseContentW * z;
+      const maxX = Math.max(0, (scaledW - frameW) / 2);
+      return {
+        x: Math.min(maxX, Math.max(-maxX, px)),
+        y: basePanRef.current.y, // Keep Y locked to basePan
+      };
+    }
+    
     const scaledW = baseContentW * z;
     const maxX = Math.max(0, (scaledW - frameW) / 2);
     const minY = frameH - bottomExtent * z;
@@ -761,7 +803,8 @@ const LocationSection = () => {
       if (nextZoom === currentZoom) return;
       let newPan;
       if (nextZoom <= MIN_ZOOM) {
-        newPan = basePanRef.current;
+  newPan = clampPanMobile(panRef.current.x, panRef.current.y, MIN_ZOOM, width, height);
+
       } else {
         const contentX = (mouseX - cx - currentPan.x) / currentZoom;
         const contentY = (mouseY - cy - currentPan.y) / currentZoom;
@@ -886,9 +929,12 @@ const LocationSection = () => {
         const nextZ = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, prevZ * ratio));
 
         let newPan;
-        if (nextZ <= MIN_ZOOM) {
-          newPan = basePanRef.current;
-        } else {
+       if (nextZ <= MIN_ZOOM) {
+  // Preserve current pan instead of snapping to basePan.
+  // The first frame of a pinch often has ratio ≈ 1 → nextZ clamps to MIN_ZOOM,
+  // which was causing the map to jump back to center before zooming in.
+  newPan = clampPanMobile(panRef.current.x, panRef.current.y, MIN_ZOOM, width, height);
+} else {
           // ── Focal-point zoom for mobile ──
           // Mobile transformOrigin is "center top", meaning the scale origin is at
           // (containerWidth/2, 0) — NOT (containerWidth/2, containerHeight/2) like desktop.
@@ -925,20 +971,26 @@ const LocationSection = () => {
       const currentZ = zoomRef.current;
       const isMeaningfullyZoomed = currentZ > MIN_ZOOM + MOBILE_SCROLL_RELEASE_EPSILON;
 
-      if (!isMeaningfullyZoomed) {
-        isMapGesture.current = false;
-        isPanningRef.current = false;
-        setIsPanning(false);
-        return;
-      }
-
       if (!isMapGesture.current && touchStartPos.current) {
         const dx = Math.abs(t.clientX - touchStartPos.current.x);
         const dy = Math.abs(t.clientY - touchStartPos.current.y);
 
         if (dx < 5 && dy < 5) return;
 
-        if (dy > dx) {
+        // ── HORIZONTAL DRAG: Allow at any zoom level ──
+        if (dx > dy) {
+          isMapGesture.current = true;
+          isPanningRef.current = true;
+          setIsPanning(true);
+          setIsStripMinimised(true);
+        }
+        // ── VERTICAL DRAG: Only allow if meaningfully zoomed ──
+        else if (dy > dx) {
+          if (!isMeaningfullyZoomed) {
+            isMapGesture.current = false;
+            return;
+          }
+
           const { minY, maxY } = getMobileVerticalPanBounds(currentZ, height);
           const fingerMovingUp = t.clientY < touchStartPos.current.y;
           const atTopEdge = panRef.current.y >= maxY - 0.5;
@@ -952,12 +1004,12 @@ const LocationSection = () => {
             isMapGesture.current = false;
             return;
           }
-        }
 
-        isMapGesture.current = true;
-        isPanningRef.current = true;
-        setIsPanning(true);
-        setIsStripMinimised(true);
+          isMapGesture.current = true;
+          isPanningRef.current = true;
+          setIsPanning(true);
+          setIsStripMinimised(true);
+        }
       }
 
       if (!isMapGesture.current) return;
@@ -1126,64 +1178,55 @@ const LocationSection = () => {
         );
       }
 
+   const isNormalView = zoom <= MIN_ZOOM + 0.01;
+   const compactSuffix = isNormalView ? " pin-pulse--compact" : "";
+   const rippleEndScale = Math.max(1.2, Math.min(1.85, 0.7 + zoom * 0.42));
+
+const pulseClass = isMajor ? "pin-pulse pin-pulse--major" : "pin-pulse pin-pulse--minor";
+
       return (
         <div
           key={pin.id}
           onClick={() => handlePinSelect(pin)}
-          className="absolute cursor-pointer transition-opacity duration-300 ease-in-out"
+          className="absolute cursor-pointer"
           style={{
             top: `${pin.y}%`,
             left: `${pin.x}%`,
             transform: `translate(-50%, -50%) scale(${1 / zoom})`,
             transformOrigin: "center center",
-            opacity: isVisible ? 1 : 0,
+            opacity: 1,                              // always show outer so ripple is always visible
             pointerEvents: isVisible ? "auto" : "none",
             zIndex: activePin.id === pin.id ? 10 : 5,
           }}
         >
-          {/* <motion.div {...animateProps}>
-            <div
-  className="flex items-center justify-center rounded-full "
-  style={{
-    width: `${dotSize}px`,
-    height: `${dotSize}px`,
-  }}
+          <motion.div
+  {...animateProps}
+  className={`relative p-1 ${pulseClass}`}
+  style={!isMajor ? { '--ripple-end-scale': rippleEndScale } : undefined}
 >
-  {customIcons[pin.id] ? (
-    <img
-      src={customIcons[pin.id]}
-      alt={pin.title}
-      style={{ width: iconSize, height: iconSize, objectFit: "contain" }}
-      draggable={false}
-    />
-  ) : (
-    <Icon size={iconSize} color="white" />
-  )}
-</div>
-          </motion.div> */}
-   <motion.div {...animateProps} className="relative p-1 pin-pulse">
-  <div
-    className="relative z-10 flex items-center justify-center rounded-full bg-white"
-    style={{
-      width: `${dotSize}px`,
-      height: `${dotSize}px`,
-    }}
-  >
-    {customIcons[pin.id] ? (
-      <img
-        src={customIcons[pin.id]}
-        alt={pin.title}
-        style={{ width: iconSize, height: iconSize }}
-        draggable={false}
-      />
-    ) : (
-      <Icon size={iconSize} />
-    )}
-  </div>
-</motion.div>
+            <div
+              className="relative z-10 flex items-center justify-center rounded-full bg-white transition-opacity duration-300 ease-in-out"
+              style={{
+                width: `${dotSize}px`,
+                height: `${dotSize}px`,
+                opacity: isVisible ? 1 : 0,         // icon fades with zoom, ripple stays
+              }}
+            >
+              {customIcons[pin.id] ? (
+                <img
+                  src={customIcons[pin.id]}
+                  alt={pin.title}
+                  style={{ width: iconSize, height: iconSize }}
+                  draggable={false}
+                />
+              ) : (
+                <Icon size={iconSize} />
+              )}
+            </div>
+          </motion.div>
           <div
-            className="pointer-events-none absolute block whitespace-nowrap   text-[10px] text-black"
-            style={labelLayout.style}
+            className="pointer-events-none absolute block whitespace-nowrap text-[10px] text-black transition-opacity duration-300 ease-in-out"
+            style={{ ...labelLayout.style, opacity: isVisible ? 1 : 0 }}  // label fades too
           >
             {renderTitleWithLineBreaks(pin.label)}
           </div>
@@ -1192,7 +1235,7 @@ const LocationSection = () => {
     });
 
   return (
-    <section id="locations" className="w-full bg-white">
+    <section ref={sectionRef} id="locations" className="w-full bg-white">
       <div className="py-16 md:py-14">
         <div className="max-w-7xl mx-auto px6">
 

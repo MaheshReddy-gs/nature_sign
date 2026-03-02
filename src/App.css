@@ -30,36 +30,50 @@
 
 .luxury-btn:hover::before {
   width: 100%;
-}/* Core pulse container */
+}/* ─── Core pulse container ─── */
 .pin-pulse {
   position: relative;
 }
 
-/* Two ripple waves */
 .pin-pulse::before,
 .pin-pulse::after {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: 9999px;
-  background: rgba(211, 116, 15, 0.688); /* same tone as site pin */
   z-index: 0;
-  animation: pinPulse 2.4s ease-out infinite;
 }
 
-/* Second wave delay */
-.pin-pulse::after {
+/* ─── Major pins ─── */
+.pin-pulse--major::before,
+.pin-pulse--major::after {
+  background: rgba(220, 38, 38, 0.6);
+  animation: pinPulseMajor 2.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+}
+
+.pin-pulse--major::after {
   animation-delay: 1.2s;
 }
 
-/* Pulse animation */
-@keyframes pinPulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.55;
-  }
-  100% {
-    transform: scale(2);
-    opacity: 0;
-  }
+@keyframes pinPulseMajor {
+  0%   { transform: scale(0);   opacity: 0.7; }
+  60%  { transform: scale(2);   opacity: 0.1; }
+  100% { transform: scale(2.4); opacity: 0;   }
+}
+
+/* ─── Minor pins ─── */
+.pin-pulse--minor::before,
+.pin-pulse--minor::after {
+  background: rgba(211, 116, 15, 0.6);
+  animation: pinPulseMinor 2.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+}
+
+.pin-pulse--minor::after {
+  animation-delay: 1.3s;
+}
+
+@keyframes pinPulseMinor {
+  0%   { transform: scale(0);                              opacity: 0.7; }
+  60%  { transform: scale(var(--ripple-end-scale, 1.85));  opacity: 0.1; }
+  100% { transform: scale(var(--ripple-end-scale, 1.85));  opacity: 0;   }
 }
