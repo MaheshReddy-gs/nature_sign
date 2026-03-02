@@ -478,6 +478,23 @@ const prevRatioRef = useRef(0); // tracks last intersection ratio
     ));
   };
 
+  const toLabelTitleCase = (text) =>
+    text.replace(/\b([A-Za-z])([A-Za-z']*)\b/g, (word, first, rest) => {
+      if (word.length > 1 && word === word.toUpperCase()) return word;
+      return `${first.toUpperCase()}${rest.toLowerCase()}`;
+    });
+
+  const renderLabelWithLineBreaks = (label) => {
+    if (typeof label !== "string") return label;
+    const lines = label.split(/<br\s*\/?>/gi);
+    return lines.map((line, index) => (
+      <Fragment key={`${line}-${index}`}>
+        {toLabelTitleCase(line)}
+        {index < lines.length - 1 && <br />}
+      </Fragment>
+    ));
+  };
+
   const getLabelLayout = (pin) => {
     const position = pin.labelPosition || "bottom";
     const align = pin.labelAlign || "center";
@@ -1170,7 +1187,7 @@ useEffect(() => {
 
                 {/* Orange Label */}
                 <div className="rotate-2 bg-[#E8620A] px-2 py-[2px] text-[9px] font-extrabold text-white inline-block relative top-0">
-                  {renderTitleWithLineBreaks(pin.label)}
+                  {renderLabelWithLineBreaks(pin.label)}
                 </div>
               </div>
             </motion.div>
@@ -1228,7 +1245,7 @@ const pulseClass = isMajor ? "pin-pulse pin-pulse--major" : "pin-pulse pin-pulse
             className="pointer-events-none absolute block whitespace-nowrap text-[10px] text-black transition-opacity duration-300 ease-in-out"
             style={{ ...labelLayout.style, opacity: isVisible ? 1 : 0 }}  // label fades too
           >
-            {renderTitleWithLineBreaks(pin.label)}
+            {renderLabelWithLineBreaks(pin.label)}
           </div>
         </div>
       );
@@ -1258,7 +1275,7 @@ const pulseClass = isMajor ? "pin-pulse pin-pulse--major" : "pin-pulse pin-pulse
                 {/* IMAGE */}
                 {activePin.image && (
                   <div style={{ width: "100%", overflow: "hidden" }}>
-                    <img className=" aspect-square"
+                    <img className=" aspect-[4/3]"
                       src={activePin.image}
                       alt={activePin.title}
                       style={{ width: "100%", height: "100%", objectFit: "cover" }}
