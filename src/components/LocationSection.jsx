@@ -1423,7 +1423,7 @@ const LocationSection = () => {
       const isMajor = pin.type === "major";
 
       const dotSize = isSite ? 28 : isMajor ? 20 : 14;
-      const iconSize = isSite ? 16 : isMajor ? 28 : 24;
+      const iconSize = isSite ? 16 : isMajor ? 42 : 24;
       const dotColor = isSite ? "#2F7F90" : isMajor ? "#dc2626" : "#7c3aed";
       const animateProps = isSite || isMajor
         ? { animate: { scale: [1, 1.22, 1] }, transition: { repeat: Infinity, duration: 1.8, ease: "easeInOut" } }
@@ -1489,7 +1489,7 @@ const LocationSection = () => {
             zIndex: activePin.id === pin.id ? 10 : 5,
           }}
         >
-          <motion.div {...animateProps}>
+          {/* <motion.div {...animateProps}>
             <div
   className="flex items-center justify-center rounded-full "
   style={{
@@ -1508,7 +1508,37 @@ const LocationSection = () => {
     <Icon size={iconSize} color="white" />
   )}
 </div>
-          </motion.div>
+          </motion.div> */}
+          <motion.div {...animateProps} className="relative  p-1 ">
+  {/* Ripple */}
+  <span
+    className="pin-ripple"
+    style={{
+      border: `2px solid ${dotColor}`,
+    }}
+  />
+
+  {/* Icon */}
+  <div
+    className="relative  z-10 flex items-center justify-center rounded-full"
+    style={{
+      width: `${dotSize}px`,
+      height: `${dotSize}px`,
+      background: "white",
+    }}
+  >
+    {customIcons[pin.id] ? (
+      <img
+        src={customIcons[pin.id]}
+        alt={pin.title}
+        style={{ width: iconSize, height: iconSize, objectFit: "contain" }}
+        draggable={false}
+      />
+    ) : (
+      <Icon size={iconSize} color="white" />
+    )}
+  </div>
+</motion.div>
           <div
             className="pointer-events-none absolute block whitespace-nowrap   text-[10px] text-black"
             style={labelLayout.style}
