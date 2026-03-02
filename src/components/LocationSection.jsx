@@ -4,6 +4,7 @@ import FloatUpText from "./Animations/floatUpText";
 import { Fragment, useRef, useState, useCallback, useEffect } from "react";
 import CustomButton from "./CustomButton";
 import { MapPin, Plane, Building2, GraduationCap, Train, Landmark } from "lucide-react";
+import { label } from "framer-motion/client";
 
 const LocationSection = () => {
   const { openModal } = useModal();
@@ -200,24 +201,27 @@ const prevRatioRef = useRef(0); // tracks last intersection ratio
     eta: "~22km from site",
     image: "/map/ISHA.jpg",
   },
+
   {
-    id: "school", x: 29.3, y: 31.3, type: "minor",labelPosition: "top",
-    title: "Krishna <br/> School", label: "Krishna <br/> School",
-    image: "/map/placeholder.jpg",
-  },
-  {
-    id: "convention", x: 31.8, y: 30.2, type: "minor",
+    id: "convention",x: 29.3, y: 30.3,   type: "minor",
     title: "Krishna Convention Center", label: "Krishna Convention",
     description: "Krishna Convention Center is the perfect venue that has phenomenal settings for every taste. The area is known for lush gardens a great feature for the bride and groom who loves to commune with nature.",
     eta: "~1.5km from site",
     image: "/map/Krishna.jpg",
   },
   {
-    id: "school", x: 34.4, y: 31.3, type: "minor",
+    id: "school", x: 32, y: 30, type: "minor",
     title: "Nagarjuna College of Engineering & Technology", label: "Nagarjuna<br/> college of enginnering",
     image: "/map/Nagarjuna.jpg", labelPosition: "top",
     description: "Nagarjuna College of Engineering & Technology, one of the best engineering colleges in Bangalore offers UG and PG education.",
     eta: "~1.3km from site",
+  },
+  {
+    id: "school", x: 33.9, y: 29.3, type: "minor",
+    title: "Regional College of Management", label: "Regional College<br/> of Management",
+    image: "/map/regional college.jpg", 
+    description: "RCM Bangalore is one of the top MBA college in Bangalore, with top notch curriculum and best placements. International faculty and global exposure.",
+    eta: "~0.5km from site",
   },
   {
     id: "convention", x: 40.7, y: 45.8, type: "minor",
@@ -239,6 +243,13 @@ const prevRatioRef = useRef(0); // tracks last intersection ratio
     description: "This office serves as the central administrative hub for the district, handling matters related to Devanahalli.",
     eta: "~21km from site",
     image: "/map/D C Office Bengaluru Rural District.jpg",
+  },
+  {
+    id: "toll", x: 59.3, y: 60.3, type: "minor",
+    title: "Nalluru Devanahalli Toll Plaza", label: "Toll Plaza",
+    description: "The Nalluru Devanahalli toll plaza is located at the 34.15 km Doddaballapur bypass to Hoskotestretch.",
+    eta: "~20km from site",
+    image: "/map/Nalluru Devanahalli Toll Plaza.jpg",
   },
   {
     id: "factory", x: 42.6, y: 66.1, type: "minor",
@@ -305,10 +316,10 @@ const prevRatioRef = useRef(0); // tracks last intersection ratio
   },
   {
     id: "mall", x: 91.5, y: 65.9, type: "minor",
-    title: "Esteem Mall", label: "Esteem mall",
-    description: "Esteem Mall is a popular landmark in North Bengaluru and is home to some of the noted global brands in apparel, lifestyle, digital goods, and much more.",
+    title: "Elements Mall", label: "Elements Mall",
+    description: "Elements Mall is a popular landmark in North Bengaluru and is home to some of the noted global brands in apparel, lifestyle, digital goods, and much more.",
     eta: "~40km from site",
-    image: "/map/Esteem Mall.jpg",
+    image: "/map/elements.jpg",
   },
   {
     id: "mall", x: 87.7, y: 72.4, type: "minor",
@@ -344,6 +355,13 @@ const prevRatioRef = useRef(0); // tracks last intersection ratio
     description: "Nestled in a pristine and breathtakingly beautiful ambience, AIS is managed by the Akash Education Trust, a dedicated group of professionals committed to Education.",
     eta: "~15km from site",
     image: "/map/akashaSchool.jpg",
+  },
+  {
+    id: "hospital", x: 62.5, y: 42.8, type: "minor",
+    title: "Akash Super Speciality Hospital", label: "Akash Hospital",
+    description: "Akash Hospital redefine healthcare by combining expertise, advanced technology, and a deep commitment to each patient.",
+    eta: "~15km from site",
+    image: "/map/Akash Super Speciality Hospital.jpg",
   },
   {
     id: "school", x: 61.9, y: 31.5, type: "minor",
@@ -409,31 +427,39 @@ const prevRatioRef = useRef(0); // tracks last intersection ratio
     image: "/map/chanakya.jpg", labelPosition: "top",
   },
   {
-    id: "tech", x: 59.1, y: 9.6, type: "minor",
+    id: "factory", x: 59.1, y: 9.6, type: "minor",
     title: "Exide Energy Solutions", label: "Exide energy <br/>Solution",
     description: "Exide Energy designs, develops and manufactures Lithium Ion Cells and Battery Pack solutions for various energy storage applications across the Automotive and Industrial sectors.",
     eta: "~22km from site",
-    image: "/map/exide.jpg",
+    image: "/map/exide.png",
   },
   {
     id: "tech", x: 55.9, y: 8.4, type: "minor",
     title: "Carl Zeiss India Bangalore Pvt Ltd", label: "Zeiss",
     description: "ZEISS in India is headquartered in Bengaluru and present in the fields of Industrial Quality Solutions, Research Microscopy Solutions, Medical Technology.",
     eta: "~22km from site",
-    image: "/map/ziess.jpg",
-  },
+    image: "/map/zeiss.jpg",
+  },{ id: "mall", x: 51, y: 35.7,image:"/map/D Mart.jpg", type: "minor", title: "D Mart", labelPosition: "right", description: "DMart Devanahalli,is a well-known supermarket It offers a wide range of products, including groceries, fresh fruits and vegetables, household essentials, personal care items, and clothing, all at competitive prices.", eta: "~12km from site" },
+  { id: "school", x: 44, y: 31.6,image:"/map/Anantha Vidyaniketana School.jpg", type: "minor", title: "Anantha Vidyaniketana School", labelPosition: "top", description: "The School offers students teaching, environment and infrastructure comparable with the best. Anantha Vidyaniketana is built on the foundation that every child is equally capable of achieving his/her potential.", eta: "~10km from site" },
+{ id: "isro", x: 44.5, y: 36.8, type: "minor", title: "ISRO Devanahalli Guest House",label:"ISRO Guest House", description: "ISRO Devanahalli Guest House, conveniently located near Rani Cross (Nandi Cross) in Lalagondanahalli.", eta: "~9km from site", image: "/map/ISRO Devanahalli Guest House.jpg" },
+  { id: "hotel", x: 47.3, y: 37.1, type: "minor", title: "Hotel Nandi Upachara",label:"Hotel Nandi<br/>Upachara", description: "Hotel Nandi Upachara is a popular local dining spot known for serving authentic South Indian cuisine in a comfortable and welcoming setting.", eta: "~10km from site", image: "/map/nandhihotel.jpg" },
   // road labels — unchanged
   { id: "TADIPATRI", x: 10, y: 23, type: "road", title: "TADIPATRI", label: "TADIPATRI", rotation: 0 },
   { id: "Chikkaballapura", x: 16, y: 43, type: "road", title: "Chikkaballapura", label: "Chikkaballapura", rotation: 0 },
+  { id: "Byranayakanahalli", x: 18, y: 56, type: "road", title: "Byranayakanahalli", label: "Byranayakanahalli", rotation: 0 },
+  { id: "Nandhi Hills Road", x: 40, y: 44, type: "road", title: "Nandhi Hills Road", label: "Nandhi Hills Road", rotation: -20 },
   { id: " elevated expressway nh-44", x: 37, y: 38, type: "road", title: "elevated expressway nh-44", label: "elevated expressway nh-44", rotation: 2 },
+  { id: " Beedaganahalli", x: 22, y: 36, type: "road", title: "Beedaganahalli", label: "Beedaganahalli", rotation: 2 },
   { id: " elevated expressway nh-442", x: 72, y: 75, type: "road", title: "elevated expressway nh-44", label: "elevated expressway nh-44", rotation: 28 },
   { id: "satellite town road", x: 49.5, y: 70, type: "road", title: "satellite town road", label: "satellite town road", rotation: -77.5 },
   { id: "satellite town road2", x: 72, y: 11.8, type: "road", title: "satellite town road", label: "satellite town road", rotation: -26.5 },
   { id: "bommanahalli", x: 54, y: 15, type: "road", title: "bommanahalli", label: "bommanahalli", rotation: 0 },
-  { id: "devanahalli town", x: 63, y: 45, type: "road", title: "devanahalli town", label: "devanahalli town", rotation: 0 },
+  { id: "devanahalli town", x: 63, y: 47, type: "road", title: "devanahalli town", label: "devanahalli town", rotation: 0 },
+  { id: "Billamaranahalli", x: 78, y: 57, type: "road", title: "Billamaranahalli", label: "Billamaranahalli", rotation: 0 },
+  { id: "Nagawara", x: 90, y: 57, type: "road", title: "Nagawara", label: "Nagawara", rotation: 0 },
   { id: "yelahanka doddaballapura road", x: 63, y: 88.5, type: "road", title: "yelahanka - doddaballapura road", label: "yelahanka - doddaballapura road", rotation: -5 },
   { id: " doddaballapura ", x: 40, y: 95, type: "road", title: "doddaballapura ", label: "doddaballapura ", rotation: 2 },
-  { id: " bengaluru ", x: 95, y: 85, type: "road", title: "bengaluru ", label: "bengaluru ", rotation: 2 },
+  { id: " bengaluru ", x: 95, y: 85, type: "road", title: "bengaluru ", label: "bengaluru ", rotation: -85 },
 ];
   const resolvedPins = pins.map((pin) => (
     pin.type === "road" ? pin : { ...pin, label: pin.label ?? pin.title }
@@ -455,8 +481,11 @@ const prevRatioRef = useRef(0); // tracks last intersection ratio
   mall:         "/map/icons/MALLS_MARKET.svg",
   nature:       "/map/icons/NANDI HILL.svg",
   orchard:      "/map/icons/ORCHARD.svg",
-  aerospace:    "/map/icons/AEROSPACE.svg",
+  aerospace:    "/map/icons/AIROSPACE.svg",
   police:       "/map/icons/POLICE STATION.svg",
+  isro:         "/map/icons/ISRO.svg",
+  hotel:        "/map/icons/HOTEL.svg",
+  toll:        "/map/icons/TOLL.svg",
 };
 
   const [activePin, setActivePin] = useState(resolvedPins[0]);
@@ -477,24 +506,20 @@ const prevRatioRef = useRef(0); // tracks last intersection ratio
       </Fragment>
     ));
   };
+const toTitleCasePreserveBreaks = (text) => {
+  if (typeof text !== "string") return text;
 
-  const toLabelTitleCase = (text) =>
-    text.replace(/\b([A-Za-z])([A-Za-z']*)\b/g, (word, first, rest) => {
-      if (word.length > 1 && word === word.toUpperCase()) return word;
-      return `${first.toUpperCase()}${rest.toLowerCase()}`;
-    });
+  // Split by <br/> but keep them
+  const parts = text.split(/(<br\s*\/?>)/gi);
 
-  const renderLabelWithLineBreaks = (label) => {
-    if (typeof label !== "string") return label;
-    const lines = label.split(/<br\s*\/?>/gi);
-    return lines.map((line, index) => (
-      <Fragment key={`${line}-${index}`}>
-        {toLabelTitleCase(line)}
-        {index < lines.length - 1 && <br />}
-      </Fragment>
-    ));
-  };
+  return parts.map((part) => {
+    if (part.match(/<br\s*\/?>/gi)) return part;
 
+    return part
+      .toLowerCase()
+      .replace(/\b\w/g, (char) => char.toUpperCase());
+  }).join("");
+};
   const getLabelLayout = (pin) => {
     const position = pin.labelPosition || "bottom";
     const align = pin.labelAlign || "center";
@@ -1187,7 +1212,7 @@ useEffect(() => {
 
                 {/* Orange Label */}
                 <div className="rotate-2 bg-[#E8620A] px-2 py-[2px] text-[9px] font-extrabold text-white inline-block relative top-0">
-                  {renderLabelWithLineBreaks(pin.label)}
+                  {renderTitleWithLineBreaks(pin.label)}
                 </div>
               </div>
             </motion.div>
@@ -1245,8 +1270,7 @@ const pulseClass = isMajor ? "pin-pulse pin-pulse--major" : "pin-pulse pin-pulse
             className="pointer-events-none absolute block whitespace-nowrap text-[10px] text-black transition-opacity duration-300 ease-in-out"
             style={{ ...labelLayout.style, opacity: isVisible ? 1 : 0 }}  // label fades too
           >
-            {renderLabelWithLineBreaks(pin.label)}
-          </div>
+{renderTitleWithLineBreaks(toTitleCasePreserveBreaks(pin.label))}          </div>
         </div>
       );
     });
@@ -1275,7 +1299,7 @@ const pulseClass = isMajor ? "pin-pulse pin-pulse--major" : "pin-pulse pin-pulse
                 {/* IMAGE */}
                 {activePin.image && (
                   <div style={{ width: "100%", overflow: "hidden" }}>
-                    <img className=" aspect-[4/3]"
+                    <img className=" aspect-[5/3]"
                       src={activePin.image}
                       alt={activePin.title}
                       style={{ width: "100%", height: "100%", objectFit: "cover" }}
