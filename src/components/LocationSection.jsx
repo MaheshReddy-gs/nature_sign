@@ -8,6 +8,74 @@ import { MapPin, Plane, Building2, GraduationCap, Train, Landmark } from "lucide
 const LocationSection = () => {
   const { openModal } = useModal();
 
+  // ════════════════════════════════════════════════════════════
+  // CONFIGURATION - Adjust sizes here for mobile & desktop
+  // ════════════════════════════════════════════════════════════
+  
+  // Pin sizing configuration
+  const PIN_SIZES = {
+    site: { dotSize: 28, iconSize: 18 },
+    major: { dotSize: 20, iconSize: 40 },
+    minor: { dotSize: 22, iconSize: 40 },
+  };
+
+  const PIN_DOT_COLORS = {
+    site: "#2F7F90",
+    major: "#dc2626",
+    minor: "#7c3aed",
+  };
+
+  // Animation configuration
+  const PIN_ANIMATIONS = {
+    site: { scale: [1, 1.13, 1], duration: 2.5 },
+    major: { scale: [1.3, 1.4, 1.3], duration: 1.8 },
+    minor: { scale: [1, 1.16, 1], duration: 2.2 },
+  };
+
+  // Dialog box configuration (for site pin)
+  const DIALOG_CONFIG = {
+    minWidth: "120px",
+    padding: "16px", // px-4 py-3
+    borderRadius: "8px",
+    fontSize: "14px",
+    logoSize: "100%",
+    arrowSize: { x: "10px", y: "10px" },
+  };
+
+  // Orange label configuration
+  const ORANGE_LABEL_CONFIG = {
+    fontSize: "9px",
+    padding: "8px 8px", // px-2 py-[2px]
+    fontWeight: "800",
+    textColor: "#ffffff",
+    bgColor: "#E8620A",
+    rotation: "2deg",
+  };
+
+  // Text sizes for different label types
+  const LABEL_FONT_SIZES = {
+    road: "9px",
+    major: "10px",
+    minor: "10px",
+  };
+
+  // Mobile-specific sizing
+  const MOBILE_TEXT_SIZES = {
+    title: "16px",
+    description: "13px",
+    eta: "12px",
+    details: "11px",
+  };
+
+  // Desktop-specific sizing
+  const DESKTOP_TEXT_SIZES = {
+    title: "20px",
+    description: "16px",
+    eta: "12px",
+  };
+
+  // ════════════════════════════════════════════════════════════
+
   // ── Refs ──
   const desktopMapRef = useRef(null); // desktop map container
   const mapRef = useRef(null);        // mobile map container
@@ -41,441 +109,8 @@ const LocationSection = () => {
   panRef.current = pan;
   isPanningRef.current = isPanning;
 
-  // ── Pin data ──
-  // const pins = [
-  //   {
-  //     id: "site",
-  //     x: 38, y: 31,
-  //     type: "site",
-  //     title: "Nature's Sign", label: "Nature's Sign",description: "Premium plotted development in Devanahalli with excellent road connectivity.",
-  //     details: ["2400 sq ft avg plot size", "RERA Approved", "Gated Community"],
-  //     image: "/naturesignLogo1.png",
-  //   },
-  //   {
-  //     id: "airport", x: 70, y: 42, type: "major",
-  //     title: "International Airport", label: "International Airport",
-  //     description: "Major international airport serving Bengaluru.",
-  //     eta: "15-20 min from site",
-  //     image: "/map/nandhiHills.jpg",
-  //   },
-  //   {
-  //     id: "nature", x: 26, y: 52, type: "major",
-  //     title: "nandi hills", label: "nandi hills",
-  //     description: "hill of hills naddhi hills.",
-  //     eta: "15-20 min from site",
-  //     image: "/map/nandhiHills.jpg",
-  //   },
-  //   {
-  //     id: "bus", x:13.8, y: 31, type: "minor",
-  //     title: "KSRTC<br/> bus stand", label: "KSRTC<br/> bus stand",
-  //     description: "hill of hills naddhi hills.",
-  //     eta: "15-20 min from site",
-  //     image: "/map/nandhiHills.jpg",
-  //   },
-  //   {
-  //     id: "bus", x:17.5, y: 30.5, type: "minor",
-  //     title: "Govt Jr.<br/> College", label: "Govt Jr.<br/> College",
-  //     description: "hill of hills naddhi hills.",
-  //     eta: "15-20 min from site",
-  //     image: "/map/nandhiHills.jpg",
-  //   },
-  //   {
-  //     id: "school", x:19.5, y: 30.5, type: "minor",
-  //     title: "BGS School", label: "BGS School",
-  //     labelPosition:"top",
-  //     description: "hill of hills naddhi hills.",
-  //     eta: "15-20 min from site",
-  //     image: "/map/nandhiHills.jpg",
-  //   },
-  //   {
-  //     id: "school", x:21.4, y: 31.2, type: "minor",
-  //     title: "S.J.C. Institute <br/>of technology", label: "S.J.C. Institute <br/>of technology",
-  //     description: "hill of hills naddhi hills.",
-  //     eta: "15-20 min from site",
-  //     image: "/map/nandhiHills.jpg",
-  //   },{ id: "test", x: 20.3, y: 45.2, type: "minor", title: "Sri Sathya sai <br/>Sarala Memorial Hospital", label: "Sri Sathya sai <br/>Sarala Memorial Hospital", description: "sdfghjkl", eta: "1234567", image: "/map/placeholder.jpg" },
-  //   {
-  //     id: "entertainment", x:15, y: 32.3, type: "minor",
-  //     title: "Vani Cinema", label: "Vani Cinema",
-  //     labelAlign:"start",
-  //     description: "hill of hills naddhi hills.",
-  //     eta: "15-20 min from site",
-  //     image: "/map/nandhiHills.jpg",
-  //   },
-  //   {
-  //     id: "shop", x:27.2, y: 31.3, type: "minor",
-  //     title: "KMF Mega Dairy", label: "KMF Mega Dairy",labelPosition:"top",
-  //     description: "hill of hills naddhi hills.",
-  //     eta: "15-20 min from site",
-  //     image: "/map/nandhiHills.jpg",
-  //   }, { id: "default", x: 23.8, y: 49.2, type: "minor", title: "Amrita Rasa", label: "Amrita Rasa", description: "not yet", eta: "1234", image: "/map/placeholder.jpg" },
-  // { id: "temple", x: 10.3, y: 44.4, type: "minor", title: "ISHA Foundation", label: "ISHA Foundation", image: "/map/placeholder.jpg" },
-  // { id: "school", x: 29.3, y: 31.3, type: "minor", title: "Krishna <br/> School", label: "Krishna <br/> School", image: "/map/placeholder.jpg" },
-  // { id: "place", x: 31, y: 31.2, type: "minor", title: "Krishna Convention", label: "Krishna Convention", image: "/map/placeholder.jpg" },
-  // { id: "school", x: 33.4, y: 31.3, type: "minor", title: "Nagarjuna<br/> college of enginnering", label: "Nagarjuna<br/> college of enginnering", image: "/map/placeholder.jpg", labelPosition:"top" },
-  // { id: "hall", x: 40.7, y: 45.8, type: "minor", title: "Sindura <br/>Conventional Hall", label: "Sindura <br/>Conventional Hall", image: "/map/placeholder.jpg" },
-  // { id: "club", x: 36.4, y: 49.8, type: "minor", title: "Prestige <br/> Golfshire Club", label: "Prestige <br/> Golfshire Club", image: "/map/placeholder.jpg" },
-  // { id: "office", x: 46.2, y: 58.7, type: "minor", title: "D C Office", label: "D C Office", image: "/map/placeholder.jpg" },
-  // { id: "Foxconn", x: 42.6, y: 66.1, type: "minor", title: "Foxconn", label: "Foxconn", image: "/map/placeholder.jpg" },
-  // { id: "school", x: 43.6, y: 77.1, type: "minor", title: "GITAM<br/>University", label: "GITAM<br/>University", image: "/map/placeholder.jpg" },
-  // { id: "school", x: 49, y: 76, type: "minor", title: "Amity University", label: "Amity University", image: "/map/placeholder.jpg" },
-  // { id: "school", x: 58.7, y: 31.6, type: "minor", title: "School for <br/>Global minds", label: "School for <br/>Global minds", image: "/map/placeholder.jpg" },
-  // { id: "school", x: 60.9, y: 76.3, type: "minor", title: "Stonehill<br/> Intl. School", label: "Stonehill<br/> Intl. School", image: "/map/placeholder.jpg" },
-  // { id: "tech", x: 70.6, y: 80.5, type: "minor", title: "Northgate Tech Park", label: "Northgate Tech Park", image: "/map/placeholder.jpg" },
-  // { id: "mall", x: 80.1, y: 82.8, type: "minor", title: "RMZ <br/> Galleria Mall", label: "RMZ <br/> Galleria Mall", image: "/map/placeholder.jpg" },
-  // { id: "hospital", x: 90.1, y: 89.2, type: "minor", title: "MS Ramaiah Hospital", label: "MS Ramaiah Hospital", image: "/map/placeholder.jpg" },
-  // { id: "tech", x: 91.7, y: 77, type: "minor", title: "Manyata <br/>Tech Park", label: "Manyata <br/>Tech Park", image: "/map/placeholder.jpg" },
-  // { id: "mall", x: 91.5, y: 65.9, type: "minor", title: "Esteem mall", label: "Esteem mall", image: "/map/placeholder.jpg" },
-  // { id: "mall", x: 87.7, y: 72.4, type: "minor", title: "Esteem Mall", label: "Esteem Mall", image: "/map/placeholder.jpg" },
-  // { id: "hospital", x: 82.2, y: 76.3,labelPosition:"top", type: "minor", title: "Columbia Asia<br/>Hospital Hebbal", label: "Columbia Asia<br/>Hospital Hebbal", image: "/map/placeholder.jpg" },
-  // { id: "tech", x: 77.1, y: 71.8, type: "minor", title: "Ecopolis Tech Park", label: "Ecopolis Tech Park",labelPosition:"top", image: "/map/placeholder.jpg" },
-  // { id: "police", x: 56.4,labelPosition:"top", y: 42.4, type: "minor", title: "Police Station", label: "Police Station", image: "/map/placeholder.jpg" },
-  // { id: "school", x: 61.5, y: 37.8, type: "minor", title: "Akash Intl. School", label: "Akash Intl. School", image: "/map/placeholder.jpg" },
-  // { id: "school", x: 61.9, y: 31.5, type: "minor", title: "School for  Global minds", label: "School for  Global minds", image: "/map/placeholder.jpg" },
-  // { id: "tech", x: 67.6, y: 20.9, type: "minor", title: "Wipro", label: "Wipro", image: "/map/placeholder.jpg" },
-  // { id: "bank", x: 73, y: 24.8, type: "minor", title: "Financial city", label: "Financial city", image: "/map/placeholder.jpg" },
-  // { id: "tech", x: 75.9, y: 33.7, type: "minor", title: "Thyssenkrupp<br/>AeroSpace", label: "Thyssenkrupp<br/>AeroSpace", image: "/map/placeholder.jpg" },
-  // { id: "tech", x: 73.4, y: 49.1, type: "minor", title: "KIADB Hardware Park", label: "KIADB Hardware Park", image: "/map/placeholder.jpg" },
-  // { id: "school", x: 81.1, y: 43.6, type: "minor", title: "Koshya group of <br/> inst. & Nursing clg", label: "Koshya group of <br/> inst. & Nursing clg", image: "/map/placeholder.jpg" },
-  // { id: "maerket", x: 77.4, y: 37, type: "minor", title: "Shell India<br/> Market", label: "Shell India<br/> Market", image: "/map/placeholder.jpg" },
-  // { id: "tech", x: 79.7, y: 30.9, type: "minor", title: "SAP Labs", label: "SAP Labs", image: "/map/placeholder.jpg" },
-  // { id: "school", x: 61.7, y: 15.2, type: "minor", title: "Chanakya<br/>University", label: "Chanakya<br/>University", image: "/map/placeholder.jpg",labelPosition:"top" },
-  // { id: "tech", x: 59.1, y: 9.6, type: "minor", title: "Exide energy <br/>Solution", label: "Exide energy <br/>Solution", image: "/map/placeholder.jpg" },
-  // { id: "tech", x: 55.9, y: 8.4, type: "minor", title: "Zeiss", label: "Zeiss", image: "/map/placeholder.jpg" },
-  //   { id: "TADIPATRI", x: 10, y: 23, type: "road", title: "TADIPATRI", label: "TADIPATRI", rotation: 0 },
-  //   { id: "Chikkaballapura", x: 16, y: 43, type: "road", title: "Chikkaballapura", label: "Chikkaballapura", rotation: 0 },
-  //   { id: " elevated expressway nh-44", x: 37, y: 38, type: "road", title: "elevated expressway nh-44", label: "elevated expressway nh-44", rotation: 2 },
-  //   { id: " elevated expressway nh-442", x: 72, y: 75, type: "road", title: "elevated expressway nh-44", label: "elevated expressway nh-44", rotation: 28 },
-  //   { id: "satellite town road", x: 49.5, y: 70, type: "road", title: "satellite town road", label: "satellite town road", rotation: -77.5 },
-  //   { id: "satellite town road2", x: 72, y: 11.8, type: "road", title: "satellite town road", label: "satellite town road", rotation: -26.5 },
-  //   { id: "bommanahalli", x: 54, y: 15, type: "road", title: "bommanahalli", label: "bommanahalli", rotation: 0 },
-  //   { id: "devanahalli town", x: 63, y: 45, type: "road", title: "devanahalli town", label: "devanahalli town", rotation: 0 },
-  //   { id: "yelahanka doddaballapura road", x: 63, y: 88.5, type: "road", title: "yelahanka - doddaballapura road", label: "yelahanka - doddaballapura road", rotation: -5 },
-  //   { id: " doddaballapura ", x: 40, y: 95, type: "road", title: "doddaballapura ", label: "doddaballapura ", rotation: 2 },
-  //   { id: " bengaluru ", x: 95, y: 85, type: "road", title: "bengaluru ", label: "bengaluru ", rotation: 2 },
-  // ];
-  // const pins = [
-  //   {
-  //     id: "site",
-  //     x: 38, y: 31,
-  //     type: "site",
-  //     title: "Nature's Sign", label: "Nature's Sign", description: "Spanning a carefully designed 30 acres, each premium villa plots crafted to blend seamlessly with both nature and modern living.",
-  //     details: ["2400 sq ft avg plot size", "RERA Approved", "Gated Community"],
-  //     image: "/map/Natures Sign by Shreyas.jpg",
-  //   },
-  //   {
-  //     id: "airport", x: 70, y: 42, type: "major",
-  //     title: "International Airport", label: "International Airport",
-  //     description: "Major international airport serving Bengaluru.",
-  //     eta: "15-20 min from site",
-  //     image: "/map/nandhiHills.jpg", // ⚠️ No airport image found — kept as fallback
-  //   },
-  //   {
-  //     id: "nature", x: 26, y: 52, type: "major",
-  //     title: "Nandi Hills", label: "nandi hills",
-  //     description: "Nandi Hills is famous for its spectacular sunrises above the clouds, serene atmosphere, and cool climate, serving as a popular weekend getaway near Bangalore for trekking, history, and nature.",
-  //     eta: "~18km from site",
-  //     image: "/map/Nandi Hills.jpg",
-  //   },
-  //   {
-  //     id: "bus", x:13.8, y: 31, type: "minor",
-  //     title: "KSRTC Bus Stand", label: "KSRTC<br/> bus stand",
-  //     description: "KSRTC bus stand in Chikkaballapura is located near the city center, serves as a hub for local and regional transport, including frequent services to Kempegowda Bus Station.",
-  //     eta: "~21km from site",
-  //     image: "/map/KSRTC Bus Stand.jpg",
-  //   },
-  //   {
-  //     id: "bus", x:17.5, y: 30.5, type: "minor",
-  //     title: "Government Junior College", label: "Govt Jr.<br/> College",
-  //     description: "The college has an excellent reputation in Karnataka in general and in Bangalore University in particular. The college consistently achieves more than 98% results each year, with many students securing top ranks.",
-  //     eta: "~10km from site",
-  //     image: "/map/Government Junior College.jpg",
-  //   },
-  //   {
-  //     id: "school", x:19.5, y: 30.5, type: "minor",
-  //     title: "BGS English School", label: "BGS School",
-  //     labelPosition:"top",
-  //     description: "Situated at Agalagurki (Chickballapur) just 20 kms from Bengaluru International Airport, amidst quaint hamlets and country-side ambience.",
-  //     eta: "~9km from site",
-  //     image: "/map/nandhiHills.jpg", // ⚠️ No BGS School image found — kept as fallback
-  //   },
-  //   {
-  //     id: "school", x:21.4, y: 31.2, type: "minor",
-  //     title: "S.J.C. Institute of Technology", label: "S.J.C. Institute <br/>of technology",
-  //     description: "This esteemed institution, affiliated with VTU Belgaum and accredited by AICTE, is dedicated to nurturing future leaders through its dynamic programs and industry-oriented training.",
-  //     eta: "~6km from site",
-  //     image: "/map/SJC Institute of Technology.jpg",
-  //   },
-  //   {
-  //     id: "test", x: 20.3, y: 45.2, type: "minor",
-  //     title: "Sri Sathya Sai Sarala Memorial Hospital", label: "Sri Sathya sai <br/>Sarala Memorial Hospital",
-  //     description: "Sri Sathya Sai Sarla Memorial Hospital in Muddenahalli is highly regarded for offering free, high-quality, and compassionate healthcare services.",
-  //     eta: "~8km from site",
-  //     image: "/map/Sri Sathya Sai Sarala Memorial Hospital.jpg",
-  //   },
-  //   {
-  //     id: "entertainment", x:15, y: 32.3, type: "minor",
-  //     title: "Vani Cinema", label: "Vani Cinema",
-  //     labelAlign:"start",
-  //     description: "Vani Cinema is a local movie theatre that serves as a popular entertainment destination for residents and visitors in the area.",
-  //     eta: "~13km from site",
-  //     image: "/map/Vani Cinema.jpg",
-  //   },
-  //   {
-  //     id: "shop", x:27.2, y: 31.3, type: "minor",
-  //     title: "KMF Mega Dairy", label: "KMF Mega Dairy", labelPosition:"top",
-  //     description: "Karnataka Milk Federation (KMF) is the largest cooperative dairy Federation in South India, owned and managed by milk producers of Karnataka State.",
-  //     eta: "~2.5km from site",
-  //     image: "/map/KMF Mega Dairy.jpg",
-  //   },
-  //   {
-  //     id: "default", x: 23.8, y: 49.2, type: "minor",
-  //     title: "Amita Rasa", label: "Amrita Rasa",
-  //     description: "Nestled in the shadows of Nandi Hills, Amitarasa is a space for life's finer moments. A 28-acre expanse on a gentle incline, the property is dotted with stone architecture that draws from the heritage of the region.",
-  //     eta: "~8km from site",
-  //     image: "/map/Amita Rasa.jpg",
-  //   },
-  //   {
-  //     id: "temple", x: 10.3, y: 44.4, type: "minor",
-  //     title: "Isha Foundation", label: "ISHA Foundation",
-  //     description: "Located amidst serene landscapes, the Adiyogi Shiva Temple, established by the Isha Foundation, is a breathtaking 112-foot statue dedicated to Lord Shiva.",
-  //     eta: "~22km from site",
-  //     image: "/map/placeholder.jpg" // ⚠️ No Isha Foundation image found
-  //   },
-  //   {
-  //     id: "school", x: 29.3, y: 31.3, type: "minor",
-  //     title: "Krishna <br/> School", label: "Krishna <br/> School",
-  //     image: "/map/placeholder.jpg" // ⚠️ No Krishna School image found
-  //   },
-  //   {
-  //     id: "place", x: 31, y: 31.2, type: "minor",
-  //     title: "Krishna Convention Center", label: "Krishna Convention",
-  //     description: "Krishna Convention Center is the perfect venue that has phenomenal settings for every taste. The area is known for lush gardens a great feature for the bride and groom who loves to commune with nature.",
-  //     eta: "~1.5km from site",
-  //     image: "/map/Krishna Convention Center.jpg",
-  //   },
-  //   {
-  //     id: "school", x: 33.4, y: 31.3, type: "minor",
-  //     title: "Nagarjuna College of Engineering & Technology", label: "Nagarjuna<br/> college of enginnering",
-  //     image: "/map/Nagarjuna College Of Engineering and Technology.jpg", labelPosition:"top",
-  //     description: "Nagarjuna College of Engineering & Technology, one of the best engineering colleges in Bangalore offers UG and PG education.",
-  //     eta: "~1.3km from site",
-  //   },
-  //   {
-  //     id: "hall", x: 40.7, y: 45.8, type: "minor",
-  //     title: "Sindhura Conventional Hall", label: "Sindura <br/>Conventional Hall",
-  //     description: "Sindhura Conventional Hall specializes in hosting a variety of events, offering ample space for large gatherings as well as intimate celebrations.",
-  //     eta: "~11km from site",
-  //     image: "/map/Sindhura Conventional Hall.jpg",
-  //   },
-  //   {
-  //     id: "club", x: 36.4, y: 49.8, type: "minor",
-  //     title: "Prestige Golfshire Club", label: "Prestige <br/> Golfshire Club",
-  //     description: "The Prestige Golfshire club is an 18-hole championship Golf course designed by Bob Hunt and maintained and managed by the world's largest golf management company Troon Golf.",
-  //     eta: "~11km from site",
-  //     image: "/map/placeholder.jpg" // ⚠️ No Prestige Golfshire image found
-  //   },
-  //   {
-  //     id: "office", x: 46.2, y: 58.7, type: "minor",
-  //     title: "D C Office, Bengaluru Rural District", label: "D C Office",
-  //     description: "This office serves as the central administrative hub for the district, handling matters related to Devanahalli.",
-  //     eta: "~21km from site",
-  //     image: "/map/D C Office Bengaluru Rural District.jpg",
-  //   },
-  //   {
-  //     id: "Foxconn", x: 42.6, y: 66.1, type: "minor",
-  //     title: "Foxconn", label: "Foxconn",
-  //     description: "Foxconn's 300-acre manufacturing facility in Devanahalli, is a major Apple iPhone production hub with a ₹20,000–₹25,000 crore investment.",
-  //     eta: "~25km from site",
-  //     image: "/map/Foxconn.jpg",
-  //   },
-  //   {
-  //     id: "school", x: 43.6, y: 77.1, type: "minor",
-  //     title: "GITAM Deemed to be University", label: "GITAM<br/>University",
-  //     description: "The GITAM Bengaluru campus spans 45 acres in Nagadenahalli, combining modern infrastructure with a serene, well-connected location near Bengaluru International Airport.",
-  //     eta: "~24km from site",
-  //     image: "/map/GITAM Deemed to be University.jpg",
-  //   },
-  //   {
-  //     id: "school", x: 49, y: 76, type: "minor",
-  //     title: "Amity University", label: "Amity University",
-  //     description: "Amity University, Noida (officially Amity University Uttar Pradesh) is a private university located in Noida, Uttar Pradesh, India.",
-  //     eta: "~22km from site",
-  //     image: "/map/Amity University.jpg",
-  //   },
-  //   {
-  //     id: "school", x: 58.7, y: 31.6, type: "minor",
-  //     title: "Brigade Orchards", label: "Brigade Orchards",
-  //     description: "The rich lifestyle in acres of openness is complimented by a world class sport arena comprising of a cricket &amp; football ground with viewing gallery, a school, a proposed medical centre and more.",
-  //     eta: "~14km from site",
-  //     image: "/map/Brigade Orchards.jpg",
-  //   },
-  //   {
-  //     id: "school", x: 60.9, y: 76.3, type: "minor",
-  //     title: "Stonehill International School", label: "Stonehill<br/> Intl. School",
-  //     description: "Stonehill International School is a private, secular, coeducational day and boarding school for students aged three to eighteen. English is the medium of instruction throughout.",
-  //     eta: "~48km from site",
-  //     image: "/map/Stonehill International School.jpg",
-  //   },
-  //   {
-  //     id: "tech", x: 70.6, y: 80.5, type: "minor",
-  //     title: "North Gate Tech Park", label: "Northgate Tech Park",
-  //     description: "High-end multi-tenant SEZ IT office complex and multilevel car park, spread over 2 million sq. ft. with world-class office space and amenities.",
-  //     eta: "~43km from site",
-  //     image: "/map/North Gate Tech Park.jpg",
-  //   },
-  //   {
-  //     id: "mall", x: 80.1, y: 82.8, type: "minor",
-  //     title: "RMZ Galleria Mall", label: "RMZ <br/> Galleria Mall",
-  //     description: "Contemporary enclosed shopping complex with multiple levels of stores & a food court.",
-  //     eta: "~45km from site",
-  //     image: "/map/RMZ Galleria Mall.jpg",
-  //   },
-  //   {
-  //     id: "hospital", x: 90.1, y: 89.2, type: "minor",
-  //     title: "Ramaiah Medical College Hospital (RMCH)", label: "MS Ramaiah Hospital",
-  //     description: "Ramaiah Memorial Hospital located in the Garden City of Bengaluru has been recognized as a leading one-stop solution to offer high-quality, patient-centric care.",
-  //     eta: "~57km from site",
-  //     image: "/map/Ramaiah Medical College Hospital.jpg",
-  //   },
-  //   {
-  //     id: "tech", x: 91.7, y: 77, type: "minor",
-  //     title: "Manyata Embassy Business Park", label: "Manyata <br/>Tech Park",
-  //     description: "Manyata Embassy Business Park (Manyata Tech Park) is one of India's largest business parks and it hosts major multinational corporations, providing advanced IT infrastructure, hotels, and retail spaces.",
-  //     eta: "~46km from site",
-  //     image: "/map/placeholder.jpg" // ⚠️ No Manyata Tech Park image found
-  //   },
-  //   {
-  //     id: "mall", x: 91.5, y: 65.9, type: "minor",
-  //     title: "Esteem Mall", label: "Esteem mall",
-  //     description: "Esteem Mall is a popular landmark in North Bengaluru and is home to some of the noted global brands in apparel, lifestyle, digital goods, and much more.",
-  //     eta: "~40km from site",
-  //     image: "/map/Esteem Mall.jpg",
-  //   },
-  //   {
-  //     id: "mall", x: 87.7, y: 72.4, type: "minor",
-  //     title: "Esteem Mall", label: "Esteem Mall",
-  //     description: "Esteem Mall is a popular landmark in North Bengaluru and is home to some of the noted global brands in apparel, lifestyle, digital goods, and much more.",
-  //     eta: "~40km from site",
-  //     image: "/map/Esteem Mall.jpg",
-  //   },
-  //   {
-  //     id: "hospital", x: 82.2, y: 76.3, labelPosition:"top", type: "minor",
-  //     title: "Columbia Asia Hospital", label: "Columbia Asia<br/>Hospital Hebbal",
-  //     description: "Columbia Asia Hospitals known for modern infrastructure, they offer 24/7 emergency care, advanced diagnostics, and specialties like cardiology, oncology, and pediatrics.",
-  //     eta: "~62km from site",
-  //     image: "/map/Columbia Asia Hospital.jpg",
-  //   },
-  //   {
-  //     id: "tech", x: 77.1, y: 71.8, type: "minor",
-  //     title: "Hinduja Ecopolis Tech Park", label: "Ecopolis Tech Park", labelPosition:"top",
-  //     description: "Hinduja Ecopolis offers a perfect blend of sustainable design, advanced infrastructure, and strategic connectivity, making it ideal for IT/ITES companies, startups, and corporate offices.",
-  //     eta: "~31km from site",
-  //     image: "/map/Hinduja Ecopolis Tech Park.jpg",
-  //   },
-  //   {
-  //     id: "police", x: 56.4, labelPosition:"top", y: 42.4, type: "minor",
-  //     title: "Devanahalli Police Station", label: "Police Station",
-  //     description: "Operating under the jurisdiction of the Karnataka State Police, the station is responsible for maintaining public order, preventing and investigating crimes, and ensuring the safety and security of residents and visitors.",
-  //     eta: "~13km from site",
-  //     image: "/map/Devanahalli Police Station.jpg",
-  //   },
-  //   {
-  //     id: "school", x: 61.5, y: 37.8, type: "minor",
-  //     title: "Akash International School", label: "Akash Intl. School",
-  //     description: "Nestled in a pristine and breathtakingly beautiful ambience, AIS is managed by the Akash Education Trust, a dedicated group of professionals committed to Education.",
-  //     eta: "~15km from site",
-  //     image: "/map/Akash Super Speciality Hospital.jpg", // ⚠️ ASSUMED: "Akash" brand match — verify this is the school, not the hospital
-  //   },
-  //   {
-  //     id: "school", x: 61.9, y: 31.5, type: "minor",
-  //     title: "The School For Global Minds", label: "School for <br/>Global minds",
-  //     description: "The school is recognized for its strong academic results, active participation in competitions, and commitment to nurturing talented, confident, and future-ready students.",
-  //     eta: "~14km from site",
-  //     image: "/map/The School For Global Minds.jpg",
-  //   },
-  //   {
-  //     id: "tech", x: 67.6, y: 20.9, type: "minor",
-  //     title: "Wipro Limited", label: "Wipro",
-  //     description: "As one of India's top IT firms, it employs over 230,000 people across 65 countries, specializing in AI-powered solutions, cloud computing, data analytics, and digital transformation.",
-  //     eta: "~24km from site",
-  //     image: "/map/Wipro Limited.jpg",
-  //   },
-  //   {
-  //     id: "bank", x: 73, y: 24.8, type: "minor",
-  //     title: "IIDL Financial City", label: "Financial city",
-  //     description: "FCI Infrastructure Development Limited (IIDL) was set up by IFCI Limited (IFCI) as its wholly owned subsidiary in the year 2007 to venture into the real estate and infrastructure sector as an institutional player.",
-  //     eta: "~31km from site",
-  //     image: "/map/IIDL Financial City.jpg",
-  //   },
-  //   {
-  //     id: "tech", x: 75.9, y: 33.7, type: "minor",
-  //     title: "Thyssenkrupp Aerospace India Pvt Ltd", label: "Thyssenkrupp<br/>AeroSpace",
-  //     description: "ThyssenKrupp Aerospace India is India's first facility dedicated to aerospace and defense materials offering customized global supply chain solutions.",
-  //     eta: "~24km from site",
-  //     image: "/map/Thyssenkrupp Aerospace India Pvt Ltd.jpg",
-  //   },
-  //   {
-  //     id: "tech", x: 73.4, y: 49.1, type: "minor",
-  //     title: "KIADB Hardware Park", label: "KIADB Hardware Park",
-  //     description: "Hardware Tech Park is a dedicated industrial zone developed by the Karnataka Industrial Areas Development Board (KIADB) offers industrial land, utilities, and support services for many companies.",
-  //     eta: "~31km from site",
-  //     image: "/map/KIADB Hardware Park.jpg",
-  //   },
-  //   {
-  //     id: "school", x: 81.1, y: 43.6, type: "minor",
-  //     title: "Koshys Group Of Institutions", label: "Koshya group of <br/> inst. & Nursing clg",
-  //     description: "KGI has been achieving milestones year after year in every sphere of education viz Academics, Placements, Industry Interaction, Corporate Training, and Extracurricular Activities.",
-  //     eta: "~37km from site",
-  //     image: "/map/Koshys Group Of Institutions.jpg",
-  //   },
-  //   {
-  //     id: "maerket", x: 77.4, y: 37, type: "minor",
-  //     title: "Shell India Markets Private Limited", label: "Shell India<br/> Market",
-  //     description: "Shell is a diversified energy company in India with 13,000 employees, and presence in Integrated Gas, Downstream, Power, Renewable and Upstream.",
-  //     eta: "~28km from site",
-  //     image: "/map/Shell India Markets Private Limited.jpg",
-  //   },
-  //   {
-  //     id: "tech", x: 79.7, y: 30.9, type: "minor",
-  //     title: "SAP Labs India", label: "SAP Labs",
-  //     description: "This is the fastest-growing subsidiary and largest R&D center outside Germany, with a massive, sustainable second campus opened in Bengaluru in 2025.",
-  //     eta: "~27km from site",
-  //     image: "/map/SAP Labs India.jpg",
-  //   },
-  //   {
-  //     id: "school", x: 61.7, y: 15.2, type: "minor",
-  //     title: "Chanakya University", label: "Chanakya<br/>University",
-  //     description: "Chanakya University is deeply committed to the creation of a foremost knowledge movement that will harness India's lasting civilizational wisdom to serve society and humanity selflessly.",
-  //     eta: "~19km from site",
-  //     image: "/map/Chanakya University.jpg", labelPosition:"top"
-  //   },
-  //   {
-  //     id: "tech", x: 59.1, y: 9.6, type: "minor",
-  //     title: "Exide Energy Solutions", label: "Exide energy <br/>Solution",
-  //     description: "Exide Energy designs, develops and manufactures Lithium Ion Cells and Battery Pack solutions for various energy storage applications across the Automotive and Industrial sectors.",
-  //     eta: "~22km from site",
-  //     image: "/map/Exide Energy Solutions.jpg",
-  //   },
-  //   {
-  //     id: "tech", x: 55.9, y: 8.4, type: "minor",
-  //     title: "Carl Zeiss India Bangalore Pvt Ltd", label: "Zeiss",
-  //     description: "ZEISS in India is headquartered in Bengaluru and present in the fields of Industrial Quality Solutions, Research Microscopy Solutions, Medical Technology.",
-  //     eta: "~22km from site",
-  //     image: "/map/Carl Zeiss India Bangalore Pvt Ltd.jpg",
-  //   },
-  //   { id: "TADIPATRI", x: 10, y: 23, type: "road", title: "TADIPATRI", label: "TADIPATRI", rotation: 0 },
-  //   { id: "Chikkaballapura", x: 16, y: 43, type: "road", title: "Chikkaballapura", label: "Chikkaballapura", rotation: 0 },
-  //   { id: " elevated expressway nh-44", x: 37, y: 38, type: "road", title: "elevated expressway nh-44", label: "elevated expressway nh-44", rotation: 2 },
-  //   { id: " elevated expressway nh-442", x: 72, y: 75, type: "road", title: "elevated expressway nh-44", label: "elevated expressway nh-44", rotation: 28 },
-  //   { id: "satellite town road", x: 49.5, y: 70, type: "road", title: "satellite town road", label: "satellite town road", rotation: -77.5 },
-  //   { id: "satellite town road2", x: 72, y: 11.8, type: "road", title: "satellite town road", label: "satellite town road", rotation: -26.5 },
-  //   { id: "bommanahalli", x: 54, y: 15, type: "road", title: "bommanahalli", label: "bommanahalli", rotation: 0 },
-  //   { id: "devanahalli town", x: 63, y: 45, type: "road", title: "devanahalli town", label: "devanahalli town", rotation: 0 },
-  //   { id: "yelahanka doddaballapura road", x: 63, y: 88.5, type: "road", title: "yelahanka - doddaballapura road", label: "yelahanka - doddaballapura road", rotation: -5 },
-  //   { id: " doddaballapura ", x: 40, y: 95, type: "road", title: "doddaballapura ", label: "doddaballapura ", rotation: 2 },
-  //   { id: " bengaluru ", x: 95, y: 85, type: "road", title: "bengaluru ", label: "bengaluru ", rotation: 2 },
-  // ];
+  
+ 
   const pins = [
   {
     id: "site",  // unchanged — site pin has special rendering, no icon lookup
@@ -483,7 +118,7 @@ const LocationSection = () => {
     title: "Nature's Sign", label: "Nature's Sign",
     description: "Spanning a carefully designed 30 acres, each premium villa plots crafted to blend seamlessly with both nature and modern living.",
     details: ["2400 sq ft avg plot size", "RERA Approved", "Gated Community"],
-    image: "/map/Natures Sign by Shreyas.jpg",
+    image: "/map/naturesign.jpg",
   },
   {
     id: "airport", x: 70, y: 42, type: "major",
@@ -519,7 +154,7 @@ const LocationSection = () => {
     labelPosition: "top",
     description: "Situated at Agalagurki (Chickballapur) just 20 kms from Bengaluru International Airport, amidst quaint hamlets and country-side ambience.",
     eta: "~9km from site",
-    image: "/map/nandhiHills.jpg",
+    image: "/map/bgs.jpg",
   },
   {
     id: "school", x: 21.4, y: 31.2, type: "minor",
@@ -548,7 +183,7 @@ const LocationSection = () => {
     title: "KMF Mega Dairy", label: "KMF Mega Dairy", labelPosition: "top",
     description: "Karnataka Milk Federation (KMF) is the largest cooperative dairy Federation in South India, owned and managed by milk producers of Karnataka State.",
     eta: "~2.5km from site",
-    image: "/map/KMF Mega Dairy.jpg",
+    image: "/map/KMF.jpg",
   },
   {
     id: "convention", x: 23.8, y: 49.2, type: "minor",
@@ -574,12 +209,12 @@ const LocationSection = () => {
     title: "Krishna Convention Center", label: "Krishna Convention",
     description: "Krishna Convention Center is the perfect venue that has phenomenal settings for every taste. The area is known for lush gardens a great feature for the bride and groom who loves to commune with nature.",
     eta: "~1.5km from site",
-    image: "/map/Krishna Convention Center.jpg",
+    image: "/map/Krishna.jpg",
   },
   {
     id: "school", x: 33.4, y: 31.3, type: "minor",
     title: "Nagarjuna College of Engineering & Technology", label: "Nagarjuna<br/> college of enginnering",
-    image: "/map/Nagarjuna College Of Engineering and Technology.jpg", labelPosition: "top",
+    image: "/map/Nagarjuna.jpg", labelPosition: "top",
     description: "Nagarjuna College of Engineering & Technology, one of the best engineering colleges in Bangalore offers UG and PG education.",
     eta: "~1.3km from site",
   },
@@ -588,14 +223,14 @@ const LocationSection = () => {
     title: "Sindhura Conventional Hall", label: "Sindura <br/>Conventional Hall",
     description: "Sindhura Conventional Hall specializes in hosting a variety of events, offering ample space for large gatherings as well as intimate celebrations.",
     eta: "~11km from site",
-    image: "/map/Sindhura Conventional Hall.jpg",
+    image: "/map/sindura.jpg",
   },
   {
     id: "club", x: 36.4, y: 49.8, type: "minor",
     title: "Prestige Golfshire Club", label: "Prestige <br/> Golfshire Club",
     description: "The Prestige Golfshire club is an 18-hole championship Golf course designed by Bob Hunt and maintained and managed by the world's largest golf management company Troon Golf.",
     eta: "~11km from site",
-    image: "/map/placeholder.jpg",
+    image: "/map/golfshire.jpg",
   },
   {
     id: "govtoffice", x: 46.2, y: 58.7, type: "minor",
@@ -651,21 +286,21 @@ const LocationSection = () => {
     title: "RMZ Galleria Mall", label: "RMZ <br/> Galleria Mall",
     description: "Contemporary enclosed shopping complex with multiple levels of stores & a food court.",
     eta: "~45km from site",
-    image: "/map/RMZ Galleria Mall.jpg",
+    image: "/map/RMZ.jpg",
   },
   {
     id: "hospital", x: 90.1, y: 89.2, type: "minor",
     title: "Ramaiah Medical College Hospital (RMCH)", label: "MS Ramaiah Hospital",
     description: "Ramaiah Memorial Hospital located in the Garden City of Bengaluru has been recognized as a leading one-stop solution to offer high-quality, patient-centric care.",
     eta: "~57km from site",
-    image: "/map/Ramaiah Medical College Hospital.jpg",
+    image: "/map/RamaiahMed.jpg",
   },
   {
     id: "tech", x: 91.7, y: 77, type: "minor",
     title: "Manyata Embassy Business Park", label: "Manyata <br/>Tech Park",
     description: "Manyata Embassy Business Park (Manyata Tech Park) is one of India's largest business parks and it hosts major multinational corporations, providing advanced IT infrastructure, hotels, and retail spaces.",
     eta: "~46km from site",
-    image: "/map/placeholder.jpg",
+    image: "/map/manyata.jpg",
   },
   {
     id: "mall", x: 91.5, y: 65.9, type: "minor",
@@ -707,14 +342,14 @@ const LocationSection = () => {
     title: "Akash International School", label: "Akash Intl. School",
     description: "Nestled in a pristine and breathtakingly beautiful ambience, AIS is managed by the Akash Education Trust, a dedicated group of professionals committed to Education.",
     eta: "~15km from site",
-    image: "/map/Akash Super Speciality Hospital.jpg",
+    image: "/map/akashaSchool.jpg",
   },
   {
     id: "school", x: 61.9, y: 31.5, type: "minor",
     title: "The School For Global Minds", label: "School for <br/>Global minds",
     description: "The school is recognized for its strong academic results, active participation in competitions, and commitment to nurturing talented, confident, and future-ready students.",
     eta: "~14km from site",
-    image: "/map/The School For Global Minds.jpg",
+    image: "/map/School For Global Minds.jpg",
   },
   {
     id: "tech", x: 67.6, y: 20.9, type: "minor",
@@ -770,21 +405,21 @@ const LocationSection = () => {
     title: "Chanakya University", label: "Chanakya<br/>University",
     description: "Chanakya University is deeply committed to the creation of a foremost knowledge movement that will harness India's lasting civilizational wisdom to serve society and humanity selflessly.",
     eta: "~19km from site",
-    image: "/map/Chanakya University.jpg", labelPosition: "top",
+    image: "/map/chanakya.jpg", labelPosition: "top",
   },
   {
     id: "tech", x: 59.1, y: 9.6, type: "minor",
     title: "Exide Energy Solutions", label: "Exide energy <br/>Solution",
     description: "Exide Energy designs, develops and manufactures Lithium Ion Cells and Battery Pack solutions for various energy storage applications across the Automotive and Industrial sectors.",
     eta: "~22km from site",
-    image: "/map/Exide Energy Solutions.jpg",
+    image: "/map/exide.jpg",
   },
   {
     id: "tech", x: 55.9, y: 8.4, type: "minor",
     title: "Carl Zeiss India Bangalore Pvt Ltd", label: "Zeiss",
     description: "ZEISS in India is headquartered in Bengaluru and present in the fields of Industrial Quality Solutions, Research Microscopy Solutions, Medical Technology.",
     eta: "~22km from site",
-    image: "/map/Carl Zeiss India Bangalore Pvt Ltd.jpg",
+    image: "/map/ziess.jpg",
   },
   // road labels — unchanged
   { id: "TADIPATRI", x: 10, y: 23, type: "road", title: "TADIPATRI", label: "TADIPATRI", rotation: 0 },
@@ -805,18 +440,18 @@ const LocationSection = () => {
 
   const customIcons = {
   airport:      "/map/icons/AIRPORT.svg",
-  busstand:     "/map/icons/BUS STAND.svg",
-  school:       "/map/icons/SCHOOL COLLEGE.svg",
+  busstand:     "/map/icons/BUS_STAND.svg",
+  school:       "/map/icons/EDU.svg",
   hospital:     "/map/icons/HOSPITAL.svg",
   cinema:       "/map/icons/CINEMA.svg",
   kmf:          "/map/icons/KMF.svg",
   convention:   "/map/icons/CONVENTION AMIT RASA.svg",
   isha:         "/map/icons/ISHA.svg",
   club:         "/map/icons/CLUB.svg",
-  govtoffice:   "/map/icons/GOVT OFFICE.svg",
+  govtoffice:   "/map/icons/GOVT_OFFICE.svg",
   factory:      "/map/icons/FACTORY.svg",
-  tech:         "/map/icons/IT SOFTWARE.svg",
-  mall:         "/map/icons/MALLS MARKET.svg",
+  tech:         "/map/icons/IT_SOFTWARE.svg",
+  mall:         "/map/icons/MALLS_MARKET.svg",
   nature:       "/map/icons/NANDI HILL.svg",
   orchard:      "/map/icons/ORCHARD.svg",
   aerospace:    "/map/icons/AEROSPACE.svg",
@@ -1422,12 +1057,18 @@ const LocationSection = () => {
       const isSite = pin.type === "site";
       const isMajor = pin.type === "major";
 
-      const dotSize = isSite ? 28 : isMajor ? 20 : 14;
-      const iconSize = isSite ? 16 : isMajor ? 42 : 24;
-      const dotColor = isSite ? "#2F7F90" : isMajor ? "#dc2626" : "#7c3aed";
-      const animateProps = isSite || isMajor
-        ? { animate: { scale: [1, 1.22, 1] }, transition: { repeat: Infinity, duration: 1.8, ease: "easeInOut" } }
-        : { animate: { scale: [1, 1.16, 1] }, transition: { repeat: Infinity, duration: 2.2, ease: "easeInOut" } };
+      // Use configuration for pin sizing
+      const pinType = isSite ? "site" : isMajor ? "major" : "minor";
+      const { dotSize, iconSize } = PIN_SIZES[pinType];
+      const dotColor = PIN_DOT_COLORS[pinType];
+      
+      // Use configuration for animations
+      const animConfig = PIN_ANIMATIONS[pinType];
+      const animateProps = {
+        animate: { scale: animConfig.scale },
+        transition: { repeat: Infinity, duration: animConfig.duration, ease: "easeInOut" },
+      };
+      
       const labelLayout = getLabelLayout(pin);
 
       if (pin.type === "site") {
@@ -1450,26 +1091,37 @@ const LocationSection = () => {
               className="origin-bottom"
             >
               <div
-                className="felx pointer-events-none absolute bottom-[calc(100%+14px)] left-[5%] z-20 min-w-[120px] rounded-lg bg-white px-4 py-3 text-center shadow-[0_4px_16px_rgba(0,0,0,0.1)]"
                 style={{
-                  transform: `translateX(-50%) scale(${1 / zoom})`,
+                  transform: `scale(${1 / zoom})`,
                   transformOrigin: "bottom center",
+                  display: "inline-block",
                 }}
               >
-                <img
-                  src="/naturesignLogo1.png"
-                  alt="Nature's Sign"
-                  className="mb-1 w-full object-contain"
-                />
+                {/* Dialog Box */}
                 <div
-                  className="absolute bottom-[-5px] right-[10%] h-0 w-0 -translate-x-1/2 border-x-[10px] border-x-transparent border-t-[10px] border-t-white [filter:drop-shadow(0_2px_2px_rgba(0,0,0,0.1))]"
-                  style={{ transform: "translateX(-50%)" }}
-                />
+                  className="felx pointer-events-none absolute bottom-[calc(100%+2px)] left-[50%] z-20 min-w-[120px] rounded-lg bg-white px-4 py-3 text-center shadow-[0_4px_16px_rgba(0,0,0,0.1)]"
+                  style={{
+                    transform: "translateX(-50%)",
+                    transformOrigin: "bottom center",
+                  }}
+                >
+                  <img
+                    src="/naturesignLogo1.png"
+                    alt="Nature's Sign"
+                    className="mb-1 w-full object-contain"
+                  />
+                  <div
+                    className="absolute bottom-[-5px] right-[10%] h-0 w-0 -translate-x-1/2 border-x-[10px] border-x-transparent border-t-[10px] border-t-white [filter:drop-shadow(0_2px_2px_rgba(0,0,0,0.1))]"
+                    style={{ transform: "translateX(-50%)" }}
+                  />
+                </div>
+
+                {/* Orange Label */}
+                <div className="rotate-2 bg-[#E8620A] px-2 py-[2px] text-[9px] font-extrabold text-white inline-block relative top-0">
+                  {renderTitleWithLineBreaks(pin.label)}
+                </div>
               </div>
             </motion.div>
-            <div className=" rotate-2 bg-[#E8620A] px-2 py-[2px] text-[9px] font-extrabold  text-white">
-              {renderTitleWithLineBreaks(pin.label)}
-            </div>
           </div>
         );
       }
@@ -1509,33 +1161,23 @@ const LocationSection = () => {
   )}
 </div>
           </motion.div> */}
-          <motion.div {...animateProps} className="relative  p-1 ">
-  {/* Ripple */}
-  <span
-    className="pin-ripple"
-    style={{
-      border: `2px solid ${dotColor}`,
-    }}
-  />
-
-  {/* Icon */}
+   <motion.div {...animateProps} className="relative p-1 pin-pulse">
   <div
-    className="relative  z-10 flex items-center justify-center rounded-full"
+    className="relative z-10 flex items-center justify-center rounded-full bg-white"
     style={{
       width: `${dotSize}px`,
       height: `${dotSize}px`,
-      background: "white",
     }}
   >
     {customIcons[pin.id] ? (
       <img
         src={customIcons[pin.id]}
         alt={pin.title}
-        style={{ width: iconSize, height: iconSize, objectFit: "contain" }}
+        style={{ width: iconSize, height: iconSize }}
         draggable={false}
       />
     ) : (
-      <Icon size={iconSize} color="white" />
+      <Icon size={iconSize} />
     )}
   </div>
 </motion.div>
@@ -1552,7 +1194,7 @@ const LocationSection = () => {
   return (
     <section id="locations" className="w-full bg-white">
       <div className="py-16 md:py-14">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px6">
 
           {/* Heading */}
           <div className="text-center mb-10">
@@ -1573,29 +1215,29 @@ const LocationSection = () => {
                 {/* IMAGE */}
                 {activePin.image && (
                   <div style={{ width: "100%", overflow: "hidden" }}>
-                    <img className=""
+                    <img className=" aspect-square"
                       src={activePin.image}
                       alt={activePin.title}
-                      style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
                     />
                   </div>
                 )}
 
                 {/* TITLE */}
-                <h3 className="text-xl uppercase text-black">
+                <h3 style={{ fontSize: DESKTOP_TEXT_SIZES.title, textTransform: "uppercase", color: "#000", fontWeight: 700 }}>
                   {renderTitleWithLineBreaks(activePin.title)}
                 </h3>
 
                 {/* DESCRIPTION */}
                 {activePin.description && (
-                  <p className="text-gray-700 text-base leading-relaxed">
+                  <p style={{ fontSize: DESKTOP_TEXT_SIZES.description, color: "#374151", lineHeight: "1.625" }}>
                     {activePin.description}
                   </p>
                 )}
 
                 {/* ETA */}
                 {activePin.eta && (
-                  <p style={{ fontSize: "12px", color: "green", fontWeight: 600 }}>
+                  <p style={{ fontSize: DESKTOP_TEXT_SIZES.eta, color: "#16a34a", fontWeight: 600 }}>
                      {activePin.eta}
                   </p>
                 )}
@@ -1665,7 +1307,7 @@ const LocationSection = () => {
               MOBILE LAYOUT  (hidden on desktop)
           ══════════════════════════════════════ */}
           <div className="md:hidden mt-6">
-            <div className="relative h-[60vh] w-full overflow-hidden rounded-lg">
+            <div className="relative h-[70vh] w-full overflow-hidden rounded-lg">
               <div
                 ref={attachWheelMobile}
                 onMouseDown={handleMouseDown}

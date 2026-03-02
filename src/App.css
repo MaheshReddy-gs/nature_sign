@@ -30,23 +30,36 @@
 
 .luxury-btn:hover::before {
   width: 100%;
-}
-/* Ripple animation */
-@keyframes pinRipple {
-  0% {
-    transform: scale(1);
-    opacity: 0.6;
-  }
-  100% {
-    transform: scale(2.6);
-    opacity: 0;
-  }
+}/* Core pulse container */
+.pin-pulse {
+  position: relative;
 }
 
-.pin-ripple {
+/* Two ripple waves */
+.pin-pulse::before,
+.pin-pulse::after {
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: 9999px;
-  animation: pinRipple 2.4s ease-out infinite;
-  pointer-events: none;
+  background: rgba(211, 116, 15, 0.688); /* same tone as site pin */
+  z-index: 0;
+  animation: pinPulse 2.4s ease-out infinite;
+}
+
+/* Second wave delay */
+.pin-pulse::after {
+  animation-delay: 1.2s;
+}
+
+/* Pulse animation */
+@keyframes pinPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
 }
