@@ -201,19 +201,19 @@ const prevRatioRef = useRef(0); // tracks last intersection ratio
     image: "/map/ISHA.jpg",
   },
   {
-    id: "school", x: 29.3, y: 31.3, type: "minor",
+    id: "school", x: 29.3, y: 31.3, type: "minor",labelPosition: "top",
     title: "Krishna <br/> School", label: "Krishna <br/> School",
     image: "/map/placeholder.jpg",
   },
   {
-    id: "convention", x: 31, y: 31.2, type: "minor",
+    id: "convention", x: 31.8, y: 30.2, type: "minor",
     title: "Krishna Convention Center", label: "Krishna Convention",
     description: "Krishna Convention Center is the perfect venue that has phenomenal settings for every taste. The area is known for lush gardens a great feature for the bride and groom who loves to commune with nature.",
     eta: "~1.5km from site",
     image: "/map/Krishna.jpg",
   },
   {
-    id: "school", x: 33.4, y: 31.3, type: "minor",
+    id: "school", x: 34.4, y: 31.3, type: "minor",
     title: "Nagarjuna College of Engineering & Technology", label: "Nagarjuna<br/> college of enginnering",
     image: "/map/Nagarjuna.jpg", labelPosition: "top",
     description: "Nagarjuna College of Engineering & Technology, one of the best engineering colleges in Bangalore offers UG and PG education.",
@@ -1313,7 +1313,8 @@ const pulseClass = isMajor ? "pin-pulse pin-pulse--major" : "pin-pulse pin-pulse
                 >
                   {/* IMAGE */}
                   <img
-                    src="/map2.svg"
+                    src="/newMap.svg"
+                    // src="/map2.svg"
                     alt="Location Map"
                     draggable={false}
                     className="w-full h-full object-contain"
