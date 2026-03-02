@@ -44,8 +44,8 @@ const ContactForm = ({ compact = false, onSuccess, initialValues = {}, submitTex
         setSubmissionStatus(null);
 
         const scriptURL = 'https://script.google.com/macros/s/AKfycbyyT_ERLeYkpKWioNzNZS2AmuGLs4lfSBAvaP2kmFN3ZAT4g1XGi6roc5oGGFyhewepKQ/exec';
-        const crmHost = 'https://devcrm.makonissoft.com/';
-        // const crmHost = 'http://143.110.251.119:9100/';
+        // const crmHost = 'https://devcrm.makonissoft.com/';
+        const crmHost = 'http://143.110.251.119:9100/';
         const crmURL = `${crmHost}webhooks/website/leads/`;
 
         const payload = {
