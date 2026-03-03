@@ -227,7 +227,7 @@ export default function Navbar() {
         </a>
         <button
           onClick={() =>
-            openModal({ initialValues: { message: "ENQUIRE NOW" } })
+            openModal({ initialValues: { message: "" } })
           }
           className="w-full uppercase text-xs uppercase text-[11px] font-bold tracking-[0.2em] bg-[#FF5A00] flex-3 text-white px-6 py-4 
                        hover:bg-[#E04F00] transition-all duration-300
