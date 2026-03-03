@@ -103,9 +103,26 @@ const ContactForm = ({ compact = false, onSuccess, initialValues = {}, submitTex
         const { name, value } = e.target;
 
         if (name === "phone") {
-            if (!/^\d*$/.test(value)) return;
-            if (value.length > 10) return;
+        // Remove everything except digits
+        let digitsOnly = value.replace(/\D/g, '');
+
+        // If number starts with 91 and is 12 digits, remove country code
+        if (digitsOnly.startsWith("91") && digitsOnly.length === 12) {
+            digitsOnly = digitsOnly.slice(2);
         }
+
+        // Limit to 10 digits
+        if (digitsOnly.length > 10) {
+            digitsOnly = digitsOnly.slice(0, 10);
+        }
+
+        setFormData({
+            ...formData,
+            phone: digitsOnly
+        });
+
+        return;
+    }
 
         setFormData({
             ...formData,
@@ -149,11 +166,13 @@ const ContactForm = ({ compact = false, onSuccess, initialValues = {}, submitTex
             <div className={`grid grid-cols-1 ${compact ? '' : 'md:grid-cols-2'} gap-6`}>
                 <div>
                     <input
-                        type="tel"
-                        name="phone"
-                        placeholder="Phone Number *"
-                        value={formData.phone}
-                        onChange={handleChange}
+    type="tel"
+    name="phone"
+    autoComplete="tel"
+    inputMode="numeric"
+    placeholder="Phone Number *"
+    value={formData.phone}
+    onChange={handleChange}
                         className="w-full px-6 py-4 bg-[#f2f2f2]   rounded text-black placeholder-black/60 focus:outline-none focus:ring-1 focus:ring-black"
                     />
                     {errors.phone && (
