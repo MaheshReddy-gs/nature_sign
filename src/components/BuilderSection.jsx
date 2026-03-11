@@ -23,7 +23,7 @@ export default function BuilderSection() {
                 {/* LOGO - Left */}
                 <div className="flex    items-center gap-3 w-full md:w-auto justify-center md:justify-start">
                     <img
-                        src="/shreyasLogo.png"
+                        src="/Shreyasinfra_logo.webp"
                         alt="Shreyas Infra Logo"
                         className="h-14 md:h-16 md:mb-0 mb-5 w-auto object-contain"
                     />

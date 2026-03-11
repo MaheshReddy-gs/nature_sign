@@ -1,4 +1,5 @@
 
+import { useEffect } from 'react'
 import './App.css'
 import Layout from './components/Layout'
 import HeroSection from './components/HeroSection'
@@ -20,6 +21,14 @@ import Ongoing from './components/cardsection'
 
 
 function App() {
+  useEffect(() => {
+    // Lock orientation to portrait
+    if (screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock('portrait-primary').catch(err => {
+        console.log('Orientation lock not supported:', err)
+      })
+    }
+  }, [])
   return (
     <ModalProvider>
       <Layout>

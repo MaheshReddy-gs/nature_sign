@@ -4,6 +4,17 @@ body {
   font-family: 'Inter Tight', sans-serif;
 }
 
+/* Prevent device rotation */
+html {
+  aspect-ratio: 9 / 16;
+}
+
+@supports (orientation: portrait) {
+  html {
+    orientation: portrait;
+  }
+}
+
 /* Hide scrollbar */
 ::-webkit-scrollbar {
   display: none;

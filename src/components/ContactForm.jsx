@@ -45,7 +45,7 @@ const ContactForm = ({ compact = false, onSuccess, initialValues = {}, submitTex
 
         const scriptURL = 'https://script.google.com/macros/s/AKfycbyyT_ERLeYkpKWioNzNZS2AmuGLs4lfSBAvaP2kmFN3ZAT4g1XGi6roc5oGGFyhewepKQ/exec';
         // const crmHost = 'https://devcrm.makonissoft.com/';
-        const crmHost = 'http://143.110.251.119:9100/';
+        const crmHost = 'https://143.110.251.119:9100/';
         const crmURL = `${crmHost}webhooks/website/leads/`;
 
         const payload = {
@@ -104,27 +104,27 @@ const ContactForm = ({ compact = false, onSuccess, initialValues = {}, submitTex
     const handleChange = (e) => {
         const { name, value } = e.target;
 
-        if (name === "phone") {
-        // Remove everything except digits
-        let digitsOnly = value.replace(/\D/g, '');
+      if (name === "phone") {
 
-        // If number starts with 91 and is 12 digits, remove country code
-        if (digitsOnly.startsWith("91") && digitsOnly.length === 12) {
-            digitsOnly = digitsOnly.slice(2);
-        }
+    let digitsOnly = value.replace(/\D/g, '');
 
-        // Limit to 10 digits
-        if (digitsOnly.length > 10) {
-            digitsOnly = digitsOnly.slice(0, 10);
-        }
-
-        setFormData({
-            ...formData,
-            phone: digitsOnly
-        });
-
-        return;
+    // Remove country code
+    if (digitsOnly.startsWith("91") && digitsOnly.length > 10) {
+        digitsOnly = digitsOnly.slice(2);
     }
+
+    // Keep last 10 digits
+    if (digitsOnly.length > 10) {
+        digitsOnly = digitsOnly.slice(-10);
+    }
+
+    setFormData({
+        ...formData,
+        phone: digitsOnly
+    });
+
+    return;
+}
 
         setFormData({
             ...formData,
