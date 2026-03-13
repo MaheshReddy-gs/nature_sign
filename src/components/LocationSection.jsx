@@ -5,7 +5,93 @@ import { Fragment, useRef, useState, useCallback, useEffect } from "react";
 import CustomButton from "./CustomButton";
 import { MapPin, Plane, Building2, GraduationCap, Train, Landmark } from "lucide-react";
 import { label } from "framer-motion/client";
+function ImageAlignTool() {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const dragging = useRef(false);
+  const start = useRef({ x: 0, y: 0 });
 
+  const handleMouseDown = (e) => {
+    dragging.current = true;
+    start.current = {
+      x: e.clientX - position.x,
+      y: e.clientY - position.y
+    };
+  };
+
+  const handleMouseMove = (e) => {
+    if (!dragging.current) return;
+
+    const newX = e.clientX - start.current.x;
+    const newY = e.clientY - start.current.y;
+
+    setPosition({ x: newX, y: newY });
+  };
+
+  const handleMouseUp = () => {
+    dragging.current = false;
+  };
+
+  return (
+    <div
+      style={{ }}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+    >
+      <h2>Image Overlap Position Finder</h2>
+
+      <div
+        style={{
+          position: "relative",
+          display: "inline-block",
+          border: "1px dashed gray",
+        
+        }}
+      >
+        {/* Bottom Image */}
+        <img
+          src="/map1.svg"
+          alt="base"
+          style={{ width:"100vh"
+,            display: "block"
+          }}
+        />
+
+        {/* Draggable Top Image */}
+        <img
+          src="/newMap.svg"
+          alt="overlay"
+          onMouseDown={handleMouseDown}
+          style={{
+            position: "absolute",width:"100vh",
+            top: position.y,
+            left: position.x,opacity: 0.7,
+            cursor: "grab"
+          }}
+        />
+      </div>
+
+      <div >
+        <h3>Position Values</h3>
+
+        <p>
+          <b>top:</b> {position.y}px
+        </p>
+
+        <p>
+          <b>left:</b> {position.x}px
+        </p>
+
+        <pre>
+{`style={{
+  position: "absolute",
+  top: "${position.y}px",
+  left: "${position.x}px"
+}}`}
+        </pre>
+      </div>
+    </div>
+  );
+}
 const LocationSection = () => {
   const { openModal } = useModal();
 
@@ -85,9 +171,9 @@ const sectionRef = useRef(null);
 const prevRatioRef = useRef(0); // tracks last intersection ratio
   const INITIAL_ZOOM = 1.1;
   const MIN_ZOOM = INITIAL_ZOOM;
-  const MAX_ZOOM = 3;
+  const MAX_ZOOM = 5;
   const ZOOM_THRESHOLD = 1.8;
-
+const MICRO_ZOOM_THRESHOLD = 2.3; // ← ADD THIS
   // Mobile-only constants
   const MOBILE_SCROLL_RELEASE_EPSILON = 0.02;
   const MOBILE_IMAGE_HEIGHT_MULTIPLIER = 1.28;
@@ -111,7 +197,18 @@ const prevRatioRef = useRef(0); // tracks last intersection ratio
   panRef.current = pan;
   isPanningRef.current = isPanning;
 
-  
+  const newMapImgRef = useRef(null);
+const [pinTopOffset, setPinTopOffset] = useState(0);
+
+const OFFSET_TOP_PX = 85; // from your overlay tool
+
+const handleNewMapLoad = useCallback(() => {
+  const img = newMapImgRef.current;
+  if (!img?.naturalWidth || !img?.naturalHeight) return;
+  const W = window.innerHeight;                          // 100vh — the width you measured at
+  const H_new = W * (img.naturalHeight / img.naturalWidth);
+  setPinTopOffset((OFFSET_TOP_PX / H_new) * 100);       // e.g. ~5.2%
+}, []);
  
   const pins = [
   {
@@ -460,6 +557,23 @@ const prevRatioRef = useRef(0); // tracks last intersection ratio
   { id: "yelahanka doddaballapura road", x: 63, y: 88.5, type: "road", title: "yelahanka - doddaballapura road", label: "yelahanka - doddaballapura road", rotation: -5 },
   { id: " doddaballapura ", x: 40, y: 95, type: "road", title: "doddaballapura ", label: "doddaballapura ", rotation: 2 },
   { id: " bengaluru ", x: 95, y: 85, type: "road", title: "bengaluru ", label: "bengaluru ", rotation: -85 },
+  //mcro
+  // ── MICRO LAYER (visible only on deep zoom, no interaction) ──
+{ id: "micro", x: 30.1, y: 29.1, type: "micro", label: "Sadahalli Gate" },
+{ id: "micro", x: 35.2, y: 27.8, type: "micro", label: "Mugabaala" },
+{ id: "micro", x: 28.4, y: 33.6, type: "micro", label: "Chikkajala" },
+{ id: "micro", x: 33.8, y: 35.1, type: "micro", label: "Yelahanka New Town" },
+{ id: "micro", x: 40.1, y: 28.5, type: "micro", label: "Attur Layout" },
+{ id: "micro", x: 37.6, y: 40.2, type: "micro", label: "Kodigehalli" },
+{ id: "micro", x: 45.5, y: 29.3, type: "micro", label: "Doddajala" },
+{ id: "micro", x: 25.1, y: 28.0, type: "micro", label: "Nandi Cross" },
+{ id: "micro", x: 22.7, y: 26.2, type: "micro", label: "Gauribidanur Rd" },
+{ id: "micro", x: 31.5, y: 34.7, type: "micro", label: "Hunasamaranahalli" },
+{ id: "micro", x: 47.8, y: 32.4, type: "micro", label: "Singanayakanahalli" },
+{ id: "micro", x: 53.2, y: 28.9, type: "micro", label: "Venkatala" },
+{ id: "micro", x: 50.4, y: 41.5, type: "micro", label: "Bagalur" },
+{ id: "micro", x: 57.3, y: 35.2, type: "micro", label: "Devanahalli Fort" },
+{ id: "micro", x: 42.3, y: 53.8, type: "micro", label: "Budigere" },
 ];
   const resolvedPins = pins.map((pin) => (
     pin.type === "road" ? pin : { ...pin, label: pin.label ?? pin.title }
@@ -1164,7 +1278,55 @@ useEffect(() => {
       };
       
       const labelLayout = getLabelLayout(pin);
-
+// ── MICRO PIN ─────────────────────────────────────────────
+if (pin.type === "micro") {
+  const isMicroVisible = zoom >= MICRO_ZOOM_THRESHOLD;
+  return (
+    <div
+      key={`${pin.id}-${pin.x}-${pin.y}`}
+      className="absolute pointer-events-none"
+      style={{
+        top: `${pin.y}%`,
+        left: `${pin.x}%`,
+        transform: `translate(-50%, -50%) scale(${1 / zoom})`,
+        transformOrigin: "center center",
+        opacity: isMicroVisible ? 1 : 0,
+        transition: "opacity 0.25s ease",
+        zIndex: 3,
+      }}
+    >
+      {/* Dot */}
+      <div
+        style={{
+          width: "6px",
+          height: "6px",
+          borderRadius: "50%",
+          background: "#555",
+          margin: "0 auto",
+        }}
+      />
+      {/* Label */}
+      <div
+        style={{
+          position: "absolute",
+          top: "100%",
+          left: "50%",
+          transform: "translateX(-50%)",
+          marginTop: "3px",
+          fontSize: "8px",
+          fontWeight: 600,
+          color: "#333",
+          whiteSpace: "nowrap",
+          textAlign: "center",
+          textShadow: "0 1px 2px rgba(255,255,255,0.9)",
+          letterSpacing: "0.03em",
+        }}
+      >
+        {pin.label}
+      </div>
+    </div>
+  );
+}
       if (pin.type === "site") {
         return (
           <div
@@ -1354,7 +1516,9 @@ const pulseClass = isMajor ? "pin-pulse pin-pulse--major" : "pin-pulse pin-pulse
                 >
                   {/* IMAGE */}
                   <img
-                    src="/newMap.svg"
+                  ref={newMapImgRef}          // ← add
+  onLoad={handleNewMapLoad}
+                    src="/map1.svg"
                     // src="/map2.svg"
                     alt="Location Map"
                     draggable={false}
@@ -1362,7 +1526,20 @@ const pulseClass = isMajor ? "pin-pulse pin-pulse--major" : "pin-pulse pin-pulse
                   />
 
                   {/* PINS */}
-                  {renderPins()}
+                 <div
+  style={{
+    position: "absolute",
+    top: `${pinTopOffset}%`,       // skip the extra top canvas
+    left: 0,
+    width: "100%",
+    height: `${100 - pinTopOffset}%`,  // remaining = old content area
+    pointerEvents: "none",
+  }}
+>
+  <div style={{ position: "relative", width: "100%", height: "100%" }}>
+    {renderPins()}
+  </div>
+</div>
                 </div>
 
                 {/* Zoom hint */}
@@ -1531,7 +1708,7 @@ const pulseClass = isMajor ? "pin-pulse pin-pulse--major" : "pin-pulse pin-pulse
             </CustomButton>
           </FloatUpText>
         </div>
-      </div>
+      </div><ImageAlignTool/>
     </section>
   );
 };
