@@ -74,22 +74,23 @@ const ContactForm = ({ compact = false, onSuccess, initialValues = {}, submitTex
             return response.json();
         });
 
-        const crmRequest = fetch(crmURL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-WEBSITE-TOKEN': 'JGBYtyfvht675GVYFYTFV565fvyfuytHGUjhgbuyg67vtvTftffTF7jyb35BGUJGUHGBtb6oxdioseodxwLOEO9w'
-            },
-            body: JSON.stringify(crmPayload)
-        }).then(response => {
-            if (!response.ok) {
-                throw new Error(`CRM API failed with status ${response.status}`);
-            }
-            return response;
-        });
+        // const crmRequest = fetch(crmURL, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'X-WEBSITE-TOKEN': 'JGBYtyfvht675GVYFYTFV565fvyfuytHGUjhgbuyg67vtvTftffTF7jyb35BGUJGUHGBtb6oxdioseodxwLOEO9w'
+        //     },
+        //     body: JSON.stringify(crmPayload)
+        // }).then(response => {
+        //     if (!response.ok) {
+        //         throw new Error(`CRM API failed with status ${response.status}`);
+        //     }
+        //     return response;
+        // });
 
         try {
-            await Promise.all([ emailRequest, crmRequest ]);
+            // await Promise.all([ emailRequest, crmRequest ]);
+            await Promise.all([ emailRequest ]);
             setSubmissionStatus('success');
             setFormData({ name: '', email: '', phone: '', message: '' });
             if (onSuccess) onSuccess();
