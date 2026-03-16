@@ -737,7 +737,7 @@ const LocationSection = () => {
   const mapTransition = isPanning ? "none" : isNavigating ? "transform 0.65s cubic-bezier(0.4, 0, 0.2, 1)" : "transform 0.1s ease-out";
 
   const QuickLinksStrip = () => (
-    <div className="mt-5">
+    <div className="mt-5 px-4">
       <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-gray-400">Quick Navigate</p>
       <div className="flex gap-2 overflow-x-auto pb-1" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
         {quickLinks.map((pin, i) => {
