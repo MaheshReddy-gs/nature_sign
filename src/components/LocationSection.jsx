@@ -4,7 +4,7 @@ import FloatUpText from "./Animations/floatUpText";
 import { Fragment, useRef, useState, useCallback, useEffect } from "react";
 import CustomButton from "./CustomButton";
 import { MapPin } from "lucide-react";
-import { label } from "framer-motion/client";
+import { label, title } from "framer-motion/client";
 
 const LocationSection = () => {
   const { openModal } = useModal();
@@ -43,7 +43,7 @@ const LocationSection = () => {
 
   const INITIAL_ZOOM = 1.1;
   const MIN_ZOOM = INITIAL_ZOOM;
-  const MAX_ZOOM = 7;
+  const MAX_ZOOM = 6;
   const ZOOM_THRESHOLD = 1.8;
   const MICRO_ZOOM_THRESHOLD = 2.3;
   const MOBILE_SCROLL_RELEASE_EPSILON = 0.02;
@@ -147,6 +147,7 @@ const LocationSection = () => {
     { legacy: true, id: " Beedaganahalli", x: 22, y: 36, type: "road", title: "Beedaganahalli", label: "Beedaganahalli", rotation: 2 },
     { legacy: true, id: " elevated expressway nh-442", x: 72, y: 75, type: "road", title: "elevated expressway nh-44", label: "elevated expressway nh-44", rotation: 28 },
     { legacy: true, id: "satellite town road", x: 49.5, y: 70, type: "road", title: "satellite town road", label: "satellite town road", rotation: -77.5 },
+    {  id: "soolibele", x: 68.9, y: 21.3, type: "road", title: "soolibele", label: "soolibele",  },
     { legacy: true, id: "satellite town road2", x: 72, y: 11.8, type: "road", title: "satellite town road", label: "satellite town road", rotation: -26.5 },
     { legacy: true, id: "bommanahalli", x: 54, y: 15, type: "road", title: "bommanahalli", label: "bommanahalli", rotation: 0 },
     { legacy: true, id: "devanahalli town", x: 63, y: 47, type: "road", title: "devanahalli town", label: "devanahalli town", rotation: 0 },
@@ -159,7 +160,7 @@ const LocationSection = () => {
     { id: "police", type: "micro", x: 9.4, y: 33.3, label: "Superintendent <br/>Of Police Office", labelPosition: "top" },
     { id: "nature", type: "micro", x: 11.6, y: 37.1, label: "Glass House Of<br/> Chikkabalapura" },
     { id: "hospital", type: "micro", x: 14.7, y: 44.6, label: "District Hospital Chikkaballapur" },
-    { id: "nature", type: "micro", x: 14.6, y: 47.3, label: "Kandavara Kere" },
+    { id: "kandavara", type: "road", title: "Kandavara", x: 14.6, y: 47.3, label: "Kandavara Kere" },
     { id: "govtoffice", type: "micro", x: 9.4, y: 55.7, label: "House Of Bharatha Rathna <br/> Sir M Visvesvaraya" },
     { id: "hospital", type: "micro", x: 18.6, y: 54.4, labelPosition: "left", label: "Sri Madhusudan Sai<br/> Institute Of Medical Sciences<br/> And Research" },
     { id: "church", type: "micro", x: 17.7, y: 45.9, label: "IPC Hosanna Full <br/>Gospel Church" },
@@ -179,8 +180,8 @@ const LocationSection = () => {
     { id: "school", type: "micro", x: 41.9, y: 51.2, label: "Jnanadeepa Residential Academy" },
     { id: "hotel", type: "micro", x: 43.3, y: 49.8, label: "Al Taj Hotel", labelPosition: "right" },
     { id: "orchard", type: "micro", x: 44.4, y: 48.4, label: "Rose Flower Farms" },
-    { id: "nature", type: "micro", x: 43.5, y: 46.7, label: "Avati" },
-    { id: "nature", type: "micro", x: 49.99, labelAlign: "start", y: 51.1, label: "Devanahalli Kere" },
+    { id: "avati", type: "road", title: "Avati", x: 43.5, y: 46.7, label: "Avati" },
+    { id: "devanahalli kere", type: "road", title: "Devanahalli Kere", x: 49.99, labelAlign: "start", y: 51.1, label: "Devanahalli Kere" },
     { id: "convention", type: "micro", x: 51.2, y: 54.1, labelAlign: "end", label: "Smriti Mandir" },
     { id: "history", type: "micro", x: 49.7, y: 55.2, label: "Stepwell" },
     { id: "hotel", type: "micro", x: 51, y: 55.8, label: "TAJJ Restaurant " },
@@ -190,7 +191,6 @@ const LocationSection = () => {
     { id: "school", type: "micro", x: 52.2, y: 37.5, label: "Innovators International School" },
     { id: "stadium", type: "micro", x: 56.6, y: 27.2, label: "Polanahalli Volleyball Stadium" },
     { id: "factory", type: "micro", x: 66.6, y: 23.8, label: "Emmvee Energy Private Limited (Unit 5)" },
-    { id: "", type: "micro", x: 68.9, y: 21.3, label: "Soolibele" },
     { id: "orchard", type: "micro", x: 70.5, y: 29.3, label: "Nalluru Heritage Tamarind Grove (Nalluru Kote)" },
     { id: "history", type: "micro", x: 55.5, y: 51.1, label: "Tippu's Birth Place" },
     { id: "hotel", type: "micro", x: 56.4, y: 53, label: "Srinidhi Vaibhava" },
@@ -198,27 +198,27 @@ const LocationSection = () => {
     { id: "hotel", type: "micro", x: 60.3, y: 60.4, label: "Cafe Coffee Day (NH44)" },
     { id: "factory", type: "micro", x: 47.8, y: 90.6, label: "Pondhan Scaffolding Pvt Ltd" },
     { id: "factory", type: "micro", x: 52.4, y: 97.9, label: "ITC Filtrona Limited" },
-    { id: "nature", type: "micro", x: 54, y: 98.1, label: "Varadanahalli" },
+    { id: "varadanahalli", title: "Varadanahalli", type: "road", x: 54, y: 98.1, label: "Varadanahalli" },
     { id: "factory", type: "micro", x: 55.3, y: 99, label: "Excelios Tissue" },
     { id: "factory", type: "micro", x: 56.8, y: 98.3, labelPosition: "right", label: "INDO-MIM Limited" },
-    { id: "nature", type: "micro", x: 88.4, y: 6, label: "Kolathur" },
+    { id: "kolathur", type: "road", title: "Kolathur", x: 88.4, y: 6, label: "Kolathur" },
     { id: "school", type: "micro", x: 77.5, y: 54.2, label: "CMR University (Lakeside Campus)" },
     { id: "club", type: "micro", x: 80.7, y: 55.7, label: "BCCI Centre Of Excellence <br/>(National Cricket Academy)" },
     { id: "school", type: "micro", x: 77, y: 60.4, label: "Delhi Public School Bangalore North" },
-    { id: "", type: "micro", x: 76.9, y: 62.1, label: "Sathanur" },
+    { id: "sathanur", type: "road", title: "Sathanur", x: 76.9, y: 62.1, label: "Sathanur" },
     { id: "statue", type: "micro", x: 70.4, y: 66.1, label: "Nadaprabhu Kempegowda Statue, Statue Of Prosperity" },
     { id: "govtoffice", type: "micro", x: 74.5, y: 72.1, label: "BSF Campus" },
-    { id: "nature", type: "micro", x: 73.3, y: 73.5, label: "Chikkajala" },
+    { id: "chikkajala", type: "road", title: "Chikkajala", x: 73.3, y: 73.5, label: "Chikkajala" },
     { id: "hospital", type: "micro", x: 89, y: 68, label: "Eesha Multispeciality Hospital" },
     { id: "cultural", type: "micro", x: 86.6, y: 74.2, label: "Rangoli Gardens" },
-    { id: "nature", type: "micro", x: 94, y: 72.4, label: "Nagavara Lake" },
+    { id: "nagavara lake", type: "road", title: "Nagavara Lake", x: 94, y: 72.4, label: "Nagavara Lake" },
     { id: "church", type: "micro", x: 92.7, y: 79.7, label: "Bethel AG Church" ,labelPosition: "right"},
     { id: "aerospace", type: "micro", x: 85.2, y: 80.2, label: "Jakkuru Aerodrome" },
     { id: "hospital", type: "micro", x: 82.3, y: 81.2, label: "Sparsh Hospital Yelahanka" },
     { id: "hospital", type: "micro", x: 90.2, y: 87.8, label: "Aster CMI Hospital" },
     { id: "mall", type: "micro", x: 86.1, y: 86.1, label: "Phoenix Mall Of Asia" },
-    { id: "nature", type: "micro", x: 80.9, y: 89.4, label: "Yelahanka New Town" },
-    { id: "nature", type: "micro", x: 78.3, y: 82.9, label: "Yelahanka" },
+    { id: "Yelahanka New Town", type: "road", x: 80.9, y: 89.4, title: "Yelahanka New Town", label: "Yelahanka New Town" },
+    { id: "yelahanka", type: "road", x: 78.3, y: 82.9,title: "Yelahanka", label: "Yelahanka" },
     { id: "tech", type: "micro", x: 77.4, y: 84.4, label: "Infosys Limited" },
     { id: "army", type: "micro", x: 73.4, y: 85.4, label: "BSF Campus" },
     { id: "school", type: "micro", x: 73.9, y: 87.2, label: "Nitte Meenakshi Institute Of Technology" },
@@ -769,7 +769,7 @@ const LocationSection = () => {
               className="flex shrink-0 items-center gap-1.5 rounded-full border px-3 py-1.5 text-[11px] font-semibold whitespace-nowrap transition-all duration-200"
               style={{ background: isActive ? "#f97316" : "#fff", borderColor: isActive ? "#f97316" : "#d1d5db", color: isActive ? "#fff" : "#374151", boxShadow: isActive ? "0 0 0 3px rgba(249,115,22,0.2)" : "0 1px 3px rgba(0,0,0,0.06)" }}>
               {customIcons[pin.id] && <img src={customIcons[pin.id]} alt="" style={{ width: 13, height: 13, filter: isActive ? "brightness(0) invert(1)" : undefined }} />}
-              {plainLabel}
+              {toTitleCasePreserveBreaks(plainLabel)}
             </button>
           );
         })}
