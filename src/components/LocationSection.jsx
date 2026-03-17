@@ -243,7 +243,7 @@ const LocationSection = () => {
 
   const QUICK_LINK_TITLES = [
     "Kempegowda International Airport", "Nandi Hills",
-    "Krishna Convention Center", "SAP Labs India", "Foxconn",
+    "Isha Foundation", "SAP Labs India", "Foxconn",
     "Prestige Golfshire Club", "Akash Super Speciality Hospital",
     "Manyata Embassy Business Park",
   ];
