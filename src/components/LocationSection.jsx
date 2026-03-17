@@ -147,7 +147,7 @@ const LocationSection = () => {
     { legacy: true, id: " Beedaganahalli", x: 22, y: 36, type: "road", title: "Beedaganahalli", label: "Beedaganahalli", rotation: 2 },
     { legacy: true, id: " elevated expressway nh-442", x: 72, y: 75, type: "road", title: "elevated expressway nh-44", label: "elevated expressway nh-44", rotation: 28 },
     { legacy: true, id: "satellite town road", x: 49.5, y: 70, type: "road", title: "satellite town road", label: "satellite town road", rotation: -77.5 },
-    {  id: "soolibele", x: 68.9, y: 21.3, type: "road", title: "soolibele", label: "soolibele",  },
+    { id: "soolibele", x: 68.9, y: 21.3, type: "road", title: "soolibele", label: "soolibele", },
     { legacy: true, id: "satellite town road2", x: 72, y: 11.8, type: "road", title: "satellite town road", label: "satellite town road", rotation: -26.5 },
     { legacy: true, id: "bommanahalli", x: 54, y: 15, type: "road", title: "bommanahalli", label: "bommanahalli", rotation: 0 },
     { legacy: true, id: "devanahalli town", x: 63, y: 47, type: "road", title: "devanahalli town", label: "devanahalli town", rotation: 0 },
@@ -212,13 +212,13 @@ const LocationSection = () => {
     { id: "hospital", type: "micro", x: 89, y: 68, label: "Eesha Multispeciality Hospital" },
     { id: "cultural", type: "micro", x: 86.6, y: 74.2, label: "Rangoli Gardens" },
     { id: "nagavara lake", type: "road", title: "Nagavara Lake", x: 94, y: 72.4, label: "Nagavara Lake" },
-    { id: "church", type: "micro", x: 92.7, y: 79.7, label: "Bethel AG Church" ,labelPosition: "right"},
+    { id: "church", type: "micro", x: 92.7, y: 79.7, label: "Bethel AG Church", labelPosition: "right" },
     { id: "aerospace", type: "micro", x: 85.2, y: 80.2, label: "Jakkuru Aerodrome" },
     { id: "hospital", type: "micro", x: 82.3, y: 81.2, label: "Sparsh Hospital Yelahanka" },
     { id: "hospital", type: "micro", x: 90.2, y: 87.8, label: "Aster CMI Hospital" },
     { id: "mall", type: "micro", x: 86.1, y: 86.1, label: "Phoenix Mall Of Asia" },
     { id: "Yelahanka New Town", type: "road", x: 80.9, y: 89.4, title: "Yelahanka New Town", label: "Yelahanka New Town" },
-    { id: "yelahanka", type: "road", x: 78.3, y: 82.9,title: "Yelahanka", label: "Yelahanka" },
+    { id: "yelahanka", type: "road", x: 78.3, y: 82.9, title: "Yelahanka", label: "Yelahanka" },
     { id: "tech", type: "micro", x: 77.4, y: 84.4, label: "Infosys Limited" },
     { id: "army", type: "micro", x: 73.4, y: 85.4, label: "BSF Campus" },
     { id: "school", type: "micro", x: 73.9, y: 87.2, label: "Nitte Meenakshi Institute Of Technology" },
@@ -673,7 +673,7 @@ const LocationSection = () => {
       .map(pin => {
         if (pin.type === "road") {
           return (
-            <div key={pin.id} className="pointer-events-none absolute z-[3] whitespace-nowrap text-[9px] font-semibold uppercase tracking-[0.08em] text-black [text-shadow:0_1px_2px_rgba(255,255,255,0.8)]"
+            <div key={pin.id} className="pointer-events-none absolute bg-[#F7F6F2] z-[3] whitespace-nowrap text-[9px] font-semibold uppercase tracking-[0.08em] text-black [text-shadow:0_1px_2px_rgba(255,255,255,0.8)]"
               style={{ top: `${pin.y}%`, left: `${pin.x}%`, transform: `translate(-50%, -50%) scale(${1 / zoom}) rotate(${pin.rotation ?? 0}deg)`, transformOrigin: "center center" }}>
               {renderTitleWithLineBreaks(pin.title)}
             </div>
@@ -758,57 +758,57 @@ const LocationSection = () => {
   const mapTransition = isPanning ? "none" : isNavigating ? "transform 0.65s cubic-bezier(0.4, 0, 0.2, 1)" : "transform 0.1s ease-out";
 
   const QuickLinksStrip = () => (
-  <div className="mt-5 md:px-0 px-4">
-    <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-gray-400">
-      Quick Navigate
-    </p>
+    <div className="mt-5 md:px-0 px-4">
+      <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-gray-400">
+        Quick Navigate
+      </p>
 
-    <div className="flex flex-wrap gap-2 pb-1">
-      {quickLinks.map((pin, i) => {
-        const isActive =
-          quickActivePin?.title === pin.title &&
-          quickActivePin?.x === pin.x;
+      <div className="flex flex-wrap gap-2 pb-1">
+        {quickLinks.map((pin, i) => {
+          const isActive =
+            quickActivePin?.title === pin.title &&
+            quickActivePin?.x === pin.x;
 
-        const plainLabel = (pin.label ?? pin.title).replace(
-          /<br\s*\/?>/gi,
-          " "
-        );
+          const plainLabel = (pin.label ?? pin.title).replace(
+            /<br\s*\/?>/gi,
+            " "
+          );
 
-        return (
-          <button
-            key={i}
-            onClick={() => navigateToPin(pin)}
-            className="flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[11px] font-semibold transition-all duration-200"
-            style={{
-              background: isActive ? "#f97316" : "#fff",
-              borderColor: isActive ? "#f97316" : "#d1d5db",
-              color: isActive ? "#fff" : "#374151",
-              boxShadow: isActive
-                ? "0 0 0 3px rgba(249,115,22,0.2)"
-                : "0 1px 3px rgba(0,0,0,0.06)",
-            }}
-          >
-            {customIcons[pin.id] && (
-              <img
-                src={customIcons[pin.id]}
-                alt=""
-                style={{
-                  width: 13,
-                  height: 13,
-                  filter: isActive
-                    ? "brightness(0) invert(1)"
-                    : undefined,
-                }}
-              />
-            )}
+          return (
+            <button
+              key={i}
+              onClick={() => navigateToPin(pin)}
+              className="flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[11px] font-semibold transition-all duration-200"
+              style={{
+                background: isActive ? "#f97316" : "#fff",
+                borderColor: isActive ? "#f97316" : "#d1d5db",
+                color: isActive ? "#fff" : "#374151",
+                boxShadow: isActive
+                  ? "0 0 0 3px rgba(249,115,22,0.2)"
+                  : "0 1px 3px rgba(0,0,0,0.06)",
+              }}
+            >
+              {customIcons[pin.id] && (
+                <img
+                  src={customIcons[pin.id]}
+                  alt=""
+                  style={{
+                    width: 13,
+                    height: 13,
+                    filter: isActive
+                      ? "brightness(0) invert(1)"
+                      : undefined,
+                  }}
+                />
+              )}
 
-            {toTitleCasePreserveBreaks(plainLabel)}
-          </button>
-        );
-      })}
+              {toTitleCasePreserveBreaks(plainLabel)}
+            </button>
+          );
+        })}
+      </div>
     </div>
-  </div>
-);
+  );
 
   if (!activePin) return null;
 
@@ -831,7 +831,7 @@ const LocationSection = () => {
                 {/* LEFT DETAILS */}
                 <div className="md:col-span-1 flex flex-col justify-between gap-3"><div>
 
-                
+
                   {activePin.image && (
                     <div style={{ width: "100%", overflow: "hidden" }}>
                       <img className="aspect-[5/3]" src={activePin.image} alt={activePin.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
@@ -842,11 +842,11 @@ const LocationSection = () => {
                   </h3>
                   {activePin.description && <p style={{ fontSize: DESKTOP_TEXT_SIZES.description, color: "#374151", lineHeight: "1.625" }}>{activePin.description}</p>}
                   {activePin.eta && <p style={{ fontSize: DESKTOP_TEXT_SIZES.eta, color: "#16a34a", fontWeight: 600 }}>{activePin.eta}</p>}
-               </div> <div className="hidden md:block">
+                </div> <div className="hidden md:block">
 
-              
-              <QuickLinksStrip />
-              </div></div>
+
+                    <QuickLinksStrip />
+                  </div></div>
 
                 {/* MAP */}
                 <div ref={attachWheelDesktop} onMouseDown={handleMouseDown} onMouseMove={handleMouseMovePan} onMouseUp={handleMouseUp} onMouseLeave={handleMouseUp}
@@ -884,8 +884,8 @@ const LocationSection = () => {
               </div>
               <div className="md:hidden">
 
-              
-              <QuickLinksStrip />
+
+                <QuickLinksStrip />
               </div>
             </div>
           </FloatUpText>
