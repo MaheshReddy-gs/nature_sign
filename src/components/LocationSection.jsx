@@ -168,7 +168,7 @@ const LocationSection = () => {
     { id: "stadium", type: "micro", x: 24, y: 55.3, label: "Sai Krishnan Cricket Stadium" },
     // { id: "club", type: "micro", x: 22.7, y: 51.4, label: "Sai Krishnan Cricket Stadium" },
     { id: "govtoffice", type: "micro", x: 28.2, y: 57.2, label: "Nandi Grama Panchayat Office" },
-    { id: "convention", type: "micro", x: 31.7, y: 52.7, label: "Karagadamma Devi Temple" },
+    { id: "isha", type: "micro", x: 31.7, y: 52.7, label: "Karagadamma Devi Temple" },
     { id: "convention", type: "micro", x: 27.4, y: 40.9, label: "Happy Retreats - KAI" },
     { id: "factory", type: "micro", x: 31.3, y: 46.1, label: "Trinetra Precast" },
     { id: "convention", type: "micro", x: 34.1, y: 49.5, label: "Radha Soami Satsang Beas, Devanahalli" },
@@ -225,7 +225,7 @@ const LocationSection = () => {
     { id: "kmf", type: "micro", x: 69.2, y: 93.5, label: "KMF Cattle Feed Mixing Plant" },
     { id: "school", type: "micro", x: 67.4, y: 85.3, label: "Acharya Rakumjee Ashram And School" }, { id: "school", type: "micro", x: 38.1, y: 53.8, labelPosition: "top", label: "Geethanjali International<br /> School" },
     { id: "club", type: "micro", x: 42.8, y: 49.9, label: "Extreme Karts <br/>& Adventures" },
-    { id: "convention", type: "micro", x: 42.6, y: 49.3, labelPosition: "left", label: "Sri Kalikadevi Choweshwari Temple" },
+    { id: "isha", type: "micro", x: 42.6, y: 49.3, labelPosition: "left", label: "Sri Kalikadevi Choweshwari Temple" },
     { id: "hotel", type: "micro", x: 43, y: 43.5, label: "Udupi Sri Krishna Authana" },
     { id: "hotel", type: "micro", x: 40.5, y: 42.4, label: "New Gharana Family Restaurant" },
     { id: "tech", type: "micro", x: 86.2, y: 57.8, label: "SISA Information Security (SISA SDC)" },
@@ -242,10 +242,10 @@ const LocationSection = () => {
   useEffect(() => { setActivePin(resolvedPins[0]); }, []);
 
   const QUICK_LINK_TITLES = [
-    "Kempegowda International Airport", "Nandi Hills", "KMF Mega Dairy",
+    "Kempegowda International Airport", "Nandi Hills",
     "Krishna Convention Center", "SAP Labs India", "Foxconn",
     "Prestige Golfshire Club", "Akash Super Speciality Hospital",
-    "Wipro Limited", "Manyata Embassy Business Park",
+    "Manyata Embassy Business Park",
   ];
   const quickLinks = QUICK_LINK_TITLES.map(title => resolvedPins.find(p => p.title === title)).filter(Boolean);
 
@@ -720,7 +720,7 @@ const LocationSection = () => {
                     <img src="/naturesignLogo1.png" alt="Nature's Sign" className="mb-1 w-full object-contain" />
                     <div className="absolute bottom-[-5px] right-[10%] h-0 w-0 -translate-x-1/2 border-x-[10px] border-x-transparent border-t-[10px] border-t-white [filter:drop-shadow(0_2px_2px_rgba(0,0,0,0.1))]" style={{ transform: "translateX(-50%)" }} />
                   </div>
-                  <div className="rotate-2 bg-[#E8620A] px-2 py-[2px] text-[9px] font-extrabold text-white inline-block relative top-0">
+                  <div className="rotate-2 bg-[#E8620A] px-2 py-[2px] bg-[#F7F6F2] text-[9px] font-extrabold text-white inline-block relative top-0">
                     {renderTitleWithLineBreaks(pin.label)}
                   </div>
                 </div>
@@ -743,7 +743,7 @@ const LocationSection = () => {
               <div className="relative z-10 flex items-center justify-center rounded-full transition-all duration-300 ease-in-out"
                 style={{ width: `${dotSize}px`, height: `${dotSize}px`, background: isQuickActive ? "#f97316" : "white", boxShadow: isQuickActive ? "0 0 0 3px rgba(249,115,22,0.4)" : undefined, opacity: isVisible ? 1 : 0 }}>
                 {customIcons[pin.id] ? (
-                  <img src={customIcons[pin.id]} alt={pin.title} style={{ width: iconSize, height: iconSize, filter: isQuickActive ? "brightness(0) invert(1)" : undefined }} draggable={false} />
+                  <img src={customIcons[pin.id]} alt={pin.title} style={{ width: iconSize, height: iconSize, filter: isQuickActive ? "" : undefined }} draggable={false} />
                 ) : <MapPin size={iconSize} />}
               </div>
             </motion.div>
@@ -758,24 +758,57 @@ const LocationSection = () => {
   const mapTransition = isPanning ? "none" : isNavigating ? "transform 0.65s cubic-bezier(0.4, 0, 0.2, 1)" : "transform 0.1s ease-out";
 
   const QuickLinksStrip = () => (
-    <div className="mt-5 px-4">
-      <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-gray-400">Quick Navigate</p>
-      <div className="flex gap-2 overflow-x-auto pb-1" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
-        {quickLinks.map((pin, i) => {
-          const isActive = quickActivePin?.title === pin.title && quickActivePin?.x === pin.x;
-          const plainLabel = (pin.label ?? pin.title).replace(/<br\s*\/?>/gi, " ");
-          return (
-            <button key={i} onClick={() => navigateToPin(pin)}
-              className="flex shrink-0 items-center gap-1.5 rounded-full border px-3 py-1.5 text-[11px] font-semibold whitespace-nowrap transition-all duration-200"
-              style={{ background: isActive ? "#f97316" : "#fff", borderColor: isActive ? "#f97316" : "#d1d5db", color: isActive ? "#fff" : "#374151", boxShadow: isActive ? "0 0 0 3px rgba(249,115,22,0.2)" : "0 1px 3px rgba(0,0,0,0.06)" }}>
-              {customIcons[pin.id] && <img src={customIcons[pin.id]} alt="" style={{ width: 13, height: 13, filter: isActive ? "brightness(0) invert(1)" : undefined }} />}
-              {toTitleCasePreserveBreaks(plainLabel)}
-            </button>
-          );
-        })}
-      </div>
+  <div className="mt-5 md:px-0 px-4">
+    <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-gray-400">
+      Quick Navigate
+    </p>
+
+    <div className="flex flex-wrap gap-2 pb-1">
+      {quickLinks.map((pin, i) => {
+        const isActive =
+          quickActivePin?.title === pin.title &&
+          quickActivePin?.x === pin.x;
+
+        const plainLabel = (pin.label ?? pin.title).replace(
+          /<br\s*\/?>/gi,
+          " "
+        );
+
+        return (
+          <button
+            key={i}
+            onClick={() => navigateToPin(pin)}
+            className="flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[11px] font-semibold transition-all duration-200"
+            style={{
+              background: isActive ? "#f97316" : "#fff",
+              borderColor: isActive ? "#f97316" : "#d1d5db",
+              color: isActive ? "#fff" : "#374151",
+              boxShadow: isActive
+                ? "0 0 0 3px rgba(249,115,22,0.2)"
+                : "0 1px 3px rgba(0,0,0,0.06)",
+            }}
+          >
+            {customIcons[pin.id] && (
+              <img
+                src={customIcons[pin.id]}
+                alt=""
+                style={{
+                  width: 13,
+                  height: 13,
+                  filter: isActive
+                    ? "brightness(0) invert(1)"
+                    : undefined,
+                }}
+              />
+            )}
+
+            {toTitleCasePreserveBreaks(plainLabel)}
+          </button>
+        );
+      })}
     </div>
-  );
+  </div>
+);
 
   if (!activePin) return null;
 
@@ -796,7 +829,9 @@ const LocationSection = () => {
               <div className="gap-3 grid grid-cols-1 md:grid-cols-4">
 
                 {/* LEFT DETAILS */}
-                <div className="md:col-span-1 flex flex-col justify-top gap-3">
+                <div className="md:col-span-1 flex flex-col justify-between gap-3"><div>
+
+                
                   {activePin.image && (
                     <div style={{ width: "100%", overflow: "hidden" }}>
                       <img className="aspect-[5/3]" src={activePin.image} alt={activePin.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
@@ -807,7 +842,11 @@ const LocationSection = () => {
                   </h3>
                   {activePin.description && <p style={{ fontSize: DESKTOP_TEXT_SIZES.description, color: "#374151", lineHeight: "1.625" }}>{activePin.description}</p>}
                   {activePin.eta && <p style={{ fontSize: DESKTOP_TEXT_SIZES.eta, color: "#16a34a", fontWeight: 600 }}>{activePin.eta}</p>}
-                </div>
+               </div> <div className="hidden md:block">
+
+              
+              <QuickLinksStrip />
+              </div></div>
 
                 {/* MAP */}
                 <div ref={attachWheelDesktop} onMouseDown={handleMouseDown} onMouseMove={handleMouseMovePan} onMouseUp={handleMouseUp} onMouseLeave={handleMouseUp}
@@ -816,7 +855,7 @@ const LocationSection = () => {
 
                   {/* ZOOM + PAN WRAPPER */}
                   <div style={{ transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`, transformOrigin: "center center", transition: mapTransition, width: "100%", height: "100%", position: "relative" }}>
-                    <img ref={newMapImgRef} onLoad={handleNewMapLoad} src="/map1.svg" alt="Location Map" draggable={false} className="w-full h-full object-contain" />
+                    <img ref={newMapImgRef} onLoad={handleNewMapLoad} src="/newMap3.svg" alt="Location Map" draggable={false} className="w-full h-full object-contain" />
                     {/* LEGACY PINS */}
                     <div style={{ position: "absolute", top: `${pinTopOffset}%`, left: -4, width: "100%", height: `${100 - pinTopOffset}%`, pointerEvents: "none" }}>
                       <div style={{ position: "relative", width: "100%", height: "100%" }}>{renderPins(true)}</div>
@@ -843,7 +882,11 @@ const LocationSection = () => {
                 </div>
 
               </div>
+              <div className="md:hidden">
+
+              
               <QuickLinksStrip />
+              </div>
             </div>
           </FloatUpText>
 
